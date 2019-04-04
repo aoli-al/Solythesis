@@ -1,4 +1,4 @@
-import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit } from "solidity-parser-antlr";
+import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess } from "solidity-parser-antlr";
 
 
 export class Decorator implements Visitor {
@@ -9,7 +9,7 @@ export class Decorator implements Visitor {
   }
   BinaryOperation = (node: BinaryOperation) => {
     if (node.operator == '=' && node.left.type == 'IndexAccess') {
-      console.log(node)
+      const indexAccess = node.left as IndexAccess
     }
     return false
   }

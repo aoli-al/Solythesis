@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "antlr4ts": "^0.5.0-alpha.3",
-    "solidity-parser-antlr": "^0.4.2"
+    "solidity-parser-antlr": "git+https://github.com/federicobond/solidity-parser-antlr.git"
   }
 }
