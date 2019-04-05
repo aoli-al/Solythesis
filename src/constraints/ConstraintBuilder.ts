@@ -113,16 +113,20 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
 
   visitForAllExpression(context: ForAllExpressionContext): Node {
     const node = this.createNode('ForAllExpression') as ForAllExpression
+    this.muVariables.push(context.identifier().text)
     node.mu = this.visit(context.identifier()) as Identifier
     node.constraint = this.visit(context.expression()) 
+    this.muVariables.pop()
     return node
   }
 
   visitSumExpression(context: SumExpressionContext): Node {
     const node = this.createNode('SumExpression') as SumExpression
+    this.muVariables.push(context.identifier().text)
     node.mu = this.visit(context.identifier()) as Identifier
     node.body = this.visit(context.expression(0)) as MuExp
     node.constraint = this.visit(context.expression(1)) 
+    this.muVariables.pop()
     return node
   }
 }
