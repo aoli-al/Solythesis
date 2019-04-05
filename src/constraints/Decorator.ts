@@ -9,7 +9,8 @@ export class Decorator implements Visitor {
   }
   BinaryOperation = (node: BinaryOperation) => {
     if (node.operator == '=' && node.left.type == 'IndexAccess') {
-      const indexAccess = node.left as IndexAccess
+      const indexAccess = node.left 
+      const base = node.left.base
     }
     return false
   }
