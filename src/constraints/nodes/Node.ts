@@ -4,7 +4,7 @@ import { IdentifierContext } from "../../antlr/SolidityParser";
 interface Expression {
   parent?: Node
   children: Node[]
-  kind: SyntaxKind
+  type: SyntaxKind
 }
 
 export type ArithmeticOp = 
@@ -28,26 +28,26 @@ export type BinOp =
   | ComparisonOp
 
 export interface PrimaryExpression extends Expression {
-  kind: 'PrimaryExpression'
+  type: 'PrimaryExpression'
   value: String
 }
 
 export interface MuExpression extends Expression {
-  kind: 'MuExpression'
+  type: 'MuExpression'
   op: BinOp
   left: MuExp
   right: MuExp
 }
 
 export interface SExpression extends Expression{
-  kind: 'SExpression'
+  type: 'SExpression'
   op: BinOp
   left: SExp
   right: SExp
 }
 
 export interface CMPExpression extends Expression{
-  kind: 'CMPExpression'
+  type: 'CMPExpression'
   op: ComparisonOp
   left: Exp
   right: Exp
@@ -58,47 +58,46 @@ export interface Identifier extends Expression {
 }
 
 export interface SIdentifier extends Identifier {
-  kind: "SIdentifier"
+  type: "SIdentifier"
 }
 
 export interface MuIdentifier extends Identifier {
-  kind: 'MuIdentifier'
+  type: 'MuIdentifier'
 }
 
 export interface ForAllExpression extends Expression {
-  kind: 'ForAllExpression'
-  mu: Identifier
+  type: 'ForAllExpression'
+  mu: Iden
   constraint: Node
 }
 
 export interface SumExpression extends Expression {
-  kind: 'SumExpression'
-  mu: Identifier
+  type: 'SumExpression'
+  mu: Iden
   body: MuExp
   constraint: Node
 }
 
-export interface IndexedAccess extends Expression {
-  object: Node
+interface IndexedAccess extends Expression {
+  object: SIdentifier
 }
 
 export interface SIndexedAccess extends IndexedAccess {
-  kind: 'SIndexedAccess'
+  type: 'SIndexedAccess'
   index: SExp
 }
 
 export interface MuIndexedAccess extends IndexedAccess {
-  kind: 'MuIndexedAccess'
+  type: 'MuIndexedAccess'
   index: MuIdentifier
 }
 
 export interface DummyNode extends Expression {
-  kind: 'DummyNode'
+  type: 'DummyNode'
 }
 
 export type SyntaxKind =
   | 'PrimaryExpression'
-  | 'BinaryExpression'
   | 'ForAllExpression'
   | 'SumExpression'
   | 'SIndexedAccess'
@@ -112,10 +111,8 @@ export type SyntaxKind =
 
 export type Node = 
   | DummyNode
-  | IndexedAccess
   | ForAllExpression
   | SumExpression
-  | Identifier
   | PrimaryExpression
   | CMPExpression
   | MuExp
@@ -125,6 +122,7 @@ export type MuExp =
   | MuExpression
   | MuIndexedAccess
   | PrimaryExpression
+  | MuIdentifier
 
 export type SExp =
   | SExpression
@@ -136,6 +134,10 @@ export type SExp =
 export type Exp =
   | SExp
   | MuExp
+
+export type Iden =
+  | SIdentifier
+  | MuIdentifier
 
 export const SExpTypes: SyntaxKind[] = ['SExpression', 'SIndexedAccess',
   'SumExpression', 'SIdentifier', 'PrimaryExpression']

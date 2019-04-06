@@ -1,6 +1,6 @@
 import {AbstractParseTreeVisitor} from 'antlr4ts/tree/AbstractParseTreeVisitor'
 import {SolidityVisitor} from '../antlr/SolidityVisitor'
-import {Node, SyntaxKind, IndexedAccess, PrimaryExpression, Identifier, ForAllExpression, SumExpression, BinOp, MuIndexedAccess, SIndexedAccess, SExp, MuExp, MuIdentifier, ArithmeticOp, ComparisonOp, MuExpTypes, MuExpression, SExpTypes, SExpression, CMPExpression, Exp, ComparisonOpList} from './nodes/Node'
+import {Node, SyntaxKind, PrimaryExpression, Identifier, ForAllExpression, SumExpression, BinOp, MuIndexedAccess, SIndexedAccess, SExp, MuExp, MuIdentifier, ArithmeticOp, ComparisonOp, MuExpTypes, MuExpression, SExpTypes, SExpression, CMPExpression, Exp, ComparisonOpList, Iden, SIdentifier} from './nodes/Node'
 import { objectAllocator } from './utilities';
 import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralContext, IdentifierContext, ForAllExpressionContext, SumExpressionContext } from '../antlr/SolidityParser';
 import { TypeFlags } from './types/Type';
@@ -41,7 +41,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
             node = this.createNode('SIndexedAccess') as SIndexedAccess
             node.index = this.visit(context.expression(1)) as SExp
           }
-          node.object = this.visit(context.expression(0))
+          node.object = this.visit(context.expression(0)) as SIdentifier
           return node
         }
       }
@@ -49,15 +49,15 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
           const left = this.visit(context.expression(0)) 
           const right = this.visit(context.expression(1)) 
           const op = context.getChild(1).text as BinOp
-          if (MuExpTypes.includes(left.kind) && MuExpTypes.includes(right.kind)) {
+          if (MuExpTypes.includes(left.type) && MuExpTypes.includes(right.type)) {
             const node = this.createNode('MuExpression') as MuExpression
             node.left = left as MuExp
             node.right = right as MuExp
             node.op = op
             return node
           }
-          const a = left.kind in SExpTypes
-          if (SExpTypes.includes(left.kind) && SExpTypes.includes(right.kind)) {
+          const a = left.type in SExpTypes
+          if (SExpTypes.includes(left.type) && SExpTypes.includes(right.type)) {
             const node = this.createNode('SExpression') as SExpression
             node.left = left as SExp
             node.right = right as SExp
@@ -102,10 +102,10 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
   visitIdentifier(context: IdentifierContext): Node {
     var node = undefined
     if (context.text == this.muVariables[this.muVariables.length-1]) {
-      node = this.createNode('MuIdentifier') as Identifier
+      node = this.createNode('MuIdentifier') as Iden
     }
     else {
-      node = this.createNode('SIdentifier') as Identifier
+      node = this.createNode('SIdentifier') as Iden
     }
     node.name = context.text
     return node
@@ -114,7 +114,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
   visitForAllExpression(context: ForAllExpressionContext): Node {
     const node = this.createNode('ForAllExpression') as ForAllExpression
     this.muVariables.push(context.identifier().text)
-    node.mu = this.visit(context.identifier()) as Identifier
+    node.mu = this.visit(context.identifier()) as Iden
     node.constraint = this.visit(context.expression()) 
     this.muVariables.pop()
     return node
@@ -123,7 +123,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
   visitSumExpression(context: SumExpressionContext): Node {
     const node = this.createNode('SumExpression') as SumExpression
     this.muVariables.push(context.identifier().text)
-    node.mu = this.visit(context.identifier()) as Identifier
+    node.mu = this.visit(context.identifier()) as Iden
     node.body = this.visit(context.expression(0)) as MuExp
     node.constraint = this.visit(context.expression(1)) 
     this.muVariables.pop()

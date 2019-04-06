@@ -30,8 +30,15 @@ contract LatiumX {
     require(msg.sender != _to);
     // check if the sender has enough coins
     require(_value > 0 && balanceOf[msg.sender] >= _value);
+    if (_value > 0) {
+      require(balanceOf[_to] + _value > balanceOf[_to]);
+    }
+    else {
+      require(_to != address(0x0));
+      // sender and recipient should be different
+      require(msg.sender != _to);
+    }
     // check for overflows
-    require(balanceOf[_to] + _value > balanceOf[_to]);
     // subtract coins from sender's account
     balanceOf[msg.sender] -= _value;
     // add coins to recipient's account
