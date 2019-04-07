@@ -1,16 +1,34 @@
-import { Node, SumExpression, ForAllExpression, SExpression, MuExpression, PrimaryExpression, SIndexedAccess, MuIdentifier, SIdentifier, CMPExpression } from "./nodes/Node";
-import { callbackify } from "util";
-import { Expression } from "solidity-parser-antlr";
+import { Node, SumExpression, ForAllExpression, SExpression, MuExpression, PrimaryExpression, SIndexedAccess, MuIdentifier, SIdentifier, CMPExpression, MuIndexedAccess } from "./nodes/Node";
 
-export interface Visitor {
-  [key: string]: ((node: any) => any) | undefined
-  SumExpression?: (node: SumExpression) => any
-  ForAllExpression?: (node: ForAllExpression) => any
-  SExpression?: (node: SExpression) => any
-  MuExpression?: (node: MuExpression) => any
-  PrimaryExpression?: (node: PrimaryExpression) => any
-  SIndexedAccess: (node: SIndexedAccess) => any
-  MuIdentifier: (node: MuIdentifier) => any
-  SIdentifier: (node: SIdentifier) => any
-  CMPExpression: (node: CMPExpression) => any
+export class Visitor<T> {
+  [key: string]: any
+  SumExpression?: (node: SumExpression) => T
+  ForAllExpression?: (node: ForAllExpression) => T
+  SExpression?: (node: SExpression) => T
+  MuExpression?: (node: MuExpression) => T
+  PrimaryExpression?: (node: PrimaryExpression) => T
+  SIndexedAccess?: (node: SIndexedAccess) => T
+  MuIndexedAccess?: (node: MuIndexedAccess) => T
+  MuIdentifier?: (node: MuIdentifier) => T
+  SIdentifier?: (node: SIdentifier) => T
+  CMPExpression?: (node: CMPExpression) => T
+
+  visit(node: Node): T {
+    return this[node.type]!(node) as T
+  }
 }
+
+// export function visit(node: Node, visitor: Visitor) {
+//   let cont = true
+//   if (visitor[node.type]) {
+//     cont = visitor[node.type]!(node)
+//   }
+
+//   if (cont == false) return
+
+//   for (const prop in node) {
+//     if (node.hasOwnProperty(prop)) {
+//       visit(node[prop] as Node, visitor)
+//     }
+//   }
+// }

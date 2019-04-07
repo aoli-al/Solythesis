@@ -1,4 +1,4 @@
-import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement } from "solidity-parser-antlr";
+import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration } from "solidity-parser-antlr";
 
 
 export class Decorator implements Visitor {
@@ -19,6 +19,18 @@ export class Decorator implements Visitor {
   }
 
   IfStatement = (node: IfStatement) => {
+    console.log(node)
+  }
+
+  VariableDeclaration = (node: VariableDeclaration) => {
+    console.log(node)
+  }
+
+  VariableDeclarationStatement = (node: VariableDeclarationStatement) => {
+    console.log(node)
+  }
+
+  StateVariableDeclaration = (node: StateVariableDeclaration) => {
     console.log(node)
   }
 }

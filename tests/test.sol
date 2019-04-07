@@ -34,6 +34,7 @@ contract LatiumX {
       require(balanceOf[_to] + _value > balanceOf[_to]);
     }
     else {
+      uint256 memory a = 0;
       require(_to != address(0x0));
       // sender and recipient should be different
       require(msg.sender != _to);
