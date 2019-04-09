@@ -1,5 +1,5 @@
 import { Node, SyntaxKind, ForAllExpression, SumExpression, SExpression, SIndexedAccess, SIdentifier, MuIdentifier, CMPExpression, MuExpression, BinaryExpression, IndexedAccess} from "./nodes/Node";
-import { BinaryOperation, Identifier, Expression, ASTNode, IfStatement, BaseASTNode, Block, IndexAccess, ExpressionStatement, BinOp, VariableDeclaration } from "solidity-parser-antlr";
+import { BinaryOperation, Identifier, Expression, ASTNode, IfStatement, BaseASTNode, Block, IndexAccess, ExpressionStatement, BinOp, VariableDeclaration, VariableDeclarationStatement, ElementaryTypeName } from "solidity-parser-antlr";
 import { getSVariables, createBaseASTNode } from "./utilities";
 import { Visitor} from "./Visitor";
 
@@ -9,6 +9,9 @@ import { Visitor} from "./Visitor";
 
 function generateSum(node: SumExpression, identifier: Identifier, index: Expression, value: Expression) {
   if (!getSVariables(node).has(identifier.name)) return
+  const left = createBaseASTNode('IndexAccess') as IndexAccess
+  left.base = identifier
+  left.index = index
   const v = createBaseASTNode('Identifier') as Identifier
   v.name = node.name
   const block = createBaseASTNode('Block') as Block
@@ -46,7 +49,15 @@ function generateSum(node: SumExpression, identifier: Identifier, index: Express
     }
   }
   {
-    const tmp = createBaseASTNode('VariableDeclaration') as VariableDeclaration
+    const tmp = createBaseASTNode('VariableDeclarationStatement') as VariableDeclarationStatement
+    const declare = createBaseASTNode('VariableDeclaration') as VariableDeclaration
+    declare.isIndexed = false
+    declare.isStateVar = false
+    declare.name = "tmp"
+    declare.typeName = createBaseASTNode('ElementaryTypeName') as ElementaryTypeName
+    declare.typeName.name = 'uint256'
+    tmp.variables.push(declare)
+    tmp.initialValue = left
   }
 }
 
