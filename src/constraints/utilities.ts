@@ -1,5 +1,5 @@
 import {Node, SyntaxKind, PrimaryExpression, SumExpression, SExpTypes, MuExpTypes, MuExp} from './nodes/Node'
-import { BaseASTNode, ASTNodeTypeString, ASTNode } from 'solidity-parser-antlr';
+import { BaseASTNode, ASTNodeTypeString, ASTNode, Expression, BinOp, BinaryOperation, ExpressionStatement } from 'solidity-parser-antlr';
 
 function Node(this: Node, kind: SyntaxKind) {
   this.children = []
@@ -22,6 +22,16 @@ export function createNode(kind: SyntaxKind): Node {
 
 export function createBaseASTNode(type: ASTNodeTypeString) {
   return new (objectAllocator.getBaseASTNodeConstructor())(type)
+}
+
+export function createBinaryOperationStmt(left: Expression, right: Expression, op: BinOp): ExpressionStatement {
+  const node = createBaseASTNode('BinaryOperation') as BinaryOperation
+  node.left = left
+  node.right = right
+  node.operator = op
+  const stmt = createBaseASTNode('ExpressionStatement') as ExpressionStatement
+  stmt.expression = node
+  return stmt
 }
 
 export function getChildren(node: Node): Node[] {

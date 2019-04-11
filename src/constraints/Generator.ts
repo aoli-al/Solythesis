@@ -1,14 +1,29 @@
 import { Node, SyntaxKind, ForAllExpression, SumExpression, SExpression, SIndexedAccess, SIdentifier, MuIdentifier, CMPExpression, MuExpression, BinaryExpression, IndexedAccess} from "./nodes/Node";
 import { BinaryOperation, Identifier, Expression, ASTNode, IfStatement, BaseASTNode, Block, IndexAccess, ExpressionStatement, BinOp, VariableDeclaration, VariableDeclarationStatement, ElementaryTypeName } from "solidity-parser-antlr";
-import { getSVariables, createBaseASTNode } from "./utilities";
+import { getSVariables, createBaseASTNode, createBinaryOperationStmt } from "./utilities";
 import { Visitor} from "./Visitor";
 
 // export function generate(constraint: Node, identifier: Identifier, index: ASTNode, value: ASTNode): BaseASTNode {
 // }
 
 
+function generateForAll(node: ForAllExpression, identifier: Identifier, index: Expression, value: Expression) {
+  switch (node.constraint.type) {
+    case 'CMPExpression': {
+      switch (node.constraint.op) {
+        case '<':
+        case '<=': {
+          const variable = createBaseASTNode('Identifier') as Identifier
+          variable.name = "max_v"
+          const ifStatement = createBaseASTNode('IfStatement')  as IfStatement
+          // const statement = createBinaryOperationStmt("")
+        }
+      }
+    }
+  }
+}
+
 function generateSum(node: SumExpression, identifier: Identifier, index: Expression, value: Expression) {
-  if (!getSVariables(node).has(identifier.name)) return
   const left = createBaseASTNode('IndexAccess') as IndexAccess
   left.base = identifier
   left.index = index
@@ -28,7 +43,7 @@ function generateSum(node: SumExpression, identifier: Identifier, index: Express
       case 'MuIndexedAccess': {
         const ifStatement = createBaseASTNode('IfStatement') as IfStatement
         ifStatement.condition = new Rewriter(node.mu.name, index).visit(node.constraint) as Expression
-        ifStatement.trueBody.statements.push(statement)
+        ifStatement.trueBody = statement
         block.statements.push(ifStatement)
         break;
       }
@@ -48,17 +63,23 @@ function generateSum(node: SumExpression, identifier: Identifier, index: Express
       }
     }
   }
-  {
-    const tmp = createBaseASTNode('VariableDeclarationStatement') as VariableDeclarationStatement
-    const declare = createBaseASTNode('VariableDeclaration') as VariableDeclaration
-    declare.isIndexed = false
-    declare.isStateVar = false
-    declare.name = "tmp"
-    declare.typeName = createBaseASTNode('ElementaryTypeName') as ElementaryTypeName
-    declare.typeName.name = 'uint256'
-    tmp.variables.push(declare)
-    tmp.initialValue = left
-  }
+  const tmp = createBaseASTNode('VariableDeclarationStatement') as VariableDeclarationStatement
+  const declare = createBaseASTNode('VariableDeclaration') as VariableDeclaration
+  declare.isIndexed = false
+  declare.isStateVar = false
+  declare.name = "tmp"
+  declare.typeName = createBaseASTNode('ElementaryTypeName') as ElementaryTypeName
+  declare.typeName.name = 'uint256'
+  tmp.variables.push(declare)
+  tmp.initialValue = left
+  block.statements.push(tmp)
+  gen('-=')
+  block.statements.push(createBinaryOperationStmt(left, value, '='))
+  gen('+=')
+  const tmpVar = createBaseASTNode('Identifier') as Identifier
+  tmpVar.name = 'tmp'
+  block.statements.push(createBinaryOperationStmt(left, tmpVar, '='))
+  return block
 }
 
 export class Rewriter extends Visitor<ASTNode> {
