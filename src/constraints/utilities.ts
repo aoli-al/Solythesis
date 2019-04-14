@@ -69,3 +69,16 @@ export function getSVariables(node: Node): Set<string> {
     .map(getSVariables)
     .reduce((accumulator, set) => new Set([...accumulator, ...set]), new Set())
 }
+
+export function getMonitoredVariables(node: Node, mu: string): Set<string> {
+  switch (node.type) {
+    case 'MuIndexedAccess': {
+      if (node.index.name == mu) {
+        return new Set([node.object.name])
+      }
+    }
+  }
+  return getChildren(node)
+    .map((name) => getMonitoredVariables(name, mu))
+    .reduce((accumulator, set) => new Set([...accumulator, ...set]), new Set())
+}

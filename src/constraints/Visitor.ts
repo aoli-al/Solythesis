@@ -1,6 +1,6 @@
 import { Node, SumExpression, ForAllExpression, SExpression, MuExpression, PrimaryExpression, SIndexedAccess, MuIdentifier, SIdentifier, CMPExpression, MuIndexedAccess } from "./nodes/Node";
 
-export class Visitor<T> {
+export abstract class Visitor<T> {
   [key: string]: any
   SumExpression?: (node: SumExpression) => T
   ForAllExpression?: (node: ForAllExpression) => T
@@ -12,9 +12,10 @@ export class Visitor<T> {
   MuIdentifier?: (node: MuIdentifier) => T
   SIdentifier?: (node: SIdentifier) => T
   CMPExpression?: (node: CMPExpression) => T
-
+  abstract default(): T
   visit(node: Node): T {
-    return this[node.type]!(node) as T
+    if (node.type in this) this[node.type](node) as T
+    return this.default()
   }
 }
 

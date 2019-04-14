@@ -6,6 +6,11 @@ import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralCont
 import { TypeFlags } from './types/Type';
 import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
 
+var counter = 0
+function generateNewName(base: string) {
+  return base + "-" + (counter++).toString()
+}
+
 export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements SolidityVisitor<Node> {
 
   constraint: Node[] = []
@@ -66,9 +71,10 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
           }
           if (ComparisonOpList.includes(op)) {
             const node = this.createNode('CMPExpression') as CMPExpression
-            node.left = left as Exp
-            node.right = right as Exp
+            node.left = left as SExp
+            node.right = right as MuExp
             node.op = op as ComparisonOp
+            node.name = generateNewName('cmp')
             return node
           }
       }
@@ -114,7 +120,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
   visitForAllExpression(context: ForAllExpressionContext): Node {
     const node = this.createNode('ForAllExpression') as ForAllExpression
     this.muVariables.push(context.identifier().text)
-    node.mu = this.visit(context.identifier()) as Iden
+    node.mu = this.visit(context.identifier()) as MuIdentifier
     node.constraint = this.visit(context.expression()) 
     this.muVariables.pop()
     return node
@@ -123,9 +129,10 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
   visitSumExpression(context: SumExpressionContext): Node {
     const node = this.createNode('SumExpression') as SumExpression
     this.muVariables.push(context.identifier().text)
-    node.mu = this.visit(context.identifier()) as Iden
+    node.mu = this.visit(context.identifier()) as MuIdentifier
     node.body = this.visit(context.expression(0)) as MuExp
     node.constraint = this.visit(context.expression(1)) 
+    node.name = generateNewName('sum')
     this.muVariables.pop()
     return node
   }
