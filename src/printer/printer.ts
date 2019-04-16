@@ -1,10 +1,10 @@
-import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier } from "solidity-parser-antlr";
+import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral } from "solidity-parser-antlr";
 
 export class Printer implements Visitor {
   source: string = ""
   BinaryOperation = (node: BinaryOperation) => {
     visit(node.left, this) 
-    this.source += node.operator
+    this.source += ' ' + node.operator + ' '
     visit(node.right, this)
     return false
   }
@@ -18,6 +18,49 @@ export class Printer implements Visitor {
       this.source += 'else'
       visit(node.falseBody, this)
     }
+    return false
+  }
+
+  ElementaryTypeName = (node: ElementaryTypeName) => {
+    this.source += node.name
+  }
+
+  VariableDeclaration = (node: VariableDeclaration) => {
+    visit(node.typeName, this)
+    if (node.storageLocation) {
+      this.source += ' ' + node.storageLocation
+    }
+    this.source += ' '
+    visit(node.name, this)
+    return false
+  }
+
+  NumberLiteral = (node: NumberLiteral) => {
+    this.source += node.number
+  }
+
+  BooleanLiteral = (node: BooleanLiteral) => {
+    this.source = node.value.toString()
+  }
+
+  VariableDeclarationStatement = (node: VariableDeclarationStatement) => {
+    if (node.variables.length > 1) {
+      this.source += '('
+      visit(node.variables[0], this)
+      node.variables.slice(1).forEach(it => {
+        this.source += ', '
+        visit(it, this)
+      })
+      this.source += ')'
+    }
+    else {
+      visit(node.variables[0], this)
+    }
+    if (node.initialValue) {
+      this.source += ' = '
+      visit(node.initialValue, this)
+    }
+    this.source += ';\n'
     return false
   }
 

@@ -2,13 +2,14 @@ import {AbstractParseTreeVisitor} from 'antlr4ts/tree/AbstractParseTreeVisitor'
 import {SolidityVisitor} from '../antlr/SolidityVisitor'
 import {Node, SyntaxKind, PrimaryExpression, Identifier, ForAllExpression, SumExpression, BinOp, MuIndexedAccess, SIndexedAccess, SExp, MuExp, MuIdentifier, ArithmeticOp, ComparisonOp, MuExpTypes, MuExpression, SExpTypes, SExpression, CMPExpression, Exp, ComparisonOpList, Iden, SIdentifier} from './nodes/Node'
 import { objectAllocator } from './utilities';
-import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralContext, IdentifierContext, ForAllExpressionContext, SumExpressionContext } from '../antlr/SolidityParser';
+import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralContext, IdentifierContext, ForAllExpressionContext, SumExpressionContext, PrimaryExpressionContext } from '../antlr/SolidityParser';
 import { TypeFlags } from './types/Type';
 import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
+import { visit } from 'solidity-parser-antlr';
 
 var counter = 0
 function generateNewName(base: string) {
-  return base + "-" + (counter++).toString()
+  return base + "_" + (counter++).toString()
 }
 
 export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements SolidityVisitor<Node> {
@@ -102,8 +103,21 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
     const node = this.createNode('PrimaryExpression') as PrimaryExpression
     // node.type = { flags: TypeFlags.Int }
     node.value = context.text
+    node.typeName = 'number'
     return node
   }
+
+  visitPrimaryExpression(context: PrimaryExpressionContext): Node {
+    if (context.BooleanLiteral()) {
+      const node = this.createNode('PrimaryExpression') as PrimaryExpression
+      // node.type = { flags: TypeFlags.Int }
+      node.value = context.text
+      node.typeName = 'boolean'
+      return node
+    }
+    return this.visit(context.getChild(0))
+  }
+
 
   visitIdentifier(context: IdentifierContext): Node {
     var node = undefined

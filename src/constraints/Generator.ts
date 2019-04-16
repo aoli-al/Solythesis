@@ -1,5 +1,5 @@
-import { Node, SyntaxKind, ForAllExpression, SumExpression, SExpression, SIndexedAccess, SIdentifier, MuIdentifier, CMPExpression, MuExpression, BinaryExpression, IndexedAccess, Iden, Exp} from "./nodes/Node";
-import { BinaryOperation, Identifier, Expression, ASTNode, IfStatement, BaseASTNode, Block, IndexAccess, ExpressionStatement, BinOp, VariableDeclaration, VariableDeclarationStatement, ElementaryTypeName, Statement } from "solidity-parser-antlr";
+import { Node, SyntaxKind, ForAllExpression, SumExpression, SExpression, SIndexedAccess, SIdentifier, MuIdentifier, CMPExpression, MuExpression, BinaryExpression, IndexedAccess, Iden, Exp, PrimaryExpression} from "./nodes/Node";
+import { BinaryOperation, Identifier, Expression, ASTNode, IfStatement, BaseASTNode, Block, IndexAccess, ExpressionStatement, BinOp, VariableDeclaration, VariableDeclarationStatement, ElementaryTypeName, Statement, BooleanLiteral, NumberLiteral } from "solidity-parser-antlr";
 import { getSVariables, createBaseASTNode, createBinaryOperationStmt, getMonitoredVariables, getChildren } from "./utilities";
 import { Visitor} from "./Visitor";
 
@@ -20,19 +20,19 @@ function generateTmpUpdate(identifier: Identifier, index: Expression, value: Exp
   left.index = index
   const tmp = createBaseASTNode('VariableDeclarationStatement') as VariableDeclarationStatement
   const declare = createBaseASTNode('VariableDeclaration') as VariableDeclaration
+  const tmpVar = createBaseASTNode('Identifier') as Identifier
+  tmpVar.name = 'tmp'
   declare.isIndexed = false
   declare.isStateVar = false
-  declare.name = "tmp"
+  declare.name = tmpVar
   declare.typeName = createBaseASTNode('ElementaryTypeName') as ElementaryTypeName
   declare.typeName.name = 'uint256'
-  tmp.variables.push(declare)
+  tmp.variables = [declare]
   tmp.initialValue = left
-  block.statements.push(tmp)
+  block.statements = [tmp]
   if (before) block.statements.push(before)
   block.statements.push(createBinaryOperationStmt(left, value, '='))
   if (after) block.statements.push(after)
-  const tmpVar = createBaseASTNode('Identifier') as Identifier
-  tmpVar.name = 'tmp'
   block.statements.push(createBinaryOperationStmt(left, tmpVar, '='))
   return block
 }
@@ -157,6 +157,21 @@ export class Rewriter extends Visitor<ASTNode> {
 
   MuIdentifier = (node: MuIdentifier) => {
     return this.expression
+  }
+
+  PrimaryExpression = (node: PrimaryExpression) => {
+    switch(node.typeName) {
+      case 'boolean': {
+        const bool = createBaseASTNode('BooleanLiteral') as BooleanLiteral
+        bool.value = node.value == 'true'
+        return bool
+      }
+      case 'number': {
+        const number = createBaseASTNode('NumberLiteral') as NumberLiteral
+        number.number = node.value
+        return number
+      }
+    }
   }
 
 }

@@ -24,13 +24,18 @@ export type ComparisonOp =
 
 export const ComparisonOpList = ['<', '>', '<=', '>=', '==', '!=']
 
+export type TypeString = 
+  | 'boolean'
+  | 'number'
+
 export type BinOp =
   | ArithmeticOp
   | ComparisonOp
 
 export interface PrimaryExpression extends Expression {
   type: 'PrimaryExpression'
-  value: String
+  typeName: TypeString;
+  value: string
 }
 
 export interface BinaryExpression extends Expression {

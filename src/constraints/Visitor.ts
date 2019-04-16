@@ -14,7 +14,7 @@ export abstract class Visitor<T> {
   CMPExpression?: (node: CMPExpression) => T
   abstract default(): T
   visit(node: Node): T {
-    if (node.type in this) this[node.type](node) as T
+    if (node.type in this) return this[node.type](node) as T
     return this.default()
   }
 }
