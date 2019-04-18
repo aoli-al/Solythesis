@@ -1,4 +1,4 @@
-import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral } from "solidity-parser-antlr";
+import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral, MemberAccess, ASTNode } from "solidity-parser-antlr";
 
 export class Printer implements Visitor {
   source: string = ""
@@ -47,7 +47,7 @@ export class Printer implements Visitor {
     if (node.variables.length > 1) {
       this.source += '('
       visit(node.variables[0], this)
-      node.variables.slice(1).forEach(it => {
+      node.variables.slice(1).forEach((it: ASTNode) => {
         this.source += ', '
         visit(it, this)
       })
@@ -68,12 +68,19 @@ export class Printer implements Visitor {
     this.source += node.name
   }
 
+  MemberAccess = (node: MemberAccess) => {
+    visit(node.expression, this)
+    this.source += '.'
+    visit(node.memberName, this)
+    return false
+  }
+
   ExpressionStatement = (node: ExpressionStatement) => {
     visit(node.expression, this)
     this.source += ';\n'
     return false
   }
-
+  
   IndexAccess = (node: IndexAccess) => {
     visit(node.base, this)
     this.source += '['

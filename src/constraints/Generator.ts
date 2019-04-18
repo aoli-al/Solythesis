@@ -22,8 +22,6 @@ function generateTmpUpdate(identifier: Identifier, index: Expression, value: Exp
   const declare = createBaseASTNode('VariableDeclaration') as VariableDeclaration
   const tmpVar = createBaseASTNode('Identifier') as Identifier
   tmpVar.name = 'tmp'
-  declare.isIndexed = false
-  declare.isStateVar = false
   declare.name = tmpVar
   declare.typeName = createBaseASTNode('ElementaryTypeName') as ElementaryTypeName
   declare.typeName.name = 'uint256'

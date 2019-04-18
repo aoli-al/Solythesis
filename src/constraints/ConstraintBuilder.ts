@@ -1,23 +1,31 @@
 import {AbstractParseTreeVisitor} from 'antlr4ts/tree/AbstractParseTreeVisitor'
 import {SolidityVisitor} from '../antlr/SolidityVisitor'
 import {Node, SyntaxKind, PrimaryExpression, Identifier, ForAllExpression, SumExpression, BinOp, MuIndexedAccess, SIndexedAccess, SExp, MuExp, MuIdentifier, ArithmeticOp, ComparisonOp, MuExpTypes, MuExpression, SExpTypes, SExpression, CMPExpression, Exp, ComparisonOpList, Iden, SIdentifier} from './nodes/Node'
-import { objectAllocator } from './utilities';
+import { objectAllocator, createBaseASTNode, createIdentifier, createElementaryTypeName, createMapping } from './utilities';
 import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralContext, IdentifierContext, ForAllExpressionContext, SumExpressionContext, PrimaryExpressionContext } from '../antlr/SolidityParser';
-import { TypeFlags } from './types/Type';
 import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
-import { visit } from 'solidity-parser-antlr';
+import { visit, StateVariableDeclaration, TypeName, VariableDeclaration } from 'solidity-parser-antlr';
 
 var counter = 0
-function generateNewName(base: string) {
-  return base + "_" + (counter++).toString()
-}
 
 export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements SolidityVisitor<Node> {
 
   constraint: Node[] = []
+  variables: StateVariableDeclaration[] = []
   muVariables: string[] = ['#']
   defaultResult() {
     return new (objectAllocator.getNodeConstructor())('DummyNode')
+  }
+  
+  generateNewVariable(base: string, type: TypeName) {
+    const variable = createBaseASTNode('VariableDeclaration') as VariableDeclaration
+    variable.name = createIdentifier(base + "_" + (counter++).toString())
+    const node = createBaseASTNode('StateVariableDeclaration') as StateVariableDeclaration
+    node.variables = variable
+    node.isDeclaredConst = false
+    node.visibility = 'private'
+    this.variables.push(node)
+    return variable.name.name
   }
 
   aggregateResult(current: Node, next: Node) {
@@ -75,7 +83,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
             node.left = left as SExp
             node.right = right as MuExp
             node.op = op as ComparisonOp
-            node.name = generateNewName('cmp')
+            node.name = this.generateNewVariable('cmp', createElementaryTypeName('uint256'))
             return node
           }
       }
@@ -146,7 +154,16 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
     node.mu = this.visit(context.identifier()) as MuIdentifier
     node.body = this.visit(context.expression(0)) as MuExp
     node.constraint = this.visit(context.expression(1)) 
-    node.name = generateNewName('sum')
+    node.name =  (() => {
+      switch (node.constraint.type) {
+        case 'SExpression': 
+        case 'MuExpression': 
+          return this.generateNewVariable('sum', createElementaryTypeName('uint256'))
+        default:
+          return this.generateNewVariable('sum',
+            createMapping(createElementaryTypeName('uin256'), createElementaryTypeName('uint256')))
+      }
+    })()
     this.muVariables.pop()
     return node
   }
