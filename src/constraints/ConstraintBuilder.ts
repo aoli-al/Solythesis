@@ -154,12 +154,11 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
     node.constraint = this.visit(context.expression(1)) 
     node.name =  (() => {
       switch (node.constraint.type) {
-        case 'SExpression': 
-        case 'MuExpression': 
-          return this.generateNewVariable('sum', createElementaryTypeName('uint256'))
-        default:
+        case 'CMPExpression':
           return this.generateNewVariable('sum',
             createMapping(createElementaryTypeName('uin256'), createElementaryTypeName('uint256')))
+        default:
+          return this.generateNewVariable('sum', createElementaryTypeName('uint256'))
       }
     })()
     this.muVariables.pop()

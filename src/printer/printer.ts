@@ -1,4 +1,4 @@
-import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral, MemberAccess, ASTNode, ContractDefinition, Block } from "solidity-parser-antlr";
+import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral, MemberAccess, ASTNode, ContractDefinition, Block, Mapping, FunctionDefinition } from "solidity-parser-antlr";
 
 export class Printer implements Visitor {
   originSource: string
@@ -39,6 +39,37 @@ export class Printer implements Visitor {
     node.children.forEach(it => this.visitOrPrint(it))
     return false
   }
+
+  Mapping = (node: Mapping) => {
+    this.source += 'mapping ('
+    this.visitOrPrint(node.keyType)
+    this.source += '=>'
+    this.visitOrPrint(node.valueType)
+    this.source += ')'
+    return false
+  }
+
+  FunctionDefinition = (node: FunctionDefinition) => {
+    if (node.isConstructor) {
+      this.source += 'constructor '
+    }
+    else {
+      this.source += 'function '
+    }
+    if (node.name) {
+      this.visitOrPrint(node.name)
+      this.source += ' '
+    }
+    this.visitOrPrint(node.parameters)
+    this.visitOrPrint(node.modifiers)
+    if (node.body) {
+      this.visitOrPrint(node.body)
+    }
+    else {
+      this.source += ';\n'
+    }
+  }
+
 
   ContractDefinition = (node: ContractDefinition) => {
     this.source += node.kind + ' '
@@ -100,6 +131,9 @@ export class Printer implements Visitor {
   }
 
   Block = (node: Block) => {
+    this.source += '{\n'
+    this.visitOrPrint(node.statements)
+    this.source += '}\n'
   }
 
   VariableDeclarationStatement = (node: VariableDeclarationStatement) => {
