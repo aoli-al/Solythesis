@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-contract LatiumX {
+contract LatiumX is a.b.c {
   string public constant name = "LatiumX";
   string public constant symbol = "LATX";
   uint8 public constant decimals = 8;

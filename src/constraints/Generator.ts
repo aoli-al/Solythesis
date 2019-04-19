@@ -3,7 +3,7 @@ import { BinaryOperation, Identifier, Expression, ASTNode, IfStatement, BaseASTN
 import { getSVariables, createBaseASTNode, createBinaryOperationStmt, getMonitoredVariables, getChildren } from "./utilities";
 import { Visitor} from "./Visitor";
 
-export function generate(constraint: Node, identifier: Identifier, index: Expression, value: Expression): ASTNode[] {
+export function generate(constraint: Node, identifier: Identifier, index: Expression, value: Expression): Statement[] {
   var nodes = getChildren(constraint).map((child) => generate(child, identifier, index, value)).reduce((pre, cur) => [...pre, ...cur], [])
   switch (constraint.type) {
     case 'ForAllExpression': return [...nodes, ...generateForAll(constraint, identifier, index, value)]
@@ -13,7 +13,7 @@ export function generate(constraint: Node, identifier: Identifier, index: Expres
 }
 
 
-function generateTmpUpdate(identifier: Identifier, index: Expression, value: Expression, before?: Statement, after?: Statement, ) {
+function generateTmpUpdate(identifier: Identifier, index: Expression, value: Expression, before?: Statement, after?: Statement) {
   const block = createBaseASTNode('Block') as Block
   const left = createBaseASTNode('IndexAccess') as IndexAccess
   left.base = identifier
@@ -67,7 +67,7 @@ function generateForAll(node: ForAllExpression, identifier: Identifier, index: E
   return []
 }
 
-function generateSum(node: SumExpression, identifier: Identifier, index: Expression, value: Expression): ASTNode[] {
+function generateSum(node: SumExpression, identifier: Identifier, index: Expression, value: Expression): Statement[] {
   if (!getMonitoredVariables(node, node.mu.name).has(identifier.name)) return []
   const v = createBaseASTNode('Identifier') as Identifier
   v.name = node.name

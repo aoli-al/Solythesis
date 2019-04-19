@@ -1,22 +1,78 @@
-import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral, MemberAccess, ASTNode } from "solidity-parser-antlr";
+import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral, MemberAccess, ASTNode, ContractDefinition, Block } from "solidity-parser-antlr";
 
 export class Printer implements Visitor {
+  originSource: string
   source: string = ""
+
+  constructor(originSource: string) {
+    this.originSource = originSource
+  }
+
+  visitOrPrint(node: ASTNode | ASTNode[]) {
+    if (Array.isArray(node)) {
+      node.forEach(it => this.visitOrPrint(it))
+      return 
+    }
+    if (node.type in this) {
+      visit(node, this)
+    }
+    else {
+      if (node.range) {
+        this.source += this.originSource.substr(node.range[0], node.range[1] - node.range[0] + 1)
+      }
+    }
+  }
+
+  StateVariableDeclaration = (node: StateVariableDeclaration) => {
+    this.visitOrPrint(node.typeName)
+    this.source += ' ' + node.modifiers.join(' ') + ' '
+    this.visitOrPrint(node.name)
+    if (node.initialValue) {
+      this.source += ' = '
+      this.visitOrPrint(node.initialValue)
+    }
+    this.source += ';\n'
+    return false
+  }
+
+  SourceUnit = (node: SourceUnit) => {
+    node.children.forEach(it => this.visitOrPrint(it))
+    return false
+  }
+
+  ContractDefinition = (node: ContractDefinition) => {
+    this.source += node.kind + ' '
+    this.visitOrPrint(node.name)
+    this.source += ' '
+    if (node.baseContracts.length > 0) {
+      this.source += 'is '
+      this.visitOrPrint(node.baseContracts[0])
+      node.baseContracts.slice(1).forEach(it => {
+        this.source += ', '
+        this.visitOrPrint(it)
+      })
+    }
+    this.source += '{\n'
+    this.visitOrPrint(node.subNodes)
+    this.source += '}\n'
+    return false
+  }
+
   BinaryOperation = (node: BinaryOperation) => {
-    visit(node.left, this) 
+    this.visitOrPrint(node.left)
     this.source += ' ' + node.operator + ' '
-    visit(node.right, this)
+    this.visitOrPrint(node.right)
     return false
   }
 
   IfStatement = (node: IfStatement) => {
     this.source += 'if ('
-    visit(node.condition, this)
+    this.visitOrPrint(node.condition)
     this.source += ') '
-    visit(node.trueBody, this)
+    this.visitOrPrint(node.trueBody)
     if (node.falseBody) {
       this.source += 'else'
-      visit(node.falseBody, this)
+      this.visitOrPrint(node.falseBody)
     }
     return false
   }
@@ -26,12 +82,12 @@ export class Printer implements Visitor {
   }
 
   VariableDeclaration = (node: VariableDeclaration) => {
-    visit(node.typeName, this)
+    this.visitOrPrint(node.typeName)
     if (node.storageLocation) {
       this.source += ' ' + node.storageLocation
     }
     this.source += ' '
-    visit(node.name, this)
+    this.visitOrPrint(node.name)
     return false
   }
 
@@ -43,22 +99,25 @@ export class Printer implements Visitor {
     this.source = node.value.toString()
   }
 
+  Block = (node: Block) => {
+  }
+
   VariableDeclarationStatement = (node: VariableDeclarationStatement) => {
     if (node.variables.length > 1) {
       this.source += '('
-      visit(node.variables[0], this)
+      this.visitOrPrint(node.variables[0])
       node.variables.slice(1).forEach((it: ASTNode) => {
         this.source += ', '
-        visit(it, this)
+        this.visitOrPrint(it)
       })
       this.source += ')'
     }
     else {
-      visit(node.variables[0], this)
+      this.visitOrPrint(node.variables[0])
     }
     if (node.initialValue) {
       this.source += ' = '
-      visit(node.initialValue, this)
+      this.visitOrPrint(node.initialValue)
     }
     this.source += ';\n'
     return false
@@ -69,22 +128,22 @@ export class Printer implements Visitor {
   }
 
   MemberAccess = (node: MemberAccess) => {
-    visit(node.expression, this)
+    this.visitOrPrint(node.expression)
     this.source += '.'
-    visit(node.memberName, this)
+    this.visitOrPrint(node.memberName)
     return false
   }
 
   ExpressionStatement = (node: ExpressionStatement) => {
-    visit(node.expression, this)
+    this.visitOrPrint(node.expression)
     this.source += ';\n'
     return false
   }
   
   IndexAccess = (node: IndexAccess) => {
-    visit(node.base, this)
+    this.visitOrPrint(node.base)
     this.source += '['
-    visit(node.index, this)
+    this.visitOrPrint(node.index)
     this.source += ']'
     return false
   }

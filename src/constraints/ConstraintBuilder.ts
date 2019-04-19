@@ -2,7 +2,7 @@ import {AbstractParseTreeVisitor} from 'antlr4ts/tree/AbstractParseTreeVisitor'
 import {SolidityVisitor} from '../antlr/SolidityVisitor'
 import {Node, SyntaxKind, PrimaryExpression, Identifier, ForAllExpression, SumExpression, BinOp, MuIndexedAccess, SIndexedAccess, SExp, MuExp, MuIdentifier, ArithmeticOp, ComparisonOp, MuExpTypes, MuExpression, SExpTypes, SExpression, CMPExpression, Exp, ComparisonOpList, Iden, SIdentifier} from './nodes/Node'
 import { objectAllocator, createBaseASTNode, createIdentifier, createElementaryTypeName, createMapping } from './utilities';
-import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralContext, IdentifierContext, ForAllExpressionContext, SumExpressionContext, PrimaryExpressionContext } from '../antlr/SolidityParser';
+import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralContext, IdentifierContext, ForAllExpressionContext, SumExpressionContext, PrimaryExpressionContext, StateVariableDeclarationContext } from '../antlr/SolidityParser';
 import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
 import { visit, StateVariableDeclaration, TypeName, VariableDeclaration } from 'solidity-parser-antlr';
 
@@ -18,14 +18,12 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
   }
   
   generateNewVariable(base: string, type: TypeName) {
-    const variable = createBaseASTNode('VariableDeclaration') as VariableDeclaration
-    variable.name = createIdentifier(base + "_" + (counter++).toString())
     const node = createBaseASTNode('StateVariableDeclaration') as StateVariableDeclaration
-    node.variables = variable
-    node.isDeclaredConst = false
-    node.visibility = 'private'
+    node.typeName = type
+    node.name = createIdentifier(base + "_" + (counter++).toString())
+    node.modifiers = []
     this.variables.push(node)
-    return variable.name.name
+    return node.name.name
   }
 
   aggregateResult(current: Node, next: Node) {
