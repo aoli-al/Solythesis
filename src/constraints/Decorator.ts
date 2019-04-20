@@ -33,8 +33,12 @@ export class Decorator implements Visitor {
       return
     }
     if (!node || typeof node != 'object' || !node.hasOwnProperty('type')) return
+    var result = true
     if (node.type in this) {
-      this[node.type](node)
+      result = this[node.type](node)
+    }
+    if (result == false) {
+      return
     }
 
     for (const prop in node) {
@@ -46,33 +50,19 @@ export class Decorator implements Visitor {
       }
     }
   }
-  Expression = (node: Expression) => {
-  }
-  FunctionDefinition = (node: FunctionDefinition) => {
-  }
   ContractDefinition = (node: ContractDefinition) => {
     node.subNodes = [...this.variables, ...node.subNodes]
   }
-  BinaryOperation = (node: BinaryOperation) => {
-    if (updateOps.includes(node.operator) && node.left.type == 'IndexAccess') {
-      const base = node.left.base 
-      const index = node.left.index
+  ExpressionStatement = (node: ExpressionStatement) => {
+    if (node.expression.type != 'BinaryOperation') return true
+    const binOp = node.expression
+    if (updateOps.includes(binOp.operator) && binOp.left.type == 'IndexAccess') {
+      const base = binOp.left.base 
+      const index = binOp.left.index
       if (base.type == 'Identifier') {
-        this.constraints.forEach(it => this.pendingBlocks.push(...generate(it, base, index, node.right)))
+        this.constraints.forEach(it => this.pendingBlocks.push(...generate(it, base, index, binOp.right)))
       }
     }
     return false
-  }
-  IfStatement = (node: IfStatement) => {
-    visit(node.trueBody, this)
-    if (this.pendingBlocks.length > 0) {
-      node.trueBody = this.buildStatements(node.trueBody)
-    }
-    if (node.falseBody) {
-      visit(node.falseBody, this)
-      if (this.pendingBlocks.length > 0) {
-        node.falseBody = this.buildStatements(node.falseBody)
-      }
-    }
   }
 }

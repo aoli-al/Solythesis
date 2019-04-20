@@ -31,12 +31,15 @@ export class Printer implements Visitor {
       this.source += ' = '
       this.visitOrPrint(node.initialValue)
     }
-    this.source += ';\n'
+    this.source += ';'
     return false
   }
 
   SourceUnit = (node: SourceUnit) => {
-    node.children.forEach(it => this.visitOrPrint(it))
+    node.children.forEach(it => {
+      this.visitOrPrint(it)
+      this.source += '\n'
+    })
     return false
   }
 
@@ -61,13 +64,16 @@ export class Printer implements Visitor {
       this.source += ' '
     }
     this.visitOrPrint(node.parameters)
+    this.source += ' '
     this.visitOrPrint(node.modifiers)
     if (node.body) {
+      this.source += ' '
       this.visitOrPrint(node.body)
     }
     else {
-      this.source += ';\n'
+      this.source += ';'
     }
+    return false
   }
 
 
@@ -84,8 +90,11 @@ export class Printer implements Visitor {
       })
     }
     this.source += '{\n'
-    this.visitOrPrint(node.subNodes)
-    this.source += '}\n'
+    node.subNodes.forEach(it => {
+      this.visitOrPrint(it)
+      this.source += '\n'
+    })
+    this.source += '}'
     return false
   }
 
@@ -102,7 +111,7 @@ export class Printer implements Visitor {
     this.source += ') '
     this.visitOrPrint(node.trueBody)
     if (node.falseBody) {
-      this.source += 'else'
+      this.source += ' else '
       this.visitOrPrint(node.falseBody)
     }
     return false
@@ -132,8 +141,12 @@ export class Printer implements Visitor {
 
   Block = (node: Block) => {
     this.source += '{\n'
-    this.visitOrPrint(node.statements)
-    this.source += '}\n'
+    node.statements.forEach(it => {
+      this.visitOrPrint(it)
+      this.source += '\n'
+    })
+    this.source += '}'
+    return false
   }
 
   VariableDeclarationStatement = (node: VariableDeclarationStatement) => {
@@ -153,7 +166,7 @@ export class Printer implements Visitor {
       this.source += ' = '
       this.visitOrPrint(node.initialValue)
     }
-    this.source += ';\n'
+    this.source += ';'
     return false
   }
 
@@ -170,7 +183,7 @@ export class Printer implements Visitor {
 
   ExpressionStatement = (node: ExpressionStatement) => {
     this.visitOrPrint(node.expression)
-    this.source += ';\n'
+    this.source += ';'
     return false
   }
   
