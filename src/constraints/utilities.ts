@@ -1,5 +1,5 @@
 import {Node, SyntaxKind, PrimaryExpression, SumExpression, SExpTypes, MuExpTypes, MuExp} from './nodes/Node'
-import { BaseASTNode, ASTNodeTypeString, ASTNode, Expression, BinOp, BinaryOperation, ExpressionStatement, Identifier, ElementaryTypeName, TypeName, Mapping } from 'solidity-parser-antlr';
+import { BaseASTNode, ASTNodeTypeString, ASTNode, Expression, BinOp, BinaryOperation, ExpressionStatement, Identifier, ElementaryTypeName, TypeName, Mapping, ArrayTypeName } from 'solidity-parser-antlr';
 
 function Node(this: Node, kind: SyntaxKind) {
   this.children = []
@@ -43,13 +43,23 @@ export function createMapping(keyType: ElementaryTypeName, valueType: TypeName) 
   return node
 }
 
-export function createBinaryOperationStmt(left: Expression, right: Expression, op: BinOp): ExpressionStatement {
+export function createArray(baseTypeName: TypeName) {
+  const node = createBaseASTNode('ArrayTypeName') as ArrayTypeName
+  node.baseTypeName = baseTypeName
+  return node
+}
+
+export function createBinaryOperation(left: Expression, right: Expression, op: BinOp) {
   const node = createBaseASTNode('BinaryOperation') as BinaryOperation
   node.left = left
   node.right = right
   node.operator = op
+  return node
+}
+
+export function createBinaryOperationStmt(left: Expression, right: Expression, op: BinOp): ExpressionStatement {
   const stmt = createBaseASTNode('ExpressionStatement') as ExpressionStatement
-  stmt.expression = node
+  stmt.expression = createBinaryOperation(left, right, op)
   return stmt
 }
 

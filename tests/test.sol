@@ -1,11 +1,12 @@
 pragma solidity ^0.5.0;
 
-contract LatiumX is a.b.c {
+contract LatiumX {
   string public constant name = "LatiumX";
   string public constant symbol = "LATX";
   uint8 public constant decimals = 8;
   uint256 public constant totalSupply =
     300000000 * 10 ** uint256(decimals);
+  uint256[] bbb;
 
   // owner of this contract
   address public owner;
@@ -24,6 +25,7 @@ contract LatiumX is a.b.c {
 
   // transfer the balance from sender's account to another one
   function transfer(address _to, uint256 _value) public {
+    bbb.push(1000);
     // prevent transfer to 0x0 address
     require(_to != address(0x0));
     // sender and recipient should be different

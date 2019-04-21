@@ -1,15 +1,19 @@
 import { Node, SyntaxKind, ForAllExpression, SumExpression, SExpression, SIndexedAccess, SIdentifier, MuIdentifier, CMPExpression, MuExpression, BinaryExpression, IndexedAccess, Iden, Exp, PrimaryExpression} from "./nodes/Node";
 import { BinaryOperation, Identifier, Expression, ASTNode, IfStatement, BaseASTNode, Block, IndexAccess, ExpressionStatement, BinOp, VariableDeclaration, VariableDeclarationStatement, ElementaryTypeName, Statement, BooleanLiteral, NumberLiteral } from "solidity-parser-antlr";
-import { getSVariables, createBaseASTNode, createBinaryOperationStmt, getMonitoredVariables, getChildren } from "./utilities";
+import { getSVariables, createBaseASTNode, createBinaryOperationStmt, getMonitoredVariables, getChildren, createBinaryOperation, createIdentifier } from "./utilities";
 import { Visitor} from "./Visitor";
 
-export function generate(constraint: Node, identifier: Identifier, index: Expression, value: Expression): Statement[] {
-  var nodes = getChildren(constraint).map((child) => generate(child, identifier, index, value)).reduce((pre, cur) => [...pre, ...cur], [])
+export function generateUpdates(constraint: Node, identifier: Identifier, index: Expression, value: Expression): Statement[] {
+  var nodes = getChildren(constraint).map((child) => generateUpdates(child, identifier, index, value)).reduce((pre, cur) => [...pre, ...cur], [])
   switch (constraint.type) {
     case 'ForAllExpression': return [...nodes, ...generateForAll(constraint, identifier, index, value)]
     case 'SumExpression': return [...nodes, ...generateSum(constraint, identifier, index, value)]
   }
   return []
+}
+
+export function generateAssertions(constraint: Node) {
+
 }
 
 
@@ -62,6 +66,10 @@ function generateForAll(node: ForAllExpression, identifier: Identifier, index: E
           return [gen('>')]
         }
       }
+      break
+    }
+    case 'MuExpression': {
+      const array = createIdentifier(node.name)
     }
   }
   return []
@@ -119,6 +127,9 @@ export class Rewriter extends Visitor<ASTNode> {
     return createBaseASTNode('SourceUnit')
   }
 
+  // ForAllExpression = (node: ForAllExpression) => {
+  // }
+
   SumExpression = (node: SumExpression) => {
     const identifier = createBaseASTNode('Identifier') as Identifier
     identifier.name = node.name
@@ -126,16 +137,21 @@ export class Rewriter extends Visitor<ASTNode> {
   }
 
   BinaryExpression(node: BinaryExpression) {
-    const bexp = createBaseASTNode('BinaryOperation') as BinaryOperation
-    bexp.left = this.visit(node.left) as Expression
-    bexp.right = this.visit(node.right) as Expression
-    bexp.operator = node.op
-    return bexp
+
+    const left = this.visit(node.left) as Expression
+    const right = this.visit(node.right) as Expression
+
+    return createBinaryOperation(left, right, node.op)
   }
 
   SExpression = this.BinaryExpression
-  CMPExpression = this.BinaryExpression
   MuExpression = this.BinaryExpression
+
+  CMPExpression = (node: CMPExpression) => {
+    const left = this.visit(node.left) as Expression
+    const right = createIdentifier(node.name)
+    return createBinaryOperation(left, right, node.op)
+  }
 
   IndexedAccess(node: IndexedAccess) {
     const indexedAccess = createBaseASTNode('IndexAccess') as IndexAccess
@@ -148,9 +164,7 @@ export class Rewriter extends Visitor<ASTNode> {
   MuIndexedAccess = this.IndexedAccess
 
   SIdentifier = (node: SIdentifier) => {
-    const identifier = createBaseASTNode('Identifier') as Identifier
-    identifier.name = node.name
-    return identifier
+    return createIdentifier(node.name)
   }
 
   MuIdentifier = (node: MuIdentifier) => {

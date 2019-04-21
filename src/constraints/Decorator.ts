@@ -1,5 +1,5 @@
 import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, FunctionDefinition, ContractDefinition, Statement, ASTNode, Block } from "solidity-parser-antlr";
-import { generate } from "./Generator";
+import { generateUpdates} from "./Generator";
 import { Node } from "./nodes/Node";
 import { Printer } from "../printer/printer";
 import { createBaseASTNode } from "./utilities";
@@ -60,7 +60,7 @@ export class Decorator implements Visitor {
       const base = binOp.left.base 
       const index = binOp.left.index
       if (base.type == 'Identifier') {
-        this.constraints.forEach(it => this.pendingBlocks.push(...generate(it, base, index, binOp.right)))
+        this.constraints.forEach(it => this.pendingBlocks.push(...generateUpdates(it, base, index, binOp.right)))
       }
     }
     return false

@@ -61,7 +61,6 @@ export interface CMPExpression extends BinaryExpression {
   op: ComparisonOp
   left: SExp
   right: MuExp
-  name: string
 }
 
 export interface Identifier extends Expression {
@@ -80,6 +79,7 @@ export interface ForAllExpression extends Expression {
   type: 'ForAllExpression'
   mu: MuIdentifier
   constraint: Node
+  name: string
 }
 
 export interface SumExpression extends Expression {

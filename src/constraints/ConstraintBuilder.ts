@@ -1,7 +1,7 @@
 import {AbstractParseTreeVisitor} from 'antlr4ts/tree/AbstractParseTreeVisitor'
 import {SolidityVisitor} from '../antlr/SolidityVisitor'
 import {Node, SyntaxKind, PrimaryExpression, Identifier, ForAllExpression, SumExpression, BinOp, MuIndexedAccess, SIndexedAccess, SExp, MuExp, MuIdentifier, ArithmeticOp, ComparisonOp, MuExpTypes, MuExpression, SExpTypes, SExpression, CMPExpression, Exp, ComparisonOpList, Iden, SIdentifier} from './nodes/Node'
-import { objectAllocator, createBaseASTNode, createIdentifier, createElementaryTypeName, createMapping } from './utilities';
+import { objectAllocator, createBaseASTNode, createIdentifier, createElementaryTypeName, createMapping, createArray } from './utilities';
 import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralContext, IdentifierContext, ForAllExpressionContext, SumExpressionContext, PrimaryExpressionContext, StateVariableDeclarationContext } from '../antlr/SolidityParser';
 import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
 import { visit, StateVariableDeclaration, TypeName, VariableDeclaration } from 'solidity-parser-antlr';
@@ -81,7 +81,6 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
             node.left = left as SExp
             node.right = right as MuExp
             node.op = op as ComparisonOp
-            node.name = this.generateNewVariable('cmp', createElementaryTypeName('uint256'))
             return node
           }
       }
@@ -142,6 +141,12 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
     this.muVariables.push(context.identifier().text)
     node.mu = this.visit(context.identifier()) as MuIdentifier
     node.constraint = this.visit(context.expression()) 
+    if (node.constraint.type == 'CMPExpression') {
+      node.name = this.generateNewVariable('cmp', createElementaryTypeName('uint256'))
+    }
+    else {
+      node.name = this.generateNewVariable('arr', createArray(createElementaryTypeName('uint256')))
+    }
     this.muVariables.pop()
     return node
   }
