@@ -1,10 +1,11 @@
 pragma solidity ^0.5.0;
-contract LatiumX is a.b.c{
-uint256  sum_0;
+contract LatiumX {
+uint256 sum_0;
 string public constant name = "LatiumX";
 string public constant symbol = "LATX";
 uint8 public constant decimals = 8;
 uint256 public constant totalSupply = 300000000 * 10 ** uint256(decimals);
+uint256[] default bbb;
 address public owner;
 mapping (address=>uint256) public balanceOf;
 event Transfer(address indexed _from, address indexed _to, uint _value);
@@ -22,6 +23,7 @@ balanceOf[owner] = totalSupply;
 }
 }
 function transfer (address _to, uint256 _value) public {
+bbb.push(1000);
 require(_to != address(0x0));
 require(msg.sender != _to);
 require(_value > 0 && balanceOf[msg.sender] >= _value);

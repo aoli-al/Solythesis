@@ -1,5 +1,5 @@
 import { Node, SyntaxKind, ForAllExpression, SumExpression, SExpression, SIndexedAccess, SIdentifier, MuIdentifier, CMPExpression, MuExpression, BinaryExpression, IndexedAccess, Iden, Exp, PrimaryExpression} from "./nodes/Node";
-import { BinaryOperation, Identifier, Expression, ASTNode, IfStatement, BaseASTNode, Block, IndexAccess, ExpressionStatement, BinOp, VariableDeclaration, VariableDeclarationStatement, ElementaryTypeName, Statement, BooleanLiteral, NumberLiteral } from "solidity-parser-antlr";
+import { BinaryOperation, Identifier, Expression, ASTNode, IfStatement, BaseASTNode, Block, IndexAccess, ExpressionStatement, BinOp, VariableDeclaration, VariableDeclarationStatement, ElementaryTypeName, Statement, BooleanLiteral, NumberLiteral, MemberAccess, FunctionCall, FunctionCallArguments, ExpressionList } from "solidity-parser-antlr";
 import { getSVariables, createBaseASTNode, createBinaryOperationStmt, getMonitoredVariables, getChildren, createBinaryOperation, createIdentifier } from "./utilities";
 import { Visitor} from "./Visitor";
 
@@ -26,7 +26,7 @@ function generateTmpUpdate(identifier: Identifier, index: Expression, value: Exp
   const declare = createBaseASTNode('VariableDeclaration') as VariableDeclaration
   const tmpVar = createBaseASTNode('Identifier') as Identifier
   tmpVar.name = 'tmp'
-  declare.name = tmpVar
+  declare.name = tmpVar.name
   declare.typeName = createBaseASTNode('ElementaryTypeName') as ElementaryTypeName
   declare.typeName.name = 'uint256'
   tmp.variables = [declare]
@@ -69,7 +69,19 @@ function generateForAll(node: ForAllExpression, identifier: Identifier, index: E
       break
     }
     case 'MuExpression': {
-      const array = createIdentifier(node.name)
+      const block = createBaseASTNode('Block') as Block
+      const memberAccess = createBaseASTNode('MemberAccess') as MemberAccess
+      memberAccess.expression = createIdentifier(node.name)
+      memberAccess.memberName = 'push'
+      const functionCall = createBaseASTNode('FunctionCall') as FunctionCall
+      functionCall.expression = memberAccess
+      const args = createBaseASTNode('FunctionCallArguments') as FunctionCallArguments
+      args.arguments = [index]
+      args.names = []
+      const stmt = createBaseASTNode('ExpressionStatement') as ExpressionStatement
+      stmt.expression = functionCall
+      block.statements = [stmt]
+      return [block]
     }
   }
   return []
@@ -128,6 +140,7 @@ export class Rewriter extends Visitor<ASTNode> {
   }
 
   // ForAllExpression = (node: ForAllExpression) => {
+  //   // const forLoop 
   // }
 
   SumExpression = (node: SumExpression) => {

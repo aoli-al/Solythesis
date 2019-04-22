@@ -18,12 +18,20 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
   }
   
   generateNewVariable(base: string, type: TypeName) {
+    const v = createBaseASTNode('VariableDeclaration') as VariableDeclaration
     const node = createBaseASTNode('StateVariableDeclaration') as StateVariableDeclaration
-    node.typeName = type
-    node.name = createIdentifier(base + "_" + (counter++).toString())
-    node.modifiers = []
+    v.typeName = type
+    v.name = base + "_" + (counter++).toString()
+    v.isStateVar = true
+    if (type.type == 'Mapping') {
+      v.isIndexed = true
+    }
+    else {
+      v.isIndexed = false
+    }
+    node.variables = [v]
     this.variables.push(node)
-    return node.name.name
+    return v.name
   }
 
   aggregateResult(current: Node, next: Node) {
@@ -91,22 +99,11 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
   visitTerminal(context: TerminalNode): Node {
     const node = this.createNode('PrimaryExpression') as PrimaryExpression
     node.value = context.text
-    switch (context.symbol.type) {
-      case SolidityParser.HexLiteral: {
-        // node.type = { flags: TypeFlags.Int }
-        return node
-      }
-      case SolidityParser.BooleanLiteral: {
-        // node.type = { flags: TypeFlags.Bool }
-        return node
-      }
-    }
-    return new (objectAllocator.getNodeConstructor())('DummyNode')
+    return node
   }
 
   visitNumberLiteral(context: NumberLiteralContext): Node {
     const node = this.createNode('PrimaryExpression') as PrimaryExpression
-    // node.type = { flags: TypeFlags.Int }
     node.value = context.text
     node.typeName = 'number'
     return node
@@ -115,7 +112,6 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
   visitPrimaryExpression(context: PrimaryExpressionContext): Node {
     if (context.BooleanLiteral()) {
       const node = this.createNode('PrimaryExpression') as PrimaryExpression
-      // node.type = { flags: TypeFlags.Int }
       node.value = context.text
       node.typeName = 'boolean'
       return node

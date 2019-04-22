@@ -1,4 +1,4 @@
-import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral, MemberAccess, ASTNode, ContractDefinition, Block, Mapping, FunctionDefinition } from "solidity-parser-antlr";
+import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral, MemberAccess, ASTNode, ContractDefinition, Block, Mapping, FunctionDefinition, FunctionCall, FunctionCallArguments } from "solidity-parser-antlr";
 
 export class Printer implements Visitor {
   originSource: string
@@ -23,14 +23,27 @@ export class Printer implements Visitor {
     }
   }
 
-  StateVariableDeclaration = (node: StateVariableDeclaration) => {
+  VariableDeclaration = (node: VariableDeclaration) => {
     this.visitOrPrint(node.typeName)
-    this.source += ' ' + node.modifiers.join(' ') + ' '
-    this.visitOrPrint(node.name)
-    if (node.initialValue) {
-      this.source += ' = '
-      this.visitOrPrint(node.initialValue)
+    if (node.visibility) {
+      this.source += ' ' + node.visibility
     }
+    if (node.isDeclaredConst) {
+      this.source += ' constant'
+    }
+    if (node.storageLocation) {
+      this.source += ' ' + node.storageLocation
+    }
+    this.source += ' ' + node.name
+    if (node.expression) {
+      this.source += ' = ' 
+      this.visitOrPrint(node.expression)
+    }
+    return false
+  }
+
+  StateVariableDeclaration = (node: StateVariableDeclaration) => {
+    this.visitOrPrint(node.variables)
     this.source += ';'
     return false
   }
@@ -60,12 +73,19 @@ export class Printer implements Visitor {
       this.source += 'function '
     }
     if (node.name) {
-      this.visitOrPrint(node.name)
-      this.source += ' '
+      this.source += node.name + ' '
     }
     this.visitOrPrint(node.parameters)
-    this.source += ' '
-    this.visitOrPrint(node.modifiers)
+    node.modifiers.forEach(it => {
+      this.source += ' '
+      this.visitOrPrint(it)
+    })
+    if (node.visibility != 'default') {
+      this.source += ' ' + node.visibility
+    }
+    if (node.stateMutability) {
+      this.source += ' ' + node.stateMutability
+    }
     if (node.body) {
       this.source += ' '
       this.visitOrPrint(node.body)
@@ -76,18 +96,10 @@ export class Printer implements Visitor {
     return false
   }
 
-
   ContractDefinition = (node: ContractDefinition) => {
-    this.source += node.kind + ' '
-    this.visitOrPrint(node.name)
-    this.source += ' '
-    if (node.baseContracts.length > 0) {
-      this.source += 'is '
-      this.visitOrPrint(node.baseContracts[0])
-      node.baseContracts.slice(1).forEach(it => {
-        this.source += ', '
-        this.visitOrPrint(it)
-      })
+    this.source += node.kind + ' ' + node.name + ' '
+    if (node.baseContracts) {
+      this.visitOrPrint(node.baseContracts)
     }
     this.source += '{\n'
     node.subNodes.forEach(it => {
@@ -117,18 +129,39 @@ export class Printer implements Visitor {
     return false
   }
 
-  ElementaryTypeName = (node: ElementaryTypeName) => {
-    this.source += node.name
+  FunctionCall = (node: FunctionCall) => {
+    this.visitOrPrint(node.expression)
+    this.source += '('
+    this.visitOrPrint(node.arguments)
+    this.source += ')'
+    return false
   }
 
-  VariableDeclaration = (node: VariableDeclaration) => {
-    this.visitOrPrint(node.typeName)
-    if (node.storageLocation) {
-      this.source += ' ' + node.storageLocation
+  FunctionCallArguments = (node: FunctionCallArguments) => {
+    if (node.names.length > 0) {
+      this.source += '{ '
+      for (var i = 0; i < node.names.length; i++) {
+        this.source += node.names[i] + ' : '
+        this.visitOrPrint(node.arguments[i])
+        if (i != node.names.length) {
+          this.source += ', '
+        }
+      }
+      this.source += ' }'
     }
-    this.source += ' '
-    this.visitOrPrint(node.name)
+    else {
+      for (var i = 0; i < node.arguments.length; i++) {
+        this.visitOrPrint(node.arguments[i])
+        if (i != node.arguments.length) {
+          this.source += ', '
+        }
+      }
+    }
     return false
+  }
+
+  ElementaryTypeName = (node: ElementaryTypeName) => {
+    this.source += node.name
   }
 
   NumberLiteral = (node: NumberLiteral) => {
@@ -176,8 +209,7 @@ export class Printer implements Visitor {
 
   MemberAccess = (node: MemberAccess) => {
     this.visitOrPrint(node.expression)
-    this.source += '.'
-    this.visitOrPrint(node.memberName)
+    this.source += '.' + node.memberName
     return false
   }
 
