@@ -1,4 +1,3 @@
 standard ERC20 {
   constraint totalSupply == Sum a, balanceOf[a]+2, true;
-  constraint ForAll a, balanceOf[a] == balanceOf[a] + 2;
 }

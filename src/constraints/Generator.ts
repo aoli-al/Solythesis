@@ -10,20 +10,21 @@ export function generateUpdates(constraint: Node, identifier: Identifier, index:
     case 'ForAllExpression': return [...nodes, ...generateForAll(constraint, identifier, index, value)]
     case 'SumExpression': return [...nodes, ...generateSum(constraint, identifier, index, value)]
   }
-  return []
+  return nodes
 }
 
-export function generateAssertions(node: Node) {
+export function generateAssertions(node: Node): Statement[] {
   switch (node.type) {
     case 'SExpression': {
       const exp = new Rewriter().visit(node) as Expression
       const functionCall = createFunctionCall(createIdentifier('assert'), [exp], [])
-      return createExpressionStmt(functionCall)
+      return [createExpressionStmt(functionCall)]
     }
     case 'ForAllExpression': {
-      return generateAssertionsForAll(node)
+      return [generateAssertionsForAll(node)]
     }
   }
+  return []
 }
 
 function generateAssertionsForAll(node: ForAllExpression) {

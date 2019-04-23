@@ -1,7 +1,6 @@
 pragma solidity ^0.5.0;
 contract LatiumX {
 uint256 sum_0;
- arr_1;
 string public constant name = "LatiumX";
 string public constant symbol = "LATX";
 uint8 public constant decimals = 8;
@@ -14,16 +13,15 @@ constructor () public {
 owner = msg.sender;
 {
 {
-uint256 tmp = balanceOf[owner];
+uint256 tmp_1 = balanceOf[owner] = balanceOf[owner];
 sum_0 -= balanceOf[owner] + 2;
 balanceOf[owner] = totalSupply;
 sum_0 += balanceOf[owner] + 2;
-balanceOf[owner] = tmp;
-}
-{
-arr_1.push(owner);
+balanceOf[owner] = tmp_1;
 }
 balanceOf[owner] = totalSupply;
+}
+{
 }
 }
 function transfer (address _to, uint256 _value) public {
@@ -41,30 +39,26 @@ require(msg.sender != _to);
 }
 {
 {
-uint256 tmp = balanceOf[msg.sender];
+uint256 tmp_2 = balanceOf[msg.sender] = balanceOf[msg.sender];
 sum_0 -= balanceOf[msg.sender] + 2;
 balanceOf[msg.sender] = _value;
 sum_0 += balanceOf[msg.sender] + 2;
-balanceOf[msg.sender] = tmp;
-}
-{
-arr_1.push(msg.sender);
+balanceOf[msg.sender] = tmp_2;
 }
 balanceOf[msg.sender] -= _value;
 }
 {
 {
-uint256 tmp = balanceOf[_to];
+uint256 tmp_3 = balanceOf[_to] = balanceOf[_to];
 sum_0 -= balanceOf[_to] + 2;
 balanceOf[_to] = _value;
 sum_0 += balanceOf[_to] + 2;
-balanceOf[_to] = tmp;
-}
-{
-arr_1.push(_to);
+balanceOf[_to] = tmp_3;
 }
 balanceOf[_to] += _value;
 }
 emit Transfer(msg.sender, _to, _value);
+{
+}
 }
 }

@@ -1,8 +1,9 @@
-import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, FunctionDefinition, ContractDefinition, Statement, ASTNode, Block, ReturnStatement } from "solidity-parser-antlr";
-import { generateUpdates} from "./Generator";
+import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, FunctionDefinition, ContractDefinition, Statement, ASTNode, Block, ReturnStatement, BaseASTNode } from "solidity-parser-antlr";
+import { generateUpdates, generateAssertions} from "./Generator";
 import { Node } from "./nodes/Node";
 import { Printer } from "../printer/printer";
 import { createBaseASTNode } from "./utilities";
+import * as _ from "lodash";
 
 const updateOps = ['=', '-=', '+=', '*=', '/=']
 
@@ -11,7 +12,7 @@ export class Decorator implements Visitor {
   constraints: Node[]
   variables: StateVariableDeclaration[]
   pendingBlocks: Statement[] = []
-  checkConstraints: Node[] = []
+  checkConstraints: Set<Node> = new Set()
   constructor(constraints: Node[], variables: StateVariableDeclaration[]) {
     this.constraints = constraints
     this.variables = variables
@@ -23,6 +24,12 @@ export class Decorator implements Visitor {
     this.pendingBlocks = []
     return block
   }
+  addAssertions(node: ReturnStatement) {
+    const block = createBaseASTNode('Block') as Block
+    block.statements = [...this.checkConstraints].map(it => generateAssertions(it)).reduce((pre, cur) => [...pre, ...cur], [])
+    block.statements.push(node)
+    return block
+  }
   visit(node: any) {
     if (Array.isArray(node)) {
       for (var i = 0; i < node.length; i++) {
@@ -30,10 +37,13 @@ export class Decorator implements Visitor {
         if (this.pendingBlocks.length > 0) {
           node[i] = this.buildStatements(node[i])
         }
+        if ((node[i] as ASTNode).type == 'ReturnStatement') {
+          node[i] = this.addAssertions(node[i])
+        }
       }
       return
     }
-    if (!node || typeof node != 'object' || !node.hasOwnProperty('type')) return
+    if (!_.has(node, 'type')) return
     var result = true
     if (node.type in this) {
       result = this[node.type](node)
@@ -48,6 +58,9 @@ export class Decorator implements Visitor {
         if (this.pendingBlocks.length > 0) {
           node[prop] = this.buildStatements(node[prop])
         }
+        if (_.has(node[prop], 'type') && node[prop].type == 'ReturnStatement') {
+          node[prop] = this.addAssertions(node[prop])
+        }
       }
     }
   }
@@ -55,20 +68,25 @@ export class Decorator implements Visitor {
     node.subNodes = [...this.variables, ...node.subNodes]
   }
   FunctionDefinition = (node: FunctionDefinition) => {
-    this.checkConstraints = []
-  }
-  ReturnStatement = (node: ReturnStatement) => {
-
+    this.checkConstraints = new Set()
+    const block = createBaseASTNode('Block') as Block
+    block.statements = [...this.checkConstraints].map(it => generateAssertions(it)).reduce((pre, cur) => [...pre, ...cur], [])
+    if (node.body) {
+      node.body.statements.push(block)
+    }
   }
   ExpressionStatement = (node: ExpressionStatement) => {
     if (node.expression.type != 'BinaryOperation') return true
     const binOp = node.expression
-    if (updateOps.includes(binOp.operator) && binOp.left.type == 'IndexAccess') {
-      const base = binOp.left.base 
-      const index = binOp.left.index
-      if (base.type == 'Identifier') {
-        this.constraints.forEach(it => this.pendingBlocks.push(...generateUpdates(it, base, index, binOp.right)))
+    if (updateOps.includes(binOp.operator)) {
+      if (binOp.left.type == 'IndexAccess') {
+        const base = binOp.left.base
+        const index = binOp.left.index
+        if (base.type == 'Identifier') {
+          this.constraints.forEach(it => this.pendingBlocks.push(...generateUpdates(it, base, index, binOp.right)))
+        }
       }
+      // if ()
     }
     return false
   }
