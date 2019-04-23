@@ -86,7 +86,6 @@ export class Decorator implements Visitor {
           this.constraints.forEach(it => this.pendingBlocks.push(...generateUpdates(it, base, index, binOp.right)))
         }
       }
-      // if ()
     }
     return false
   }

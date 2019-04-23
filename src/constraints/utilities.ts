@@ -171,3 +171,12 @@ export function getMonitoredVariables(node: Node, mu: string): Set<string> {
     .map((name) => getMonitoredVariables(name, mu))
     .reduce((accumulator, set) => new Set([...accumulator, ...set]), new Set())
 }
+
+export function getUpdatedVariable(node: Expression): Expression | undefined {
+  switch (node.type) {
+    case 'MemberAccess': 
+    case 'Identifier': return node
+    case 'IndexAccess': return getUpdatedVariable(node.base)
+  }
+  return undefined
+}
