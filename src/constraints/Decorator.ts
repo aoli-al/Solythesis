@@ -1,4 +1,4 @@
-import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, FunctionDefinition, ContractDefinition, Statement, ASTNode, Block } from "solidity-parser-antlr";
+import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, FunctionDefinition, ContractDefinition, Statement, ASTNode, Block, ReturnStatement } from "solidity-parser-antlr";
 import { generateUpdates} from "./Generator";
 import { Node } from "./nodes/Node";
 import { Printer } from "../printer/printer";
@@ -11,6 +11,7 @@ export class Decorator implements Visitor {
   constraints: Node[]
   variables: StateVariableDeclaration[]
   pendingBlocks: Statement[] = []
+  checkConstraints: Node[] = []
   constructor(constraints: Node[], variables: StateVariableDeclaration[]) {
     this.constraints = constraints
     this.variables = variables
@@ -52,6 +53,12 @@ export class Decorator implements Visitor {
   }
   ContractDefinition = (node: ContractDefinition) => {
     node.subNodes = [...this.variables, ...node.subNodes]
+  }
+  FunctionDefinition = (node: FunctionDefinition) => {
+    this.checkConstraints = []
+  }
+  ReturnStatement = (node: ReturnStatement) => {
+
   }
   ExpressionStatement = (node: ExpressionStatement) => {
     if (node.expression.type != 'BinaryOperation') return true

@@ -84,3 +84,5 @@ typings/
 .dynamodb/
 
 lib/
+src/antlr/
+!src/antlr/Solidity.g4

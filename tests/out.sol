@@ -1,6 +1,7 @@
 pragma solidity ^0.5.0;
 contract LatiumX {
 uint256 sum_0;
+ arr_1;
 string public constant name = "LatiumX";
 string public constant symbol = "LATX";
 uint8 public constant decimals = 8;
@@ -18,6 +19,9 @@ sum_0 -= balanceOf[owner] + 2;
 balanceOf[owner] = totalSupply;
 sum_0 += balanceOf[owner] + 2;
 balanceOf[owner] = tmp;
+}
+{
+arr_1.push(owner);
 }
 balanceOf[owner] = totalSupply;
 }
@@ -43,6 +47,9 @@ balanceOf[msg.sender] = _value;
 sum_0 += balanceOf[msg.sender] + 2;
 balanceOf[msg.sender] = tmp;
 }
+{
+arr_1.push(msg.sender);
+}
 balanceOf[msg.sender] -= _value;
 }
 {
@@ -52,6 +59,9 @@ sum_0 -= balanceOf[_to] + 2;
 balanceOf[_to] = _value;
 sum_0 += balanceOf[_to] + 2;
 balanceOf[_to] = tmp;
+}
+{
+arr_1.push(_to);
 }
 balanceOf[_to] += _value;
 }

@@ -1,4 +1,4 @@
-import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral, MemberAccess, ASTNode, ContractDefinition, Block, Mapping, FunctionDefinition, FunctionCall, FunctionCallArguments } from "solidity-parser-antlr";
+import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral, MemberAccess, ASTNode, ContractDefinition, Block, Mapping, FunctionDefinition, FunctionCall, ArrayTypeName} from "solidity-parser-antlr";
 
 export class Printer implements Visitor {
   originSource: string
@@ -132,18 +132,12 @@ export class Printer implements Visitor {
   FunctionCall = (node: FunctionCall) => {
     this.visitOrPrint(node.expression)
     this.source += '('
-    this.visitOrPrint(node.arguments)
-    this.source += ')'
-    return false
-  }
-
-  FunctionCallArguments = (node: FunctionCallArguments) => {
     if (node.names.length > 0) {
       this.source += '{ '
       for (var i = 0; i < node.names.length; i++) {
         this.source += node.names[i] + ' : '
         this.visitOrPrint(node.arguments[i])
-        if (i != node.names.length) {
+        if (i != node.names.length - 1) {
           this.source += ', '
         }
       }
@@ -152,11 +146,12 @@ export class Printer implements Visitor {
     else {
       for (var i = 0; i < node.arguments.length; i++) {
         this.visitOrPrint(node.arguments[i])
-        if (i != node.arguments.length) {
+        if (i != node.arguments.length - 1) {
           this.source += ', '
         }
       }
     }
+    this.source += ')'
     return false
   }
 
@@ -205,6 +200,16 @@ export class Printer implements Visitor {
 
   Identifier = (node: Identifier) => {
     this.source += node.name
+  }
+
+  ArrayTypeName = (node: ArrayTypeName) => {
+    this.visitOrPrint(node.baseTypeName)
+    this.source += '['
+    if (node.length) {
+      this.visitOrPrint(node.length)
+    }
+    this.source += ']'
+    return false
   }
 
   MemberAccess = (node: MemberAccess) => {

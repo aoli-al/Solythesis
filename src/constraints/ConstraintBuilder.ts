@@ -1,12 +1,15 @@
 import {AbstractParseTreeVisitor} from 'antlr4ts/tree/AbstractParseTreeVisitor'
 import {SolidityVisitor} from '../antlr/SolidityVisitor'
 import {Node, SyntaxKind, PrimaryExpression, Identifier, ForAllExpression, SumExpression, BinOp, MuIndexedAccess, SIndexedAccess, SExp, MuExp, MuIdentifier, ArithmeticOp, ComparisonOp, MuExpTypes, MuExpression, SExpTypes, SExpression, CMPExpression, Exp, ComparisonOpList, Iden, SIdentifier} from './nodes/Node'
-import { objectAllocator, createBaseASTNode, createIdentifier, createElementaryTypeName, createMapping, createArray } from './utilities';
+import { objectAllocator, createBaseASTNode, createIdentifier, createElementaryTypeName, createMapping, createArray, createVariableDeclaration } from './utilities';
 import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralContext, IdentifierContext, ForAllExpressionContext, SumExpressionContext, PrimaryExpressionContext, StateVariableDeclarationContext } from '../antlr/SolidityParser';
 import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
 import { visit, StateVariableDeclaration, TypeName, VariableDeclaration } from 'solidity-parser-antlr';
 
 var counter = 0
+export function generateNewVarName(base: string) {
+  return base + '_' + (counter++).toString()
+}
 
 export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements SolidityVisitor<Node> {
 
@@ -18,20 +21,10 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
   }
   
   generateNewVariable(base: string, type: TypeName) {
-    const v = createBaseASTNode('VariableDeclaration') as VariableDeclaration
     const node = createBaseASTNode('StateVariableDeclaration') as StateVariableDeclaration
-    v.typeName = type
-    v.name = base + "_" + (counter++).toString()
-    v.isStateVar = true
-    if (type.type == 'Mapping') {
-      v.isIndexed = true
-    }
-    else {
-      v.isIndexed = false
-    }
-    node.variables = [v]
+    node.variables = [createVariableDeclaration(generateNewVarName(base), type, true)]
     this.variables.push(node)
-    return v.name
+    return node.variables[0].name
   }
 
   aggregateResult(current: Node, next: Node) {
@@ -136,7 +129,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
     const node = this.createNode('ForAllExpression') as ForAllExpression
     this.muVariables.push(context.identifier().text)
     node.mu = this.visit(context.identifier()) as MuIdentifier
-    node.constraint = this.visit(context.expression()) 
+    node.constraint = this.visit(context.expression()) as CMPExpression
     if (node.constraint.type == 'CMPExpression') {
       node.name = this.generateNewVariable('cmp', createElementaryTypeName('uint256'))
     }
@@ -152,7 +145,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
     this.muVariables.push(context.identifier().text)
     node.mu = this.visit(context.identifier()) as MuIdentifier
     node.body = this.visit(context.expression(0)) as MuExp
-    node.constraint = this.visit(context.expression(1)) 
+    node.constraint = this.visit(context.expression(1)) as CMPExpression
     node.name =  (() => {
       switch (node.constraint.type) {
         case 'CMPExpression':

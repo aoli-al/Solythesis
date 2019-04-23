@@ -41,7 +41,7 @@ importDeclaration
 
 standardDefinition
   : 'standard' Identifier
-    '{' contractPart* constraint '}' EOF;
+    '{' contractPart* constraint* '}' EOF;
 
 constraint
   : 'constraint' expression ';';

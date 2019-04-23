@@ -78,7 +78,7 @@ export interface MuIdentifier extends Identifier {
 export interface ForAllExpression extends Expression {
   type: 'ForAllExpression'
   mu: MuIdentifier
-  constraint: Node
+  constraint: CMPExpression | MuExp
   name: string
 }
 
@@ -86,7 +86,7 @@ export interface SumExpression extends Expression {
   type: 'SumExpression'
   mu: MuIdentifier
   body: MuExp
-  constraint: Node
+  constraint: SExp | MuExp | CMPExpression
   name: string
 }
 

@@ -1,5 +1,5 @@
 import {Node, SyntaxKind, PrimaryExpression, SumExpression, SExpTypes, MuExpTypes, MuExp} from './nodes/Node'
-import { BaseASTNode, ASTNodeTypeString, ASTNode, Expression, BinOp, BinaryOperation, ExpressionStatement, Identifier, ElementaryTypeName, TypeName, Mapping, ArrayTypeName } from 'solidity-parser-antlr';
+import { BaseASTNode, ASTNodeTypeString, ASTNode, Expression, BinOp, BinaryOperation, ExpressionStatement, Identifier, ElementaryTypeName, TypeName, Mapping, ArrayTypeName, VariableDeclaration, VariableDeclarationStatement, IndexAccess, NumberLiteral, MemberAccess, Statement, IfStatement, FunctionCall } from 'solidity-parser-antlr';
 
 function Node(this: Node, kind: SyntaxKind) {
   this.children = []
@@ -36,6 +36,66 @@ export function createElementaryTypeName(name: string) {
   return node
 }
 
+export function createNumberLiteral(value: string) {
+  const node = createBaseASTNode('NumberLiteral') as NumberLiteral
+  node.number = value
+  return node
+}
+
+export function createVariableDeclaration(name: string, type: TypeName, stateVar: boolean) {
+  const node = createBaseASTNode('VariableDeclaration') as VariableDeclaration
+  node.name = name
+  node.isStateVar = stateVar
+  node.typeName = type
+  if (type.type == 'Mapping' || type.type == 'ArrayTypeName') {
+    node.isIndexed = true
+  }
+  else {
+    node.isIndexed = false
+  }
+  return node
+}
+
+export function createVariableDeclarationStmt(variables: VariableDeclaration[], initValue?: Expression) {
+  const node = createBaseASTNode('VariableDeclarationStatement') as VariableDeclarationStatement
+  node.variables = variables
+  if (initValue) {
+    node.initialValue = initValue
+    variables.forEach(it => it.expression = initValue)
+  }
+  return node
+}
+
+export function createMemberAccess(expression: Expression, memberName: string) {
+  const node = createBaseASTNode('MemberAccess') as MemberAccess
+  node.expression = expression
+  node.memberName = memberName
+  return node
+}
+
+export function createIfStatment(condition: Expression, trueBody: Statement, falseBody?: Statement) {
+  const node = createBaseASTNode('IfStatement') as IfStatement
+  node.condition = condition
+  node.trueBody = trueBody
+  node.falseBody = falseBody
+  return node
+}
+
+export function createFunctionCall(expression: Expression, args: Expression[], names: string[]) {
+  const node = createBaseASTNode('FunctionCall') as FunctionCall
+  node.expression = expression
+  node.arguments = args
+  node.names = names
+  return node
+}
+
+export function createIndexAccess(base: Expression, index: Expression) {
+  const node = createBaseASTNode('IndexAccess') as IndexAccess
+  node.base = base
+  node.index = index
+  return node
+}
+
 export function createMapping(keyType: ElementaryTypeName, valueType: TypeName) {
   const node = createBaseASTNode('Mapping') as Mapping
   node.keyType = keyType
@@ -57,10 +117,10 @@ export function createBinaryOperation(left: Expression, right: Expression, op: B
   return node
 }
 
-export function createBinaryOperationStmt(left: Expression, right: Expression, op: BinOp): ExpressionStatement {
-  const stmt = createBaseASTNode('ExpressionStatement') as ExpressionStatement
-  stmt.expression = createBinaryOperation(left, right, op)
-  return stmt
+export function createExpressionStmt(expression: Expression) {
+  const node = createBaseASTNode('ExpressionStatement') as ExpressionStatement
+  node.expression = expression
+  return node
 }
 
 export function getChildren(node: Node): Node[] {
