@@ -2,8 +2,9 @@ import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, 
 import { generateUpdates, generateAssertions} from "./Generator";
 import { Node } from "./nodes/Node";
 import { Printer } from "../printer/printer";
-import { createBaseASTNode } from "./utilities";
+import { createBaseASTNode, getMonitoredStateVariables, getUpdatedVariable } from "./utilities";
 import * as _ from "lodash";
+import { isMainThread } from "worker_threads";
 
 const updateOps = ['=', '-=', '+=', '*=', '/=']
 
@@ -69,11 +70,13 @@ export class Decorator implements Visitor {
   }
   FunctionDefinition = (node: FunctionDefinition) => {
     this.checkConstraints = new Set()
+    this.visit(node.body)
     const block = createBaseASTNode('Block') as Block
     block.statements = [...this.checkConstraints].map(it => generateAssertions(it)).reduce((pre, cur) => [...pre, ...cur], [])
     if (node.body) {
       node.body.statements.push(block)
     }
+    return false
   }
   ExpressionStatement = (node: ExpressionStatement) => {
     if (node.expression.type != 'BinaryOperation') return true
@@ -85,6 +88,10 @@ export class Decorator implements Visitor {
         if (base.type == 'Identifier') {
           this.constraints.forEach(it => this.pendingBlocks.push(...generateUpdates(it, base, index, binOp.right)))
         }
+      }
+      const variable = getUpdatedVariable(binOp.left)
+      if (variable) {
+        this.constraints.filter(it => getMonitoredStateVariables(it).has(variable)).forEach(it => this.checkConstraints.add(it))
       }
     }
     return false

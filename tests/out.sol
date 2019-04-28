@@ -1,64 +1,142 @@
 pragma solidity ^0.5.0;
-contract LatiumX {
+contract SafeMath {
 uint256 sum_0;
-string public constant name = "LatiumX";
-string public constant symbol = "LATX";
-uint8 public constant decimals = 8;
-uint256 public constant totalSupply = 300000000 * 10 ** uint256(decimals);
-uint256[] default bbb;
-address public owner;
-mapping (address=>uint256) public balanceOf;
-event Transfer(address indexed _from, address indexed _to, uint _value);
-constructor () public {
-owner = msg.sender;
+function safeAdd (uint256 x, uint256 y) internal pure returns(uint256) {
+uint256 z = x + y;
+assert((z >= x) && (z >= y));
 {
-{
-uint256 tmp_1 = balanceOf[owner] = balanceOf[owner];
-sum_0 -= balanceOf[owner] + 2;
-balanceOf[owner] = totalSupply;
-sum_0 += balanceOf[owner] + 2;
-balanceOf[owner] = tmp_1;
-}
-balanceOf[owner] = totalSupply;
+return z;
 }
 {
 }
 }
-function transfer (address _to, uint256 _value) public {
-bbb.push(1000);
-require(_to != address(0x0));
-require(msg.sender != _to);
-require(_value > 0 && balanceOf[msg.sender] >= _value);
-if (_value > 0) {
-require(balanceOf[_to] + _value > balanceOf[_to]);
-} else {
-uint256 a = 0;
-(uint256 c, uint256 b) = (1, 2);
-require(_to != address(0x0));
-require(msg.sender != _to);
+function safeSubtract (uint256 x, uint256 y) internal pure returns(uint256) {
+assert(x >= y);
+uint256 z = x - y;
+{
+return z;
 }
 {
+}
+}
+function safeMult (uint256 x, uint256 y) internal pure returns(uint256) {
+uint256 z = x * y;
+assert((x == 0) || (z/x == y));
 {
-uint256 tmp_2 = balanceOf[msg.sender] = balanceOf[msg.sender];
-sum_0 -= balanceOf[msg.sender] + 2;
-balanceOf[msg.sender] = _value;
-sum_0 += balanceOf[msg.sender] + 2;
-balanceOf[msg.sender] = tmp_2;
-}
-balanceOf[msg.sender] -= _value;
+return z;
 }
 {
-{
-uint256 tmp_3 = balanceOf[_to] = balanceOf[_to];
-sum_0 -= balanceOf[_to] + 2;
-balanceOf[_to] = _value;
-sum_0 += balanceOf[_to] + 2;
-balanceOf[_to] = tmp_3;
 }
-balanceOf[_to] += _value;
 }
+}
+contract StandardToken is SafeMath {
+uint256 sum_0;
+uint256 public totalSupply;
+event Transfer(address indexed _from, address indexed _to, uint256 _value);
+event Approval(address indexed _owner, address indexed _spender, uint256 _value);
+function transfer (address _to, uint256 _value) public returns (bool success) {
+if (balances[msg.sender] >= _value && _value > 0) {
+balances[msg.sender] -= _value;
+balances[_to] += _value;
 emit Transfer(msg.sender, _to, _value);
 {
+return true;
+}
+} else {
+{
+return false;
+}
+}
+{
+}
+}
+function transferFrom (address _from, address _to, uint256 _value) public returns (bool success) {
+if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+balances[_to] += _value;
+balances[_from] -= _value;
+allowed[_from][msg.sender] -= _value;
+emit Transfer(_from, _to, _value);
+{
+return true;
+}
+} else {
+{
+return false;
+}
+}
+{
+}
+}
+function balanceOf (address _owner) public view returns (uint256 balance) {
+{
+return balances[_owner];
+}
+{
+}
+}
+function approve (address _spender, uint256 _value) public returns (bool success) {
+allowed[msg.sender][_spender] = _value;
+emit Approval(msg.sender, _spender, _value);
+{
+return true;
+}
+{
+}
+}
+function allowance (address _owner, address _spender) public view returns (uint256 remaining) {
+{
+return allowed[_owner][_spender];
+}
+{
+}
+}
+mapping (address=>uint256) balances;
+mapping (address=>mapping (address=>uint256)) allowed;
+string public constant name = "Basic Attention Token";
+string public constant symbol = "BAT";
+uint256 public constant decimals = 18;
+string public version = "1.0";
+address public ethFundDeposit;
+address public batFundDeposit;
+bool public isFinalized;
+uint256 public fundingStartBlock;
+uint256 public fundingEndBlock;
+uint256 public constant batFund = 500 * (10**6) * 10 ** decimals;
+uint256 public constant tokenExchangeRate = 6400;
+uint256 public constant tokenCreationCap = 1500 * (10**6) * 10 ** decimals;
+uint256 public constant tokenCreationMin = 675 * (10**6) * 10 ** decimals;
+event LogRefund(address indexed _to, uint256 _value);
+event CreateBAT(address indexed _to, uint256 _value);
+constructor (
+        address _ethFundDeposit,
+        address _batFundDeposit,
+        uint256 _fundingStartBlock,
+        uint256 _fundingEndBlock) public {
+isFinalized = false;
+ethFundDeposit = _ethFundDeposit;
+batFundDeposit = _batFundDeposit;
+fundingStartBlock = _fundingStartBlock;
+fundingEndBlock = _fundingEndBlock;
+totalSupply = batFund;
+balances[batFundDeposit] = batFund;
+emit CreateBAT(batFundDeposit, batFund);
+{
+assert(totalSupply == sum_0);
+}
+}
+function createTokens () external payable {
+if (isFinalized) revert();
+if (block.number < fundingStartBlock) revert();
+if (block.number > fundingEndBlock) revert();
+if (msg.value == 0) revert();
+uint256 tokens = safeMult(msg.value, tokenExchangeRate);
+uint256 checkedSupply = safeAdd(totalSupply, tokens);
+if (tokenCreationCap < checkedSupply) revert();
+totalSupply = checkedSupply;
+balances[msg.sender] += tokens;
+emit CreateBAT(msg.sender, tokens);
+{
+assert(totalSupply == sum_0);
 }
 }
 }

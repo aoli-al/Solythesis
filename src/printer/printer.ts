@@ -25,7 +25,7 @@ export class Printer implements Visitor {
 
   VariableDeclaration = (node: VariableDeclaration) => {
     this.visitOrPrint(node.typeName)
-    if (node.visibility) {
+    if (node.visibility && node.visibility != 'default') {
       this.source += ' ' + node.visibility
     }
     if (node.isDeclaredConst) {
@@ -86,6 +86,10 @@ export class Printer implements Visitor {
     if (node.stateMutability) {
       this.source += ' ' + node.stateMutability
     }
+    if (node.returnParameters) {
+      this.source += ' '
+      this.visitOrPrint(node.returnParameters)
+    }
     if (node.body) {
       this.source += ' '
       this.visitOrPrint(node.body)
@@ -97,11 +101,16 @@ export class Printer implements Visitor {
   }
 
   ContractDefinition = (node: ContractDefinition) => {
-    this.source += node.kind + ' ' + node.name + ' '
-    if (node.baseContracts) {
-      this.visitOrPrint(node.baseContracts)
+    this.source += node.kind + ' ' + node.name
+    if (node.baseContracts.length > 0) {
+      this.source += ' is '
+      this.visitOrPrint(node.baseContracts[0])
+      node.baseContracts.slice(1).forEach(it => {
+        this.source += ', '
+        this.visitOrPrint(it)
+      })
     }
-    this.source += '{\n'
+    this.source += ' {\n'
     node.subNodes.forEach(it => {
       this.visitOrPrint(it)
       this.source += '\n'
@@ -164,7 +173,7 @@ export class Printer implements Visitor {
   }
 
   BooleanLiteral = (node: BooleanLiteral) => {
-    this.source = node.value.toString()
+    this.source += node.value.toString()
   }
 
   Block = (node: Block) => {
