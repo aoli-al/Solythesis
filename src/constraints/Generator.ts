@@ -4,11 +4,11 @@ import { getSVariables, createBaseASTNode, getMonitoredVariables, getChildren, c
 import { Visitor} from "./Visitor";
 import { generateNewVarName } from "./ConstraintBuilder";
 
-export function generateUpdates(constraint: Node, identifier: Identifier, index: Expression, value: Expression): Statement[] {
-  var nodes = getChildren(constraint).map((child) => generateUpdates(child, identifier, index, value)).reduce((pre, cur) => [...pre, ...cur], [])
+export function generateUpdates(constraint: Node, identifier: Identifier, index: Expression, binOp: BinaryOperation): Statement[] {
+  var nodes = getChildren(constraint).map((child) => generateUpdates(child, identifier, index, binOp)).reduce((pre, cur) => [...pre, ...cur], [])
   switch (constraint.type) {
-    case 'ForAllExpression': return [...nodes, ...generateForAll(constraint, identifier, index, value)]
-    case 'SumExpression': return [...nodes, ...generateSum(constraint, identifier, index, value)]
+    case 'ForAllExpression': return [...nodes, ...generateForAll(constraint, identifier, index, binOp)]
+    case 'SumExpression': return [...nodes, ...generateSum(constraint, identifier, index, binOp)]
   }
   return nodes
 }
@@ -51,7 +51,7 @@ function generateAssertionsForAll(node: ForAllExpression) {
   }
 }
 
-function generateTmpUpdate(identifier: Identifier, index: Expression, value: Expression, before?: Statement, after?: Statement) {
+function generateTmpUpdate(identifier: Identifier, index: Expression, binOp: BinaryOperation, before?: Statement, after?: Statement) {
   const block = createBaseASTNode('Block') as Block
   const left = createIndexAccess(identifier, index)
   const tmpVarName = generateNewVarName('tmp')
@@ -60,13 +60,13 @@ function generateTmpUpdate(identifier: Identifier, index: Expression, value: Exp
     left)
   block.statements = [tmp]
   if (before) block.statements.push(before)
-  block.statements.push(createExpressionStmt(createBinaryOperation(left, value, '=')))
+  block.statements.push(createExpressionStmt(createBinaryOperation(left, binOp.right, binOp.operator)))
   if (after) block.statements.push(after)
   block.statements.push(createExpressionStmt(createBinaryOperation(left, createIdentifier(tmpVarName), '=')))
   return block
 }
 
-function generateForAll(node: ForAllExpression, identifier: Identifier, index: Expression, value: Expression) {
+function generateForAll(node: ForAllExpression, identifier: Identifier, index: Expression, binOp: BinaryOperation) {
   if (!getMonitoredVariables(node, node.mu.name).has(identifier.name)) return []
   const gen = (operator: BinOp) => {
     const variable = createIdentifier(node.constraint.name)
@@ -99,7 +99,7 @@ function generateForAll(node: ForAllExpression, identifier: Identifier, index: E
   return []
 }
 
-function generateSum(node: SumExpression, identifier: Identifier, index: Expression, value: Expression): Statement[] {
+function generateSum(node: SumExpression, identifier: Identifier, index: Expression, binOp: BinaryOperation): Statement[] {
   if (!getMonitoredVariables(node, node.mu.name).has(identifier.name)) return []
   const v = createIdentifier(node.name)
   const gen = (operator: BinOp): Statement => {
@@ -125,7 +125,7 @@ function generateSum(node: SumExpression, identifier: Identifier, index: Express
     }
     return statement
   }
-  return [generateTmpUpdate(identifier, index, value, gen('-='), gen('+='))]
+  return [generateTmpUpdate(identifier, index, binOp, gen('-='), gen('+='))]
 }
 
 export class Rewriter extends Visitor<ASTNode> {

@@ -38,14 +38,17 @@ contract StandardToken is SafeMath {
     event Approval(address indexed _owner, address indexed _spender, uint256 _value);
 
     function transfer(address _to, uint256 _value) public returns (bool success) {
-      if (balances[msg.sender] >= _value && _value > 0) {
-        balances[msg.sender] -= _value;
-        balances[_to] += _value;
-        emit Transfer(msg.sender, _to, _value);
-        return true;
-      } else {
-        return false;
+      for (uint256 i = 0; i < 200; i++) {
+        totalSupply = i;
       }
+      // if (balances[msg.sender] >= _value && _value > 0) {
+        // balances[msg.sender] -= _value;
+        // balances[_to] += _value;
+        // emit Transfer(msg.sender, _to, _value);
+        // return true;
+      // } else {
+        // return false;
+      // }
     }
 
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {

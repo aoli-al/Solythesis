@@ -86,7 +86,7 @@ export class Decorator implements Visitor {
         const base = binOp.left.base
         const index = binOp.left.index
         if (base.type == 'Identifier') {
-          this.constraints.forEach(it => this.pendingBlocks.push(...generateUpdates(it, base, index, binOp.right)))
+          this.constraints.forEach(it => this.pendingBlocks.push(...generateUpdates(it, base, index, binOp)))
         }
       }
       const variable = getUpdatedVariable(binOp.left)

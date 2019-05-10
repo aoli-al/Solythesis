@@ -35,15 +35,15 @@ export class Printer implements Visitor {
       this.source += ' ' + node.storageLocation
     }
     this.source += ' ' + node.name
-    if (node.expression) {
-      this.source += ' = ' 
-      this.visitOrPrint(node.expression)
-    }
     return false
   }
 
   StateVariableDeclaration = (node: StateVariableDeclaration) => {
     this.visitOrPrint(node.variables)
+    if (node.initialValue) {
+      this.source += ' = '
+      this.visitOrPrint(node.initialValue)
+    }
     this.source += ';'
     return false
   }
