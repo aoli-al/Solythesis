@@ -1,3 +1,3 @@
-standard ERC20 {
+standard BasicToken {
   constraint totalSupply == Sum a, balances[a], true;
 }

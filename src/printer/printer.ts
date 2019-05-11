@@ -1,4 +1,4 @@
-import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral, MemberAccess, ASTNode, ContractDefinition, Block, Mapping, FunctionDefinition, FunctionCall, ArrayTypeName} from "solidity-parser-antlr";
+import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral, MemberAccess, ASTNode, ContractDefinition, Block, Mapping, FunctionDefinition, FunctionCall, ArrayTypeName, ForStatement} from "solidity-parser-antlr";
 
 export class Printer implements Visitor {
   originSource: string
@@ -8,17 +8,19 @@ export class Printer implements Visitor {
     this.originSource = originSource
   }
 
-  visitOrPrint(node: ASTNode | ASTNode[]) {
-    if (Array.isArray(node)) {
-      node.forEach(it => this.visitOrPrint(it))
-      return 
-    }
-    if (node.type in this) {
-      visit(node, this)
-    }
-    else {
-      if (node.range) {
-        this.source += this.originSource.substr(node.range[0], node.range[1] - node.range[0] + 1)
+  visitOrPrint(node?: ASTNode | ASTNode[]) {
+    if (node) {
+      if (Array.isArray(node)) {
+        node.forEach(it => this.visitOrPrint(it))
+        return
+      }
+      if (node.type in this) {
+        visit(node, this)
+      }
+      else {
+        if (node.range) {
+          this.source += this.originSource.substr(node.range[0], node.range[1] - node.range[0] + 1)
+        }
       }
     }
   }
@@ -135,6 +137,21 @@ export class Printer implements Visitor {
       this.source += ' else '
       this.visitOrPrint(node.falseBody)
     }
+    return false
+  }
+
+  ForStatement = (node: ForStatement) => {
+    this.source += 'for ('
+    if (node.initExpression) this.visitOrPrint(node.initExpression)
+    else this.source += ';'
+    this.source += ' '
+    this.visitOrPrint(node.conditionExpression)
+    this.source += '; '
+    if (node.loopExpression) {
+      this.visitOrPrint(node.loopExpression.expression)
+    }
+    this.source += ') '
+    this.visitOrPrint(node.body)
     return false
   }
 

@@ -11,10 +11,10 @@ const updateOps = ['=', '-=', '+=', '*=', '/=']
 export class Decorator implements Visitor {
   [key: string]: any
   constraints: Node[]
-  variables: StateVariableDeclaration[]
+  variables: Map<string, StateVariableDeclaration[]>
   pendingBlocks: Statement[] = []
   checkConstraints: Set<Node> = new Set()
-  constructor(constraints: Node[], variables: StateVariableDeclaration[]) {
+  constructor(constraints: Node[], variables: Map<string, StateVariableDeclaration[]>) {
     this.constraints = constraints
     this.variables = variables
   }
@@ -66,7 +66,9 @@ export class Decorator implements Visitor {
     }
   }
   ContractDefinition = (node: ContractDefinition) => {
-    node.subNodes = [...this.variables, ...node.subNodes]
+    if (this.variables.has(node.name)) {
+      node.subNodes = [...this.variables.get(node.name)!, ...node.subNodes]
+    }
   }
   FunctionDefinition = (node: FunctionDefinition) => {
     this.checkConstraints = new Set()

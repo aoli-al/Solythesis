@@ -2,28 +2,37 @@ import {AbstractParseTreeVisitor} from 'antlr4ts/tree/AbstractParseTreeVisitor'
 import {SolidityVisitor} from '../antlr/SolidityVisitor'
 import {Node, SyntaxKind, PrimaryExpression, Identifier, ForAllExpression, SumExpression, BinOp, MuIndexedAccess, SIndexedAccess, SExp, MuExp, MuIdentifier, ArithmeticOp, ComparisonOp, MuExpTypes, MuExpression, SExpTypes, SExpression, CMPExpression, Exp, ComparisonOpList, Iden, SIdentifier} from './nodes/Node'
 import { objectAllocator, createBaseASTNode, createIdentifier, createElementaryTypeName, createMapping, createArray, createVariableDeclaration } from './utilities';
-import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralContext, IdentifierContext, ForAllExpressionContext, SumExpressionContext, PrimaryExpressionContext, StateVariableDeclarationContext } from '../antlr/SolidityParser';
+import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralContext, IdentifierContext, ForAllExpressionContext, SumExpressionContext, PrimaryExpressionContext, StateVariableDeclarationContext, StandardDefinitionContext } from '../antlr/SolidityParser';
 import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
-import { visit, StateVariableDeclaration, TypeName, VariableDeclaration } from 'solidity-parser-antlr';
+import { StateVariableDeclaration, TypeName } from 'solidity-parser-antlr';
+import { RuleNode } from 'antlr4ts/tree/RuleNode';
 
 var counter = 0
 export function generateNewVarName(base: string) {
   return base + '_' + (counter++).toString()
 }
 
-export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements SolidityVisitor<Node> {
+export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> implements SolidityVisitor<Node|null> {
 
   constraint: Node[] = []
-  variables: StateVariableDeclaration[] = []
+  variables: Map<string, StateVariableDeclaration[]> = new Map()
+  currentContractVariables: StateVariableDeclaration[] = []
   muVariables: string[] = ['#']
   defaultResult() {
     return new (objectAllocator.getNodeConstructor())('DummyNode')
   }
-  
+
+  visitStandardDefinition(context: StandardDefinitionContext) {
+    this.currentContractVariables = []
+    this.variables.set(context.Identifier().text, this.currentContractVariables)
+    context.constraint().forEach(it => this.visit(it))
+    return null 
+  }
+
   generateNewVariable(base: string, type: TypeName) {
     const node = createBaseASTNode('StateVariableDeclaration') as StateVariableDeclaration
     node.variables = [createVariableDeclaration(generateNewVarName(base), type, true)]
-    this.variables.push(node)
+    this.currentContractVariables.push(node)
     return node.variables[0].name
   }
 
@@ -32,7 +41,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
   }
 
   visitConstraint(context: ConstraintContext): Node {
-    this.constraint.push(this.visit(context.expression()))
+    this.constraint.push(this.visit(context.expression())!)
     return this.defaultResult()
   }
 
@@ -40,7 +49,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
     return new (objectAllocator.getNodeConstructor())(kind)
   }
 
-  visitExpression(context: ExpressionContext): Node {
+  visitExpression(context: ExpressionContext) {
     switch (context.childCount) {
       case 1: { return this.visit(context.getChild(0)) }
       case 4: {
@@ -59,8 +68,8 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
         }
       }
       case 3: {
-          const left = this.visit(context.expression(0)) 
-          const right = this.visit(context.expression(1)) 
+          const left = this.visit(context.expression(0))!
+          const right = this.visit(context.expression(1))! 
           const op = context.getChild(1).text as BinOp
           if (MuExpTypes.includes(left.type) && MuExpTypes.includes(right.type)) {
             const node = this.createNode('MuExpression') as MuExpression
@@ -69,7 +78,6 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
             node.op = op
             return node
           }
-          const a = left.type in SExpTypes
           if (SExpTypes.includes(left.type) && SExpTypes.includes(right.type)) {
             const node = this.createNode('SExpression') as SExpression
             node.left = left as SExp
@@ -86,7 +94,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
           }
       }
     }
-    return new (objectAllocator.getNodeConstructor())('DummyNode')
+    return null
   }
 
   visitTerminal(context: TerminalNode): Node {
@@ -102,7 +110,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node> implements
     return node
   }
 
-  visitPrimaryExpression(context: PrimaryExpressionContext): Node {
+  visitPrimaryExpression(context: PrimaryExpressionContext) {
     if (context.BooleanLiteral()) {
       const node = this.createNode('PrimaryExpression') as PrimaryExpression
       node.value = context.text

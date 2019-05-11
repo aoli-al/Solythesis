@@ -42,7 +42,7 @@ function generateAssertionsForAll(node: ForAllExpression) {
       [createVariableDeclaration(indexVarName, createElementaryTypeName('uint256'), false)],
       createNumberLiteral('0'))
     forLoop.conditionExpression = createBinaryOperation(indexIdentifier, createMemberAccess(arrayVar, 'length'), '<')
-    forLoop.expression = createBinaryOperation(indexIdentifier, createNumberLiteral('1'), '+=')
+    forLoop.loopExpression = createExpressionStmt(createBinaryOperation(indexIdentifier, createNumberLiteral('1'), '+='))
     forLoop.body = createBaseASTNode('Block') as Block
     const exp = new Rewriter(node.mu.name, createIndexAccess(arrayVar, indexIdentifier)).visit(node.constraint) as Expression
     const functionCall = createFunctionCall(createIdentifier('assert'), [exp], [])
