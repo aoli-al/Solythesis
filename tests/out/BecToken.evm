@@ -1,0 +1,166 @@
+    /* "t1.sol":122:308  contract BecToken {... */
+  mstore(0x40, 0x80)
+    /* "t1.sol":157:183  constructor() public {... */
+  callvalue
+    /* "--CODEGEN--":8:17   */
+  dup1
+    /* "--CODEGEN--":5:7   */
+  iszero
+  tag_1
+  jumpi
+    /* "--CODEGEN--":30:31   */
+  0x00
+    /* "--CODEGEN--":27:28   */
+  dup1
+    /* "--CODEGEN--":20:32   */
+  revert
+    /* "--CODEGEN--":5:7   */
+tag_1:
+    /* "t1.sol":157:183  constructor() public {... */
+  pop
+    /* "t1.sol":122:308  contract BecToken {... */
+  dataSize(sub_0)
+  dup1
+  dataOffset(sub_0)
+  0x00
+  codecopy
+  0x00
+  return
+stop
+
+sub_0: assembly {
+        /* "t1.sol":122:308  contract BecToken {... */
+      mstore(0x40, 0x80)
+      callvalue
+        /* "--CODEGEN--":8:17   */
+      dup1
+        /* "--CODEGEN--":5:7   */
+      iszero
+      tag_1
+      jumpi
+        /* "--CODEGEN--":30:31   */
+      0x00
+        /* "--CODEGEN--":27:28   */
+      dup1
+        /* "--CODEGEN--":20:32   */
+      revert
+        /* "--CODEGEN--":5:7   */
+    tag_1:
+        /* "t1.sol":122:308  contract BecToken {... */
+      pop
+      jumpi(tag_2, lt(calldatasize, 0x04))
+      shr(0xe0, calldataload(0x00))
+      dup1
+      0xa9059cbb
+      eq
+      tag_3
+      jumpi
+    tag_2:
+      0x00
+      dup1
+      revert
+        /* "t1.sol":186:306  function transfer(address balance, uint256 value) public {... */
+    tag_3:
+      tag_4
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x40
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_5
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_5:
+        /* "t1.sol":186:306  function transfer(address balance, uint256 value) public {... */
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      calldataload
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      dup1
+      calldataload
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      pop
+      pop
+      pop
+      tag_6
+      jump	// in
+    tag_4:
+      stop
+    tag_6:
+        /* "t1.sol":254:263  uint256 i */
+      0x00
+        /* "t1.sol":266:267  0 */
+      dup1
+        /* "t1.sol":254:267  uint256 i = 0 */
+      swap1
+      pop
+        /* "t1.sol":249:302  for (uint256 i = 0; i < 20; i++) {... */
+    tag_8:
+        /* "t1.sol":273:275  20 */
+      0x14
+        /* "t1.sol":269:270  i */
+      dup2
+        /* "t1.sol":269:275  i < 20 */
+      lt
+        /* "t1.sol":249:302  for (uint256 i = 0; i < 20; i++) {... */
+      iszero
+      tag_9
+      jumpi
+        /* "t1.sol":294:295  i */
+      dup1
+        /* "t1.sol":290:291  a */
+      0x00
+        /* "t1.sol":290:295  a = i */
+      dup2
+      swap1
+      sstore
+      pop
+        /* "t1.sol":277:280  i++ */
+      dup1
+      dup1
+      0x01
+      add
+      swap2
+      pop
+      pop
+        /* "t1.sol":249:302  for (uint256 i = 0; i < 20; i++) {... */
+      jump(tag_8)
+    tag_9:
+      pop
+        /* "t1.sol":186:306  function transfer(address balance, uint256 value) public {... */
+      pop
+      pop
+      jump	// out
+
+    auxdata: 0xa165627a7a72305820f4ae3f0e09485b5564ba34546710ca983921a2621068c25720053241955b98db0029
+}

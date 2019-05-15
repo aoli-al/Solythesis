@@ -14,6 +14,7 @@ export class Decorator implements Visitor {
   variables: Map<string, StateVariableDeclaration[]>
   pendingBlocks: Statement[] = []
   checkConstraints: Set<Node> = new Set()
+  canAddAssertions = false
   constructor(constraints: Node[], variables: Map<string, StateVariableDeclaration[]>) {
     this.constraints = constraints
     this.variables = variables
@@ -26,10 +27,15 @@ export class Decorator implements Visitor {
     return block
   }
   addAssertions(node: ReturnStatement) {
-    const block = createBaseASTNode('Block') as Block
-    block.statements = [...this.checkConstraints].map(it => generateAssertions(it)).reduce((pre, cur) => [...pre, ...cur], [])
-    block.statements.push(node)
-    return block
+    if (this.canAddAssertions) {
+      const block = createBaseASTNode('Block') as Block
+      block.statements = [...this.checkConstraints].map(it => generateAssertions(it)).reduce((pre, cur) => [...pre, ...cur], [])
+      block.statements.push(node)
+      return block
+    }
+    else {
+      return node
+    }
   }
   visit(node: any) {
     if (Array.isArray(node)) {
@@ -72,11 +78,14 @@ export class Decorator implements Visitor {
   }
   FunctionDefinition = (node: FunctionDefinition) => {
     this.checkConstraints = new Set()
+    this.canAddAssertions = node.visibility == 'public'
     this.visit(node.body)
-    const block = createBaseASTNode('Block') as Block
-    block.statements = [...this.checkConstraints].map(it => generateAssertions(it)).reduce((pre, cur) => [...pre, ...cur], [])
-    if (node.body) {
-      node.body.statements.push(block)
+    if (this.canAddAssertions) {
+      const block = createBaseASTNode('Block') as Block
+      block.statements = [...this.checkConstraints].map(it => generateAssertions(it)).reduce((pre, cur) => [...pre, ...cur], [])
+      if (node.body) {
+        node.body.statements.push(block)
+      }
     }
     return false
   }

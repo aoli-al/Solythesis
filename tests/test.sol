@@ -290,4 +290,9 @@ contract BecToken is PausableToken {
       totalSupply = 7000000000 * (10**(uint256(decimals)));
       balances[msg.sender] = totalSupply;    // Give the creator all initial tokens
     }
+
+    function init() public {
+      totalSupply = 7000000000 * (10**(uint256(decimals)));
+      balances[msg.sender] = totalSupply;    // Give the creator all initial tokens
+    }
 }

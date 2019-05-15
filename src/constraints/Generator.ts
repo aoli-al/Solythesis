@@ -102,28 +102,27 @@ function generateForAll(node: ForAllExpression, identifier: Identifier, index: E
 function generateSum(node: SumExpression, identifier: Identifier, index: Expression, binOp: BinaryOperation): Statement[] {
   if (!getMonitoredVariables(node, node.mu.name).has(identifier.name)) return []
   const v = createIdentifier(node.name)
-  const gen = (operator: BinOp): Statement => {
+  const gen = (operator: BinOp) => {
     const right = new Rewriter(node.mu.name, index).visit(node.body) as Expression
     const binaryExp = createBinaryOperation(v, right, operator)
-    const statement = createExpressionStmt(binaryExp)
     switch (node.constraint.type) {
       case 'MuExpression': 
       case 'MuIndexedAccess': {
         const condition = new Rewriter(node.mu.name, index).visit(node.constraint) as Expression
+        const statement = createExpressionStmt(createBinaryOperation(v, right, operator))
         return createIfStatment(condition, statement)
       }
       case 'SExpression': 
       case 'SIndexedAccess': 
       case 'SIdentifier': 
       case 'PrimaryExpression': {
-        break
+        return createExpressionStmt(createBinaryOperation(v, right, operator))
       }
       case 'CMPExpression': {
         const i = new Rewriter(node.mu.name, index).visit(node.constraint.right) as Expression
-        binaryExp.left = createIndexAccess(v, i)
+        return createExpressionStmt(createBinaryOperation(v, createIndexAccess(v, i), operator))
       }
     }
-    return statement
   }
   return [generateTmpUpdate(identifier, index, binOp, gen('-='), gen('+='))]
 }

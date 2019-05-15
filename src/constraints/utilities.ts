@@ -81,6 +81,14 @@ export function createIfStatment(condition: Expression, trueBody: Statement, fal
   return node
 }
 
+export function createSafeBinaryOperation(left: Expression, right: Expression, op: '+='|'-=') {
+  const opMap = {
+    '+=': ['+', '>='],
+    '-=': ['-', '<=']
+  }
+ createBinaryOperation(createBinaryOperation(left, right, opMap[op][0] as BinOp), left, '>=')
+}
+
 export function createFunctionCall(expression: Expression, args: Expression[], names: string[]) {
   const node = createBaseASTNode('FunctionCall') as FunctionCall
   node.expression = expression

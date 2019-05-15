@@ -100,11 +100,11 @@ contract StandardToken is ERC20, BasicToken {
     allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
     emit Transfer(_from, _to, _value);
     {
-      // assert(totalSupply == sum_0);
+      assert(totalSupply == sum_0);
       return true;
     }
     {
-      // assert(totalSupply == sum_0);
+      assert(totalSupply == sum_0);
     }
   }
   function approve (address _spender, uint256 _value) public returns (bool) {
@@ -194,14 +194,15 @@ contract PausableToken is StandardToken, Pausable {
   function batchTransfer (address[] memory _receivers, uint256 _value) whenNotPaused public returns (bool) {
     uint cnt = _receivers.length;
     uint256 amount = uint256(cnt) * _value;
+    uint256 tmp = sum_0;
     require(cnt > 0 && cnt <= 20);
     require(_value > 0 && balances[msg.sender] >= amount);
     {
       {
         uint256 tmp_5 = balances[msg.sender];
-        sum_0 -= balances[msg.sender];
+        tmp -= balances[msg.sender];
         balances[msg.sender] = balances[msg.sender].sub(amount);
-        sum_0 += balances[msg.sender];
+        tmp += balances[msg.sender];
         balances[msg.sender] = tmp_5;
       }
       balances[msg.sender] = balances[msg.sender].sub(amount);
@@ -210,9 +211,9 @@ contract PausableToken is StandardToken, Pausable {
       {
         {
           uint256 tmp_6 = balances[_receivers[i]];
-          sum_0 -= balances[_receivers[i]];
+          tmp -= balances[_receivers[i]];
           balances[_receivers[i]] = balances[_receivers[i]].add(_value);
-          sum_0 += balances[_receivers[i]];
+          tmp += balances[_receivers[i]];
           balances[_receivers[i]] = tmp_6;
         }
         balances[_receivers[i]] = balances[_receivers[i]].add(_value);
@@ -220,11 +221,13 @@ contract PausableToken is StandardToken, Pausable {
       emit Transfer(msg.sender, _receivers[i], _value);
     }
     {
-      // assert(totalSupply == sum_0);
+      sum_0 = tmp;
+      // assert(totalSupply == tmp);
       return true;
     }
     {
-      // assert(totalSupply == sum_0);
+      sum_0 = tmp;
+      // assert(totalSupply == tmp);
     }
   }
 }
@@ -246,7 +249,7 @@ contract BecToken is PausableToken {
       balances[msg.sender] = totalSupply;
     }
     {
-      // assert(totalSupply == sum_0);
+      assert(totalSupply == sum_0);
     }
   }
 }
