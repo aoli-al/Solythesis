@@ -31,24 +31,14 @@ contract BasicToken is ERC20Basic {
     require(_to != address(0));
     require(_value > 0 && _value <= balances[msg.sender]);
     {
-      {
-        uint256 tmp_1 = balances[msg.sender];
-        sum_0 -= balances[msg.sender];
-        balances[msg.sender] = balances[msg.sender].sub(_value);
-        sum_0 += balances[msg.sender];
-        balances[msg.sender] = tmp_1;
-      }
+      sum_0 -= balances[msg.sender];
       balances[msg.sender] = balances[msg.sender].sub(_value);
+      sum_0 += balances[msg.sender];
     }
     {
-      {
-        uint256 tmp_2 = balances[_to];
-        sum_0 -= balances[_to];
-        balances[_to] = balances[_to].add(_value);
-        sum_0 += balances[_to];
-        balances[_to] = tmp_2;
-      }
+      sum_0 -= balances[_to];
       balances[_to] = balances[_to].add(_value);
+      sum_0 += balances[_to];
     }
     emit Transfer(msg.sender, _to, _value);
     {
@@ -73,38 +63,27 @@ contract ERC20 is ERC20Basic {
 contract StandardToken is ERC20, BasicToken {
   mapping (address=>mapping (address=>uint256)) internal allowed;
   function transferFrom (address _from, address _to, uint256 _value) public returns (bool) {
-    uint256 tmp = sum_0;
     require(_to != address(0));
     require(_value > 0 && _value <= balances[_from]);
     require(_value <= allowed[_from][msg.sender]);
     {
-      {
-        uint256 tmp_3 = balances[_from];
-        sum_0 -= balances[_from];
-        balances[_from] = balances[_from].sub(_value);
-        sum_0 += balances[_from];
-        balances[_from] = tmp_3;
-      }
+      sum_0 -= balances[_from];
       balances[_from] = balances[_from].sub(_value);
+      sum_0 += balances[_from];
     }
     {
-      {
-        uint256 tmp_4 = balances[_to];
-        sum_0 -= balances[_to];
-        balances[_to] = balances[_to].add(_value);
-        sum_0 += balances[_to];
-        balances[_to] = tmp_4;
-      }
+      sum_0 -= balances[_to];
       balances[_to] = balances[_to].add(_value);
+      sum_0 += balances[_to];
     }
     allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
     emit Transfer(_from, _to, _value);
     {
-      // assert(totalSupply == sum_0);
+      assert(totalSupply == sum_0);
       return true;
     }
     {
-      // assert(totalSupply == sum_0);
+      assert(totalSupply == sum_0);
     }
   }
   function approve (address _spender, uint256 _value) public returns (bool) {
@@ -197,34 +176,24 @@ contract PausableToken is StandardToken, Pausable {
     require(cnt > 0 && cnt <= 20);
     require(_value > 0 && balances[msg.sender] >= amount);
     {
-      {
-        uint256 tmp_5 = balances[msg.sender];
-        sum_0 -= balances[msg.sender];
-        balances[msg.sender] = balances[msg.sender].sub(amount);
-        sum_0 += balances[msg.sender];
-        balances[msg.sender] = tmp_5;
-      }
+      sum_0 -= balances[msg.sender];
       balances[msg.sender] = balances[msg.sender].sub(amount);
+      sum_0 += balances[msg.sender];
     }
     for (uint i = 0; i < cnt; i++) {
       {
-        {
-          uint256 tmp_6 = balances[_receivers[i]];
-          sum_0 -= balances[_receivers[i]];
-          balances[_receivers[i]] = balances[_receivers[i]].add(_value);
-          sum_0 += balances[_receivers[i]];
-          balances[_receivers[i]] = tmp_6;
-        }
+        sum_0 -= balances[_receivers[i]];
         balances[_receivers[i]] = balances[_receivers[i]].add(_value);
+        sum_0 += balances[_receivers[i]];
       }
       emit Transfer(msg.sender, _receivers[i], _value);
     }
     {
-      // assert(totalSupply == sum_0);
+      assert(totalSupply == sum_0);
       return true;
     }
     {
-      // assert(totalSupply == sum_0);
+      assert(totalSupply == sum_0);
     }
   }
 }
@@ -236,17 +205,23 @@ contract BecToken is PausableToken {
   constructor () public {
     totalSupply = 7000000000 * (10**(uint256(decimals)));
     {
-      {
-        uint256 tmp_7 = balances[msg.sender];
-        sum_0 -= balances[msg.sender];
-        balances[msg.sender] = totalSupply;
-        sum_0 += balances[msg.sender];
-        balances[msg.sender] = tmp_7;
-      }
+      sum_0 -= balances[msg.sender];
       balances[msg.sender] = totalSupply;
+      sum_0 += balances[msg.sender];
     }
     {
-      // assert(totalSupply == sum_0);
+      assert(totalSupply == sum_0);
+    }
+  }
+  function init () public {
+    totalSupply = 7000000000 * (10**(uint256(decimals)));
+    {
+      sum_0 -= balances[msg.sender];
+      balances[msg.sender] = totalSupply;
+      sum_0 += balances[msg.sender];
+    }
+    {
+      assert(totalSupply == sum_0);
     }
   }
 }
