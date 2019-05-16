@@ -24,29 +24,29 @@ contract ERC20Basic {
   event Transfer(address indexed from, address indexed to, uint256 value);
 }
 contract BasicToken is ERC20Basic {
-  uint256 sum_0;
+  uint256 sum_balance;
   using SafeMath for uint256;
   mapping (address=>uint256) balances;
   function transfer (address _to, uint256 _value) public returns (bool) {
     require(_to != address(0));
     require(_value > 0 && _value <= balances[msg.sender]);
     {
-      sum_0 -= balances[msg.sender];
+      sum_balance -= balances[msg.sender];
       balances[msg.sender] = balances[msg.sender].sub(_value);
-      sum_0 += balances[msg.sender];
+      sum_balance += balances[msg.sender];
     }
     {
-      sum_0 -= balances[_to];
+      sum_balance -= balances[_to];
       balances[_to] = balances[_to].add(_value);
-      sum_0 += balances[_to];
+      sum_balance += balances[_to];
     }
     emit Transfer(msg.sender, _to, _value);
     {
-      assert(totalSupply == sum_0);
+      assert(totalSupply == sum_balance);
       return true;
     }
     {
-      assert(totalSupply == sum_0);
+      assert(totalSupply == sum_balance);
     }
   }
   function balanceOf (address _owner) public view returns (uint256 balance) {
@@ -67,23 +67,23 @@ contract StandardToken is ERC20, BasicToken {
     require(_value > 0 && _value <= balances[_from]);
     require(_value <= allowed[_from][msg.sender]);
     {
-      sum_0 -= balances[_from];
+      sum_balance -= balances[_from];
       balances[_from] = balances[_from].sub(_value);
-      sum_0 += balances[_from];
+      sum_balance += balances[_from];
     }
     {
-      sum_0 -= balances[_to];
+      sum_balance -= balances[_to];
       balances[_to] = balances[_to].add(_value);
-      sum_0 += balances[_to];
+      sum_balance += balances[_to];
     }
     allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
     emit Transfer(_from, _to, _value);
     {
-      assert(totalSupply == sum_0);
+      assert(totalSupply == sum_balance);
       return true;
     }
     {
-      assert(totalSupply == sum_0);
+      assert(totalSupply == sum_balance);
     }
   }
   function approve (address _spender, uint256 _value) public returns (bool) {
@@ -176,24 +176,24 @@ contract PausableToken is StandardToken, Pausable {
     require(cnt > 0 && cnt <= 20);
     require(_value > 0 && balances[msg.sender] >= amount);
     {
-      sum_0 -= balances[msg.sender];
+      sum_balance -= balances[msg.sender];
       balances[msg.sender] = balances[msg.sender].sub(amount);
-      sum_0 += balances[msg.sender];
+      sum_balance += balances[msg.sender];
     }
     for (uint i = 0; i < cnt; i++) {
       {
-        sum_0 -= balances[_receivers[i]];
+        sum_balance -= balances[_receivers[i]];
         balances[_receivers[i]] = balances[_receivers[i]].add(_value);
-        sum_0 += balances[_receivers[i]];
+        sum_balance += balances[_receivers[i]];
       }
       emit Transfer(msg.sender, _receivers[i], _value);
     }
     {
-      assert(totalSupply == sum_0);
+      assert(totalSupply == sum_balance);
       return true;
     }
     {
-      assert(totalSupply == sum_0);
+      assert(totalSupply == sum_balance);
     }
   }
 }
@@ -205,23 +205,23 @@ contract BecToken is PausableToken {
   constructor () public {
     totalSupply = 7000000000 * (10**(uint256(decimals)));
     {
-      sum_0 -= balances[msg.sender];
+      sum_balance -= balances[msg.sender];
       balances[msg.sender] = totalSupply;
-      sum_0 += balances[msg.sender];
+      sum_balance += balances[msg.sender];
     }
     {
-      assert(totalSupply == sum_0);
+      assert(totalSupply == sum_balance);
     }
   }
   function init () public {
     totalSupply = 7000000000 * (10**(uint256(decimals)));
     {
-      sum_0 -= balances[msg.sender];
+      sum_balance -= balances[msg.sender];
       balances[msg.sender] = totalSupply;
-      sum_0 += balances[msg.sender];
+      sum_balance += balances[msg.sender];
     }
     {
-      assert(totalSupply == sum_0);
+      assert(totalSupply == sum_balance);
     }
   }
 }

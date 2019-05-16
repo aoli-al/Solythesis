@@ -2,7 +2,7 @@ import {AbstractParseTreeVisitor} from 'antlr4ts/tree/AbstractParseTreeVisitor'
 import {SolidityVisitor} from '../antlr/SolidityVisitor'
 import {Node, SyntaxKind, PrimaryExpression, Identifier, ForAllExpression, SumExpression, BinOp, MuIndexedAccess, SIndexedAccess, SExp, MuExp, MuIdentifier, ArithmeticOp, ComparisonOp, MuExpTypes, MuExpression, SExpTypes, SExpression, CMPExpression, Exp, ComparisonOpList, Iden, SIdentifier} from './nodes/Node'
 import { objectAllocator, createBaseASTNode, createIdentifier, createElementaryTypeName, createMapping, createArray, createVariableDeclaration } from './utilities';
-import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralContext, IdentifierContext, ForAllExpressionContext, SumExpressionContext, PrimaryExpressionContext, StateVariableDeclarationContext, StandardDefinitionContext } from '../antlr/SolidityParser';
+import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralContext, IdentifierContext, ForAllExpressionContext, SumExpressionContext, PrimaryExpressionContext, StateVariableDeclarationContext, StandardDefinitionContext, ConstraintVariableDeclarationContext } from '../antlr/SolidityParser';
 import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
 import { StateVariableDeclaration, TypeName } from 'solidity-parser-antlr';
 import { RuleNode } from 'antlr4ts/tree/RuleNode';
@@ -25,13 +25,14 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
   visitStandardDefinition(context: StandardDefinitionContext) {
     this.currentContractVariables = []
     this.variables.set(context.Identifier().text, this.currentContractVariables)
-    context.constraint().forEach(it => this.visit(it))
+    // context.constraint().forEach(it => this.visit(it))
+    context.constraintPart().forEach(it => this.visit(it.getChild(0)))
     return null 
   }
 
-  generateNewVariable(base: string, type: TypeName) {
+  generateNewVariable(name: string, type: TypeName) {
     const node = createBaseASTNode('StateVariableDeclaration') as StateVariableDeclaration
-    node.variables = [createVariableDeclaration(generateNewVarName(base), type, true)]
+    node.variables = [createVariableDeclaration(name, type, true)]
     this.currentContractVariables.push(node)
     return node.variables[0].name
   }
@@ -42,6 +43,25 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
 
   visitConstraint(context: ConstraintContext): Node {
     this.constraint.push(this.visit(context.expression())!)
+    return this.defaultResult()
+  }
+
+
+  visitConstraintVariableDeclaration(context: ConstraintVariableDeclarationContext): Node {
+    const node = this.visit(context.expression())
+    if (!node) return this.defaultResult()
+    this.constraint.push(node)
+    if (node.type == 'SumExpression') {
+      node.name = (() => {
+        switch (node.constraint.type) {
+          case 'CMPExpression':
+            return this.generateNewVariable(context.identifier().text,
+              createMapping(createElementaryTypeName('uin256'), createElementaryTypeName('uint256')))
+          default:
+            return this.generateNewVariable(context.identifier().text, createElementaryTypeName('uint256'))
+        }
+      })()
+    }
     return this.defaultResult()
   }
 
@@ -139,10 +159,10 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     node.mu = this.visit(context.identifier()) as MuIdentifier
     node.constraint = this.visit(context.expression()) as CMPExpression
     if (node.constraint.type == 'CMPExpression') {
-      node.name = this.generateNewVariable('cmp', createElementaryTypeName('uint256'))
+      node.name = this.generateNewVariable(generateNewVarName('cmp'), createElementaryTypeName('uint256'))
     }
     else {
-      node.name = this.generateNewVariable('arr', createArray(createElementaryTypeName('uint256')))
+      node.name = this.generateNewVariable(generateNewVarName('arr'), createArray(createElementaryTypeName('uint256')))
     }
     this.muVariables.pop()
     return node
@@ -154,15 +174,6 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     node.mu = this.visit(context.identifier()) as MuIdentifier
     node.body = this.visit(context.expression(0)) as MuExp
     node.constraint = this.visit(context.expression(1)) as CMPExpression
-    node.name =  (() => {
-      switch (node.constraint.type) {
-        case 'CMPExpression':
-          return this.generateNewVariable('sum',
-            createMapping(createElementaryTypeName('uin256'), createElementaryTypeName('uint256')))
-        default:
-          return this.generateNewVariable('sum', createElementaryTypeName('uint256'))
-      }
-    })()
     this.muVariables.pop()
     return node
   }

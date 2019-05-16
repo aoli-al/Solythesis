@@ -41,10 +41,17 @@ importDeclaration
 
 standardDefinition
   : 'standard' Identifier
-    '{' contractPart* constraint* '}' EOF;
+    '{' constraintPart* '}' EOF;
+
+constraintPart
+  : constraint
+  | constraintVariableDeclaration;
 
 constraint
   : 'constraint' expression ';';
+
+constraintVariableDeclaration
+  : identifier '=' expression ';';
 
 importDirective
   : 'import' StringLiteral ('as' identifier)? ';'

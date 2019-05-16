@@ -142,9 +142,17 @@ export class Decorator implements Visitor {
       return pendingStatements
     }
     this.constraints.forEach(it => this.pendingBlocks.merge(generate(it)))
+    const queue: string[] = []
     const variable = getUpdatedVariable(binOp.left)
     if (variable) {
-      this.constraints.filter(it => getMonitoredStateVariables(it).has(variable)).forEach(it => this.checkConstraints.add(it))
+      queue.push(variable)
+    }
+    while (queue.length > 0) {
+      this.constraints.filter(it => getMonitoredStateVariables(it).has(queue[0])).forEach(it => {
+        this.checkConstraints.add(it)
+        if (it.type == 'SumExpression') { queue.push(it.name) }
+      })
+      queue.shift()
     }
   }
   generateAssertions(node: Node): Statement[] {
