@@ -1,11 +1,11 @@
 import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, FunctionDefinition, ContractDefinition, Statement, ASTNode, Block, ReturnStatement, BaseASTNode, ForStatement, BinOp } from "solidity-parser-antlr";
 import { Node, ForAllExpression, SumExpression, CMPExpression } from "./nodes/Node";
-import { Printer } from "../printer/printer";
+import { Printer } from "../printer/Printer";
 import { createBaseASTNode, getMonitoredStateVariables, getUpdatedVariable, createFunctionCall, createIdentifier, createExpressionStmt, createBinaryOperation, createVariableDeclarationStmt, createVariableDeclaration, createElementaryTypeName, createNumberLiteral, createMemberAccess, createIndexAccess, getMonitoredVariables, createIfStatment, getChildren } from "./utilities";
 import * as _ from "lodash";
 import { isMainThread } from "worker_threads";
 import { prependListener } from "cluster";
-import { Rewriter } from "./generator";
+import { Rewriter } from "./Rewriter";
 
 const updateOps = ['=', '-=', '+=', '*=', '/=']
 

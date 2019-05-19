@@ -1,6 +1,6 @@
 import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, FunctionDefinition, ContractDefinition, Statement, ASTNode, Block, ReturnStatement, BaseASTNode } from "solidity-parser-antlr";
 import { Node } from "./nodes/Node";
-import { Printer } from "../printer/printer";
+import { Printer } from "../printer/Printer";
 import { createBaseASTNode, getMonitoredStateVariables, getUpdatedVariable } from "./utilities";
 import * as _ from "lodash";
 import { isMainThread } from "worker_threads";
