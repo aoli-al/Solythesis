@@ -6,6 +6,7 @@ import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralCont
 import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
 import { StateVariableDeclaration, TypeName } from 'solidity-parser-antlr';
 import { RuleNode } from 'antlr4ts/tree/RuleNode';
+import assert from 'assert';
 
 var counter = 0
 export function generateNewVarName(base: string) {
@@ -17,7 +18,8 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
   constraint: Node[] = []
   variables: Map<string, StateVariableDeclaration[]> = new Map()
   currentContractVariables: StateVariableDeclaration[] = []
-  muVariables: string[] = ['#']
+  muVariables: string[] = []
+  muIndex = new Map<string, number>()
   defaultResult() {
     return new (objectAllocator.getNodeConstructor())('DummyNode')
   }
@@ -69,21 +71,43 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     return new (objectAllocator.getNodeConstructor())(kind)
   }
 
+  updateMuIndex(mu: string, index: number) {
+    if (this.muIndex.has(mu)) {
+      assert(this.muIndex.get(mu) == index)
+    }
+    else {
+      this.muIndex.set(mu, index)
+    }
+  }
+
   visitExpression(context: ExpressionContext) {
     switch (context.childCount) {
       case 1: { return this.visit(context.getChild(0)) }
       case 4: {
         if (context.getChild(1).text == "[") {
-          let node = undefined
-          if (this.muVariables[this.muVariables.length-1] == context.expression(1).text) {
-            node = this.createNode('MuIndexedAccess') as MuIndexedAccess
-            node.index = this.visit(context.expression(1)) as MuIdentifier
+          let index = this.visit(context.expression(1))!
+          const node = (() => {
+            if (index.type == 'MuIdentifier') {
+              const n = this.createNode('MuIndexedAccess') as MuIndexedAccess
+              n.index = index
+              return n
+            }
+            else {
+              const n = this.createNode('SIndexedAccess') as SIndexedAccess
+              n.index = index as SExp
+              return n
+            }
+          })()
+          node.object = this.visit(context.expression(0))! as MuIndexedAccess | SIdentifier | SIndexedAccess
+          if (node.type == 'MuIndexedAccess') {
+            if (node.object.type == 'MuIndexedAccess') {
+              this.updateMuIndex((node.index as MuIdentifier).name,
+                this.muIndex.get(node.object.index.name)! + 1)
+            }
+            else {
+              this.updateMuIndex((node.index as MuIdentifier).name, 0)
+            }
           }
-          else {
-            node = this.createNode('SIndexedAccess') as SIndexedAccess
-            node.index = this.visit(context.expression(1)) as SExp
-          }
-          node.object = this.visit(context.expression(0)) as SIdentifier
           return node
         }
       }
@@ -143,7 +167,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
 
   visitIdentifier(context: IdentifierContext): Node {
     var node = undefined
-    if (context.text == this.muVariables[this.muVariables.length-1]) {
+    if (this.muVariables.includes(context.text)) {
       node = this.createNode('MuIdentifier') as Iden
     }
     else {
@@ -155,7 +179,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
 
   visitForAllExpression(context: ForAllExpressionContext): Node {
     const node = this.createNode('ForAllExpression') as ForAllExpression
-    this.muVariables.push(context.identifier().text)
+    this.muVariables = [context.identifier().text]
     node.mu = this.visit(context.identifier()) as MuIdentifier
     node.constraint = this.visit(context.expression()) as CMPExpression
     if (node.constraint.type == 'CMPExpression') {
@@ -164,17 +188,20 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     else {
       node.name = this.generateNewVariable(generateNewVarName('arr'), createArray(createElementaryTypeName('uint256')))
     }
-    this.muVariables.pop()
+    this.muVariables = []
     return node
   }
 
   visitSumExpression(context: SumExpressionContext): Node {
     const node = this.createNode('SumExpression') as SumExpression
-    this.muVariables.push(context.identifier().text)
-    node.mu = this.visit(context.identifier()) as MuIdentifier
+    this.muVariables = context.identifierList().identifier().map(it => it.text)
+    node.mu = context.identifierList().identifier().map(it => this.visit(it) as MuIdentifier)
     node.body = this.visit(context.expression(0)) as MuExp
     node.constraint = this.visit(context.expression(1)) as CMPExpression
-    this.muVariables.pop()
+    node.mu = node.mu.filter(it => this.muIndex.has(it.name))
+    node.mu.sort((a, b) => this.muIndex.get(a.name)! - this.muIndex.get(b.name)!)
+    this.muVariables = []
+    this.muIndex = new Map()
     return node
   }
 }

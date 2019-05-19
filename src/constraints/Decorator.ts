@@ -1,11 +1,11 @@
 import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, FunctionDefinition, ContractDefinition, Statement, ASTNode, Block, ReturnStatement, BaseASTNode, ForStatement, BinOp } from "solidity-parser-antlr";
-import { Node, ForAllExpression, SumExpression } from "./nodes/Node";
+import { Node, ForAllExpression, SumExpression, CMPExpression } from "./nodes/Node";
 import { Printer } from "../printer/printer";
 import { createBaseASTNode, getMonitoredStateVariables, getUpdatedVariable, createFunctionCall, createIdentifier, createExpressionStmt, createBinaryOperation, createVariableDeclarationStmt, createVariableDeclaration, createElementaryTypeName, createNumberLiteral, createMemberAccess, createIndexAccess, getMonitoredVariables, createIfStatment, getChildren } from "./utilities";
 import * as _ from "lodash";
 import { isMainThread } from "worker_threads";
 import { prependListener } from "cluster";
-import { Rewriter } from "./Generator";
+import { Rewriter } from "./generator";
 
 const updateOps = ['=', '-=', '+=', '*=', '/=']
 
@@ -123,19 +123,24 @@ export class Decorator implements Visitor {
     const binOp = statement.expression
     if (!updateOps.includes(binOp.operator)) return
     if (binOp.left.type != 'IndexAccess') return
-    const base = binOp.left.base
-    const index = binOp.left.index
+    const index = [binOp.left.index]
+
+    var base = binOp.left.base
+    while (base.type == 'IndexAccess') {
+      index.push(base.index)
+      base = base.base
+    }
     if (base.type != 'Identifier') return
     const generate = (constraint: Node) => {
       const pendingStatements = new PendingStatements()
       getChildren(constraint).map(it => generate(it)).forEach(it => pendingStatements.merge(it))
       switch (constraint.type) {
         case 'ForAllExpression': {
-          pendingStatements.merge(this.generateForAll(constraint, base, index, binOp))
+          pendingStatements.merge(this.generateForAll(constraint, base as Identifier, index, binOp))
           break
         }
         case 'SumExpression': {
-          pendingStatements.merge(this.generateSum(constraint, base, index, binOp))
+          pendingStatements.merge(this.generateSum(constraint, base as Identifier, index, binOp))
           break
         }
       }
@@ -171,33 +176,34 @@ export class Decorator implements Visitor {
 
   generateAssertionsForAll(node: ForAllExpression) {
     if (node.constraint.type == 'CMPExpression') {
-      const binrayExp = createBinaryOperation(new Rewriter(node.mu.name).visit(node.constraint.left) as Expression, createIdentifier(node.name), node.constraint.op)
+      const binrayExp = createBinaryOperation(new Rewriter().visit(node.constraint.left) as Expression,
+        createIdentifier(node.name), node.constraint.op)
       const functionCall = createFunctionCall(createIdentifier('assert'), [binrayExp], [])
       return createExpressionStmt(functionCall)
     }
     else {
       const forLoop = createBaseASTNode('ForStatement') as ForStatement
-      const arrayVar = createIdentifier(node.name)
-      const indexVarName = this.generateNewVarName('index')
-      const indexIdentifier = createIdentifier(this.generateNewVarName('index'))
-      forLoop.initExpression = createVariableDeclarationStmt(
-        [createVariableDeclaration(indexVarName, createElementaryTypeName('uint256'), false)],
-        createNumberLiteral('0'))
-      forLoop.conditionExpression = createBinaryOperation(indexIdentifier, createMemberAccess(arrayVar, 'length'), '<')
-      forLoop.loopExpression = createExpressionStmt(createBinaryOperation(indexIdentifier, createNumberLiteral('1'), '+='))
-      forLoop.body = createBaseASTNode('Block') as Block
-      const exp = new Rewriter(node.mu.name, createIndexAccess(arrayVar, indexIdentifier)).visit(node.constraint) as Expression
-      const functionCall = createFunctionCall(createIdentifier('assert'), [exp], [])
-      forLoop.body.statements = [createExpressionStmt(functionCall)]
+      // const arrayVar = createIdentifier(node.name)
+      // const indexVarName = this.generateNewVarName('index')
+      // const indexIdentifier = createIdentifier(this.generateNewVarName('index'))
+      // forLoop.initExpression = createVariableDeclarationStmt(
+      //   [createVariableDeclaration(indexVarName, createElementaryTypeName('uint256'), false)],
+      //   createNumberLiteral('0'))
+      // forLoop.conditionExpression = createBinaryOperation(indexIdentifier, createMemberAccess(arrayVar, 'length'), '<')
+      // forLoop.loopExpression = createExpressionStmt(createBinaryOperation(indexIdentifier, createNumberLiteral('1'), '+='))
+      // forLoop.body = createBaseASTNode('Block') as Block
+      // const exp = new Rewriter(node.mu.name, createIndexAccess(arrayVar, indexIdentifier)).visit(node.constraint) as Expression
+      // const functionCall = createFunctionCall(createIdentifier('assert'), [exp], [])
+      // forLoop.body.statements = [createExpressionStmt(functionCall)]
       return forLoop
     }
   }
 
-  generateForAll(node: ForAllExpression, identifier: Identifier, index: Expression, binOp: BinaryOperation): PendingStatements {
+  generateForAll(node: ForAllExpression, identifier: Identifier, index: Expression[], binOp: BinaryOperation): PendingStatements {
     if (!getMonitoredVariables(node, node.mu.name).has(identifier.name)) return new PendingStatements()
     const gen = (operator: BinOp) => {
-      const variable = createIdentifier(node.constraint.name)
-      const left = new Rewriter(node.mu.name, index).visit(node.constraint.right) as Expression
+      const variable = createIdentifier(node.name)
+      const left = new Rewriter([node.mu.name], index).visit((node.constraint as CMPExpression).right) as Expression
       const condition = createBinaryOperation(left, variable, operator)
       const trueBody = createExpressionStmt(createBinaryOperation(variable, left as Expression, '='))
       return createIfStatment(condition, trueBody)
@@ -218,7 +224,7 @@ export class Decorator implements Visitor {
       }
       case 'MuExpression': {
         const block = createBaseASTNode('Block') as Block
-        const functionCall = createFunctionCall(createMemberAccess(createIdentifier(node.name), 'push'), [index], [])
+        const functionCall = createFunctionCall(createMemberAccess(createIdentifier(node.name), 'push'), index, [])
         block.statements = [createExpressionStmt(functionCall)]
         return new PendingStatements([block])
       }
@@ -226,16 +232,17 @@ export class Decorator implements Visitor {
     return new PendingStatements()
   }
 
-  generateSum(node: SumExpression, identifier: Identifier, index: Expression, binOp: BinaryOperation): PendingStatements {
-    if (!getMonitoredVariables(node, node.mu.name).has(identifier.name)) return new PendingStatements()
+  generateSum(node: SumExpression, identifier: Identifier, index: Expression[], binOp: BinaryOperation): PendingStatements {
+    if (node.mu.filter(it => getMonitoredVariables(node, it.name).has(identifier.name)).length == 0) return new PendingStatements()
     const v = createIdentifier(node.name)
+    const names = node.mu.map(it => it.name)
     const gen = (operator: BinOp) => {
-      const right = new Rewriter(node.mu.name, index).visit(node.body) as Expression
+      const right = new Rewriter(names, index).visit(node.body) as Expression
       const binaryExp = createBinaryOperation(v, right, operator)
       switch (node.constraint.type) {
         case 'MuExpression':
         case 'MuIndexedAccess': {
-          const condition = new Rewriter(node.mu.name, index).visit(node.constraint) as Expression
+          const condition = new Rewriter(names, index).visit(node.constraint) as Expression
           const statement = createExpressionStmt(createBinaryOperation(v, right, operator))
           return createIfStatment(condition, statement)
         }
@@ -247,7 +254,7 @@ export class Decorator implements Visitor {
         }
         case 'CMPExpression':
         default: {
-          const i = new Rewriter(node.mu.name, index).visit(node.constraint.right) as Expression
+          const i = new Rewriter(names, index).visit(node.constraint.right) as Expression
           return createExpressionStmt(createBinaryOperation(v, createIndexAccess(v, i), operator))
         }
       }

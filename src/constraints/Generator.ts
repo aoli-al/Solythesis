@@ -1,14 +1,14 @@
 import { Node, SyntaxKind, ForAllExpression, SumExpression, SExpression, SIndexedAccess, SIdentifier, MuIdentifier, CMPExpression, MuExpression, BinaryExpression, IndexedAccess, Iden, Exp, PrimaryExpression} from "./nodes/Node";
 import { BinaryOperation, Identifier, Expression, ASTNode, Block, IndexAccess, ExpressionStatement, BinOp, VariableDeclaration, VariableDeclarationStatement, ElementaryTypeName, Statement, BooleanLiteral, NumberLiteral, FunctionCall, ExpressionList, ForStatement } from "solidity-parser-antlr";
 import { getSVariables, createBaseASTNode, getMonitoredVariables, getChildren, createBinaryOperation, createIdentifier, createVariableDeclaration, createElementaryTypeName, createVariableDeclarationStmt, createIndexAccess, createExpressionStmt, createNumberLiteral, createMemberAccess, createIfStatment, createFunctionCall } from "./utilities";
-import { Visitor} from "./Visitor";
+import { Visitor} from "./visitor";
 
 
 export class Rewriter extends Visitor<ASTNode> {
   [key: string]: any
-  mu?: string
-  expression?: Expression
-  constructor(mu?: string, expression?: Expression) {
+  mu: string[]
+  expression: Expression[]
+  constructor(mu: string[] = [], expression: Expression[] = []) {
     super()
     this.mu = mu
     this.expression = expression
@@ -16,10 +16,6 @@ export class Rewriter extends Visitor<ASTNode> {
 
   default() {
     return createBaseASTNode('SourceUnit')
-  }
-
-  SumExpression = (node: SumExpression) => {
-    return createIdentifier(node.name)
   }
 
   BinaryExpression(node: BinaryExpression) {
@@ -33,12 +29,6 @@ export class Rewriter extends Visitor<ASTNode> {
   SExpression = this.BinaryExpression
   MuExpression = this.BinaryExpression
 
-  CMPExpression = (node: CMPExpression) => {
-    const left = this.visit(node.left) as Expression
-    const right = createIdentifier(node.name)
-    return createBinaryOperation(left, right, node.op)
-  }
-
   IndexedAccess(node: IndexedAccess) {
     return createIndexAccess(this.visit(node.object) as Expression, this.visit(node.index) as Expression)
   }
@@ -51,9 +41,8 @@ export class Rewriter extends Visitor<ASTNode> {
   }
 
   MuIdentifier = (node: MuIdentifier) => {
-    if (this.expression) {
-      return this.expression
-    }
+    const index = this.mu.findIndex(it => it == node.name)  
+    if (index >= 0) return this.expression[index]
     return this.default()
   }
 

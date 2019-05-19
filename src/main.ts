@@ -3,14 +3,16 @@ import fs from 'fs'
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
 import { SolidityLexer } from './antlr/SolidityLexer';
 import { SolidityParser } from './antlr/SolidityParser';
-import { ConstraintBuilder } from './constraints/ConstraintBuilder';
-import { Decorator } from './constraints/Decorator';
+import { ConstraintBuilder } from './constraints/builder';
+import { Decorator } from './constraints/decorator';
 import { Printer } from './printer/printer';
 
 const contract = fs.readFileSync('./tests/test.sol')
 const constraint = fs.readFileSync('./tests/constraints.txt')
 
 const ast = parser.parse(contract.toString('utf-8'), {range: true})
+
+
 const inputStream = new ANTLRInputStream(constraint.toString('utf-8'))
 const lexer = new SolidityLexer(inputStream)
 const tokenStream = new CommonTokenStream(lexer)

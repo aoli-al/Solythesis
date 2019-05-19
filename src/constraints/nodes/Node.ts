@@ -2,7 +2,6 @@ import { Type } from "../types/Type";
 import { IdentifierContext } from "../../antlr/SolidityParser";
 
 interface Expression {
-  [key: string]: any;
   parent?: Node
   children: Node[]
   type: SyntaxKind
@@ -84,14 +83,14 @@ export interface ForAllExpression extends Expression {
 
 export interface SumExpression extends Expression {
   type: 'SumExpression'
-  mu: MuIdentifier
+  mu: MuIdentifier[]
   body: MuExp
-  constraint: SExp | MuExp | CMPExpression
+  constraint: SExp | MuExpression | MuIndexedAccess | CMPExpression
   name: string
 }
 
 export interface IndexedAccess extends Expression {
-  object: SIdentifier
+  object: SIdentifier | SIndexedAccess | MuIndexedAccess
   index: Exp
 }
 
@@ -140,7 +139,6 @@ export type MuExp =
 export type SExp =
   | SExpression
   | SIndexedAccess
-  | SumExpression
   | SIdentifier
   | PrimaryExpression
 

@@ -1,4 +1,4 @@
-import {Node, SyntaxKind, PrimaryExpression, SumExpression, SExpTypes, MuExpTypes, MuExp} from './nodes/Node'
+import {Node, SyntaxKind, PrimaryExpression, SumExpression, SExpTypes, MuExpTypes, MuExp, SIdentifier} from './nodes/Node'
 import { BaseASTNode, ASTNodeTypeString, ASTNode, Expression, BinOp, BinaryOperation, ExpressionStatement, Identifier, ElementaryTypeName, TypeName, Mapping, ArrayTypeName, VariableDeclaration, VariableDeclarationStatement, IndexAccess, NumberLiteral, MemberAccess, Statement, IfStatement, FunctionCall } from 'solidity-parser-antlr';
 
 function Node(this: Node, kind: SyntaxKind) {
@@ -142,7 +142,7 @@ export function getChildren(node: Node): Node[] {
       return [node.mu, node.constraint]
     }
     case 'SumExpression': {
-      return [node.mu, node.body, node.constraint]
+      return [...node.mu, node.body, node.constraint]
     }
     case 'SIndexedAccess': 
     case 'MuIndexedAccess': {
@@ -171,7 +171,11 @@ export function getMonitoredVariables(node: Node, mu: string): Set<string> {
   switch (node.type) {
     case 'MuIndexedAccess': {
       if (node.index.name == mu) {
-        return new Set([node.object.name])
+        var currentNode = node.object
+        while (currentNode.type != 'SIdentifier') {
+          currentNode = currentNode.object
+        }
+        return new Set([(currentNode as SIdentifier).name])
       }
     }
   }

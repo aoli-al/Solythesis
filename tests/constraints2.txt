@@ -1,0 +1,4 @@
+standard AdvancedTokenVote1202 {
+  sum_balance = Sum (a, b), balances[a], true;
+  constraint totalSupply == sum_balance; 
+}
