@@ -25,13 +25,13 @@ const constraintBuilder = new ConstraintBuilder()
 const stateVarGen = new StateVariableGenerator(variableCollector.variables)
 
 const stateVars: Map<string, StateVariableDeclaration[]> = new Map()
+constraintBuilder.visit(p.sourceUnit())
 constraintBuilder.constraint.forEach((constraints, contract) => {
   stateVars.set(contract,
     constraints
       .filter(it => it.type == 'ForAllExpression' || it.type == 'SumExpression')
       .map(it => stateVarGen.analysis(it as QuantityExp)).reduce((left, right) => [...left, ...right]))
 })
-constraintBuilder.visit(p.sourceUnit())
 const decorator =
   new Decorator([...constraintBuilder.constraint.values()].reduce((left, right) => [...left, ...right]),
     stateVars)

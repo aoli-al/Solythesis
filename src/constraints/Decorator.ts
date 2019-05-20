@@ -123,13 +123,14 @@ export class Decorator implements Visitor {
     const binOp = statement.expression
     if (!updateOps.includes(binOp.operator)) return
     if (binOp.left.type != 'IndexAccess') return
-    const indices = [binOp.left.index]
+    let indices = [binOp.left.index]
 
     var base = binOp.left.base
     while (base.type == 'IndexAccess') {
       indices.push(base.index)
       base = base.base
     }
+    indices = indices.reverse()
     if (base.type != 'Identifier') return
     const generate = (constraint: Node, identifier: Identifier) => {
       const pendingStatements = new PendingStatements()
@@ -239,20 +240,24 @@ export class Decorator implements Visitor {
 
   generateSum(node: SumExpression, identifier: Identifier, muIndices: Map<string, Expression>, binOp: BinaryOperation): PendingStatements {
     if (node.mu.filter(it => getMonitoredVariables(node, it.name).has(identifier.name)).length == 0) return new PendingStatements()
+    const createIndexAccessRecursive = (object: Expression, expressions: Expression[]): Expression => {
+      if (expressions.length == 0) return object
+      const indexAccess = createIndexAccess(object, expressions[0])
+      return createIndexAccessRecursive(indexAccess, expressions.slice(1))
+    }
     
-
-    const v = createIdentifier(node.name)
+    const v = createIndexAccessRecursive(createIdentifier(node.name), node.free.map(it => muIndices.get(it.name)!))
     const names = node.mu.map(it => it.name)
     const gen = (operator: BinOp) => {
       const right = new Rewriter(names, muIndices).visit(node.body) as Expression
       const binaryExp = createBinaryOperation(v, right, operator)
       switch (node.constraint.type) {
-        case 'MuExpression':
-        case 'MuIndexedAccess': {
+        case 'MuExpression': {
           const condition = new Rewriter(names, muIndices).visit(node.constraint) as Expression
           const statement = createExpressionStmt(createBinaryOperation(v, right, operator))
           return createIfStatment(condition, statement)
         }
+        case 'MuIndexedAccess': 
         case 'SExpression':
         case 'SIndexedAccess':
         case 'SIdentifier':

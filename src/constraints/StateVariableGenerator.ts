@@ -39,7 +39,7 @@ export class GenStateVariables extends Visitor<void> {
     if (!this.currentTypeName || this.currentTypeName.type != 'Mapping' || !this.constraint) return
     if (this.constraint.free.map(it => it.name).includes(node.index.name)) {
       if (this.freeVarWithTypes.has(node.index.name)) {
-        assert(this.freeVarWithTypes.get(node.index.name) == this.currentTypeName.keyType)
+        assert((this.freeVarWithTypes.get(node.index.name) as ElementaryTypeName).name == this.currentTypeName.keyType.name)
       }
       else {
         this.freeVarWithTypes.set(node.index.name, this.currentTypeName.keyType)
