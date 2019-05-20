@@ -84,13 +84,14 @@ export interface ForAllExpression extends Expression {
 export interface SumExpression extends Expression {
   type: 'SumExpression'
   mu: MuIdentifier[]
+  free: MuIdentifier[]
   body: MuExp
   constraint: SExp | MuExpression | MuIndexedAccess | CMPExpression
   name: string
 }
 
 export interface IndexedAccess extends Expression {
-  object: SIdentifier | SIndexedAccess | MuIndexedAccess
+  object: SIdentifier | MuIndexedAccess
   index: Exp
 }
 

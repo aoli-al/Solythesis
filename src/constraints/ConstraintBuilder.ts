@@ -4,7 +4,7 @@ import {Node, SyntaxKind, PrimaryExpression, Identifier, ForAllExpression, SumEx
 import { objectAllocator, createBaseASTNode, createIdentifier, createElementaryTypeName, createMapping, createArray, createVariableDeclaration } from './utilities';
 import { ConstraintContext, ExpressionContext, SolidityParser, NumberLiteralContext, IdentifierContext, ForAllExpressionContext, SumExpressionContext, PrimaryExpressionContext, StateVariableDeclarationContext, StandardDefinitionContext, ConstraintVariableDeclarationContext } from '../antlr/SolidityParser';
 import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
-import { StateVariableDeclaration, TypeName } from 'solidity-parser-antlr';
+import { StateVariableDeclaration, TypeName, Mapping, ElementaryTypeName } from 'solidity-parser-antlr';
 import { RuleNode } from 'antlr4ts/tree/RuleNode';
 import assert from 'assert';
 
@@ -18,8 +18,15 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
   constraint: Node[] = []
   variables: Map<string, StateVariableDeclaration[]> = new Map()
   currentContractVariables: StateVariableDeclaration[] = []
+  contractVars: Map<string, TypeName>
   muVariables: string[] = []
-  muIndex = new Map<string, number>()
+  freeVariables: string[] = []
+
+  constructor(contractVars: Map<string, TypeName>) {
+    super()
+    this.contractVars = contractVars
+  }
+
   defaultResult() {
     return new (objectAllocator.getNodeConstructor())('DummyNode')
   }
@@ -36,7 +43,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     const node = createBaseASTNode('StateVariableDeclaration') as StateVariableDeclaration
     node.variables = [createVariableDeclaration(name, type, true)]
     this.currentContractVariables.push(node)
-    return node.variables[0].name
+    return name
   }
 
   aggregateResult(current: Node, next: Node) {
@@ -54,30 +61,46 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     if (!node) return this.defaultResult()
     this.constraint.push(node)
     if (node.type == 'SumExpression') {
-      node.name = (() => {
-        switch (node.constraint.type) {
-          case 'CMPExpression':
-            return this.generateNewVariable(context.identifier().text,
-              createMapping(createElementaryTypeName('uin256'), createElementaryTypeName('uint256')))
-          default:
-            return this.generateNewVariable(context.identifier().text, createElementaryTypeName('uint256'))
+      node.name = context.identifier().text
+      if (node.constraint.type == 'MuIndexedAccess') {
+        let object = node.constraint.object
+        while (object.type == 'MuIndexedAccess') object = object.object
+        let type = this.contractVars.get(object.name)!
+        let newType = createBaseASTNode('Mapping') as Mapping
+        let newTypeRoot = newType
+        while (type.type != 'ElementaryTypeName') {
+          if (type.type == 'Mapping') {
+            if (type.valueType.type == 'ElementaryTypeName') {
+              newType.keyType = type.valueType
+              newType.valueType = createElementaryTypeName('uint256')
+            }
+            else {
+              newType.keyType = type.keyType
+              newType.valueType = createBaseASTNode('Mapping') as Mapping
+              newType = newType.valueType
+            }
+            type = type.valueType
+          }
+          else if (type.type == 'ArrayTypeName') {
+            newType.keyType = type.baseTypeName as ElementaryTypeName
+            newType.valueType = createElementaryTypeName('uint256')
+            type = type.baseTypeName
+          }
+          else {
+            break
+          }
         }
-      })()
+        this.generateNewVariable(context.identifier().text, newTypeRoot)
+      }
+      else {
+        this.generateNewVariable(context.identifier().text, createElementaryTypeName('uint256'))
+      }
     }
     return this.defaultResult()
   }
 
   createNode(kind: SyntaxKind): Node {
     return new (objectAllocator.getNodeConstructor())(kind)
-  }
-
-  updateMuIndex(mu: string, index: number) {
-    if (this.muIndex.has(mu)) {
-      assert(this.muIndex.get(mu) == index)
-    }
-    else {
-      this.muIndex.set(mu, index)
-    }
   }
 
   visitExpression(context: ExpressionContext) {
@@ -98,16 +121,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
               return n
             }
           })()
-          node.object = this.visit(context.expression(0))! as MuIndexedAccess | SIdentifier | SIndexedAccess
-          if (node.type == 'MuIndexedAccess') {
-            if (node.object.type == 'MuIndexedAccess') {
-              this.updateMuIndex((node.index as MuIdentifier).name,
-                this.muIndex.get(node.object.index.name)! + 1)
-            }
-            else {
-              this.updateMuIndex((node.index as MuIdentifier).name, 0)
-            }
-          }
+          node.object = this.visit(context.expression(0))! as MuIndexedAccess | SIdentifier 
           return node
         }
       }
@@ -194,14 +208,15 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
 
   visitSumExpression(context: SumExpressionContext): Node {
     const node = this.createNode('SumExpression') as SumExpression
-    this.muVariables = context.identifierList().identifier().map(it => it.text)
-    node.mu = context.identifierList().identifier().map(it => this.visit(it) as MuIdentifier)
+    this.muVariables = context.identifierList()
+      .map(it => it.identifier().map(it => it.text))
+      .reduce((left, right) => [...left, ...right], [])
+    node.free = context.identifierList(0).identifier().map(it => this.visit(it) as MuIdentifier)
+    node.mu = context.identifierList(1).identifier().map(it => this.visit(it) as MuIdentifier)
     node.body = this.visit(context.expression(0)) as MuExp
     node.constraint = this.visit(context.expression(1)) as CMPExpression
-    node.mu = node.mu.filter(it => this.muIndex.has(it.name))
-    node.mu.sort((a, b) => this.muIndex.get(a.name)! - this.muIndex.get(b.name)!)
     this.muVariables = []
-    this.muIndex = new Map()
+    this.freeVariables = []
     return node
   }
 }

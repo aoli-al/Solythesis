@@ -275,7 +275,7 @@ forAllExpression
   : 'ForAll' identifier ',' expression;
 
 sumExpression
-  : 'Sum' identifierList ',' expression ',' expression;
+  : 'Sum' identifierList ',' identifierList ',' expression ',' expression;
 
 primaryExpression
   : BooleanLiteral
