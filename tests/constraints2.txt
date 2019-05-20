@@ -1,4 +1,3 @@
 standard AdvancedTokenVote1202 {
-  sum_balance = Sum (a, b), balances[a], true;
-  constraint totalSupply == sum_balance; 
+  sum_votes = Sum (a), (b), weights[a][b], ballots[a][b];
 }

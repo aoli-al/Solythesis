@@ -7,8 +7,8 @@ import { Visitor} from "./visitor";
 export class Rewriter extends Visitor<ASTNode> {
   [key: string]: any
   mu: string[]
-  expression: Expression[]
-  constructor(mu: string[] = [], expression: Expression[] = []) {
+  expression: Map<string, Expression>
+  constructor(mu: string[] = [], expression: Map<string, Expression> = new Map()) {
     super()
     this.mu = mu
     this.expression = expression
@@ -41,9 +41,8 @@ export class Rewriter extends Visitor<ASTNode> {
   }
 
   MuIdentifier = (node: MuIdentifier) => {
-    const index = this.mu.findIndex(it => it == node.name)  
-    if (index >= 0) return this.expression[index]
-    return this.default()
+    const exp = this.expression.get(node.name) 
+    return exp ? exp : this.default()
   }
 
   PrimaryExpression = (node: PrimaryExpression) => {

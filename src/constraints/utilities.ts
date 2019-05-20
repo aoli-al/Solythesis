@@ -139,7 +139,7 @@ export function getChildren(node: Node): Node[] {
       return [node.left, node.right]
     }
     case 'ForAllExpression': {
-      return [node.mu, node.constraint]
+      return [node.mu[0], node.constraint]
     }
     case 'SumExpression': {
       return [...node.mu, node.body, node.constraint]
@@ -182,6 +182,26 @@ export function getMonitoredVariables(node: Node, mu: string): Set<string> {
   return getChildren(node)
     .map((name) => getMonitoredVariables(name, mu))
     .reduce((accumulator, set) => new Set([...accumulator, ...set]), new Set())
+}
+
+export function getMuIndices(node: Node, stateVar: string): string[] {
+  switch (node.type) {
+    case 'MuIndexedAccess': {
+      if (node.object.type == 'SIdentifier' && node.object.name == stateVar) {
+        return [node.index.name]
+      }
+      else {
+        const indecis = getMuIndices(node.object, stateVar)
+        if (indecis.length > 0) {
+          return [...indecis, node.index.name]
+        }
+      }
+    }
+  }
+  return getChildren(node).map(it => getMuIndices(it, stateVar)).reduce((left, right) => {
+    if (left.length > 0) return left
+    else return right
+  }, [])
 }
 
 export function getMonitoredStateVariables(node: Node): Set<string> {

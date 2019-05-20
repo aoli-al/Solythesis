@@ -15,86 +15,36 @@ export function generateNewVarName(base: string) {
 
 export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> implements SolidityVisitor<Node|null> {
 
-  constraint: Node[] = []
-  variables: Map<string, StateVariableDeclaration[]> = new Map()
-  currentContractVariables: StateVariableDeclaration[] = []
-  contractVars: Map<string, TypeName>
+  constraint: Map<string, Node[]> = new Map() 
+  currentContract: string = ""
   muVariables: string[] = []
-  freeVariables: string[] = []
 
-  constructor(contractVars: Map<string, TypeName>) {
+  constructor() {
     super()
-    this.contractVars = contractVars
   }
 
   defaultResult() {
     return new (objectAllocator.getNodeConstructor())('DummyNode')
   }
 
-  visitStandardDefinition(context: StandardDefinitionContext) {
-    this.currentContractVariables = []
-    this.variables.set(context.Identifier().text, this.currentContractVariables)
-    // context.constraint().forEach(it => this.visit(it))
-    context.constraintPart().forEach(it => this.visit(it.getChild(0)))
-    return null 
-  }
-
-  generateNewVariable(name: string, type: TypeName) {
-    const node = createBaseASTNode('StateVariableDeclaration') as StateVariableDeclaration
-    node.variables = [createVariableDeclaration(name, type, true)]
-    this.currentContractVariables.push(node)
-    return name
-  }
-
-  aggregateResult(current: Node, next: Node) {
-    return next
-  }
-
-  visitConstraint(context: ConstraintContext): Node {
-    this.constraint.push(this.visit(context.expression())!)
+  visitStandardDefinition(context: StandardDefinitionContext): Node {
+    this.currentContract = context.Identifier().text
+    this.constraint.set(this.currentContract, [])
+    context.constraintPart().forEach(it => this.visit(it))
     return this.defaultResult()
   }
 
+  visitConstraint(context: ConstraintContext): Node {
+    this.constraint.get(this.currentContract)!.push(this.visit(context.expression())!)
+    return this.defaultResult()
+  }
 
   visitConstraintVariableDeclaration(context: ConstraintVariableDeclarationContext): Node {
     const node = this.visit(context.expression())
     if (!node) return this.defaultResult()
-    this.constraint.push(node)
+    this.constraint.get(this.currentContract)!.push(node)
     if (node.type == 'SumExpression') {
       node.name = context.identifier().text
-      if (node.constraint.type == 'MuIndexedAccess') {
-        let object = node.constraint.object
-        while (object.type == 'MuIndexedAccess') object = object.object
-        let type = this.contractVars.get(object.name)!
-        let newType = createBaseASTNode('Mapping') as Mapping
-        let newTypeRoot = newType
-        while (type.type != 'ElementaryTypeName') {
-          if (type.type == 'Mapping') {
-            if (type.valueType.type == 'ElementaryTypeName') {
-              newType.keyType = type.valueType
-              newType.valueType = createElementaryTypeName('uint256')
-            }
-            else {
-              newType.keyType = type.keyType
-              newType.valueType = createBaseASTNode('Mapping') as Mapping
-              newType = newType.valueType
-            }
-            type = type.valueType
-          }
-          else if (type.type == 'ArrayTypeName') {
-            newType.keyType = type.baseTypeName as ElementaryTypeName
-            newType.valueType = createElementaryTypeName('uint256')
-            type = type.baseTypeName
-          }
-          else {
-            break
-          }
-        }
-        this.generateNewVariable(context.identifier().text, newTypeRoot)
-      }
-      else {
-        this.generateNewVariable(context.identifier().text, createElementaryTypeName('uint256'))
-      }
     }
     return this.defaultResult()
   }
@@ -194,13 +144,13 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
   visitForAllExpression(context: ForAllExpressionContext): Node {
     const node = this.createNode('ForAllExpression') as ForAllExpression
     this.muVariables = [context.identifier().text]
-    node.mu = this.visit(context.identifier()) as MuIdentifier
+    node.mu = [this.visit(context.identifier()) as MuIdentifier]
     node.constraint = this.visit(context.expression()) as CMPExpression
     if (node.constraint.type == 'CMPExpression') {
-      node.name = this.generateNewVariable(generateNewVarName('cmp'), createElementaryTypeName('uint256'))
+      node.name = generateNewVarName('cmp')
     }
     else {
-      node.name = this.generateNewVariable(generateNewVarName('arr'), createArray(createElementaryTypeName('uint256')))
+      node.name = generateNewVarName('arr')
     }
     this.muVariables = []
     return node
@@ -216,7 +166,6 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     node.body = this.visit(context.expression(0)) as MuExp
     node.constraint = this.visit(context.expression(1)) as CMPExpression
     this.muVariables = []
-    this.freeVariables = []
     return node
   }
 }
