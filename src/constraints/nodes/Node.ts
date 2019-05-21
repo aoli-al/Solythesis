@@ -90,7 +90,7 @@ export interface SumExpression extends QuantityExpression {
   mu: MuIdentifier[]
   free: MuIdentifier[]
   body: MuExp
-  constraint: SExp | MuExpression | MuIndexedAccess | CMPExpression
+  constraint: SExp | MuExpression | MuIndexedAccess
   name: string
 }
 

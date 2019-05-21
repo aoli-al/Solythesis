@@ -14,7 +14,7 @@ export function generateNewVarName(base: string) {
   return base + '_' + (counter++).toString()
 }
 
-export class GenStateVariables extends Visitor<void> {
+export class GenStateVariables extends Visitor {
   currentTypeName?: TypeName
   contractVars: Map<string, TypeName>
   stateVariables: StateVariableDeclaration[] = []

@@ -164,7 +164,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     node.free = context.identifierList(0).identifier().map(it => this.visit(it) as MuIdentifier)
     node.mu = context.identifierList(1).identifier().map(it => this.visit(it) as MuIdentifier)
     node.body = this.visit(context.expression(0)) as MuExp
-    node.constraint = this.visit(context.expression(1)) as CMPExpression
+    node.constraint = this.visit(context.expression(1)) as MuExpression
     this.muVariables = []
     return node
   }

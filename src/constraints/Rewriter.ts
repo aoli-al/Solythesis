@@ -4,45 +4,41 @@ import { getSVariables, createBaseASTNode, getMonitoredVariables, getChildren, c
 import { Visitor} from "./visitor";
 
 
-export class Rewriter extends Visitor<ASTNode> {
-  [key: string]: any
-  mu: string[]
+export class Rewriter extends Visitor {
   expression: Map<string, Expression>
-  constructor(mu: string[] = [], expression: Map<string, Expression> = new Map()) {
+  stack: ASTNode[] = [] 
+  constructor(expression: Map<string, Expression> = new Map()) {
     super()
-    this.mu = mu
     this.expression = expression
   }
 
-  default() {
-    return createBaseASTNode('SourceUnit')
+  visit(node: Node): ASTNode {
+    super.visit(node)
+    return this.stack.pop()!
   }
 
   BinaryExpression(node: BinaryExpression) {
-
     const left = this.visit(node.left) as Expression
     const right = this.visit(node.right) as Expression
-
-    return createBinaryOperation(left, right, node.op)
+    this.stack.push(createBinaryOperation(left, right, node.op))
   }
 
   SExpression = this.BinaryExpression
   MuExpression = this.BinaryExpression
 
   IndexedAccess(node: IndexedAccess) {
-    return createIndexAccess(this.visit(node.object) as Expression, this.visit(node.index) as Expression)
+    this.stack.push(createIndexAccess(this.visit(node.object) as Expression, this.visit(node.index) as Expression))
   }
 
   SIndexedAccess = this.IndexedAccess
   MuIndexedAccess = this.IndexedAccess
 
   SIdentifier = (node: SIdentifier) => {
-    return createIdentifier(node.name)
+    this.stack.push(createIdentifier(node.name))
   }
 
   MuIdentifier = (node: MuIdentifier) => {
-    const exp = this.expression.get(node.name) 
-    return exp ? exp : this.default()
+    this.stack.push(this.expression.get(node.name)!)
   }
 
   PrimaryExpression = (node: PrimaryExpression) => {
@@ -50,10 +46,10 @@ export class Rewriter extends Visitor<ASTNode> {
       case 'boolean': {
         const bool = createBaseASTNode('BooleanLiteral') as BooleanLiteral
         bool.value = node.value == 'true'
-        return bool
+        this.stack.push(bool)
       }
       case 'number': {
-        return createNumberLiteral(node.value)
+        this.stack.push(createNumberLiteral(node.value))
       }
     }
   }

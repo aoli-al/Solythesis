@@ -32,7 +32,6 @@ class PendingStatements {
 
 
 export class Decorator implements Visitor {
-  [key: string]: any
   constraints: Node[]
   variables: Map<string, StateVariableDeclaration[]>
   pendingBlocks: PendingStatements = new PendingStatements()
@@ -78,7 +77,7 @@ export class Decorator implements Visitor {
     if (!_.has(node, 'type')) return
     var result = true
     if (node.type in this) {
-      result = this[node.type](node)
+      result = (this as any)[node.type](node)
     }
     if (result == false) {
       return
@@ -209,7 +208,7 @@ export class Decorator implements Visitor {
     if (!getMonitoredVariables(node, node.mu[0].name).has(identifier.name)) return new PendingStatements()
     const gen = (operator: BinOp) => {
       const variable = createIdentifier(node.name)
-      const left = new Rewriter([node.mu[0].name], indices).visit((node.constraint as CMPExpression).right) as Expression
+      const left = new Rewriter(indices).visit((node.constraint as CMPExpression).right) as Expression
       const condition = createBinaryOperation(left, variable, operator)
       const trueBody = createExpressionStmt(createBinaryOperation(variable, left as Expression, '='))
       return createIfStatment(condition, trueBody)
@@ -247,27 +246,25 @@ export class Decorator implements Visitor {
     }
     
     const v = createIndexAccessRecursive(createIdentifier(node.name), node.free.map(it => muIndices.get(it.name)!))
-    const names = node.mu.map(it => it.name)
     const gen = (operator: BinOp) => {
-      const right = new Rewriter(names, muIndices).visit(node.body) as Expression
+      const right = new Rewriter(muIndices).visit(node.body) as Expression
       const binaryExp = createBinaryOperation(v, right, operator)
       switch (node.constraint.type) {
         case 'MuExpression': {
-          const condition = new Rewriter(names, muIndices).visit(node.constraint) as Expression
+          const condition = new Rewriter(muIndices).visit(node.constraint) as Expression
           const statement = createExpressionStmt(createBinaryOperation(v, right, operator))
           return createIfStatment(condition, statement)
         }
-        case 'MuIndexedAccess': 
         case 'SExpression':
         case 'SIndexedAccess':
         case 'SIdentifier':
         case 'PrimaryExpression': {
           return createExpressionStmt(createBinaryOperation(v, right, operator))
         }
-        case 'CMPExpression':
+        case 'MuIndexedAccess': 
         default: {
-          const i = new Rewriter(names, muIndices).visit(node.constraint.right) as Expression
-          return createExpressionStmt(createBinaryOperation(v, createIndexAccess(v, i), operator))
+          const i = new Rewriter(muIndices).visit(node.constraint) as Expression
+          return createExpressionStmt(createBinaryOperation(createIndexAccess(v, i), right, operator))
         }
       }
     }
