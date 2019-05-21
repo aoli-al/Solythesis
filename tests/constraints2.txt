@@ -1,3 +1,4 @@
 standard AdvancedTokenVote1202 {
-  sum_votes = Sum (a, b), (c), weights[a][b][c] + 223, weights[a][b][c];
+  sum_votes = Sum (a), (b), weights[a][b], ballots[a][b];
+  constraint ForAll (x,y) sum_votes[x][y] == weightedVoteCounts[x][y];
 }

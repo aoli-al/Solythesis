@@ -1,5 +1,5 @@
 import {Node, SyntaxKind, PrimaryExpression, SumExpression, SExpTypes, MuExpTypes, MuExp, SIdentifier} from './nodes/Node'
-import { BaseASTNode, ASTNodeTypeString, ASTNode, Expression, BinOp, BinaryOperation, ExpressionStatement, Identifier, ElementaryTypeName, TypeName, Mapping, ArrayTypeName, VariableDeclaration, VariableDeclarationStatement, IndexAccess, NumberLiteral, MemberAccess, Statement, IfStatement, FunctionCall } from 'solidity-parser-antlr';
+import { BaseASTNode, ASTNodeTypeString, ASTNode, Expression, BinOp, BinaryOperation, ExpressionStatement, Identifier, ElementaryTypeName, TypeName, Mapping, ArrayTypeName, VariableDeclaration, VariableDeclarationStatement, IndexAccess, NumberLiteral, MemberAccess, Statement, IfStatement, FunctionCall, Block } from 'solidity-parser-antlr';
 
 function Node(this: Node, kind: SyntaxKind) {
   this.children = []
@@ -22,6 +22,12 @@ export function createNode(kind: SyntaxKind): Node {
 
 export function createBaseASTNode(type: ASTNodeTypeString) {
   return new (objectAllocator.getBaseASTNodeConstructor())(type)
+}
+
+export function createBlock(statements: Statement[]) {
+  const node = createBaseASTNode('Block') as Block
+  node.statements = statements
+  return node
 }
 
 export function createIdentifier(name: string) {
@@ -111,9 +117,10 @@ export function createMapping(keyType: ElementaryTypeName, valueType: TypeName) 
   return node
 }
 
-export function createArray(baseTypeName: TypeName) {
+export function createArray(baseTypeName: TypeName, length?: Expression) {
   const node = createBaseASTNode('ArrayTypeName') as ArrayTypeName
   node.baseTypeName = baseTypeName
+  node.length = length
   return node
 }
 

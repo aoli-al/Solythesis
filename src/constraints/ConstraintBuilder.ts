@@ -143,15 +143,9 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
 
   visitForAllExpression(context: ForAllExpressionContext): Node {
     const node = this.createNode('ForAllExpression') as ForAllExpression
-    this.muVariables = [context.identifier().text]
-    node.mu = [this.visit(context.identifier()) as MuIdentifier]
+    this.muVariables = context.identifierList().identifier().map(it => it.text)
+    node.mu = context.identifierList().identifier().map(it => this.visit(it) as MuIdentifier)
     node.constraint = this.visit(context.expression()) as CMPExpression
-    if (node.constraint.type == 'CMPExpression') {
-      node.name = generateNewVarName('cmp')
-    }
-    else {
-      node.name = generateNewVarName('arr')
-    }
     this.muVariables = []
     return node
   }

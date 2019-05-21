@@ -1,11 +1,12 @@
 import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, FunctionDefinition, ContractDefinition, Statement, ASTNode, Block, ReturnStatement, BaseASTNode, ForStatement, BinOp } from "solidity-parser-antlr";
 import { Node, ForAllExpression, SumExpression, CMPExpression, Iden } from "./nodes/Node";
 import { Printer } from "../printer/Printer";
-import { createBaseASTNode, getMonitoredStateVariables, getUpdatedVariable, createFunctionCall, createIdentifier, createExpressionStmt, createBinaryOperation, createVariableDeclarationStmt, createVariableDeclaration, createElementaryTypeName, createNumberLiteral, createMemberAccess, createIndexAccess, getMonitoredVariables, createIfStatment, getChildren, getMuIndices } from "./utilities";
+import { createBaseASTNode, getMonitoredStateVariables, getUpdatedVariable, createFunctionCall, createIdentifier, createExpressionStmt, createBinaryOperation, createVariableDeclarationStmt, createVariableDeclaration, createElementaryTypeName, createNumberLiteral, createMemberAccess, createIndexAccess, getMonitoredVariables, createIfStatment, getChildren, getMuIndices, createBlock } from "./utilities";
 import * as _ from "lodash";
 import { isMainThread } from "worker_threads";
 import { prependListener } from "cluster";
 import { Rewriter } from "./Rewriter";
+import { generateNewVarName } from "./StateVariableGenerator";
 
 const updateOps = ['=', '-=', '+=', '*=', '/=']
 
@@ -34,9 +35,9 @@ class PendingStatements {
 export class Decorator implements Visitor {
   constraints: Node[]
   variables: Map<string, StateVariableDeclaration[]>
-  pendingBlocks: PendingStatements = new PendingStatements()
+  pendingStatements: PendingStatements = new PendingStatements()
   hasPendingBlocks() {
-    return this.pendingBlocks.pre.length > 0 || this.pendingBlocks.post.length > 0
+    return this.pendingStatements.pre.length > 0 || this.pendingStatements.post.length > 0
   }
   checkConstraints: Set<Node> = new Set()
   canAddAssertions = false
@@ -46,8 +47,8 @@ export class Decorator implements Visitor {
   }
   buildStatements(statement: Statement) {
     const block = createBaseASTNode('Block') as Block
-    block.statements = [...this.pendingBlocks.pre, statement, ...this.pendingBlocks.post]
-    this.pendingBlocks = new PendingStatements()
+    block.statements = [...this.pendingStatements.pre, statement, ...this.pendingStatements.post]
+    this.pendingStatements = new PendingStatements()
     return block
   }
   addAssertions(node: ReturnStatement) {
@@ -114,10 +115,10 @@ export class Decorator implements Visitor {
     return false
   }
   ExpressionStatement = (node: ExpressionStatement) => {
-    this.generateUpdates(node)
+    this.pendingStatements.merge(this.checkUpdates(node))
     return false
   }
-  generateUpdates(statement: ExpressionStatement) {
+  checkUpdates(statement: ExpressionStatement) {
     if (statement.expression.type != 'BinaryOperation') return
     const binOp = statement.expression
     if (!updateOps.includes(binOp.operator)) return
@@ -151,19 +152,13 @@ export class Decorator implements Visitor {
       }
       return pendingStatements
     }
-    this.constraints.forEach(it => this.pendingBlocks.merge(generate(it, base as Identifier)))
-    const queue: string[] = []
-    const variable = getUpdatedVariable(binOp.left)
-    if (variable) {
-      queue.push(variable)
-    }
-    while (queue.length > 0) {
-      this.constraints.filter(it => getMonitoredStateVariables(it).has(queue[0])).forEach(it => {
-        this.checkConstraints.add(it)
-        if (it.type == 'SumExpression') { queue.push(it.name) }
-      })
-      queue.shift()
-    }
+    const pendingStatements = new PendingStatements()
+    this.constraints.forEach(it => pendingStatements.merge(generate(it, base as Identifier)))
+    const variable = getUpdatedVariable(binOp.left)!
+    this.constraints.filter(it => getMonitoredStateVariables(it).has(variable)).forEach(it => {
+      this.checkConstraints.add(it)
+    })
+    return pendingStatements
   }
   generateAssertions(node: Node): Statement[] {
     switch (node.type) {
@@ -182,24 +177,29 @@ export class Decorator implements Visitor {
   generateAssertionsForAll(node: ForAllExpression) {
     if (node.constraint.type == 'CMPExpression') {
       const binrayExp = createBinaryOperation(new Rewriter().visit(node.constraint.left) as Expression,
-        createIdentifier(node.name), node.constraint.op)
+        createIdentifier(node.name[0]), node.constraint.op)
       const functionCall = createFunctionCall(createIdentifier('assert'), [binrayExp], [])
       return createExpressionStmt(functionCall)
     }
     else {
       const forLoop = createBaseASTNode('ForStatement') as ForStatement
-      // const arrayVar = createIdentifier(node.name)
-      // const indexVarName = this.generateNewVarName('index')
-      // const indexIdentifier = createIdentifier(this.generateNewVarName('index'))
-      // forLoop.initExpression = createVariableDeclarationStmt(
-      //   [createVariableDeclaration(indexVarName, createElementaryTypeName('uint256'), false)],
-      //   createNumberLiteral('0'))
-      // forLoop.conditionExpression = createBinaryOperation(indexIdentifier, createMemberAccess(arrayVar, 'length'), '<')
-      // forLoop.loopExpression = createExpressionStmt(createBinaryOperation(indexIdentifier, createNumberLiteral('1'), '+='))
-      // forLoop.body = createBaseASTNode('Block') as Block
-      // const exp = new Rewriter(node.mu.name, createIndexAccess(arrayVar, indexIdentifier)).visit(node.constraint) as Expression
-      // const functionCall = createFunctionCall(createIdentifier('assert'), [exp], [])
-      // forLoop.body.statements = [createExpressionStmt(functionCall)]
+      for (let i = 0; i < node.name.length; i++) {
+        const indexIdentifier = createIdentifier(generateNewVarName('index'))
+        forLoop.initExpression = createVariableDeclarationStmt(
+          [createVariableDeclaration(indexIdentifier.name, createElementaryTypeName('uint256'), false)],
+          createNumberLiteral('0'))
+        const arrayVar = createIdentifier(node.name[0])
+        forLoop.conditionExpression = createBinaryOperation(indexIdentifier, createMemberAccess(arrayVar, 'length'), '<')
+        forLoop.loopExpression = createExpressionStmt(createBinaryOperation(indexIdentifier, createNumberLiteral('1'), '+='))
+        forLoop.body = createBaseASTNode('Block') as Block
+        const map: Map<string, Expression> = new Map()
+        node.name.forEach((value, idx) => {
+          map.set(node.mu[idx].name, createIndexAccess(createIdentifier(value), indexIdentifier))
+        })
+        const exp = new Rewriter(map).visit(node.constraint) as Expression
+        const functionCall = createFunctionCall(createIdentifier('assert'), [exp], [])
+        forLoop.body.statements = [createExpressionStmt(functionCall)]
+      }
       return forLoop
     }
   }
@@ -207,7 +207,7 @@ export class Decorator implements Visitor {
   generateForAll(node: ForAllExpression, identifier: Identifier, indices: Map<string, Expression>, binOp: BinaryOperation): PendingStatements {
     if (!getMonitoredVariables(node, node.mu[0].name).has(identifier.name)) return new PendingStatements()
     const gen = (operator: BinOp) => {
-      const variable = createIdentifier(node.name)
+      const variable = createIdentifier(node.name[0])
       const left = new Rewriter(indices).visit((node.constraint as CMPExpression).right) as Expression
       const condition = createBinaryOperation(left, variable, operator)
       const trueBody = createExpressionStmt(createBinaryOperation(variable, left as Expression, '='))
@@ -229,8 +229,11 @@ export class Decorator implements Visitor {
       }
       case 'MuExpression': {
         const block = createBaseASTNode('Block') as Block
-        const functionCall = createFunctionCall(createMemberAccess(createIdentifier(node.name), 'push'), [indices.get('ERR')!], [])
-        block.statements = [createExpressionStmt(functionCall)]
+        block.statements = []
+        node.name.forEach((name, index) => {
+          const functionCall = createFunctionCall(createMemberAccess(createIdentifier(name), 'push'), [indices.get(node.mu[index].name)!], [])
+          block.statements.push(createExpressionStmt(functionCall))
+        })
         return new PendingStatements([block])
       }
     }
@@ -244,28 +247,29 @@ export class Decorator implements Visitor {
       const indexAccess = createIndexAccess(object, expressions[0])
       return createIndexAccessRecursive(indexAccess, expressions.slice(1))
     }
-    
     const v = createIndexAccessRecursive(createIdentifier(node.name), node.free.map(it => muIndices.get(it.name)!))
     const gen = (operator: BinOp) => {
       const right = new Rewriter(muIndices).visit(node.body) as Expression
-      const binaryExp = createBinaryOperation(v, right, operator)
-      switch (node.constraint.type) {
-        case 'MuExpression': {
-          const condition = new Rewriter(muIndices).visit(node.constraint) as Expression
-          const statement = createExpressionStmt(createBinaryOperation(v, right, operator))
-          return createIfStatment(condition, statement)
-        }
-        case 'SExpression':
-        case 'SIndexedAccess':
-        case 'SIdentifier':
-        case 'PrimaryExpression': {
-          return createExpressionStmt(createBinaryOperation(v, right, operator))
-        }
-        case 'MuIndexedAccess': 
-        default: {
+      const statement = (() => {
+        if (node.constraint.type == 'MuIndexedAccess') {
           const i = new Rewriter(muIndices).visit(node.constraint) as Expression
           return createExpressionStmt(createBinaryOperation(createIndexAccess(v, i), right, operator))
         }
+        else {
+          return createExpressionStmt(createBinaryOperation(v, right, operator))
+        }
+      })()
+      const pendingStatements = this.checkUpdates(statement)
+      const statements: Statement[] = []
+      if (pendingStatements) statements.push(...pendingStatements.pre, statement, ...pendingStatements.post)
+      else statements.push(statement)
+      const block = createBlock(statements)
+      if (node.constraint.type == 'MuExpression') {
+        const condition = new Rewriter(muIndices).visit(node.constraint) as Expression
+        return createIfStatment(condition, block)
+      }
+      else {
+        return block
       }
     }
     return new PendingStatements([gen('-=')], [gen('+=')])

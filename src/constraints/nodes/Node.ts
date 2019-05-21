@@ -74,18 +74,14 @@ export interface MuIdentifier extends Identifier {
   type: 'MuIdentifier'
 }
 
-export interface QuantityExpression extends Expression {
-  mu: MuIdentifier[]
-  free: MuIdentifier[]
-  name: string
-}
-
-export interface ForAllExpression extends QuantityExpression {
+export interface ForAllExpression extends Expression {
   type: 'ForAllExpression'
   constraint: CMPExpression | MuExp
+  mu: MuIdentifier[]
+  name: string[]
 }
 
-export interface SumExpression extends QuantityExpression {
+export interface SumExpression extends Expression {
   type: 'SumExpression'
   mu: MuIdentifier[]
   free: MuIdentifier[]

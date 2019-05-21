@@ -272,7 +272,7 @@ expression
   | primaryExpression ;
 
 forAllExpression
-  : 'ForAll' identifier ',' expression;
+  : 'ForAll' identifierList ',' expression;
 
 sumExpression
   : 'Sum' identifierList ',' identifierList ',' expression ',' expression;
