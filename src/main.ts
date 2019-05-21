@@ -10,8 +10,8 @@ import { VariableCollector } from './visitors/VariableCollector';
 import { GenStateVariables as StateVariableGenerator } from './constraints/StateVariableGenerator';
 import { QuantityExp } from './constraints/nodes/Node';
 
-const contract = fs.readFileSync('./tests/test2.sol')
-const constraint = fs.readFileSync('./tests/constraints2.txt')
+const contract = fs.readFileSync('./tests/test.sol')
+const constraint = fs.readFileSync('./tests/constraints.txt')
 
 const ast = parser.parse(contract.toString('utf-8'), {range: true})
 const variableCollector = new VariableCollector()
