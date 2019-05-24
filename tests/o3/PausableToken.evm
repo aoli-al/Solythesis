@@ -1,108 +1,11 @@
-    /* "out.sol":1893:1927  string public name = "BeautyChain" */
-  0xc0
-    /* "out.sol":1854:2451  contract BecToken is PausableToken {... */
-  0x40
-    /* "out.sol":1893:1927  string public name = "BeautyChain" */
-  mstore
-  0x0b
-    /* "out.sol":1854:2451  contract BecToken is PausableToken {... */
-  0x80
-    /* "out.sol":1893:1927  string public name = "BeautyChain" */
-  dup2
-  swap1
-  mstore
-  0x426561757479436861696e000000000000000000000000000000000000000000
-  0xa0
-  swap1
-  dup2
-  mstore
-  tag_1
-  swap2
-  0x04
-  swap2
-  swap1
-  tag_2
-  jump	// in
-tag_1:
-  pop
-    /* "out.sol":1931:1959  string public symbol = "BEC" */
-  0x40
-  dup1
-  mload
-  dup1
-  dup3
-  add
-  swap1
-  swap2
-  mstore
-  0x03
-  dup1
-  dup3
-  mstore
-  0x4245430000000000000000000000000000000000000000000000000000000000
-  0x20
-  swap1
-  swap3
-  add
-  swap2
-  dup3
-  mstore
-  tag_3
-  swap2
-  0x05
-  swap2
-  tag_2
-  jump	// in
-tag_3:
-  pop
-    /* "out.sol":1963:1994  string public version = '1.0.0' */
-  0x40
-  dup1
-  mload
-  dup1
-  dup3
-  add
-  swap1
-  swap2
-  mstore
-  0x05
-  dup1
-  dup3
-  mstore
-  0x312e302e30000000000000000000000000000000000000000000000000000000
-  0x20
-  swap1
-  swap3
-  add
-  swap2
-  dup3
-  mstore
-  tag_4
-  swap2
-  0x06
-  swap2
-  tag_2
-  jump	// in
-tag_4:
-  pop
-    /* "out.sol":1998:2024  uint8 public decimals = 18 */
-  0x07
-  dup1
-  sload
-  not(0xff)
-  and
-    /* "out.sol":2022:2024  18 */
-  0x12
-    /* "out.sol":1998:2024  uint8 public decimals = 18 */
-  or
-  swap1
-  sstore
-    /* "out.sol":2028:2449  constructor () public {... */
+    /* "out.sol":552:1853  contract PausableToken {... */
+  mstore(0x40, 0x80)
   callvalue
-    /* "--CODEGEN--":5:7   */
+    /* "--CODEGEN--":8:17   */
   dup1
+    /* "--CODEGEN--":5:7   */
   iszero
-  tag_5
+  tag_1
   jumpi
     /* "--CODEGEN--":30:31   */
   0x00
@@ -111,223 +14,9 @@ tag_4:
     /* "--CODEGEN--":20:32   */
   revert
     /* "--CODEGEN--":5:7   */
-tag_5:
+tag_1:
+    /* "out.sol":552:1853  contract PausableToken {... */
   pop
-    /* "out.sol":2097:2105  decimals */
-  and(0xff, sload(0x07))
-    /* "out.sol":2084:2086  10 */
-  0x0a
-    /* "out.sol":2084:2107  10**(uint256(decimals)) */
-  exp
-    /* "out.sol":2070:2080  7000000000 */
-  0x01a13b8600
-    /* "out.sol":2070:2108  7000000000 * (10**(uint256(decimals))) */
-  mul
-    /* "out.sol":2097:2105  decimals */
-  0x01
-    /* "out.sol":2056:2108  totalSupply = 7000000000 * (10**(uint256(decimals))) */
-  sstore
-    /* "out.sol":2163:2173  msg.sender */
-  caller
-  0x00
-    /* "out.sol":2154:2174  balances[msg.sender] */
-  swap1
-  dup2
-  mstore
-    /* "out.sol":2154:2162  balances */
-  0x02
-    /* "out.sol":2154:2174  balances[msg.sender] */
-  0x20
-  mstore
-  0x40
-  dup2
-  keccak256
-  sload
-    /* "out.sol":2139:2150  sum_balance */
-  swap1
-  sload
-    /* "out.sol":2139:2174  sum_balance >= balances[msg.sender] */
-  lt
-  iszero
-    /* "out.sol":2132:2175  assert(sum_balance >= balances[msg.sender]) */
-  tag_8
-  jumpi
-  invalid
-tag_8:
-    /* "out.sol":2209:2219  msg.sender */
-  caller
-    /* "out.sol":2200:2220  balances[msg.sender] */
-  0x00
-  swap1
-  dup2
-  mstore
-    /* "out.sol":2200:2208  balances */
-  0x02
-    /* "out.sol":2200:2220  balances[msg.sender] */
-  0x20
-  mstore
-  0x40
-  dup2
-  keccak256
-  dup1
-  sload
-    /* "out.sol":2185:2220  sum_balance -= balances[msg.sender] */
-  dup3
-  sload
-  sub
-  dup3
-  sstore
-  0x01
-    /* "out.sol":2259:2270  totalSupply */
-  sload
-    /* "out.sol":2236:2270  balances[msg.sender] = totalSupply */
-  dup1
-  dup3
-  sstore
-    /* "out.sol":2288:2323  sum_balance += balances[msg.sender] */
-  dup3
-  sload
-  add
-  swap2
-  dup3
-  swap1
-  sstore
-    /* "out.sol":2355:2375  balances[msg.sender] */
-  sload
-  gt
-    /* "out.sol":2340:2375  sum_balance >= balances[msg.sender] */
-  iszero
-    /* "out.sol":2333:2376  assert(sum_balance >= balances[msg.sender]) */
-  tag_9
-  jumpi
-  invalid
-tag_9:
-    /* "out.sol":2426:2437  sum_balance */
-  sload(0x00)
-    /* "out.sol":2411:2422  totalSupply */
-  sload(0x01)
-    /* "out.sol":2411:2437  totalSupply == sum_balance */
-  eq
-    /* "out.sol":2404:2438  assert(totalSupply == sum_balance) */
-  tag_10
-  jumpi
-  invalid
-tag_10:
-    /* "out.sol":1854:2451  contract BecToken is PausableToken {... */
-  jump(tag_11)
-tag_2:
-  dup3
-  dup1
-  sload
-  0x01
-  dup2
-  0x01
-  and
-  iszero
-  0x0100
-  mul
-  sub
-  and
-  0x02
-  swap1
-  div
-  swap1
-  0x00
-  mstore
-  keccak256(0x00, 0x20)
-  swap1
-  0x1f
-  add
-  0x20
-  swap1
-  div
-  dup2
-  add
-  swap3
-  dup3
-  0x1f
-  lt
-  tag_13
-  jumpi
-  dup1
-  mload
-  not(0xff)
-  and
-  dup4
-  dup1
-  add
-  or
-  dup6
-  sstore
-  jump(tag_15)
-tag_13:
-  dup3
-  dup1
-  add
-  0x01
-  add
-  dup6
-  sstore
-  dup3
-  iszero
-  tag_15
-  jumpi
-  swap2
-  dup3
-  add
-tag_14:
-  dup3
-  dup2
-  gt
-  iszero
-  tag_15
-  jumpi
-  dup3
-  mload
-  dup3
-  sstore
-  swap2
-  0x20
-  add
-  swap2
-  swap1
-  0x01
-  add
-  swap1
-  jump(tag_14)
-tag_15:
-  pop
-  tag_16
-  swap3
-  swap2
-  pop
-  tag_17
-  jump	// in
-tag_16:
-  pop
-  swap1
-  jump	// out
-tag_17:
-  tag_18
-  swap2
-  swap1
-tag_19:
-  dup1
-  dup3
-  gt
-  iszero
-  tag_16
-  jumpi
-  0x00
-  dup2
-  sstore
-  0x01
-  add
-  jump(tag_19)
-tag_18:
-  swap1
-  jump	// out
-tag_11:
   dataSize(sub_0)
   dup1
   dataOffset(sub_0)
@@ -338,7 +27,7 @@ tag_11:
 stop
 
 sub_0: assembly {
-        /* "out.sol":1854:2451  contract BecToken is PausableToken {... */
+        /* "out.sol":552:1853  contract PausableToken {... */
       mstore(0x40, 0x80)
       callvalue
         /* "--CODEGEN--":8:17   */
@@ -355,167 +44,30 @@ sub_0: assembly {
       revert
         /* "--CODEGEN--":5:7   */
     tag_1:
-        /* "out.sol":1854:2451  contract BecToken is PausableToken {... */
+        /* "out.sol":552:1853  contract PausableToken {... */
       pop
       jumpi(tag_2, lt(calldatasize, 0x04))
       shr(0xe0, calldataload(0x00))
       dup1
-      0x06fdde03
+      0x18160ddd
       eq
       tag_3
       jumpi
       dup1
-      0x18160ddd
-      eq
-      tag_4
-      jumpi
-      dup1
-      0x313ce567
-      eq
-      tag_5
-      jumpi
-      dup1
-      0x54fd4d50
-      eq
-      tag_6
-      jumpi
-      dup1
       0x83f12fec
       eq
-      tag_7
-      jumpi
-      dup1
-      0x95d89b41
-      eq
-      tag_8
+      tag_4
       jumpi
     tag_2:
       0x00
       dup1
       revert
-        /* "out.sol":1893:1927  string public name = "BeautyChain" */
-    tag_3:
-      tag_9
-      tag_10
-      jump	// in
-    tag_9:
-      0x40
-      dup1
-      mload
-      0x20
-      dup1
-      dup3
-      mstore
-      dup4
-      mload
-      dup2
-      dup4
-      add
-      mstore
-      dup4
-      mload
-      swap2
-      swap3
-      dup4
-      swap3
-      swap1
-      dup4
-      add
-      swap2
-      dup6
-      add
-      swap1
-      dup1
-      dup4
-      dup4
-      0x00
-        /* "--CODEGEN--":8:108   */
-    tag_11:
-        /* "--CODEGEN--":33:36   */
-      dup4
-        /* "--CODEGEN--":30:31   */
-      dup2
-        /* "--CODEGEN--":27:37   */
-      lt
-        /* "--CODEGEN--":8:108   */
-      iszero
-      tag_13
-      jumpi
-        /* "--CODEGEN--":90:101   */
-      dup2
-      dup2
-      add
-        /* "--CODEGEN--":84:102   */
-      mload
-        /* "--CODEGEN--":71:82   */
-      dup4
-      dup3
-      add
-        /* "--CODEGEN--":64:103   */
-      mstore
-        /* "--CODEGEN--":52:54   */
-      0x20
-        /* "--CODEGEN--":45:55   */
-      add
-        /* "--CODEGEN--":8:108   */
-      jump(tag_11)
-    tag_13:
-        /* "--CODEGEN--":12:26   */
-      pop
-        /* "out.sol":1893:1927  string public name = "BeautyChain" */
-      pop
-      pop
-      pop
-      swap1
-      pop
-      swap1
-      dup2
-      add
-      swap1
-      0x1f
-      and
-      dup1
-      iszero
-      tag_14
-      jumpi
-      dup1
-      dup3
-      sub
-      dup1
-      mload
-      0x01
-      dup4
-      0x20
-      sub
-      0x0100
-      exp
-      sub
-      not
-      and
-      dup2
-      mstore
-      0x20
-      add
-      swap2
-      pop
-    tag_14:
-      pop
-      swap3
-      pop
-      pop
-      pop
-      mload(0x40)
-      dup1
-      swap2
-      sub
-      swap1
-      return
         /* "out.sol":632:658  uint256 public totalSupply */
-    tag_4:
-      tag_15
-      tag_16
+    tag_3:
+      tag_5
+      tag_6
       jump	// in
-    tag_15:
+    tag_5:
       0x40
       dup1
       mload
@@ -531,38 +83,9 @@ sub_0: assembly {
       add
       swap1
       return
-        /* "out.sol":1998:2024  uint8 public decimals = 18 */
-    tag_5:
-      tag_17
-      tag_18
-      jump	// in
-    tag_17:
-      0x40
-      dup1
-      mload
-      0xff
-      swap1
-      swap3
-      and
-      dup3
-      mstore
-      mload
-      swap1
-      dup2
-      swap1
-      sub
-      0x20
-      add
-      swap1
-      return
-        /* "out.sol":1963:1994  string public version = '1.0.0' */
-    tag_6:
-      tag_9
-      tag_20
-      jump	// in
         /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
-    tag_7:
-      tag_25
+    tag_4:
+      tag_7
       0x04
       dup1
       calldatasize
@@ -575,7 +98,7 @@ sub_0: assembly {
       lt
         /* "--CODEGEN--":2:4   */
       iszero
-      tag_26
+      tag_8
       jumpi
         /* "--CODEGEN--":29:30   */
       0x00
@@ -584,7 +107,7 @@ sub_0: assembly {
         /* "--CODEGEN--":19:31   */
       revert
         /* "--CODEGEN--":2:4   */
-    tag_26:
+    tag_8:
         /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
       dup2
       add
@@ -601,7 +124,7 @@ sub_0: assembly {
       gt
         /* "--CODEGEN--":2:4   */
       iszero
-      tag_27
+      tag_9
       jumpi
         /* "--CODEGEN--":46:47   */
       0x00
@@ -610,7 +133,7 @@ sub_0: assembly {
         /* "--CODEGEN--":36:48   */
       revert
         /* "--CODEGEN--":2:4   */
-    tag_27:
+    tag_9:
         /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
       dup3
       add
@@ -626,7 +149,7 @@ sub_0: assembly {
       gt
         /* "--CODEGEN--":2:4   */
       iszero
-      tag_28
+      tag_10
       jumpi
         /* "--CODEGEN--":58:59   */
       0x00
@@ -635,7 +158,7 @@ sub_0: assembly {
         /* "--CODEGEN--":48:60   */
       revert
         /* "--CODEGEN--":2:4   */
-    tag_28:
+    tag_10:
         /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
       dup1
       calldataload
@@ -667,7 +190,7 @@ sub_0: assembly {
       or
         /* "--CODEGEN--":8:10   */
       iszero
-      tag_29
+      tag_11
       jumpi
         /* "--CODEGEN--":132:133   */
       0x00
@@ -676,7 +199,7 @@ sub_0: assembly {
         /* "--CODEGEN--":122:134   */
       revert
         /* "--CODEGEN--":8:10   */
-    tag_29:
+    tag_11:
         /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
       swap2
       swap1
@@ -734,12 +257,12 @@ sub_0: assembly {
       calldataload
       swap3
       pop
-      tag_30
+      tag_12
       swap2
       pop
       pop
       jump	// in
-    tag_25:
+    tag_7:
       0x40
       dup1
       mload
@@ -757,206 +280,13 @@ sub_0: assembly {
       add
       swap1
       return
-        /* "out.sol":1931:1959  string public symbol = "BEC" */
-    tag_8:
-      tag_9
-      tag_32
-      jump	// in
-        /* "out.sol":1893:1927  string public name = "BeautyChain" */
-    tag_10:
-      0x04
-      dup1
-      sload
-      0x40
-      dup1
-      mload
-      0x20
-      0x02
-      0x01
-      dup6
-      and
-      iszero
-      0x0100
-      mul
-      not(0x00)
-      add
-      swap1
-      swap5
-      and
-      swap4
-      swap1
-      swap4
-      div
-      0x1f
-      dup2
-      add
-      dup5
-      swap1
-      div
-      dup5
-      mul
-      dup3
-      add
-      dup5
-      add
-      swap1
-      swap3
-      mstore
-      dup2
-      dup2
-      mstore
-      swap3
-      swap2
-      dup4
-      add
-      dup3
-      dup3
-      dup1
-      iszero
-      tag_37
-      jumpi
-      dup1
-      0x1f
-      lt
-      tag_38
-      jumpi
-      0x0100
-      dup1
-      dup4
-      sload
-      div
-      mul
-      dup4
-      mstore
-      swap2
-      0x20
-      add
-      swap2
-      jump(tag_37)
-    tag_38:
-      dup3
-      add
-      swap2
-      swap1
-      0x00
-      mstore
-      keccak256(0x00, 0x20)
-      swap1
-    tag_39:
-      dup2
-      sload
-      dup2
-      mstore
-      swap1
-      0x01
-      add
-      swap1
-      0x20
-      add
-      dup1
-      dup4
-      gt
-      tag_39
-      jumpi
-      dup3
-      swap1
-      sub
-      0x1f
-      and
-      dup3
-      add
-      swap2
-    tag_37:
-      pop
-      pop
-      pop
-      pop
-      pop
-      dup2
-      jump	// out
         /* "out.sol":632:658  uint256 public totalSupply */
-    tag_16:
+    tag_6:
       sload(0x01)
       dup2
       jump	// out
-        /* "out.sol":1998:2024  uint8 public decimals = 18 */
-    tag_18:
-      and(0xff, sload(0x07))
-      dup2
-      jump	// out
-        /* "out.sol":1963:1994  string public version = '1.0.0' */
-    tag_20:
-      0x06
-      dup1
-      sload
-      0x40
-      dup1
-      mload
-      0x20
-      0x02
-      0x01
-      dup6
-      and
-      iszero
-      0x0100
-      mul
-      not(0x00)
-      add
-      swap1
-      swap5
-      and
-      swap4
-      swap1
-      swap4
-      div
-      0x1f
-      dup2
-      add
-      dup5
-      swap1
-      div
-      dup5
-      mul
-      dup3
-      add
-      dup5
-      add
-      swap1
-      swap3
-      mstore
-      dup2
-      dup2
-      mstore
-      swap3
-      swap2
-      dup4
-      add
-      dup3
-      dup3
-      dup1
-      iszero
-      tag_37
-      jumpi
-      dup1
-      0x1f
-      lt
-      tag_38
-      jumpi
-      0x0100
-      dup1
-      dup4
-      sload
-      div
-      mul
-      dup4
-      mstore
-      swap2
-      0x20
-      add
-      swap2
-      jump(tag_37)
         /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
-    tag_30:
+    tag_12:
         /* "out.sol":875:892  _receivers.length */
       dup2
       mload
@@ -974,7 +304,7 @@ sub_0: assembly {
       iszero
       swap1
         /* "out.sol":950:970  cnt > 0 && cnt <= 20 */
-      tag_44
+      tag_14
       jumpi
       pop
         /* "out.sol":968:970  20 */
@@ -985,14 +315,14 @@ sub_0: assembly {
       gt
       iszero
         /* "out.sol":950:970  cnt > 0 && cnt <= 20 */
-    tag_44:
+    tag_14:
         /* "out.sol":942:971  require(cnt > 0 && cnt <= 20) */
-      tag_45
+      tag_15
       jumpi
       0x00
       dup1
       revert
-    tag_45:
+    tag_15:
         /* "out.sol":994:995  0 */
       0x00
         /* "out.sol":985:991  _value */
@@ -1002,7 +332,7 @@ sub_0: assembly {
         /* "out.sol":985:1029  _value > 0 && balances[msg.sender] >= amount */
       dup1
       iszero
-      tag_46
+      tag_16
       jumpi
       pop
         /* "out.sol":1008:1018  msg.sender */
@@ -1026,14 +356,14 @@ sub_0: assembly {
       gt
       iszero
         /* "out.sol":985:1029  _value > 0 && balances[msg.sender] >= amount */
-    tag_46:
+    tag_16:
         /* "out.sol":977:1030  require(_value > 0 && balances[msg.sender] >= amount) */
-      tag_47
+      tag_17
       jumpi
       0x00
       dup1
       revert
-    tag_47:
+    tag_17:
         /* "out.sol":1085:1095  msg.sender */
       caller
         /* "out.sol":1076:1096  balances[msg.sender] */
@@ -1057,10 +387,10 @@ sub_0: assembly {
       lt
       iszero
         /* "out.sol":1054:1097  assert(sum_balance >= balances[msg.sender]) */
-      tag_48
+      tag_18
       jumpi
       invalid
-    tag_48:
+    tag_18:
         /* "out.sol":1131:1141  msg.sender */
       caller
         /* "out.sol":1122:1142  balances[msg.sender] */
@@ -1088,18 +418,18 @@ sub_0: assembly {
         /* "out.sol":1181:1201  balances[msg.sender] */
       sload
         /* "out.sol":1181:1213  balances[msg.sender].sub(amount) */
-      tag_49
+      tag_19
       swap1
         /* "out.sol":1206:1212  amount */
       dup3
         /* "out.sol":1181:1213  balances[msg.sender].sub(amount) */
       0xffffffff
         /* "out.sol":1181:1205  balances[msg.sender].sub */
-      tag_50
+      tag_20
         /* "out.sol":1181:1213  balances[msg.sender].sub(amount) */
       and
       jump	// in
-    tag_49:
+    tag_19:
         /* "out.sol":1167:1177  msg.sender */
       caller
         /* "out.sol":1158:1178  balances[msg.sender] */
@@ -1136,14 +466,14 @@ sub_0: assembly {
         /* "out.sol":1283:1318  sum_balance >= balances[msg.sender] */
       iszero
         /* "out.sol":1276:1319  assert(sum_balance >= balances[msg.sender]) */
-      tag_51
+      tag_21
       jumpi
       invalid
-    tag_51:
+    tag_21:
         /* "out.sol":1344:1350  uint i */
       0x00
         /* "out.sol":1339:1720  for (uint i = 0; i < cnt; i++) {... */
-    tag_52:
+    tag_22:
         /* "out.sol":1360:1363  cnt */
       dup3
         /* "out.sol":1356:1357  i */
@@ -1152,7 +482,7 @@ sub_0: assembly {
       lt
         /* "out.sol":1339:1720  for (uint i = 0; i < cnt; i++) {... */
       iszero
-      tag_53
+      tag_23
       jumpi
         /* "out.sol":1422:1430  balances */
       0x02
@@ -1167,10 +497,10 @@ sub_0: assembly {
       mload
       dup2
       lt
-      tag_55
+      tag_25
       jumpi
       invalid
-    tag_55:
+    tag_25:
       0x20
       mul
       0x20
@@ -1200,10 +530,10 @@ sub_0: assembly {
       lt
       iszero
         /* "out.sol":1400:1446  assert(sum_balance >= balances[_receivers[i]]) */
-      tag_56
+      tag_26
       jumpi
       invalid
-    tag_56:
+    tag_26:
         /* "out.sol":1473:1481  balances */
       0x02
         /* "out.sol":1473:1496  balances[_receivers[i]] */
@@ -1217,10 +547,10 @@ sub_0: assembly {
       mload
       dup2
       lt
-      tag_57
+      tag_27
       jumpi
       invalid
-    tag_57:
+    tag_27:
       0x20
       mul
       0x20
@@ -1260,7 +590,7 @@ sub_0: assembly {
       sstore
       pop
         /* "out.sol":1542:1577  balances[_receivers[i]].add(_value) */
-      tag_58
+      tag_28
         /* "out.sol":1570:1576  _value */
       dup6
         /* "out.sol":1542:1550  balances */
@@ -1276,10 +606,10 @@ sub_0: assembly {
       mload
       dup2
       lt
-      tag_59
+      tag_29
       jumpi
       invalid
-    tag_59:
+    tag_29:
       0x20
       mul
       0x20
@@ -1304,7 +634,7 @@ sub_0: assembly {
       keccak256
       sload
         /* "out.sol":1542:1569  balances[_receivers[i]].add */
-      tag_60
+      tag_30
       swap1
         /* "out.sol":1542:1577  balances[_receivers[i]].add(_value) */
       swap2
@@ -1312,7 +642,7 @@ sub_0: assembly {
       0xffffffff
       and
       jump	// in
-    tag_58:
+    tag_28:
         /* "out.sol":1516:1524  balances */
       0x02
         /* "out.sol":1516:1539  balances[_receivers[i]] */
@@ -1326,10 +656,10 @@ sub_0: assembly {
       mload
       dup2
       lt
-      tag_61
+      tag_31
       jumpi
       invalid
-    tag_61:
+    tag_31:
       0x20
       mul
       0x20
@@ -1370,10 +700,10 @@ sub_0: assembly {
       mload
       dup2
       lt
-      tag_62
+      tag_32
       jumpi
       invalid
-    tag_62:
+    tag_32:
       0x20
       mul
       0x20
@@ -1425,10 +755,10 @@ sub_0: assembly {
       mload
       dup2
       lt
-      tag_63
+      tag_33
       jumpi
       invalid
-    tag_63:
+    tag_33:
       0x20
       mul
       0x20
@@ -1458,16 +788,16 @@ sub_0: assembly {
       lt
       iszero
         /* "out.sol":1649:1695  assert(sum_balance >= balances[_receivers[i]]) */
-      tag_64
+      tag_34
       jumpi
       invalid
-    tag_64:
+    tag_34:
         /* "out.sol":1365:1368  i++ */
       0x01
       add
         /* "out.sol":1339:1720  for (uint i = 0; i < cnt; i++) {... */
-      jump(tag_52)
-    tag_53:
+      jump(tag_22)
+    tag_23:
       pop
         /* "out.sol":1755:1766  sum_balance */
       sload(0x00)
@@ -1476,10 +806,10 @@ sub_0: assembly {
         /* "out.sol":1740:1766  totalSupply == sum_balance */
       eq
         /* "out.sol":1733:1767  assert(totalSupply == sum_balance) */
-      tag_65
+      tag_35
       jumpi
       invalid
-    tag_65:
+    tag_35:
       pop
         /* "out.sol":1782:1786  true */
       0x01
@@ -1491,79 +821,8 @@ sub_0: assembly {
       pop
       pop
       jump	// out
-        /* "out.sol":1931:1959  string public symbol = "BEC" */
-    tag_32:
-      0x05
-      dup1
-      sload
-      0x40
-      dup1
-      mload
-      0x20
-      0x02
-      0x01
-      dup6
-      and
-      iszero
-      0x0100
-      mul
-      not(0x00)
-      add
-      swap1
-      swap5
-      and
-      swap4
-      swap1
-      swap4
-      div
-      0x1f
-      dup2
-      add
-      dup5
-      swap1
-      div
-      dup5
-      mul
-      dup3
-      add
-      dup5
-      add
-      swap1
-      swap3
-      mstore
-      dup2
-      dup2
-      mstore
-      swap3
-      swap2
-      dup4
-      add
-      dup3
-      dup3
-      dup1
-      iszero
-      tag_37
-      jumpi
-      dup1
-      0x1f
-      lt
-      tag_38
-      jumpi
-      0x0100
-      dup1
-      dup4
-      sload
-      div
-      mul
-      dup4
-      mstore
-      swap2
-      0x20
-      add
-      swap2
-      jump(tag_37)
         /* "out.sol":305:416  function sub (uint256 a, uint256 b) internal pure returns (uint256) {... */
-    tag_50:
+    tag_20:
         /* "out.sol":364:371  uint256 */
       0x00
         /* "out.sol":391:392  a */
@@ -1574,10 +833,10 @@ sub_0: assembly {
       gt
       iszero
         /* "out.sol":379:393  assert(b <= a) */
-      tag_71
+      tag_38
       jumpi
       invalid
-    tag_71:
+    tag_38:
       pop
         /* "out.sol":406:411  a - b */
       swap1
@@ -1586,7 +845,7 @@ sub_0: assembly {
         /* "out.sol":305:416  function sub (uint256 a, uint256 b) internal pure returns (uint256) {... */
       jump	// out
         /* "out.sol":419:549  function add (uint256 a, uint256 b) internal pure returns (uint256) {... */
-    tag_60:
+    tag_30:
         /* "out.sol":478:485  uint256 */
       0x00
         /* "out.sol":505:510  a + b */
@@ -1599,10 +858,10 @@ sub_0: assembly {
       lt
       iszero
         /* "out.sol":516:530  assert(c >= a) */
-      tag_73
+      tag_40
       jumpi
       invalid
-    tag_73:
+    tag_40:
         /* "out.sol":543:544  c */
       swap4
         /* "out.sol":419:549  function add (uint256 a, uint256 b) internal pure returns (uint256) {... */
@@ -1612,5 +871,5 @@ sub_0: assembly {
       pop
       jump	// out
 
-    auxdata: 0xa165627a7a72305820c02f0594d5745733b37ef7dd4d724ad2d0a403e7306a306c19ce9783f300a9e80029
+    auxdata: 0xa165627a7a72305820bd008bd96fd11d3a1a6a482c93cd2bba9a3f84c13e71f2328955a4cf3ab62e0c0029
 }

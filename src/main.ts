@@ -10,8 +10,8 @@ import { VariableCollector } from './visitors/VariableCollector';
 import { GenStateVariables as StateVariableGenerator } from './constraints/StateVariableGenerator';
 import { QuantityExp } from './constraints/nodes/Node';
 
-const contract = fs.readFileSync('./tests/test.sol')
-const constraint = fs.readFileSync('./tests/constraints.txt')
+const contract = fs.readFileSync(process.argv[2])
+const constraint = fs.readFileSync(process.argv[3])
 
 const ast = parser.parse(contract.toString('utf-8'), {range: true})
 const variableCollector = new VariableCollector()
@@ -38,5 +38,5 @@ const decorator =
 decorator.visit(ast)
 const printer = new Printer(contract.toString('utf-8'))
 visit(ast, printer)
-fs.writeFileSync('./tests/out.sol', printer.source)
+fs.writeFileSync(process.argv[4], printer.source)
 console.log(printer.source)

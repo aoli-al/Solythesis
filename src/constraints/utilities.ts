@@ -1,5 +1,7 @@
 import {Node, SyntaxKind, PrimaryExpression, SumExpression, SExpTypes, MuExpTypes, MuExp, SIdentifier} from './nodes/Node'
 import { BaseASTNode, ASTNodeTypeString, ASTNode, Expression, BinOp, BinaryOperation, ExpressionStatement, Identifier, ElementaryTypeName, TypeName, Mapping, ArrayTypeName, VariableDeclaration, VariableDeclarationStatement, IndexAccess, NumberLiteral, MemberAccess, Statement, IfStatement, FunctionCall, Block } from 'solidity-parser-antlr';
+import { StatementContext } from '../antlr/SolidityParser';
+import { generateNewVarName } from './StateVariableGenerator';
 
 function Node(this: Node, kind: SyntaxKind) {
   this.children = []
@@ -95,7 +97,7 @@ export function createSafeBinaryOperation(left: Expression, right: Expression, o
  createBinaryOperation(createBinaryOperation(left, right, opMap[op][0] as BinOp), left, '>=')
 }
 
-export function createFunctionCall(expression: Expression, args: Expression[], names: string[]) {
+export function createFunctionCall(expression: Expression, args: Expression[] = [], names: string[] = []) {
   const node = createBaseASTNode('FunctionCall') as FunctionCall
   node.expression = expression
   node.arguments = args
@@ -228,4 +230,36 @@ export function getUpdatedVariable(node: Expression): string | undefined {
     case 'IndexAccess': return getUpdatedVariable(node.base)
   }
   return undefined
+}
+
+export function checkSafeAdd(left: Expression, right: Expression) {
+  const statements: Statement[] = []
+  const tmpVar = createIdentifier(generateNewVarName('tmp'))
+  statements.push(createVariableDeclarationStmt(
+    [createVariableDeclaration(tmpVar.name, createElementaryTypeName('uint256'), false)],
+    createBinaryOperation(left, right, '+')))
+  statements.push(createExpressionStmt(createFunctionCall(createIdentifier('assert'), [createBinaryOperation(tmpVar, left, '>=')])))
+  return createBlock(statements)
+}
+
+export function checkSafeSub(left: Expression, right: Expression) {
+  return createExpressionStmt(createFunctionCall(createIdentifier('assert'), [createBinaryOperation(left, right, '>=')]))
+}
+
+export function equal(a: Expression, b: Expression): boolean {
+  if (b.type != a.type) return false
+  const c = <any>b
+  switch (a.type) {
+    case 'BinaryOperation':
+      return equal(a.left, c.left) && equal(a.right, c.right)
+    case 'BooleanLiteral':
+      return a.value == c.value
+    case 'Identifier':
+      return a.name == c.name
+    case 'IndexAccess':
+      return equal(a.base, c.base) && equal(a.index, c.index)
+    case 'MemberAccess':
+      return a.memberName == c.memberName && equal(a.expression, c.expression)
+  }
+  return true
 }

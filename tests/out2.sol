@@ -13,6 +13,7 @@ constructor () public {
 x_arr_0.push(0);
 y_arr_1.push(ballots[0][address(0x1)]);
 }
+assert(sum_votes[0][ballots[0][address(0x1)]] >= weights[0][address(0x1)]);
 sum_votes[0][ballots[0][address(0x1)]] -= weights[0][address(0x1)];
 }
 weights[0][address(0x1)] = 2;
@@ -22,6 +23,7 @@ x_arr_0.push(0);
 y_arr_1.push(ballots[0][address(0x1)]);
 }
 sum_votes[0][ballots[0][address(0x1)]] += weights[0][address(0x1)];
+assert(sum_votes[0][ballots[0][address(0x1)]] >= weights[0][address(0x1)]);
 }
 }
 {
