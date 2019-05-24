@@ -247,6 +247,9 @@ export function checkSafeSub(left: Expression, right: Expression) {
 }
 
 export function equal(a: Expression, b: Expression): boolean {
+  if (!a || !b) {
+    console.log("???")
+  }
   if (b.type != a.type) return false
   const c = <any>b
   switch (a.type) {
@@ -260,6 +263,14 @@ export function equal(a: Expression, b: Expression): boolean {
       return equal(a.base, c.base) && equal(a.index, c.index)
     case 'MemberAccess':
       return a.memberName == c.memberName && equal(a.expression, c.expression)
+    case 'NumberLiteral':
+      return a.number == c.number
+    case 'FunctionCall':
+      return equal(a.expression, c.expression) 
+        && a.arguments.length == c.arguments.length
+        && a.arguments.filter((value, idx) => !equal(value, c.arguments[idx])).length == 0
+    case 'ElementaryTypeNameExpression':
+      return a.typeName.name == c.typeName.name
   }
-  return true
+  return false
 }

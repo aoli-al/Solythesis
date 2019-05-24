@@ -1,16 +1,18 @@
 import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, FunctionDefinition, ContractDefinition, Statement, ASTNode, Block, ReturnStatement, BaseASTNode, ForStatement, BinOp } from "solidity-parser-antlr";
-import { Node, ForAllExpression, SumExpression, CMPExpression, Iden } from "./nodes/Node";
+import { Node, ForAllExpression, SumExpression, CMPExpression, Iden, QuantityExp } from "./nodes/Node";
 import { Printer } from "../printer/Printer";
-import { createBaseASTNode, getMonitoredStateVariables, getUpdatedVariable, createFunctionCall, createIdentifier, createExpressionStmt, createBinaryOperation, createVariableDeclarationStmt, createVariableDeclaration, createElementaryTypeName, createNumberLiteral, createMemberAccess, createIndexAccess, getMonitoredVariables, createIfStatment, getChildren, getMuIndices, createBlock, checkSafeAdd, checkSafeSub } from "./utilities";
+import { createBaseASTNode, getMonitoredStateVariables, getUpdatedVariable, createFunctionCall, createIdentifier, createExpressionStmt, createBinaryOperation, createVariableDeclarationStmt, createVariableDeclaration, createElementaryTypeName, createNumberLiteral, createMemberAccess, createIndexAccess, getMonitoredVariables, createIfStatment, getChildren, getMuIndices, createBlock, checkSafeAdd, checkSafeSub, equal } from "./utilities";
 import * as _ from "lodash";
 import { isMainThread } from "worker_threads";
 import { prependListener } from "cluster";
 import { Rewriter } from "./Rewriter";
 import { generateNewVarName } from "./StateVariableGenerator";
+import { ConstractVisitor } from "./visitor";
+import { optimize } from "../optimizer/StorageAccessOptimizer";
 
 const updateOps = ['=', '-=', '+=', '*=', '/=']
 
-class PendingStatements {
+export class PendingStatements {
   pre: Statement[]
   post: Statement[]
 
@@ -32,24 +34,15 @@ class PendingStatements {
 }
 
 
-export class Decorator implements Visitor {
+export class Decorator extends ConstractVisitor implements Visitor  {
   constraints: Node[]
   variables: Map<string, StateVariableDeclaration[]>
-  pendingStatements: PendingStatements = new PendingStatements()
-  hasPendingBlocks() {
-    return this.pendingStatements.pre.length > 0 || this.pendingStatements.post.length > 0
-  }
   checkConstraints: Set<Node> = new Set()
   canAddAssertions = false
   constructor(constraints: Node[], variables: Map<string, StateVariableDeclaration[]>) {
+    super()
     this.constraints = constraints
     this.variables = variables
-  }
-  buildStatements(statement: Statement) {
-    const block = createBaseASTNode('Block') as Block
-    block.statements = [...this.pendingStatements.pre, statement, ...this.pendingStatements.post]
-    this.pendingStatements = new PendingStatements()
-    return block
   }
   addAssertions(node: ReturnStatement) {
     if (this.canAddAssertions) {
@@ -61,38 +54,6 @@ export class Decorator implements Visitor {
     else {
       return node
     }
-  }
-  visit(node: any) {
-    if (Array.isArray(node)) {
-      for (var i = 0; i < node.length; i++) {
-        node[i] = this.visit(node[i])
-        // if (this.hasPendingBlocks()) {
-        //   node[i] = this.buildStatements(node[i])
-        // }
-        // if ((node[i] as ASTNode).type == 'ReturnStatement') {
-        //   node[i] = this.addAssertions(node[i])
-        // }
-      }
-      return node
-    }
-    if (!_.has(node, 'type')) return node
-    if (node.type in this) {
-      node = (this as any)[node.type](node)
-      return node
-    }
-
-    for (const prop in node) {
-      if (node.hasOwnProperty(prop)) {
-        node[prop] = this.visit(node[prop])
-        // if (this.hasPendingBlocks()) {
-        //   node[prop] = this.buildStatements(node[prop])
-        // }
-        // if (_.has(node[prop], 'type') && node[prop].type == 'ReturnStatement') {
-        //   node[prop] = this.addAssertions(node[prop])
-        // }
-      }
-    }
-    return node
   }
   ContractDefinition = (node: ContractDefinition) => {
     node.subNodes = this.visit(node.subNodes)
@@ -114,20 +75,15 @@ export class Decorator implements Visitor {
     }
     return node
   }
-  ExpressionStatement = (node: ExpressionStatement) => {
-    const pendingStatements = this.checkUpdates(node)
-    if (pendingStatements.isEmpty()) return node
-    return createBlock([...pendingStatements.pre, node, ...pendingStatements.post])
-  }
-  checkUpdates(statement: ExpressionStatement) {
-    if (statement.expression.type != 'BinaryOperation') return new PendingStatements()
+  ExpressionStatement = (statement: ExpressionStatement) => {
+    if (statement.expression.type != 'BinaryOperation') return statement
     const binOp = statement.expression
-    if (!updateOps.includes(binOp.operator)) return new PendingStatements()
+    if (!updateOps.includes(binOp.operator)) return statement
     const variable = getUpdatedVariable(binOp.left)!
     this.constraints.filter(it => getMonitoredStateVariables(it).has(variable)).forEach(it => {
       this.checkConstraints.add(it)
     })
-    if (binOp.left.type != 'IndexAccess') return new PendingStatements()
+    if (binOp.left.type != 'IndexAccess') return statement
     let indices = [binOp.left.index]
 
     var base = binOp.left.base
@@ -136,30 +92,30 @@ export class Decorator implements Visitor {
       base = base.base
     }
     indices = indices.reverse()
-    if (base.type != 'Identifier') return new PendingStatements()
+    if (base.type != 'Identifier') return statement
+    const constraintPair: [QuantityExp, Map<string, Expression>][] = []
     const generate = (constraint: Node, identifier: Identifier) => {
-      const pendingStatements = new PendingStatements()
       getChildren(constraint).map(it => generate(it, identifier)).forEach(it => pendingStatements.merge(it))
       if (constraint.type == 'ForAllExpression' || constraint.type == 'SumExpression') {
         const muIndices: Map<string, Expression> = new Map()
         getMuIndices(constraint, identifier.name)
           .map((it, id) => muIndices.set(it, indices[id]))
-        switch (constraint.type) {
-          case 'ForAllExpression': {
-            pendingStatements.merge(this.generateForAll(constraint, identifier, muIndices))
-            break
-          }
-          case 'SumExpression': {
-            pendingStatements.merge(this.generateSum(constraint, identifier, muIndices))
-            break
-          }
+        const pendingStatements = constraint.type == 'ForAllExpression'
+          ? this.generateForAll(constraint, identifier, muIndices)
+          : this.generateSum(constraint, identifier, muIndices)
+        if (!pendingStatements.isEmpty()) {
+          constraintPair.push([constraint, muIndices])
         }
+        return pendingStatements
       }
-      return pendingStatements
+      return new PendingStatements()
     }
     const pendingStatements = new PendingStatements()
     this.constraints.forEach(it => pendingStatements.merge(generate(it, base as Identifier)))
-    return pendingStatements
+    if (pendingStatements.isEmpty()) return statement
+    const updated = binOp.left
+    const result = optimize(constraintPair, [...pendingStatements.pre, statement,...pendingStatements.post])
+    return createBlock([...result[0], ...this.visit(result[1]), ...result[2]])
   }
   generateAssertions(node: Node): Statement[] {
     switch (node.type) {
@@ -259,12 +215,7 @@ export class Decorator implements Visitor {
         [createBinaryOperation(v, right, '>=')]
       ))
       const statement = createExpressionStmt(createBinaryOperation(v, right, operator))
-      const pendingStatements = this.checkUpdates(statement)
       let statements: Statement[] = operator == '-=' ? [safeOperation, statement] : [statement, safeOperation]
-      if (pendingStatements) {
-        statements.unshift(...pendingStatements.pre)
-        statements.push(...pendingStatements.post)
-      }
       const block = createBlock(statements)
       if (node.constraint.type == 'MuExpression') {
         const condition = new Rewriter(muIndices).visit(node.constraint) as Expression

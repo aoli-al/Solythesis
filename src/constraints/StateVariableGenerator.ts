@@ -7,14 +7,14 @@ import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
 import { StateVariableDeclaration, TypeName, Mapping, ElementaryTypeName } from 'solidity-parser-antlr';
 import { RuleNode } from 'antlr4ts/tree/RuleNode';
 import assert from 'assert';
-import { Visitor } from './visitor';
+import { ConstraintVisitor } from './visitor';
 
 var counter = 0
 export function generateNewVarName(base: string) {
   return base + '_' + (counter++).toString()
 }
 
-export class GenStateVariables extends Visitor {
+export class GenStateVariables extends ConstraintVisitor {
   currentTypeName?: TypeName
   contractVars: Map<string, TypeName>
   stateVariables: StateVariableDeclaration[] = []

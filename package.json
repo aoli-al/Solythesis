@@ -11,12 +11,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^11.12.0",
+    "@types/node": "^11.13.11",
     "antlr4ts-cli": "^0.5.0-alpha.3",
-    "typescript": "^3.3.4000"
+    "typescript": "^3.4.5"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.123",
+    "@types/lodash": "^4.14.132",
     "antlr4ts": "^0.5.0-alpha.3",
     "lodash": "^4.17.11",
     "solidity-parser-antlr": "git+https://github.com/federicobond/solidity-parser-antlr.git"
