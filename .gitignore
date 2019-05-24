@@ -86,4 +86,4 @@ typings/
 lib/
 src/antlr/
 !src/antlr/Solidity.g4
-./tests
+tests/
