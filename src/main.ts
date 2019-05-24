@@ -34,7 +34,8 @@ constraintBuilder.constraint.forEach((constraints, contract) => {
 })
 const decorator =
   new Decorator([...constraintBuilder.constraint.values()].reduce((left, right) => [...left, ...right]),
-    stateVars)
+    stateVars,
+    stateVarGen.contractVars)
 decorator.visit(ast)
 const printer = new Printer(contract.toString('utf-8'))
 visit(ast, printer)

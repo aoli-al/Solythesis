@@ -1,7 +1,7 @@
-import { Visitor, Block, IndexAccess, Expression, Statement, ASTNode, visit, VariableDeclarationStatement, ExpressionStatement } from "solidity-parser-antlr";
+import { Visitor, Block, IndexAccess, Expression, Statement, ASTNode, visit, VariableDeclarationStatement, ExpressionStatement, TypeName, Identifier } from "solidity-parser-antlr";
 import { SumExpression, QuantityExp } from "../constraints/nodes/Node";
 import { Rewriter } from "../constraints/Rewriter";
-import { equal, createIdentifier, createVariableDeclarationStmt, createVariableDeclaration, createElementaryTypeName, createExpressionStmt, createBinaryOperation } from "../constraints/utilities";
+import { equal, createIdentifier, createVariableDeclarationStmt, createVariableDeclaration, createElementaryTypeName, createExpressionStmt, createBinaryOperation, getBaseVar as getIndexAccessBase, getBaseVar } from "../constraints/utilities";
 import { generateNewVarName } from "../constraints/StateVariableGenerator";
 import { isMainThread } from "worker_threads";
 import { ConstractVisitor as ContractVisitor } from "../constraints/visitor";
@@ -10,7 +10,7 @@ import { TupleExpressionContext } from "../antlr/SolidityParser";
 
 
 export function optimize(constraintsPair: [QuantityExp, Map<string, Expression>][],
-  statements: Statement[]): Statement[][] {
+  statements: Statement[], contractVars: Map<string, TypeName>): Statement[][] {
   const collector = new IndexAccessCollector()
   constraintsPair.map(it => {
     if (it[0].type == 'ForAllExpression') {
@@ -21,19 +21,22 @@ export function optimize(constraintsPair: [QuantityExp, Map<string, Expression>]
       visit(new Rewriter(it[1]).visit(it[0].body), collector)
     }
   })
-  const tmpVars: [string, Expression, VariableDeclarationStatement, ExpressionStatement][] = collector.nodes.map(it => {
+  const tmpVars: [string, IndexAccess, VariableDeclarationStatement, ExpressionStatement][] = collector.nodes.map(it => {
+    const baseVar = getIndexAccessBase(it) as Identifier
+    let type = contractVars.get(baseVar.name)!
+    while (type.type == 'Mapping') type = type.valueType
     const name = generateNewVarName('opt')
-    const decl = createVariableDeclaration(name, createElementaryTypeName('uint256'), false)
+    const decl = createVariableDeclaration(name, type, false)
     const update = createExpressionStmt(createBinaryOperation(it, createIdentifier(name), '='))
     return [name, it, createVariableDeclarationStmt([decl], it), update]
   })
-  const rewriter = new IndexAccessRewriter(tmpVars.map(tuple => [tuple[0], tuple[1]]) as [string, Expression][])
+  const rewriter = new IndexAccessRewriter(tmpVars.map(tuple => [tuple[0], tuple[1]]) as [string, IndexAccess][])
   return [tmpVars.map(it => it[2]), rewriter.visit(statements), tmpVars.map(it => it[3])]
 }
 
 class IndexAccessRewriter extends ContractVisitor implements Visitor {
-  nodes: [string, Expression][]
-  constructor(nodes: [string, Expression][]) {
+  nodes: [string, IndexAccess][]
+  constructor(nodes: [string, IndexAccess][]) {
     super()
     this.nodes = nodes
   }
@@ -50,7 +53,7 @@ class IndexAccessRewriter extends ContractVisitor implements Visitor {
 }
 
 class IndexAccessCollector implements Visitor {
-  nodes: Expression[] = []
+  nodes: IndexAccess[] = []
 
   IndexAccess = (node: IndexAccess) => {
     if (this.nodes.filter(it => equal(node, it)).length > 0) return

@@ -1,4 +1,4 @@
-import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, FunctionDefinition, ContractDefinition, Statement, ASTNode, Block, ReturnStatement, BaseASTNode, ForStatement, BinOp } from "solidity-parser-antlr";
+import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, FunctionDefinition, ContractDefinition, Statement, ASTNode, Block, ReturnStatement, BaseASTNode, ForStatement, BinOp, TypeName } from "solidity-parser-antlr";
 import { Node, ForAllExpression, SumExpression, CMPExpression, Iden, QuantityExp } from "./nodes/Node";
 import { Printer } from "../printer/Printer";
 import { createBaseASTNode, getMonitoredStateVariables, getUpdatedVariable, createFunctionCall, createIdentifier, createExpressionStmt, createBinaryOperation, createVariableDeclarationStmt, createVariableDeclaration, createElementaryTypeName, createNumberLiteral, createMemberAccess, createIndexAccess, getMonitoredVariables, createIfStatment, getChildren, getMuIndices, createBlock, checkSafeAdd, checkSafeSub, equal } from "./utilities";
@@ -39,10 +39,12 @@ export class Decorator extends ConstractVisitor implements Visitor  {
   variables: Map<string, StateVariableDeclaration[]>
   checkConstraints: Set<Node> = new Set()
   canAddAssertions = false
-  constructor(constraints: Node[], variables: Map<string, StateVariableDeclaration[]>) {
+  contractVars: Map<string, TypeName>
+  constructor(constraints: Node[], variables: Map<string, StateVariableDeclaration[]>, contractVars: Map<string, TypeName>) {
     super()
     this.constraints = constraints
     this.variables = variables
+    this.contractVars = contractVars
   }
   addAssertions(node: ReturnStatement) {
     if (this.canAddAssertions) {
@@ -113,8 +115,7 @@ export class Decorator extends ConstractVisitor implements Visitor  {
     const pendingStatements = new PendingStatements()
     this.constraints.forEach(it => pendingStatements.merge(generate(it, base as Identifier)))
     if (pendingStatements.isEmpty()) return statement
-    const updated = binOp.left
-    const result = optimize(constraintPair, [...pendingStatements.pre, statement,...pendingStatements.post])
+    const result = optimize(constraintPair, [...pendingStatements.pre, statement,...pendingStatements.post], this.contractVars)
     return createBlock([...result[0], ...this.visit(result[1]), ...result[2]])
   }
   generateAssertions(node: Node): Statement[] {

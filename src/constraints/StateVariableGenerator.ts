@@ -19,8 +19,6 @@ export class GenStateVariables extends ConstraintVisitor {
   contractVars: Map<string, TypeName>
   stateVariables: StateVariableDeclaration[] = []
   muWithTypes: Map<string, ElementaryTypeName> = new Map()
-  default() {}
-
   constructor(contractVars: Map<string, TypeName>) {
     super()
     this.contractVars = contractVars

@@ -242,6 +242,11 @@ export function checkSafeAdd(left: Expression, right: Expression) {
   return createBlock(statements)
 }
 
+export function getBaseVar(indexAccess: IndexAccess): Expression {
+  if (indexAccess.base.type != 'IndexAccess') return indexAccess.base
+  return getBaseVar(indexAccess.base)
+}
+
 export function checkSafeSub(left: Expression, right: Expression) {
   return createExpressionStmt(createFunctionCall(createIdentifier('assert'), [createBinaryOperation(left, right, '>=')]))
 }
