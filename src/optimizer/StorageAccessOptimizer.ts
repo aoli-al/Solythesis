@@ -1,12 +1,9 @@
-import { Visitor, Block, IndexAccess, Expression, Statement, ASTNode, visit, VariableDeclarationStatement, ExpressionStatement, TypeName, Identifier } from "solidity-parser-antlr";
-import { SumExpression, QuantityExp } from "../constraints/nodes/Node";
+import { Visitor, IndexAccess, Expression, Statement, ASTNode, visit, VariableDeclarationStatement, ExpressionStatement, TypeName, Identifier } from "solidity-parser-antlr";
+import { QuantityExp } from "../constraints/nodes/Node";
 import { Rewriter } from "../constraints/Rewriter";
 import { equal, createIdentifier, createVariableDeclarationStmt, createVariableDeclaration, createElementaryTypeName, createExpressionStmt, createBinaryOperation, getBaseVar as getIndexAccessBase, getBaseVar } from "../constraints/utilities";
 import { generateNewVarName } from "../constraints/StateVariableGenerator";
-import { isMainThread } from "worker_threads";
 import { ConstractVisitor as ContractVisitor } from "../constraints/visitor";
-import { PendingStatements } from "../constraints/Decorator";
-import { TupleExpressionContext } from "../antlr/SolidityParser";
 
 
 export function optimize(constraintsPair: [QuantityExp, Map<string, Expression>][],
