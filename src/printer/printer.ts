@@ -1,4 +1,9 @@
-import { ArrayTypeName, ASTNode, BinaryOperation, Block, BooleanLiteral, ContractDefinition, ElementaryTypeName, Expression, ExpressionStatement, ForStatement, FunctionCall, FunctionDefinition, Identifier, IfStatement, IndexAccess, Mapping, MemberAccess, NumberLiteral, SourceUnit, StateVariableDeclaration, VariableDeclaration, VariableDeclarationStatement, visit, Visitor} from "solidity-parser-antlr"
+import {
+  ArrayTypeName, ASTNode, BinaryOperation, Block, BooleanLiteral, ContractDefinition, ElementaryTypeName,
+  Expression, ExpressionStatement, ForStatement, FunctionCall, FunctionDefinition, Identifier, IfStatement,
+  IndexAccess, Mapping, MemberAccess, NumberLiteral, SourceUnit, StateVariableDeclaration, VariableDeclaration,
+  VariableDeclarationStatement, visit, Visitor,
+} from "solidity-parser-antlr"
 
 export class Printer implements Visitor {
   public originSource: string
@@ -26,7 +31,7 @@ export class Printer implements Visitor {
 
   public VariableDeclaration = (node: VariableDeclaration) => {
     this.visitOrPrint(node.typeName)
-    if (node.visibility && node.visibility != "default") {
+    if (node.visibility && node.visibility !== "default") {
       this.source += " " + node.visibility
     }
     if (node.isDeclaredConst) {
@@ -80,7 +85,7 @@ export class Printer implements Visitor {
       this.source += " "
       this.visitOrPrint(it)
     })
-    if (node.visibility != "default") {
+    if (node.visibility !== "default") {
       this.source += " " + node.visibility
     }
     if (node.stateMutability) {
@@ -159,7 +164,7 @@ export class Printer implements Visitor {
       for (let i = 0; i < node.names.length; i++) {
         this.source += node.names[i] + " : "
         this.visitOrPrint(node.arguments[i])
-        if (i != node.names.length - 1) {
+        if (i !== node.names.length - 1) {
           this.source += ", "
         }
       }
@@ -167,7 +172,7 @@ export class Printer implements Visitor {
     } else {
       for (let i = 0; i < node.arguments.length; i++) {
         this.visitOrPrint(node.arguments[i])
-        if (i != node.arguments.length - 1) {
+        if (i !== node.arguments.length - 1) {
           this.source += ", "
         }
       }

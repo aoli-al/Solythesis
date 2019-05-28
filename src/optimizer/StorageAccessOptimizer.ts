@@ -2,7 +2,7 @@ import {
   ASTNode, Expression, ExpressionStatement, Identifier, IndexAccess, Statement, TypeName,
   VariableDeclarationStatement, visit, Visitor,
 } from "solidity-parser-antlr"
-import { ContractVisitor } from "src/visitors/ContractVisitor";
+import { ContractVisitor } from "src/visitors/ContractVisitor"
 import { QuantityExp } from "../constraints/nodes/Node"
 import { Rewriter } from "../constraints/Rewriter"
 import { generateNewVarName } from "../constraints/StateVariableGenerator"
