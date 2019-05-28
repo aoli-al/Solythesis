@@ -1,6 +1,6 @@
 import assert from "assert"
 import { ElementaryTypeName, Mapping, StateVariableDeclaration, TypeName } from "solidity-parser-antlr"
-import { ContractVisitor } from "src/visitors/ContractVisitor"
+import { ConstraintVisitor } from "../visitors/ConstraintVisitor"
 import {ForAllExpression, MuIndexedAccess, QuantityExp, SIdentifier, SumExpression } from "./nodes/Node"
 import {
   createArray, createBaseASTNode, createElementaryTypeName, createMapping,
@@ -12,7 +12,7 @@ export function generateNewVarName(base: string) {
   return base + "_" + (counter++).toString()
 }
 
-export class GenStateVariables extends ContractVisitor {
+export class GenStateVariables extends ConstraintVisitor {
   public currentTypeName?: TypeName
   public contractVars: Map<string, TypeName>
   public stateVariables: StateVariableDeclaration[] = []

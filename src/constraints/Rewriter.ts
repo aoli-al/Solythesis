@@ -3,7 +3,7 @@ import {
   ExpressionStatement, ForStatement, FunctionCall, Identifier, IndexAccess, NumberLiteral, Statement,
   VariableDeclaration, VariableDeclarationStatement,
 } from "solidity-parser-antlr"
-import { ConstraintVisitor } from "src/visitors/ConstraintVisitor"
+import { ConstraintVisitor } from "../visitors/ConstraintVisitor"
 import {
   BinaryExpression, CMPExpression, Exp, ForAllExpression, Iden, IndexedAccess, MuExpression, MuIdentifier,
   Node, PrimaryExpression, SExpression, SIdentifier, SIndexedAccess, SumExpression, SyntaxKind,

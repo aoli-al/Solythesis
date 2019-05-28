@@ -1,5 +1,5 @@
 import { IndexAccess, Visitor } from "solidity-parser-antlr"
-import { equal } from "src/constraints/utilities"
+import { equal } from "../constraints/utilities"
 
 export class IndexAccessCollector implements Visitor {
   public nodes: IndexAccess[] = []

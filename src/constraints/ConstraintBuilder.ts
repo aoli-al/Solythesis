@@ -1,8 +1,5 @@
 import {AbstractParseTreeVisitor} from "antlr4ts/tree/AbstractParseTreeVisitor"
-import { RuleNode } from "antlr4ts/tree/RuleNode"
 import { TerminalNode } from "antlr4ts/tree/TerminalNode"
-import assert from "assert"
-import { ElementaryTypeName, Mapping, StateVariableDeclaration, TypeName } from "solidity-parser-antlr"
 import {
   ConstraintContext, ConstraintVariableDeclarationContext, ExpressionContext, ForAllExpressionContext,
   IdentifierContext, NumberLiteralContext, PrimaryExpressionContext, SolidityParser, StandardDefinitionContext,

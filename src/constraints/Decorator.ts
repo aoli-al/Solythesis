@@ -4,10 +4,10 @@ import {
   BinOp, Block, ContractDefinition, Expression, ExpressionStatement, ForStatement, FunctionDefinition,
   Identifier, ReturnStatement, Statement, StateVariableDeclaration, TypeName, Visitor,
 } from "solidity-parser-antlr"
-import { ContractVisitor } from "src/visitors/ContractVisitor"
 import { isMainThread } from "worker_threads"
 import { optimize } from "../optimizer/StorageAccessOptimizer"
 import { Printer } from "../printer/Printer"
+import { ContractVisitor } from "../visitors/ContractVisitor"
 import { CMPExpression, ForAllExpression, Iden, Node, QuantityExp, SumExpression } from "./nodes/Node"
 import { PendingStatements } from "./PendingStatements"
 import { Rewriter } from "./Rewriter"

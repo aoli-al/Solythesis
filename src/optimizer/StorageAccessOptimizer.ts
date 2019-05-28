@@ -2,7 +2,6 @@ import {
   ASTNode, Expression, ExpressionStatement, Identifier, IndexAccess, Statement, TypeName,
   VariableDeclarationStatement, visit, Visitor,
 } from "solidity-parser-antlr"
-import { ContractVisitor } from "src/visitors/ContractVisitor"
 import { QuantityExp } from "../constraints/nodes/Node"
 import { Rewriter } from "../constraints/Rewriter"
 import { generateNewVarName } from "../constraints/StateVariableGenerator"
@@ -10,6 +9,7 @@ import {
   createBinaryOperation, createElementaryTypeName, createExpressionStmt, createIdentifier,
   createVariableDeclaration, createVariableDeclarationStmt, equal, getIndexAccessBase,
 } from "../constraints/utilities"
+import { ContractVisitor } from "../visitors/ContractVisitor"
 import { IndexAccessCollector } from "./IndexAccessCollector"
 
 export function optimize(constraintsPair: Array<[QuantityExp, Map<string, Expression>]>,

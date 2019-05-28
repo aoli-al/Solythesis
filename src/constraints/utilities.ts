@@ -3,7 +3,6 @@ import {
   Expression, ExpressionStatement, FunctionCall, Identifier, IfStatement, IndexAccess, Mapping, MemberAccess,
   NumberLiteral, Statement, TypeName, VariableDeclaration, VariableDeclarationStatement,
 } from "solidity-parser-antlr"
-import { StatementContext } from "../antlr/SolidityParser"
 import {
   MuExp, MuExpTypes, Node, PrimaryExpression, SExpTypes, SIdentifier, SumExpression,
   SyntaxKind,
