@@ -7,15 +7,16 @@ import { ConstractVisitor as ContractVisitor } from "../constraints/visitor";
 
 
 export function optimize(constraintsPair: [QuantityExp, Map<string, Expression>][],
-  statements: Statement[], contractVars: Map<string, TypeName>): Statement[][] {
+  statements: Statement[], contractVars: Map<string, TypeName>, 
+  stateVarCache: Map<string, string>): Statement[][] {
   const collector = new IndexAccessCollector()
   constraintsPair.map(it => {
     if (it[0].type == 'ForAllExpression') {
-      visit(new Rewriter(it[1]).visit(it[0].constraint), collector)
+      visit(new Rewriter(stateVarCache, it[1]).visit(it[0].constraint), collector)
     }
     else {
-      visit(new Rewriter(it[1]).visit(it[0].constraint), collector)
-      visit(new Rewriter(it[1]).visit(it[0].body), collector)
+      visit(new Rewriter(stateVarCache, it[1]).visit(it[0].constraint), collector)
+      visit(new Rewriter(stateVarCache, it[1]).visit(it[0].body), collector)
     }
   })
   const tmpVars: [string, IndexAccess, VariableDeclarationStatement, ExpressionStatement][] = collector.nodes.map(it => {

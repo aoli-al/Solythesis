@@ -7,9 +7,11 @@ import { ConstraintVisitor} from "./visitor";
 export class Rewriter extends ConstraintVisitor {
   expression: Map<string, Expression>
   stack: ASTNode[] = [] 
-  constructor(expression: Map<string, Expression> = new Map()) {
+  cache: Map<string, string>
+  constructor(cache: Map<string, string>, expression: Map<string, Expression> = new Map()) {
     super()
     this.expression = expression
+    this.cache = cache
   }
 
   visit(node: Node): ASTNode {
@@ -34,7 +36,12 @@ export class Rewriter extends ConstraintVisitor {
   MuIndexedAccess = this.IndexedAccess
 
   SIdentifier = (node: SIdentifier) => {
-    this.stack.push(createIdentifier(node.name))
+    if (this.cache.has(node.name)) {
+      this.stack.push(createIdentifier(this.cache.get(node.name)!))
+    }
+    else {
+      this.stack.push(createIdentifier(node.name))
+    }
   }
 
   MuIdentifier = (node: MuIdentifier) => {
