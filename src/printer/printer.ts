@@ -199,7 +199,7 @@ export class Printer implements Visitor {
       this.visitOrPrint(it)
       this.source += "\n"
     })
-    this.source += "}"
+    this.source += "}\n"
     return false
   }
 

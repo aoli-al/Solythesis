@@ -1,12 +1,9 @@
-import { prependListener } from "cluster"
 import * as _ from "lodash"
 import {
   BinOp, Block, ContractDefinition, Expression, ExpressionStatement, ForStatement, FunctionDefinition,
   Identifier, ReturnStatement, Statement, StateVariableDeclaration, TypeName, Visitor,
 } from "solidity-parser-antlr"
-import { isMainThread } from "worker_threads"
-import { optimize } from "../optimizer/StorageAccessOptimizer"
-import { Printer } from "../printer/Printer"
+import { optimizeStorageAccess } from "../optimizer/StorageAccessOptimizer"
 import { ContractVisitor } from "../visitors/ContractVisitor"
 import { CMPExpression, ForAllExpression, Iden, Node, QuantityExp, SumExpression } from "./nodes/Node"
 import { PendingStatements } from "./PendingStatements"
@@ -29,12 +26,15 @@ export class Decorator extends ContractVisitor implements Visitor  {
   public stateVarCacheReverse: Map<string, string> = new Map()
   public canAddAssertions = false
   public contractVars: Map<string, TypeName>
+  public functionDecorators: PendingStatements = new PendingStatements()
+  public optimize: boolean
   constructor(constraints: Node[], variables: Map<string, StateVariableDeclaration[]>,
-              contractVars: Map<string, TypeName>) {
+              contractVars: Map<string, TypeName>, optimize: boolean) {
     super()
     this.constraints = constraints
     this.variables = variables
     this.contractVars = contractVars
+    this.optimize = optimize
   }
   public ContractDefinition = (node: ContractDefinition) => {
     node.subNodes = this.visit(node.subNodes)
@@ -47,16 +47,17 @@ export class Decorator extends ContractVisitor implements Visitor  {
     this.checkConstraints = new Set()
     this.stateVarCache = new Map()
     this.stateVarCacheReverse = new Map()
+    this.functionDecorators = new PendingStatements()
     this.canAddAssertions = node.visibility === "public"
     node.body = this.visit(node.body)
     if (node.body) {
-      node.body.statements.unshift(...this.generateTmpVars())
+      node.body.statements.unshift(...this.functionDecorators.pre)
       if (this.canAddAssertions) {
         node.body.statements.push(
           ...[...this.checkConstraints]
             .map((it) => this.generateAssertions(it)).reduce((pre, cur) => [...pre, ...cur], []))
       }
-      node.body.statements.push(...this.pushBackTmpVars())
+      node.body.statements.push(...this.functionDecorators.post)
     }
     return node
   }
@@ -68,7 +69,7 @@ export class Decorator extends ContractVisitor implements Visitor  {
         ...[...this.checkConstraints]
           .map((it) => this.generateAssertions(it)).reduce((pre, cur) => [...pre, ...cur], []))
     }
-    block.statements.push(...this.pushBackTmpVars())
+    block.statements.push(...this.functionDecorators.post)
     block.statements.push(node)
     return block
   }
@@ -112,9 +113,13 @@ export class Decorator extends ContractVisitor implements Visitor  {
     const pendingStatements = new PendingStatements()
     this.constraints.forEach((it) => pendingStatements.merge(generate(it, base as Identifier)))
     if (pendingStatements.isEmpty()) { return statement }
-    const result = optimize(constraintPair,
-      [...pendingStatements.pre, statement, ...pendingStatements.post], this.contractVars, this.stateVarCache)
-    return createBlock([...result[0], ...this.visit(result[1]), ...result[2]])
+    if (this.optimize) {
+      const result = optimizeStorageAccess(constraintPair,
+        [...pendingStatements.pre, statement, ...pendingStatements.post], this.contractVars, this.stateVarCache)
+      return createBlock([...result[0], ...this.visit(result[1]), ...result[2]])
+    } else {
+      return [...this.visit(pendingStatements.pre), statement, ...this.visit(pendingStatements.post)]
+    }
   }
   public generateAssertions(node: Node): Statement[] {
     switch (node.type) {
@@ -191,6 +196,8 @@ export class Decorator extends ContractVisitor implements Visitor  {
           const functionCall = createFunctionCall(
             createMemberAccess(createIdentifier(name), "push"), [indices.get(node.mu[index].name)!], [])
           block.statements.push(createExpressionStmt(functionCall))
+          this.functionDecorators.pre.push(createExpressionStmt(
+            createBinaryOperation(createMemberAccess(createIdentifier(name), "length"), createNumberLiteral("0"), "=")))
         })
         return new PendingStatements([block])
       }
@@ -199,34 +206,22 @@ export class Decorator extends ContractVisitor implements Visitor  {
   }
 
   public generateOrCreateStateVarCache(name: string): string {
+    if (!this.optimize) { return name }
     if (this.stateVarCache.has(name)) {
       return this.stateVarCache.get(name)!
     } else {
       const newVar = generateNewVarName("tmp_" + name)
+      const typeName = this.contractVars.get(name)!
+      const stateVar = createIdentifier(name)
+      const varDecl = createVariableDeclaration(newVar, typeName, false)
+      this.functionDecorators.pre.push(createVariableDeclarationStmt([varDecl], stateVar))
+      this.functionDecorators.post.push(createExpressionStmt(
+        createBinaryOperation(stateVar, createIdentifier(newVar), "="),
+      ))
       this.stateVarCache.set(name, newVar)
       this.stateVarCacheReverse.set(newVar, name)
       return newVar
     }
-  }
-
-  public generateTmpVars() {
-    const statements: Statement[] = []
-    this.stateVarCache.forEach((value, key) => {
-      const typeName = this.contractVars.get(key)!
-      const varDecl = createVariableDeclaration(value, typeName, false)
-      statements.push(createVariableDeclarationStmt([varDecl], createIdentifier(key)))
-    })
-    return statements
-  }
-
-  public pushBackTmpVars() {
-    const statements: Statement[] = []
-    this.stateVarCache.forEach((value, key) => {
-      statements.push(createExpressionStmt(
-        createBinaryOperation(createIdentifier(key), createIdentifier(value), "="),
-      ))
-    })
-    return statements
   }
 
   public generateSum(node: SumExpression, identifier: Identifier,
