@@ -1,5 +1,3 @@
-import { Type } from "../types/Type"
-
 interface Expression {
   parent?: Node
   children: Node[]
