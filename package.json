@@ -5,7 +5,11 @@
   "main": "lib/main.js",
   "types": "lib/main.d.ts",
   "scripts": {
-    "antlr4ts": "antlr4ts -visitor ./src/antlr/Solidity.g4"
+    "antlr4ts": "antlr4ts -visitor ./src/antlr/Solidity.g4",
+    "postinstall": "link-module-alias"
+  },
+  "_moduleAliases": {
+    "solidity-parser-antlr"  : "solidity-parser-antlr" 
   },
   "keywords": [],
   "author": "",
@@ -13,12 +17,12 @@
   "devDependencies": {
     "@types/node": "^11.13.11",
     "antlr4ts-cli": "^0.5.0-alpha.3",
+    "link-module-alias": "^1.2.0",
     "typescript": "^3.4.5"
   },
   "dependencies": {
     "@types/lodash": "^4.14.132",
     "antlr4ts": "^0.5.0-alpha.3",
-    "lodash": "^4.17.11",
-    "solidity-parser-antlr": "git+https://github.com/federicobond/solidity-parser-antlr.git"
+    "lodash": "^4.17.11"
   }
 }

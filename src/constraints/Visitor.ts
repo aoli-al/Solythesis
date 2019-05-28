@@ -1,6 +1,6 @@
 import { Node, SumExpression, ForAllExpression, SExpression, MuExpression, PrimaryExpression, SIndexedAccess, MuIdentifier, SIdentifier, CMPExpression, MuIndexedAccess } from "./nodes/Node";
 import * as _ from "lodash";
-import { Visitor } from "solidity-parser-antlr";
+import { Visitor } from "solidity-parser-antlr"
 
 export abstract class ConstraintVisitor {
   SumExpression?: (node: SumExpression) => void 

@@ -1,0 +1,3 @@
+[submodule "solidity-parser-antlr"]
+	path = solidity-parser-antlr
+	url = git@github.com:Leeleo3x/solidity-parser-antlr.git
