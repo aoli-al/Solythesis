@@ -1,23 +1,22 @@
-import { Visitor, SourceUnit, Expression, ExpressionStatement, BinaryOperation, visit, IndexAccess, IfStatement, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, Identifier, ElementaryTypeName, NumberLiteral, BooleanLiteral, MemberAccess, ASTNode, ContractDefinition, Block, Mapping, FunctionDefinition, FunctionCall, ArrayTypeName, ForStatement} from "solidity-parser-antlr";
+import { ArrayTypeName, ASTNode, BinaryOperation, Block, BooleanLiteral, ContractDefinition, ElementaryTypeName, Expression, ExpressionStatement, ForStatement, FunctionCall, FunctionDefinition, Identifier, IfStatement, IndexAccess, Mapping, MemberAccess, NumberLiteral, SourceUnit, StateVariableDeclaration, VariableDeclaration, VariableDeclarationStatement, visit, Visitor} from "solidity-parser-antlr"
 
 export class Printer implements Visitor {
-  originSource: string
-  source: string = ""
+  public originSource: string
+  public source: string = ""
 
   constructor(originSource: string) {
     this.originSource = originSource
   }
 
-  visitOrPrint(node?: ASTNode | ASTNode[]) {
+  public visitOrPrint(node?: ASTNode | ASTNode[]) {
     if (node) {
       if (Array.isArray(node)) {
-        node.forEach(it => this.visitOrPrint(it))
+        node.forEach((it) => this.visitOrPrint(it))
         return
       }
       if (node.type in this) {
         visit(node, this)
-      }
-      else {
+      } else {
         if (node.range) {
           this.source += this.originSource.substr(node.range[0], node.range[1] - node.range[0] + 1)
         }
@@ -25,236 +24,231 @@ export class Printer implements Visitor {
     }
   }
 
-  VariableDeclaration = (node: VariableDeclaration) => {
+  public VariableDeclaration = (node: VariableDeclaration) => {
     this.visitOrPrint(node.typeName)
-    if (node.visibility && node.visibility != 'default') {
-      this.source += ' ' + node.visibility
+    if (node.visibility && node.visibility != "default") {
+      this.source += " " + node.visibility
     }
     if (node.isDeclaredConst) {
-      this.source += ' constant'
+      this.source += " constant"
     }
     if (node.storageLocation) {
-      this.source += ' ' + node.storageLocation
+      this.source += " " + node.storageLocation
     }
-    this.source += ' ' + node.name
+    this.source += " " + node.name
     return false
   }
 
-  StateVariableDeclaration = (node: StateVariableDeclaration) => {
+  public StateVariableDeclaration = (node: StateVariableDeclaration) => {
     this.visitOrPrint(node.variables)
     if (node.initialValue) {
-      this.source += ' = '
+      this.source += " = "
       this.visitOrPrint(node.initialValue)
     }
-    this.source += ';'
+    this.source += ";"
     return false
   }
 
-  SourceUnit = (node: SourceUnit) => {
-    node.children.forEach(it => {
+  public SourceUnit = (node: SourceUnit) => {
+    node.children.forEach((it) => {
       this.visitOrPrint(it)
-      this.source += '\n'
+      this.source += "\n"
     })
     return false
   }
 
-  Mapping = (node: Mapping) => {
-    this.source += 'mapping ('
+  public Mapping = (node: Mapping) => {
+    this.source += "mapping ("
     this.visitOrPrint(node.keyType)
-    this.source += '=>'
+    this.source += "=>"
     this.visitOrPrint(node.valueType)
-    this.source += ')'
+    this.source += ")"
     return false
   }
 
-  FunctionDefinition = (node: FunctionDefinition) => {
+  public FunctionDefinition = (node: FunctionDefinition) => {
     if (node.isConstructor) {
-      this.source += 'constructor '
-    }
-    else {
-      this.source += 'function '
+      this.source += "constructor "
+    } else {
+      this.source += "function "
     }
     if (node.name) {
-      this.source += node.name + ' '
+      this.source += node.name + " "
     }
     this.visitOrPrint(node.parameters)
-    node.modifiers.forEach(it => {
-      this.source += ' '
+    node.modifiers.forEach((it) => {
+      this.source += " "
       this.visitOrPrint(it)
     })
-    if (node.visibility != 'default') {
-      this.source += ' ' + node.visibility
+    if (node.visibility != "default") {
+      this.source += " " + node.visibility
     }
     if (node.stateMutability) {
-      this.source += ' ' + node.stateMutability
+      this.source += " " + node.stateMutability
     }
     if (node.returnParameters) {
-      this.source += ' '
+      this.source += " "
       this.visitOrPrint(node.returnParameters)
     }
     if (node.body) {
-      this.source += ' '
+      this.source += " "
       this.visitOrPrint(node.body)
-    }
-    else {
-      this.source += ';'
+    } else {
+      this.source += ";"
     }
     return false
   }
 
-  ContractDefinition = (node: ContractDefinition) => {
-    this.source += node.kind + ' ' + node.name
+  public ContractDefinition = (node: ContractDefinition) => {
+    this.source += node.kind + " " + node.name
     if (node.baseContracts.length > 0) {
-      this.source += ' is '
+      this.source += " is "
       this.visitOrPrint(node.baseContracts[0])
-      node.baseContracts.slice(1).forEach(it => {
-        this.source += ', '
+      node.baseContracts.slice(1).forEach((it) => {
+        this.source += ", "
         this.visitOrPrint(it)
       })
     }
-    this.source += ' {\n'
-    node.subNodes.forEach(it => {
+    this.source += " {\n"
+    node.subNodes.forEach((it) => {
       this.visitOrPrint(it)
-      this.source += '\n'
+      this.source += "\n"
     })
-    this.source += '}'
+    this.source += "}"
     return false
   }
 
-  BinaryOperation = (node: BinaryOperation) => {
+  public BinaryOperation = (node: BinaryOperation) => {
     this.visitOrPrint(node.left)
-    this.source += ' ' + node.operator + ' '
+    this.source += " " + node.operator + " "
     this.visitOrPrint(node.right)
     return false
   }
 
-  IfStatement = (node: IfStatement) => {
-    this.source += 'if ('
+  public IfStatement = (node: IfStatement) => {
+    this.source += "if ("
     this.visitOrPrint(node.condition)
-    this.source += ') '
+    this.source += ") "
     this.visitOrPrint(node.trueBody)
     if (node.falseBody) {
-      this.source += ' else '
+      this.source += " else "
       this.visitOrPrint(node.falseBody)
     }
     return false
   }
 
-  ForStatement = (node: ForStatement) => {
-    this.source += 'for ('
-    if (node.initExpression) this.visitOrPrint(node.initExpression)
-    else this.source += ';'
-    this.source += ' '
+  public ForStatement = (node: ForStatement) => {
+    this.source += "for ("
+    if (node.initExpression) { this.visitOrPrint(node.initExpression) } else { this.source += ";" }
+    this.source += " "
     this.visitOrPrint(node.conditionExpression)
-    this.source += '; '
+    this.source += "; "
     if (node.loopExpression) {
       this.visitOrPrint(node.loopExpression.expression)
     }
-    this.source += ') '
+    this.source += ") "
     this.visitOrPrint(node.body)
     return false
   }
 
-  FunctionCall = (node: FunctionCall) => {
+  public FunctionCall = (node: FunctionCall) => {
     this.visitOrPrint(node.expression)
-    this.source += '('
+    this.source += "("
     if (node.names.length > 0) {
-      this.source += '{ '
-      for (var i = 0; i < node.names.length; i++) {
-        this.source += node.names[i] + ' : '
+      this.source += "{ "
+      for (let i = 0; i < node.names.length; i++) {
+        this.source += node.names[i] + " : "
         this.visitOrPrint(node.arguments[i])
         if (i != node.names.length - 1) {
-          this.source += ', '
+          this.source += ", "
         }
       }
-      this.source += ' }'
-    }
-    else {
-      for (var i = 0; i < node.arguments.length; i++) {
+      this.source += " }"
+    } else {
+      for (let i = 0; i < node.arguments.length; i++) {
         this.visitOrPrint(node.arguments[i])
         if (i != node.arguments.length - 1) {
-          this.source += ', '
+          this.source += ", "
         }
       }
     }
-    this.source += ')'
+    this.source += ")"
     return false
   }
 
-  ElementaryTypeName = (node: ElementaryTypeName) => {
+  public ElementaryTypeName = (node: ElementaryTypeName) => {
     this.source += node.name
   }
 
-  NumberLiteral = (node: NumberLiteral) => {
+  public NumberLiteral = (node: NumberLiteral) => {
     this.source += node.number
   }
 
-  BooleanLiteral = (node: BooleanLiteral) => {
+  public BooleanLiteral = (node: BooleanLiteral) => {
     this.source += node.value.toString()
   }
 
-  Block = (node: Block) => {
-    this.source += '{\n'
-    node.statements.forEach(it => {
+  public Block = (node: Block) => {
+    this.source += "{\n"
+    node.statements.forEach((it) => {
       this.visitOrPrint(it)
-      this.source += '\n'
+      this.source += "\n"
     })
-    this.source += '}'
+    this.source += "}"
     return false
   }
 
-  VariableDeclarationStatement = (node: VariableDeclarationStatement) => {
+  public VariableDeclarationStatement = (node: VariableDeclarationStatement) => {
     if (node.variables.length > 1) {
-      this.source += '('
+      this.source += "("
       this.visitOrPrint(node.variables[0])
       node.variables.slice(1).forEach((it: ASTNode) => {
-        this.source += ', '
+        this.source += ", "
         this.visitOrPrint(it)
       })
-      this.source += ')'
-    }
-    else {
+      this.source += ")"
+    } else {
       this.visitOrPrint(node.variables[0])
     }
     if (node.initialValue) {
-      this.source += ' = '
+      this.source += " = "
       this.visitOrPrint(node.initialValue)
     }
-    this.source += ';'
+    this.source += ";"
     return false
   }
 
-  Identifier = (node: Identifier) => {
+  public Identifier = (node: Identifier) => {
     this.source += node.name
   }
 
-  ArrayTypeName = (node: ArrayTypeName) => {
+  public ArrayTypeName = (node: ArrayTypeName) => {
     this.visitOrPrint(node.baseTypeName)
-    this.source += '['
+    this.source += "["
     if (node.length) {
       this.visitOrPrint(node.length)
     }
-    this.source += ']'
+    this.source += "]"
     return false
   }
 
-  MemberAccess = (node: MemberAccess) => {
+  public MemberAccess = (node: MemberAccess) => {
     this.visitOrPrint(node.expression)
-    this.source += '.' + node.memberName
+    this.source += "." + node.memberName
     return false
   }
 
-  ExpressionStatement = (node: ExpressionStatement) => {
+  public ExpressionStatement = (node: ExpressionStatement) => {
     this.visitOrPrint(node.expression)
-    this.source += ';'
+    this.source += ";"
     return false
   }
-  
-  IndexAccess = (node: IndexAccess) => {
+
+  public IndexAccess = (node: IndexAccess) => {
     this.visitOrPrint(node.base)
-    this.source += '['
+    this.source += "["
     this.visitOrPrint(node.index)
-    this.source += ']'
+    this.source += "]"
     return false
   }
 }

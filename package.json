@@ -9,7 +9,7 @@
     "postinstall": "link-module-alias"
   },
   "_moduleAliases": {
-    "solidity-parser-antlr"  : "solidity-parser-antlr" 
+    "solidity-parser-antlr": "solidity-parser-antlr"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +23,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.132",
     "antlr4ts": "^0.5.0-alpha.3",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "tslint": "^5.16.0"
   }
 }

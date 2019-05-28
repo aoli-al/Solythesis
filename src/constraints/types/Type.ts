@@ -1,5 +1,5 @@
 export interface Type {
-  flags: TypeFlags;
+  flags: TypeFlags
 }
 
 export const enum TypeFlags {

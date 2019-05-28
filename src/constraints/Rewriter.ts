@@ -1,61 +1,70 @@
-import { Node, SyntaxKind, ForAllExpression, SumExpression, SExpression, SIndexedAccess, SIdentifier, MuIdentifier, CMPExpression, MuExpression, BinaryExpression, IndexedAccess, Iden, Exp, PrimaryExpression} from "./nodes/Node";
-import { BinaryOperation, Identifier, Expression, ASTNode, Block, IndexAccess, ExpressionStatement, BinOp, VariableDeclaration, VariableDeclarationStatement, ElementaryTypeName, Statement, BooleanLiteral, NumberLiteral, FunctionCall, ExpressionList, ForStatement } from "solidity-parser-antlr";
-import { getSVariables, createBaseASTNode, getMonitoredVariables, getChildren, createBinaryOperation, createIdentifier, createVariableDeclaration, createElementaryTypeName, createVariableDeclarationStmt, createIndexAccess, createExpressionStmt, createNumberLiteral, createMemberAccess, createIfStatment, createFunctionCall } from "./utilities";
-import { ConstraintVisitor} from "./visitor";
-
+import {
+  ASTNode, BinaryOperation, BinOp, Block, BooleanLiteral, ElementaryTypeName, Expression, ExpressionList,
+  ExpressionStatement, ForStatement, FunctionCall, Identifier, IndexAccess, NumberLiteral, Statement,
+  VariableDeclaration, VariableDeclarationStatement,
+} from "solidity-parser-antlr"
+import { ConstraintVisitor } from "src/visitors/ConstraintVisitor"
+import {
+  BinaryExpression, CMPExpression, Exp, ForAllExpression, Iden, IndexedAccess, MuExpression, MuIdentifier,
+  Node, PrimaryExpression, SExpression, SIdentifier, SIndexedAccess, SumExpression, SyntaxKind,
+} from "./nodes/Node"
+import {
+  createBaseASTNode, createBinaryOperation, createElementaryTypeName, createExpressionStmt, createFunctionCall,
+  createIdentifier, createIfStatment, createIndexAccess, createMemberAccess, createNumberLiteral,
+  createVariableDeclaration, createVariableDeclarationStmt, getChildren, getMonitoredVariables, getSVariables,
+} from "./utilities"
 
 export class Rewriter extends ConstraintVisitor {
-  expression: Map<string, Expression>
-  stack: ASTNode[] = [] 
-  cache: Map<string, string>
+  public expression: Map<string, Expression>
+  public stack: ASTNode[] = []
+  public cache: Map<string, string>
+
+  public SExpression = this.BinaryExpression
+  public MuExpression = this.BinaryExpression
+
+  public SIndexedAccess = this.IndexedAccess
+  public MuIndexedAccess = this.IndexedAccess
   constructor(cache: Map<string, string>, expression: Map<string, Expression> = new Map()) {
     super()
     this.expression = expression
     this.cache = cache
   }
 
-  visit(node: Node): ASTNode {
+  public visit(node: Node): ASTNode {
     super.visit(node)
     return this.stack.pop()!
   }
 
-  BinaryExpression(node: BinaryExpression) {
+  public BinaryExpression(node: BinaryExpression) {
     const left = this.visit(node.left) as Expression
     const right = this.visit(node.right) as Expression
     this.stack.push(createBinaryOperation(left, right, node.op))
   }
 
-  SExpression = this.BinaryExpression
-  MuExpression = this.BinaryExpression
-
-  IndexedAccess(node: IndexedAccess) {
+  public IndexedAccess(node: IndexedAccess) {
     this.stack.push(createIndexAccess(this.visit(node.object) as Expression, this.visit(node.index) as Expression))
   }
 
-  SIndexedAccess = this.IndexedAccess
-  MuIndexedAccess = this.IndexedAccess
-
-  SIdentifier = (node: SIdentifier) => {
+  public SIdentifier = (node: SIdentifier) => {
     if (this.cache.has(node.name)) {
       this.stack.push(createIdentifier(this.cache.get(node.name)!))
-    }
-    else {
+    } else {
       this.stack.push(createIdentifier(node.name))
     }
   }
 
-  MuIdentifier = (node: MuIdentifier) => {
+  public MuIdentifier = (node: MuIdentifier) => {
     this.stack.push(this.expression.get(node.name)!)
   }
 
-  PrimaryExpression = (node: PrimaryExpression) => {
-    switch(node.typeName) {
-      case 'boolean': {
-        const bool = createBaseASTNode('BooleanLiteral') as BooleanLiteral
-        bool.value = node.value == 'true'
+  public PrimaryExpression = (node: PrimaryExpression) => {
+    switch (node.typeName) {
+      case "boolean": {
+        const bool = createBaseASTNode("BooleanLiteral") as BooleanLiteral
+        bool.value = node.value === "true"
         this.stack.push(bool)
       }
-      case 'number': {
+      case "number": {
         this.stack.push(createNumberLiteral(node.value))
       }
     }

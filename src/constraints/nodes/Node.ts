@@ -1,5 +1,4 @@
-import { Type } from "../types/Type";
-import { IdentifierContext } from "../../antlr/SolidityParser";
+import { Type } from "../types/Type"
 
 interface Expression {
   parent?: Node
@@ -7,33 +6,33 @@ interface Expression {
   type: SyntaxKind
 }
 
-export type ArithmeticOp = 
-  | '+'
-  | '-'
-  | '*'
-  | '/'
+export type ArithmeticOp =
+  | "+"
+  | "-"
+  | "*"
+  | "/"
 
-export type ComparisonOp = 
-  | '<'
-  | '>'
-  | '<='
-  | '>='
-  | '=='
-  | '!='
+export type ComparisonOp =
+  | "<"
+  | ">"
+  | "<="
+  | ">="
+  | "=="
+  | "!="
 
-export const ComparisonOpList = ['<', '>', '<=', '>=', '==', '!=']
+export const ComparisonOpList = ["<", ">", "<=", ">=", "==", "!="]
 
-export type TypeString = 
-  | 'boolean'
-  | 'number'
+export type TypeString =
+  | "boolean"
+  | "number"
 
 export type BinOp =
   | ArithmeticOp
   | ComparisonOp
 
 export interface PrimaryExpression extends Expression {
-  type: 'PrimaryExpression'
-  typeName: TypeString;
+  type: "PrimaryExpression"
+  typeName: TypeString
   value: string
 }
 
@@ -44,19 +43,19 @@ export interface BinaryExpression extends Expression {
 }
 
 export interface MuExpression extends BinaryExpression {
-  type: 'MuExpression'
+  type: "MuExpression"
   left: MuExp
   right: MuExp
 }
 
 export interface SExpression extends BinaryExpression {
-  type: 'SExpression'
+  type: "SExpression"
   left: SExp
   right: SExp
 }
 
 export interface CMPExpression extends BinaryExpression {
-  type: 'CMPExpression'
+  type: "CMPExpression"
   op: ComparisonOp
   left: SExp
   right: MuExp
@@ -71,18 +70,18 @@ export interface SIdentifier extends Identifier {
 }
 
 export interface MuIdentifier extends Identifier {
-  type: 'MuIdentifier'
+  type: "MuIdentifier"
 }
 
 export interface ForAllExpression extends Expression {
-  type: 'ForAllExpression'
+  type: "ForAllExpression"
   constraint: CMPExpression | MuExp
   mu: MuIdentifier[]
   name: string[]
 }
 
 export interface SumExpression extends Expression {
-  type: 'SumExpression'
+  type: "SumExpression"
   mu: MuIdentifier[]
   free: MuIdentifier[]
   body: MuExp
@@ -96,33 +95,33 @@ export interface IndexedAccess extends Expression {
 }
 
 export interface SIndexedAccess extends IndexedAccess {
-  type: 'SIndexedAccess'
+  type: "SIndexedAccess"
   index: SExp
 }
 
 export interface MuIndexedAccess extends IndexedAccess {
-  type: 'MuIndexedAccess'
+  type: "MuIndexedAccess"
   index: MuIdentifier
 }
 
 export interface DummyNode extends Expression {
-  type: 'DummyNode'
+  type: "DummyNode"
 }
 
 export type SyntaxKind =
-  | 'PrimaryExpression'
-  | 'ForAllExpression'
-  | 'SumExpression'
-  | 'SIndexedAccess'
-  | 'MuIndexedAccess'
-  | 'DummyNode'
-  | 'MuIdentifier'
-  | 'SIdentifier'
-  | 'MuExpression'
-  | 'SExpression'
-  | 'CMPExpression'
+  | "PrimaryExpression"
+  | "ForAllExpression"
+  | "SumExpression"
+  | "SIndexedAccess"
+  | "MuIndexedAccess"
+  | "DummyNode"
+  | "MuIdentifier"
+  | "SIdentifier"
+  | "MuExpression"
+  | "SExpression"
+  | "CMPExpression"
 
-export type Node = 
+export type Node =
   | DummyNode
   | PrimaryExpression
   | CMPExpression
@@ -134,7 +133,7 @@ export type QuantityExp =
   | SumExpression
   | ForAllExpression
 
-export type MuExp = 
+export type MuExp =
   | MuExpression
   | MuIndexedAccess
   | PrimaryExpression
@@ -154,6 +153,6 @@ export type Iden =
   | SIdentifier
   | MuIdentifier
 
-export const SExpTypes: SyntaxKind[] = ['SExpression', 'SIndexedAccess',
-  'SumExpression', 'SIdentifier', 'PrimaryExpression']
-export const MuExpTypes: SyntaxKind[] = ['MuExpression', 'MuIndexedAccess', 'PrimaryExpression']
+export const SExpTypes: SyntaxKind[] = ["SExpression", "SIndexedAccess",
+  "SumExpression", "SIdentifier", "PrimaryExpression"]
+export const MuExpTypes: SyntaxKind[] = ["MuExpression", "MuIndexedAccess", "PrimaryExpression"]
