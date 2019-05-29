@@ -34,9 +34,15 @@ constraintBuilder.constraint.forEach((constraints, c) => {
 })
 const decorator =
   new Decorator([...constraintBuilder.constraint.values()].reduce((left, right) => [...left, ...right]),
-    stateVars, stateVarGen.contractVars, false)
+    stateVars, stateVarGen.contractVars, true)
 decorator.visit(ast)
 const printer = new Printer(contract.toString("utf-8"))
 visit(ast, printer)
-fs.writeFileSync(process.argv[4], printer.source)
+
+function fileNameAndExt(path: string): [string, string] {
+  return [path.substr(0, path.lastIndexOf(".")), path.substr(path.lastIndexOf(".") + 1, path.length)]
+}
+const [file, ext] = fileNameAndExt(process.argv[2])
+
+fs.writeFileSync(file + "_secured" + ext, printer.source)
 console.log(printer.source)
