@@ -50,6 +50,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     this.constraint.get(this.currentContract)!.push(node)
     if (node.type === "SumExpression") {
       node.name = context.identifier().text
+      node.cacheName = generateNewVarName(node.name + "_tmp")
     }
     return this.defaultResult()
   }

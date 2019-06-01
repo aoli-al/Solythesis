@@ -56,11 +56,12 @@ export function createNumberLiteral(value: string) {
   return node
 }
 
-export function createVariableDeclaration(name: string, type: TypeName, stateVar: boolean) {
+export function createVariableDeclaration(name: string, type: TypeName, stateVar: boolean, storageLocation?: string) {
   const node = createBaseASTNode("VariableDeclaration") as VariableDeclaration
   node.name = name
   node.isStateVar = stateVar
   node.typeName = type
+  node.storageLocation = storageLocation
   if (type.type === "Mapping" || type.type === "ArrayTypeName") {
     node.isIndexed = true
   } else {
@@ -279,4 +280,15 @@ export function equal(a: Expression, b: Expression): boolean {
       return a.typeName.name === c.typeName.name
   }
   return false
+}
+
+export function resolveFunctionName(a: Expression): [string, string] {
+  if (a.type === "Identifier") {
+    return ["this", a.name]
+  } else if (a.type === "MemberAccess" && a.expression.type === "Identifier") {
+    return [a.expression.name, a.memberName]
+  } else if (a.type === "ElementaryTypeNameExpression") {
+    return ["this", "_reserved_cast"]
+  }
+  return ["unknown", "unkown"]
 }

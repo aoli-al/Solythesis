@@ -76,6 +76,7 @@ export interface ForAllExpression extends Expression {
   constraint: CMPExpression | MuExp
   mu: MuIdentifier[]
   name: string[]
+  index: string
 }
 
 export interface SumExpression extends Expression {
@@ -85,6 +86,7 @@ export interface SumExpression extends Expression {
   body: MuExp
   constraint: SExp | MuExpression | MuIndexedAccess
   name: string
+  cacheName: string
 }
 
 export interface IndexedAccess extends Expression {

@@ -4,7 +4,7 @@ import parser, { StateVariableDeclaration, visit } from "solidity-parser-antlr"
 import { SolidityLexer } from "./antlr/SolidityLexer"
 import { SolidityParser } from "./antlr/SolidityParser"
 import { ConstraintBuilder } from "./constraints/ConstraintBuilder"
-import { Decorator } from "./constraints/Decorator"
+import { StateVarDecorator } from "./constraints/StateVarDecorator"
 import { QuantityExp } from "./constraints/nodes/Node"
 import { GenStateVariables as StateVariableGenerator } from "./constraints/StateVariableGenerator"
 import { Printer } from "./printer/Printer"
@@ -33,8 +33,8 @@ constraintBuilder.constraint.forEach((constraints, c) => {
       .map((it) => stateVarGen.analysis(it as QuantityExp)).reduce((left, right) => [...left, ...right]))
 })
 const decorator =
-  new Decorator([...constraintBuilder.constraint.values()].reduce((left, right) => [...left, ...right]),
-    stateVars, stateVarGen.contractVars, true)
+  new StateVarDecorator([...constraintBuilder.constraint.values()].reduce((left, right) => [...left, ...right]),
+    stateVars, stateVarGen.contractVars, true, true)
 decorator.visit(ast)
 const printer = new Printer(contract.toString("utf-8"))
 visit(ast, printer)
@@ -44,5 +44,5 @@ function fileNameAndExt(path: string): [string, string] {
 }
 const [file, ext] = fileNameAndExt(process.argv[2])
 
-fs.writeFileSync(file + "_secured" + ext, printer.source)
+fs.writeFileSync(file + "_secured." + ext, printer.source)
 console.log(printer.source)

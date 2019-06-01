@@ -17,17 +17,15 @@ import {
 export class Rewriter extends ConstraintVisitor {
   public expression: Map<string, Expression>
   public stack: ASTNode[] = []
-  public cache: Map<string, string>
 
   public SExpression = this.BinaryExpression
   public MuExpression = this.BinaryExpression
 
   public SIndexedAccess = this.IndexedAccess
   public MuIndexedAccess = this.IndexedAccess
-  constructor(cache: Map<string, string>, expression: Map<string, Expression> = new Map()) {
+  constructor(expression: Map<string, Expression> = new Map()) {
     super()
     this.expression = expression
-    this.cache = cache
   }
 
   public visit(node: Node): ASTNode {

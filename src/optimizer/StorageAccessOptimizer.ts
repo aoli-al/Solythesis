@@ -13,8 +13,8 @@ import { ContractVisitor } from "../visitors/ContractVisitor"
 import { IndexAccessCollector } from "./IndexAccessCollector"
 
 export function optimizeStorageAccess(constraintsPair: Array<[QuantityExp, Map<string, Expression>]>,
-                                      statements: Statement[], contractVars: Map<string, TypeName>,
-                                      stateVarCache: Map<string, string>): Statement[][] {
+                                      statements: Statement[], contractVars: Map<string, TypeName>
+                                      ): Statement[][] {
   const collector = new IndexAccessCollector()
   constraintsPair.map((it) => {
     if (it[0].type === "ForAllExpression") {

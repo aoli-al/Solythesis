@@ -9,7 +9,8 @@
     "postinstall": "link-module-alias"
   },
   "_moduleAliases": {
-    "solidity-parser-antlr": "solidity-parser-antlr"
+    "solidity-parser-antlr": "solidity-parser-antlr",
+    "surya": "surya"
   },
   "keywords": [],
   "author": "",
