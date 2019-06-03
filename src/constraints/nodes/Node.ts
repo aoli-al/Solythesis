@@ -104,6 +104,12 @@ export interface MuIndexedAccess extends IndexedAccess {
   index: MuIdentifier
 }
 
+export interface MemberAccess extends Expression {
+  type: "MemberAccess"
+  expression: SIdentifier
+  memberName: string
+}
+
 export interface DummyNode extends Expression {
   type: "DummyNode"
 }
@@ -120,6 +126,7 @@ export type SyntaxKind =
   | "MuExpression"
   | "SExpression"
   | "CMPExpression"
+  | "MemberAccess"
 
 export type Node =
   | DummyNode
@@ -144,6 +151,7 @@ export type SExp =
   | SIndexedAccess
   | SIdentifier
   | PrimaryExpression
+  | MemberAccess
 
 export type Exp =
   | SExp

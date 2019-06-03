@@ -1,7 +1,7 @@
 import * as _ from "lodash"
 import {
   CMPExpression, ForAllExpression, MuExpression, MuIdentifier, MuIndexedAccess, Node, PrimaryExpression,
-  SExpression, SIdentifier, SIndexedAccess, SumExpression,
+  SExpression, SIdentifier, SIndexedAccess, SumExpression, MemberAccess,
 } from "../constraints/nodes/Node"
 
 export abstract class ConstraintVisitor {
@@ -15,6 +15,7 @@ export abstract class ConstraintVisitor {
   public MuIdentifier?: (node: MuIdentifier) => void
   public SIdentifier?: (node: SIdentifier) => void
   public CMPExpression?: (node: CMPExpression) => void
+  public MemberAccess?: (node: MemberAccess) => void
   public visit(node: Node) {
     if (Array.isArray(node)) {
       node.forEach((it) => this.visit(it))

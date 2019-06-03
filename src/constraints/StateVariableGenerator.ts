@@ -4,8 +4,7 @@ import { ConstraintVisitor } from "../visitors/ConstraintVisitor"
 import {ForAllExpression, MuIndexedAccess, QuantityExp, SIdentifier, SumExpression } from "./nodes/Node"
 import {
   createArray, createBaseASTNode, createElementaryTypeName, createMapping,
-  createVariableDeclaration,
-  createStateVariableDeclaration,
+  createStateVariableDeclaration, createVariableDeclaration,
 } from "./utilities"
 
 let counter = 0

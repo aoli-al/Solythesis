@@ -206,6 +206,15 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       const exp = new Rewriter(this.stateVarCache, map).visit(node.constraint) as Expression
       const functionCall = createFunctionCall(createIdentifier("assert"), [exp], [])
       forLoop.body.statements = [createExpressionStmt(functionCall)]
+
+      if (!this.enableForAllOptimization || !this.canOptimize) {
+        const expressions: Statement[] = node.name.map((name) =>
+          createExpressionStmt(
+            createBinaryOperation(createMemberAccess(createIdentifier(name), "length"),
+              createNumberLiteral("0"), "=")))
+        expressions.unshift(forLoop)
+        return createBlock(expressions)
+      }
       return forLoop
     }
   }
@@ -251,9 +260,6 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
             const functionCall = createFunctionCall(
               createMemberAccess(createIdentifier(name), "push"), [indices.get(node.mu[index].name)!], [])
             block.statements.push(createExpressionStmt(functionCall))
-            this.functionDecorators.pre.push(createExpressionStmt(
-              createBinaryOperation(createMemberAccess(createIdentifier(name), "length"),
-                createNumberLiteral("0"), "=")))
           })
         }
         return new PendingStatements([block])

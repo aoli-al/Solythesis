@@ -240,6 +240,7 @@ export function getUpdatedVariable(node: Expression): string | undefined {
   switch (node.type) {
     case "Identifier": return node.name
     case "IndexAccess": return getUpdatedVariable(node.base)
+    case "MemberAccess": return getUpdatedVariable(node.expression)
   }
   return undefined
 }

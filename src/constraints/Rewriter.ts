@@ -1,12 +1,11 @@
 import {
   ASTNode, BinaryOperation, BinOp, Block, BooleanLiteral, ElementaryTypeName, Expression, ExpressionList,
   ExpressionStatement, ForStatement, FunctionCall, Identifier, IndexAccess, NumberLiteral, Statement,
-  VariableDeclaration, VariableDeclarationStatement,
 } from "solidity-parser-antlr"
 import { ConstraintVisitor } from "../visitors/ConstraintVisitor"
 import {
-  BinaryExpression, CMPExpression, Exp, ForAllExpression, Iden, IndexedAccess, MuExpression, MuIdentifier,
-  Node, PrimaryExpression, SExpression, SIdentifier, SIndexedAccess, SumExpression, SyntaxKind,
+  BinaryExpression, CMPExpression, Exp, ForAllExpression, Iden, IndexedAccess, MemberAccess, MuIdentifier,
+  Node, PrimaryExpression, SExpression, SIdentifier,
 } from "./nodes/Node"
 import {
   createBaseASTNode, createBinaryOperation, createElementaryTypeName, createExpressionStmt, createFunctionCall,
@@ -55,6 +54,11 @@ export class Rewriter extends ConstraintVisitor {
 
   public MuIdentifier = (node: MuIdentifier) => {
     this.stack.push(this.expression.get(node.name)!)
+  }
+
+  public MemberAccess = (node: MemberAccess) => {
+    const left = this.visit(node.expression) as Identifier
+    this.stack.push(createMemberAccess(left, node.memberName))
   }
 
   public PrimaryExpression = (node: PrimaryExpression) => {

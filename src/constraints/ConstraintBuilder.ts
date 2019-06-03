@@ -9,7 +9,7 @@ import { SolidityVisitor } from "../antlr/SolidityVisitor"
 import {
   ArithmeticOp, BinOp, CMPExpression, ComparisonOp, ComparisonOpList, Exp, ForAllExpression, Iden,
   Identifier, MuExp, MuExpression, MuExpTypes, MuIdentifier, MuIndexedAccess, Node, PrimaryExpression, SExp,
-  SExpression, SExpTypes, SIdentifier, SIndexedAccess, SumExpression, SyntaxKind,
+  SExpression, SExpTypes, SIdentifier, SIndexedAccess, SumExpression, SyntaxKind, MemberAccess,
 } from "./nodes/Node"
 import { objectAllocator } from "./utilities"
 
@@ -81,30 +81,36 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
         }
       }
       case 3: {
-          const left = this.visit(context.expression(0))!
-          const right = this.visit(context.expression(1))!
-          const op = context.getChild(1).text as BinOp
-          if (MuExpTypes.includes(left.type) && MuExpTypes.includes(right.type)) {
-            const node = this.createNode("MuExpression") as MuExpression
-            node.left = left as MuExp
-            node.right = right as MuExp
-            node.op = op
-            return node
-          }
-          if (SExpTypes.includes(left.type) && SExpTypes.includes(right.type)) {
-            const node = this.createNode("SExpression") as SExpression
-            node.left = left as SExp
-            node.right = right as SExp
-            node.op = op
-            return node
-          }
-          if (ComparisonOpList.includes(op)) {
-            const node = this.createNode("CMPExpression") as CMPExpression
-            node.left = left as SExp
-            node.right = right as MuExp
-            node.op = op as ComparisonOp
-            return node
-          }
+        const left = this.visit(context.expression(0))!
+        const right = this.visit(context.getChild(2))!
+        if ("." === context.getChild(1).text) {
+          const node = this.createNode("MemberAccess") as MemberAccess
+          node.expression = left as SIdentifier
+          node.memberName = (right as Identifier).name
+          return node
+        }
+        const op = context.getChild(1).text as BinOp
+        if (MuExpTypes.includes(left.type) && MuExpTypes.includes(right.type)) {
+          const node = this.createNode("MuExpression") as MuExpression
+          node.left = left as MuExp
+          node.right = right as MuExp
+          node.op = op
+          return node
+        }
+        if (SExpTypes.includes(left.type) && SExpTypes.includes(right.type)) {
+          const node = this.createNode("SExpression") as SExpression
+          node.left = left as SExp
+          node.right = right as SExp
+          node.op = op
+          return node
+        }
+        if (ComparisonOpList.includes(op)) {
+          const node = this.createNode("CMPExpression") as CMPExpression
+          node.left = left as SExp
+          node.right = right as MuExp
+          node.op = op as ComparisonOp
+          return node
+        }
       }
     }
     return null
