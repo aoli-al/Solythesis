@@ -4,8 +4,8 @@ import parser, { StateVariableDeclaration, visit } from "solidity-parser-antlr"
 import { SolidityLexer } from "./antlr/SolidityLexer"
 import { SolidityParser } from "./antlr/SolidityParser"
 import { ConstraintBuilder } from "./constraints/ConstraintBuilder"
-import { StateVarDecorator } from "./constraints/StateVarDecorator"
 import { QuantityExp } from "./constraints/nodes/Node"
+import { AssertionDectorator } from "./constraints/AssertionVarDecorator"
 import { GenStateVariables as StateVariableGenerator } from "./constraints/StateVariableGenerator"
 import { Printer } from "./printer/Printer"
 import { VariableCollector } from "./visitors/VariableCollector"
@@ -33,7 +33,7 @@ constraintBuilder.constraint.forEach((constraints, c) => {
       .map((it) => stateVarGen.analysis(it as QuantityExp)).reduce((left, right) => [...left, ...right]))
 })
 const decorator =
-  new StateVarDecorator([...constraintBuilder.constraint.values()].reduce((left, right) => [...left, ...right]),
+  new AssertionDectorator([...constraintBuilder.constraint.values()].reduce((left, right) => [...left, ...right]),
     stateVars, stateVarGen.contractVars, true, true)
 decorator.visit(ast)
 const printer = new Printer(contract.toString("utf-8"))

@@ -1,8 +1,9 @@
 import {
   ArrayTypeName, ASTNode, ASTNodeTypeString, BaseASTNode, BinaryOperation, BinOp, Block, ElementaryTypeName,
   Expression, ExpressionStatement, FunctionCall, Identifier, IfStatement, IndexAccess, Mapping, MemberAccess,
-  NumberLiteral, Statement, TypeName, VariableDeclaration, VariableDeclarationStatement,
+  NumberLiteral, Statement, TypeName, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration,
 } from "solidity-parser-antlr"
+import * as surya from "surya"
 import {
   MuExp, MuExpTypes, Node, PrimaryExpression, SExpTypes, SIdentifier, SumExpression,
   SyntaxKind,
@@ -41,6 +42,14 @@ export function createBlock(statements: Statement[]) {
 export function createIdentifier(name: string) {
   const node = createBaseASTNode("Identifier") as Identifier
   node.name = name
+  return node
+}
+
+export function createStateVariableDeclaration(variables: VariableDeclaration[],
+                                               initialValue?: Expression) {
+  const node = createBaseASTNode("StateVariableDeclaration") as StateVariableDeclaration
+  node.variables = variables
+  node.initialValue = initialValue
   return node
 }
 
@@ -282,13 +291,16 @@ export function equal(a: Expression, b: Expression): boolean {
   return false
 }
 
-export function resolveFunctionName(a: Expression): [string, string] {
+export function resolveFunctionName(a: Expression) {
   if (a.type === "Identifier") {
-    return ["this", a.name]
+    return a.name
   } else if (a.type === "MemberAccess" && a.expression.type === "Identifier") {
-    return [a.expression.name, a.memberName]
-  } else if (a.type === "ElementaryTypeNameExpression") {
-    return ["this", "_reserved_cast"]
+    return a.memberName
   }
-  return ["unknown", "unkown"]
+  return "unknown"
+}
+
+export function canOptimize(contract: string, caller: string) {
+  const result = surya.ftrace(contract + "::" + caller, "all", [process.argv[2]]) as string
+  return !result.includes("🛑")
 }

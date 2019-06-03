@@ -5,6 +5,7 @@ import {ForAllExpression, MuIndexedAccess, QuantityExp, SIdentifier, SumExpressi
 import {
   createArray, createBaseASTNode, createElementaryTypeName, createMapping,
   createVariableDeclaration,
+  createStateVariableDeclaration,
 } from "./utilities"
 
 let counter = 0
@@ -47,19 +48,15 @@ export class GenStateVariables extends ConstraintVisitor {
   }
 
   public createStateVariable(name: string, typeStack: TypeName[]) {
-    const node = createBaseASTNode("StateVariableDeclaration") as StateVariableDeclaration
-    if (typeStack.length === 1) {
-      node.variables = [createVariableDeclaration(name, typeStack[0], true)]
-    } else {
-      const createMappingRecursive = (stack: TypeName[]): TypeName => {
-        if (stack.length === 1) {
-          return stack[0]
-        }
-        return createMapping(stack[0] as ElementaryTypeName, createMappingRecursive(stack.slice(1)))
+    const createMappingRecursive = (stack: TypeName[]): TypeName => {
+      if (stack.length === 1) {
+        return stack[0]
       }
-      node.variables = [createVariableDeclaration(name, createMappingRecursive(typeStack), true)]
+      return createMapping(stack[0] as ElementaryTypeName, createMappingRecursive(stack.slice(1)))
     }
-    this.stateVariables.push(node)
+    const variables = [createVariableDeclaration(name,
+      typeStack.length === 1 ? typeStack[0] : createMappingRecursive(typeStack), true)]
+    this.stateVariables.push(createStateVariableDeclaration(variables))
   }
 
   public SumExpression = (node: SumExpression) => {

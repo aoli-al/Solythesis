@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "args": ["./tests/vote.sol", "./tests/constraints2.txt", "./tests/vote-secured.sol"],
+      "args": ["./tests/test.sol", "./tests/constraints.txt", "./tests/vote-secured.sol"],
       "program": "${workspaceFolder}/src/main.ts",
       "preLaunchTask": "tsc: build - tsconfig.json",
       "outFiles": [
