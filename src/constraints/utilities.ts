@@ -1,4 +1,5 @@
 import * as dot from "graphlib-dot"
+import parser, { SourceUnit, ContractDefinition, FunctionDefinition } from "solidity-parser-antlr"
 import {
   ArrayTypeName, ASTNode, ASTNodeTypeString, BaseASTNode, BinaryOperation, BinOp, Block, ElementaryTypeName,
   Expression, ExpressionStatement, FunctionCall, Identifier, IfStatement, IndexAccess, Mapping, MemberAccess,
@@ -10,6 +11,7 @@ import {
   SyntaxKind,
 } from "./nodes/Node"
 import { generateNewVarName } from "./StateVariableGenerator"
+import { Parser } from "solidity-parser-antlr/dist/antlr4";
 
 function Node(this: Node, kind: SyntaxKind) {
   this.children = []
@@ -330,4 +332,64 @@ export function getSubFunctions(contract: string, caller: string): Array<[string
   //   const [left, right] = desc.split("::")
   //   return [left.split(" ").slice(-1)[0], right.split(" ")[0]]
   // })
+}
+
+function getInlineAssembly(assembly: string) {
+  const ast = parser.parse(assembly, {}) as SourceUnit
+  return ((ast.children[0] as ContractDefinition).subNodes[0] as FunctionDefinition).body!.statements[0]
+}
+
+export function createGlobalArray(localName: string, globalName: string) {
+  const template = `
+  contract C {
+    function check() public  {
+      assembly {
+        ${localName} := mload(0x40)
+        mstore(0x40, add(${localName}, 0x280))
+        sstore(${globalName}_slot, ${localName})
+        mstore(${localName}, 0x260)
+      }
+    }
+  }
+  `
+  return getInlineAssembly(template)
+}
+
+export function loadGlobalArray(localName: string, globalName: string) {
+  const template = `
+  contract C {
+    function check() public  {
+      assembly {
+        ${localName} := sload(${globalName}_slot)
+      }
+    }
+  }
+  `
+  return getInlineAssembly(template)
+}
+
+export function storeArrayValue(array: string, index: string, value: string) {
+  const template = `
+  contract C {
+    function check() public  {
+      assembly {
+        mstore(add(${array}, mul(sload(${index}_slot), 32)), ${value})
+      }
+    }
+  }
+  `
+  return getInlineAssembly(template)
+}
+
+export function loadArrayValue(array: string, index: string, variable: string) {
+  const template = `
+  contract C {
+    function check() public  {
+      assembly {
+        ${variable} := mload(add(${array}, mul(${index}, 32)))
+      }
+    }
+  }
+  `
+  return getInlineAssembly(template)
 }

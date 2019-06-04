@@ -1,3 +1,5 @@
+import { ElementaryTypeName } from "solidity-parser-antlr";
+
 interface Expression {
   parent?: Node
   children: Node[]
@@ -75,6 +77,9 @@ export interface ForAllExpression extends Expression {
   type: "ForAllExpression"
   constraint: CMPExpression | MuExp
   mu: MuIdentifier[]
+  muWithTypes: Map<string, ElementaryTypeName>
+  memoryLocation: Map<string, number>
+  muDescriptor?: MuExpression
   name: string[]
   index: string
 }
@@ -85,6 +90,7 @@ export interface SumExpression extends Expression {
   free: MuIdentifier[]
   body: MuExp
   constraint: SExp | MuExpression | MuIndexedAccess
+  muDescriptor?: MuExpression
   name: string
   cacheName: string
 }
@@ -145,6 +151,7 @@ export type MuExp =
   | MuIndexedAccess
   | PrimaryExpression
   | MuIdentifier
+  | MuIdentifier
 
 export type SExp =
   | SExpression
@@ -163,4 +170,4 @@ export type Iden =
 
 export const SExpTypes: SyntaxKind[] = ["SExpression", "SIndexedAccess",
   "SumExpression", "SIdentifier", "PrimaryExpression", "MemberAccess"]
-export const MuExpTypes: SyntaxKind[] = ["MuExpression", "MuIndexedAccess", "PrimaryExpression"]
+export const MuExpTypes: SyntaxKind[] = ["MuExpression", "MuIndexedAccess", "PrimaryExpression", "MuIdentifier"]

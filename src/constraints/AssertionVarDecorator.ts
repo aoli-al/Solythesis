@@ -1,7 +1,7 @@
 import * as _ from "lodash"
 import {
   BinOp, Block, ContractDefinition, Expression, ExpressionStatement, ForStatement, FunctionDefinition,
-  Identifier, ReturnStatement, Statement, StateVariableDeclaration, TypeName, Visitor, ArrayTypeName, FunctionCall,
+  Identifier, ReturnStatement, Statement, StateVariableDeclaration, TypeName, Visitor, ArrayTypeName, FunctionCall, IndexAccess, ASTNode,
 } from "solidity-parser-antlr"
 import { optimizeStorageAccess } from "../optimizer/StorageAccessOptimizer"
 import { ContractVisitor } from "../visitors/ContractVisitor"
@@ -18,9 +18,13 @@ import {
   canOptimize,
   createStateVariableDeclaration,
   getSubFunctions,
+  createGlobalArray,
+  loadGlobalArray,
+  storeArrayValue,
+  loadArrayValue,
 } from "./utilities"
 
-const updateOps = ["=", "-=", "+=", "*=", "/="]
+export const updateOps = ["=", "-=", "+=", "*=", "/="]
 const depthTracker = generateNewVarName("depth")
 
 export class AssertionDectorator extends ContractVisitor implements Visitor  {
@@ -36,7 +40,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
   public enableForAllOptimization: boolean
   public canOptimize: boolean = false
   public pendingReturns: Block[] = []
-  public forAllCacheMap: Map<ForAllExpression, [string[], string]> = new Map()
+  public forAllCacheMap: Map<ForAllExpression, [string[], Identifier]> = new Map()
   private contractName: string = ""
   private functionConstraints: Map<string, Map<string, Set<Node>>>
   constructor(constraints: Node[], functionConstraints: Map<string, Map<string, Set<Node>>>,
@@ -80,17 +84,19 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     this.canOptimize = canOptimize(this.contractName, name)
     node.body = this.visit(node.body)
     if (node.body) {
-      node.body.statements.unshift(...this.functionDecorators.pre)
       if (this.canAddAssertions && this.checkConstraints.size !== 0) {
+        node.body.statements.push(...this.generateAssertions())
+        node.body.statements.unshift(...this.functionDecorators.pre)
         const depth = createIdentifier(depthTracker)
         const one = createNumberLiteral("1")
         const increaseOne = createBinaryOperation(depth, one, "+=")
         node.body.statements.unshift(createExpressionStmt(increaseOne))
-        node.body.statements.push(...this.generateAssertions())
         const decreaseOne = createExpressionStmt(createBinaryOperation(depth, one, "-="))
         this.pendingReturns.forEach((it) => {
           it.statements.unshift(decreaseOne)
         })
+      } else {
+        node.body.statements.unshift(...this.functionDecorators.pre)
       }
       node.body.statements.push(...this.functionDecorators.post)
     }
@@ -142,7 +148,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     const pendingStatements = new PendingStatements()
     this.constraints.forEach((it) => pendingStatements.merge(generate(it, base as Identifier)))
     if (pendingStatements.isEmpty()) { return statement }
-    if (!this.enableMappingOptimization || !this.canOptimize ||
+    if (!this.enableMappingOptimization ||
       constraintPair.filter((it) => it[0].type === "SumExpression").length === 0) {
       return [...this.visit(pendingStatements.pre), statement, ...this.visit(pendingStatements.post)]
     } else {
@@ -188,32 +194,31 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       forLoop.initExpression = createVariableDeclarationStmt(
         [createVariableDeclaration(indexIdentifier.name, createElementaryTypeName("uint256"), false)],
         createNumberLiteral("0"))
-      const length = this.enableForAllOptimization && this.canOptimize
-        ? createIdentifier(this.generateOrCreateForAllCache(node)[1])
-        : createMemberAccess(createIdentifier(node.name[0]), "length")
+      const length = this.generateOrCreateForAllCache(node)[1]
       forLoop.conditionExpression = createBinaryOperation(indexIdentifier, length, "<")
       forLoop.loopExpression = createExpressionStmt(
         createBinaryOperation(indexIdentifier, createNumberLiteral("1"), "+="))
       forLoop.body = createBaseASTNode("Block") as Block
+      const statements: Statement[] = []
       const map: Map<string, Expression> = new Map()
-      if (this.enableForAllOptimization && this.canOptimize) {
-        this.generateOrCreateForAllCache(node)[0].forEach((value, index) => {
+      this.generateOrCreateForAllCache(node)[0].forEach((value, index) => {
+        if (this.canOptimize && this.enableForAllOptimization) {
           map.set(node.mu[index].name, createIndexAccess(createIdentifier(value), indexIdentifier))
-        })
-      } else {
-        node.name.forEach((value, idx) => {
-          map.set(node.mu[idx].name, createIndexAccess(createIdentifier(value), indexIdentifier))
-        })
-      }
+        } else {
+          const tmpVar = generateNewVarName("tmp")
+          const varDecl = createVariableDeclaration(tmpVar, node.muWithTypes.get(node.mu[index].name)!, false)
+          statements.push(createVariableDeclarationStmt([varDecl]))
+          statements.push(loadArrayValue(value, indexIdentifier.name, tmpVar))
+          map.set(node.mu[index].name, createIdentifier(tmpVar))
+        }
+      })
       const exp = new Rewriter(this.stateVarCache, map).visit(node.constraint) as Expression
       const functionCall = createFunctionCall(createIdentifier("assert"), [exp], [])
-      forLoop.body.statements = [createExpressionStmt(functionCall)]
+      forLoop.body.statements = [...statements, createExpressionStmt(functionCall)]
 
       if (!this.enableForAllOptimization || !this.canOptimize) {
-        const expressions: Statement[] = node.name.map((name) =>
-          createExpressionStmt(
-            createBinaryOperation(createMemberAccess(createIdentifier(name), "length"),
-              createNumberLiteral("0"), "=")))
+        const expressions: Statement[] = [createExpressionStmt(
+          createBinaryOperation(createIdentifier(node.index), createNumberLiteral("0"), "="))]
         expressions.unshift(forLoop)
         return createBlock(expressions)
       }
@@ -229,7 +234,12 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
         .visit((node.constraint as CMPExpression).right) as Expression
       const condition = createBinaryOperation(left, variable, operator)
       const trueBody = createExpressionStmt(createBinaryOperation(variable, left as Expression, "="))
-      return createIfStatment(condition, trueBody)
+      const forAllUpdate = createIfStatment(condition, trueBody)
+      if (node.muDescriptor) {
+        return createIfStatment(
+          new Rewriter(this.stateVarCache, indices).visit(node.muDescriptor) as Expression, forAllUpdate)
+      }
+      return forAllUpdate
     }
     switch (node.constraint.type) {
       case "CMPExpression": {
@@ -248,21 +258,24 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       case "MuExpression": {
         const block = createBaseASTNode("Block") as Block
         block.statements = []
-        if (this.enableForAllOptimization && this.canOptimize) {
-          const arrays = this.generateOrCreateForAllCache(node)
-          const index = createIdentifier(arrays[1])
-          arrays[0].forEach((it, idx) => {
+        const arrays = this.generateOrCreateForAllCache(node)
+        const index = arrays[1] as Identifier
+        arrays[0].forEach((it, idx) => {
+          if (this.canOptimize && this.enableForAllOptimization) {
             const assignment = createBinaryOperation(
               createIndexAccess(createIdentifier(it), index), indices.get(node.mu[idx].name)!, "=")
             block.statements.push(createExpressionStmt(assignment))
-          })
-          block.statements.push(createExpressionStmt(createBinaryOperation(index, createNumberLiteral("1"), "+=")))
-        } else {
-          node.name.forEach((name, index) => {
-            const functionCall = createFunctionCall(
-              createMemberAccess(createIdentifier(name), "push"), [indices.get(node.mu[index].name)!], [])
-            block.statements.push(createExpressionStmt(functionCall))
-          })
+          } else {
+            const tmpVar = generateNewVarName("tmp")
+            const varDecl = createVariableDeclaration(tmpVar, node.muWithTypes.get(node.mu[idx].name)!, false)
+            block.statements.push(createVariableDeclarationStmt([varDecl], indices.get(node.mu[idx].name)!))
+            block.statements.push(storeArrayValue(it, index.name, tmpVar))
+          }
+        })
+        block.statements.push(createExpressionStmt(createBinaryOperation(index, createNumberLiteral("1"), "+=")))
+        if (node.muDescriptor) {
+          return new PendingStatements(
+            [createIfStatment(new Rewriter(this.stateVarCache, indices).visit(node.muDescriptor) as Expression, block)])
         }
         return new PendingStatements([block])
       }
@@ -271,7 +284,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
   }
 
   private generateOrCreateStateVarCache(name: string): string {
-    if (!this.enableMappingOptimization || !this.canOptimize) { return name }
+    if (!this.canOptimize) { return name }
     if (this.stateVarCache.has(name)) {
       return this.stateVarCache.get(name)!
     } else {
@@ -289,21 +302,33 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     }
   }
 
-  private generateOrCreateForAllCache(node: ForAllExpression): [string[], string] {
+  private generateOrCreateForAllCache(node: ForAllExpression): [string[], Identifier] {
+    const globalArray = !this.canOptimize || !this.enableForAllOptimization
     if (!this.forAllCacheMap.has(node)) {
-      const index = generateNewVarName("index")
-      const varDecl = createVariableDeclaration(index, createElementaryTypeName("uint256"), false)
-      this.functionDecorators.pre.push(createVariableDeclarationStmt([varDecl], createNumberLiteral("0")))
       const names: string[] = []
       node.name.forEach((it, idx) => {
         const arr = generateNewVarName(node.mu[idx].name)
         names.push(arr)
-        const type = (this.contractVars.get(it)! as ArrayTypeName).baseTypeName
-        const arrayType = createArray(type, createNumberLiteral("20"))
+        const type = node.muWithTypes.get(node.mu[idx].name)!
+        // const arrayType = createArray(type, createNumberLiteral("20"))
+        const arrayType = createArray(type, globalArray ? undefined : createNumberLiteral("20"))
         const decl = createVariableDeclaration(arr, arrayType, false, "memory")
         this.functionDecorators.pre.push(createVariableDeclarationStmt([decl]))
+        if (globalArray) {
+          const initAssembly = createGlobalArray(arr, it)
+          const loadAssembly = loadGlobalArray(arr, it)
+          const ifStmt = createIfStatment(
+            createBinaryOperation(createIdentifier(depthTracker), createNumberLiteral("1"), "<="),
+            initAssembly, loadAssembly)
+          this.functionDecorators.pre.push(ifStmt)
+        }
       })
-      this.forAllCacheMap.set(node, [names, index])
+      const index = globalArray ? node.index : generateNewVarName("index")
+      if (!globalArray) {
+        const varDecl = createVariableDeclaration(index, createElementaryTypeName("uint256"), false)
+        this.functionDecorators.pre.push(createVariableDeclarationStmt([varDecl], createNumberLiteral("0")))
+      }
+      this.forAllCacheMap.set(node, [names, createIdentifier(index)])
     }
     return this.forAllCacheMap.get(node)!
   }
@@ -339,13 +364,18 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       const statement = createExpressionStmt(createBinaryOperation(v, right, operator))
       const statements: Statement[] = operator === "-=" ? [safeOperation, statement] : [statement, safeOperation]
       const block = createBlock(statements)
+      let muUpdate: Statement = block
       if (node.constraint.type === "MuExpression") {
         const condition = new Rewriter(this.stateVarCache, muIndices).visit(node.constraint) as Expression
-        return createIfStatment(condition, block)
-      } else {
-        return block
+        muUpdate = createIfStatment(condition, block)
       }
+      if (node.muDescriptor) {
+        return createIfStatment(new Rewriter(this.stateVarCache, muIndices)
+          .visit(node.muDescriptor) as Expression, muUpdate)
+      }
+      return muUpdate
     }
+
     return new PendingStatements([gen("-=")], [gen("+=")])
   }
 }

@@ -23,6 +23,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
   public constraint: Map<string, Node[]> = new Map()
   public currentContract: string = ""
   public muVariables: string[] = []
+  public arrayCount = 0
 
   constructor() {
     super()
@@ -154,7 +155,10 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     const node = this.createNode("ForAllExpression") as ForAllExpression
     this.muVariables = context.identifierList().identifier().map((it) => it.text)
     node.mu = context.identifierList().identifier().map((it) => this.visit(it) as MuIdentifier)
-    node.constraint = this.visit(context.expression()) as CMPExpression
+    node.constraint = this.visit(context.expression(0)) as CMPExpression
+    if (context.expression().length === 2) {
+      node.muDescriptor = this.visit(context.expression(1)) as MuExpression
+    }
     this.muVariables = []
     return node
   }
@@ -168,6 +172,9 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     node.mu = context.identifierList(1).identifier().map((it) => this.visit(it) as MuIdentifier)
     node.body = this.visit(context.expression(0)) as MuExp
     node.constraint = this.visit(context.expression(1)) as MuExpression
+    if (context.expression().length === 3) {
+      node.muDescriptor = this.visit(context.expression(2)) as MuExpression
+    }
     this.muVariables = []
     return node
   }

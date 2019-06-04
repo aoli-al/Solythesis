@@ -272,10 +272,10 @@ expression
   | primaryExpression ;
 
 forAllExpression
-  : 'ForAll' identifierList ',' expression;
+  : 'ForAll' identifierList ',' expression (',' expression)?;
 
 sumExpression
-  : 'Sum' identifierList ',' identifierList ',' expression ',' expression;
+  : 'Sum' identifierList ',' identifierList ',' expression ',' expression (',' expression)?;
 
 primaryExpression
   : BooleanLiteral

@@ -2,7 +2,7 @@ import {
   ArrayTypeName, ASTNode, BinaryOperation, Block, BooleanLiteral, ContractDefinition, ElementaryTypeName,
   Expression, ExpressionStatement, ForStatement, FunctionCall, FunctionDefinition, Identifier, IfStatement,
   IndexAccess, Mapping, MemberAccess, NumberLiteral, SourceUnit, StateVariableDeclaration, VariableDeclaration,
-  VariableDeclarationStatement, visit, Visitor,
+  VariableDeclarationStatement, visit, Visitor, InlineAssemblyStatement, AssemblyBlock, AssemblyAssignment, AssemblyCall, HexNumber, DecimalNumber,
 } from "solidity-parser-antlr"
 
 export class Printer implements Visitor {
@@ -120,6 +120,56 @@ export class Printer implements Visitor {
       this.source += "\n"
     })
     this.source += "}"
+    return false
+  }
+
+  public InlineAssemblyStatement = (node: InlineAssemblyStatement) => {
+    this.source += "assembly "
+    if (node.language) {
+      this.source += node.language + " "
+    }
+    this.visitOrPrint(node.body)
+    return false
+  }
+
+  public AssemblyBlock = (node: AssemblyBlock) => {
+    this.source += "{\n"
+    node.operations.forEach((it) => {
+      this.visitOrPrint(it)
+      this.source += "\n"
+    })
+    this.source += "}\n"
+    return false
+  }
+
+  public AssemblyAssignment = (node: AssemblyAssignment) => {
+    this.source += node.names.map((it) => it.name).join(",") + " := "
+    this.visitOrPrint(node.expression)
+    return false
+  }
+
+  public AssemblyCall = (node: AssemblyCall) => {
+    this.source += node.functionName
+    if (node.arguments.length > 0) {
+      this.source += "("
+      node.arguments.forEach((it, index) => {
+        this.visitOrPrint(it)
+        if (index !== node.arguments.length - 1) {
+          this.source += ","
+        }
+      })
+      this.source += ")"
+    }
+    return false
+  }
+
+  public HexNumber = (node: HexNumber) => {
+    this.source += node.value
+    return false
+  }
+
+  public DecimalNumber = (node: DecimalNumber) => {
+    this.source += node.value
     return false
   }
 

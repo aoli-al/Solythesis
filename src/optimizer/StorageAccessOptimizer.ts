@@ -1,7 +1,8 @@
 import {
   ASTNode, Expression, ExpressionStatement, Identifier, IndexAccess, Statement, TypeName,
-  VariableDeclarationStatement, visit, Visitor,
+  VariableDeclarationStatement, visit, Visitor, BinaryOperation,
 } from "solidity-parser-antlr"
+import { updateOps } from "../constraints/AssertionVarDecorator"
 import { QuantityExp } from "../constraints/nodes/Node"
 import { Rewriter } from "../constraints/Rewriter"
 import { generateNewVarName } from "../constraints/StateVariableGenerator"
@@ -35,11 +36,16 @@ export function optimizeStorageAccess(constraintsPair: Array<[QuantityExp, Map<s
       return [name, it, createVariableDeclarationStmt([decl], it), update]
     })
   const rewriter = new IndexAccessRewriter(tmpVars.map((tuple) => [tuple[0], tuple[1]]) as Array<[string, IndexAccess]>)
-  return [tmpVars.map((it) => it[2]), rewriter.visit(statements), tmpVars.map((it) => it[3])]
+  const stmts = rewriter.visit(statements)
+  const usedVarsDecl = tmpVars.filter((it) => rewriter.used.has(it[0])).map((it) => it[2])
+  const updatedVarUpdate = tmpVars.filter((it) => rewriter.updated.has(it[0])).map((it) => it[3])
+  return [usedVarsDecl, stmts, updatedVarUpdate]
 }
 
 class IndexAccessRewriter extends ContractVisitor implements Visitor {
   public nodes: Array<[string, IndexAccess]>
+  public updated: Set<string> = new Set()
+  public used: Set<string> = new Set()
   constructor(nodes: Array<[string, IndexAccess]>) {
     super()
     this.nodes = nodes
@@ -52,6 +58,17 @@ class IndexAccessRewriter extends ContractVisitor implements Visitor {
       node.index = this.visit(node.index)
       return node
     }
+    this.used.add(tuple[0][0])
     return createIdentifier(tuple[0][0])
+  }
+
+  public BinaryOperation = (node: BinaryOperation) => {
+    node.left = this.visit(node.left)
+    node.right = this.visit(node.right)
+
+    if (updateOps.includes(node.operator) && node.left.type === "Identifier") {
+      this.updated.add(node.left.name)
+    }
+    return node
   }
 }
