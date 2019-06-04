@@ -22,8 +22,10 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
+    "@types/graphlib-dot": "^0.6.1",
     "@types/lodash": "^4.14.132",
     "antlr4ts": "^0.5.0-alpha.3",
+    "graphlib-dot": "^0.6.2",
     "lodash": "^4.17.11",
     "tslint": "^5.16.0"
   }

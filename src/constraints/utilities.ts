@@ -1,7 +1,8 @@
+import * as dot from "graphlib-dot"
 import {
   ArrayTypeName, ASTNode, ASTNodeTypeString, BaseASTNode, BinaryOperation, BinOp, Block, ElementaryTypeName,
   Expression, ExpressionStatement, FunctionCall, Identifier, IfStatement, IndexAccess, Mapping, MemberAccess,
-  NumberLiteral, Statement, TypeName, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration,
+  NumberLiteral, Statement, TypeName, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, visit,
 } from "solidity-parser-antlr"
 import * as surya from "surya"
 import {
@@ -304,4 +305,29 @@ export function resolveFunctionName(a: Expression) {
 export function canOptimize(contract: string, caller: string) {
   const result = surya.ftrace(contract + "::" + caller, "all", [process.argv[2]]) as string
   return !result.includes("🛑")
+}
+
+const rawGraph = (surya.graph([process.argv[2]]) as string).split("\n").slice(0, -25).join("\n") + "}"
+
+export function getSubFunctions(contract: string, caller: string): Array<[string, string]> {
+  const graph = dot.read(rawGraph)
+  const stack = [contract + "." + caller]
+  const visited = new Set(stack)
+  while (stack.length !== 0) {
+    const children = graph.successors(stack.pop()!)
+    if (children) {
+      children.forEach((it) => {
+        if (!visited.has(it)) {
+          visited.add(it)
+          stack.push(it)
+        }
+      })
+    }
+  }
+  visited.delete(contract + "." + caller)
+  return [...visited].map((it) => it.split(".") as [string, string])
+  // return result.split("\n").slice(1).map((desc) => {
+  //   const [left, right] = desc.split("::")
+  //   return [left.split(" ").slice(-1)[0], right.split(" ")[0]]
+  // })
 }

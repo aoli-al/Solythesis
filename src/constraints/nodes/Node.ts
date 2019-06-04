@@ -162,5 +162,5 @@ export type Iden =
   | MuIdentifier
 
 export const SExpTypes: SyntaxKind[] = ["SExpression", "SIndexedAccess",
-  "SumExpression", "SIdentifier", "PrimaryExpression"]
+  "SumExpression", "SIdentifier", "PrimaryExpression", "MemberAccess"]
 export const MuExpTypes: SyntaxKind[] = ["MuExpression", "MuIndexedAccess", "PrimaryExpression"]

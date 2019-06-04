@@ -9,6 +9,7 @@ import { AssertionDectorator } from "./constraints/AssertionVarDecorator"
 import { GenStateVariables as StateVariableGenerator } from "./constraints/StateVariableGenerator"
 import { Printer } from "./printer/Printer"
 import { VariableCollector } from "./visitors/VariableCollector"
+import { ConstraintsCollector } from "./constraints/ConstraintsCollector";
 
 const contract = fs.readFileSync(process.argv[2])
 const constraint = fs.readFileSync(process.argv[3])
@@ -32,8 +33,11 @@ constraintBuilder.constraint.forEach((constraints, c) => {
       .filter((it) => it.type === "ForAllExpression" || it.type === "SumExpression")
       .map((it) => stateVarGen.analysis(it as QuantityExp)).reduce((left, right) => [...left, ...right]))
 })
+const constraints = [...constraintBuilder.constraint.values()].reduce((left, right) => [...left, ...right])
+const constraintsCollector = new ConstraintsCollector(constraints)
+constraintsCollector.visit(ast)
 const decorator =
-  new AssertionDectorator([...constraintBuilder.constraint.values()].reduce((left, right) => [...left, ...right]),
+  new AssertionDectorator(constraints, constraintsCollector.functionConstraints,
     stateVars, stateVarGen.contractVars, true, true)
 decorator.visit(ast)
 const printer = new Printer(contract.toString("utf-8"))

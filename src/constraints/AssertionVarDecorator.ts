@@ -1,7 +1,7 @@
 import * as _ from "lodash"
 import {
   BinOp, Block, ContractDefinition, Expression, ExpressionStatement, ForStatement, FunctionDefinition,
-  Identifier, ReturnStatement, Statement, StateVariableDeclaration, TypeName, Visitor, ArrayTypeName,
+  Identifier, ReturnStatement, Statement, StateVariableDeclaration, TypeName, Visitor, ArrayTypeName, FunctionCall,
 } from "solidity-parser-antlr"
 import { optimizeStorageAccess } from "../optimizer/StorageAccessOptimizer"
 import { ContractVisitor } from "../visitors/ContractVisitor"
@@ -17,6 +17,7 @@ import {
   createArray,
   canOptimize,
   createStateVariableDeclaration,
+  getSubFunctions,
 } from "./utilities"
 
 const updateOps = ["=", "-=", "+=", "*=", "/="]
@@ -37,7 +38,9 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
   public pendingReturns: Block[] = []
   public forAllCacheMap: Map<ForAllExpression, [string[], string]> = new Map()
   private contractName: string = ""
-  constructor(constraints: Node[], variables: Map<string, StateVariableDeclaration[]>,
+  private functionConstraints: Map<string, Map<string, Set<Node>>>
+  constructor(constraints: Node[], functionConstraints: Map<string, Map<string, Set<Node>>>,
+              variables: Map<string, StateVariableDeclaration[]>,
               contractVars: Map<string, TypeName>, optimize: boolean, forAllMemoryCache: boolean = true) {
     super()
     this.constraints = constraints
@@ -45,6 +48,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     this.contractVars = contractVars
     this.enableMappingOptimization = optimize
     this.enableForAllOptimization = forAllMemoryCache
+    this.functionConstraints = functionConstraints
   }
   public ContractDefinition = (node: ContractDefinition) => {
     this.contractName = node.name
@@ -57,7 +61,6 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     return node
   }
   public FunctionDefinition = (node: FunctionDefinition) => {
-    this.checkConstraints = new Set()
     this.stateVarCache = new Map()
     this.stateVarCacheReverse = new Map()
     this.functionDecorators = new PendingStatements()
@@ -69,6 +72,11 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       if (node.name.length === 0) { return  "<Fallback>" }
       return node.name
     })()
+    this.checkConstraints = getSubFunctions(this.contractName, name).map((it) => {
+      if (!this.functionConstraints.has(it[0]) ||
+        !this.functionConstraints.get(it[0])!.has(it[1])) { return new Set() }
+      return this.functionConstraints.get(it[0])!.get(it[1])!
+    }).reduce((left, right) => new Set([...left, ...right]), new Set())
     this.canOptimize = canOptimize(this.contractName, name)
     node.body = this.visit(node.body)
     if (node.body) {
@@ -104,12 +112,6 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     if (statement.expression.type !== "BinaryOperation") { return statement }
     const binOp = statement.expression
     if (!updateOps.includes(binOp.operator)) { return statement }
-    const variable = getUpdatedVariable(binOp.left)!
-    const realVarOptional = this.stateVarCacheReverse.get(variable)
-    const realVar = realVarOptional ? realVarOptional : variable
-    this.constraints.filter((it) => getMonitoredStateVariables(it).has(realVar)).forEach((it) => {
-      this.checkConstraints.add(it)
-    })
     if (binOp.left.type !== "IndexAccess") { return statement }
     let indices = [binOp.left.index]
 
