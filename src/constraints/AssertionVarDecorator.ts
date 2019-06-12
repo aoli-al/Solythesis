@@ -76,7 +76,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       if (node.name.length === 0) { return  "<Fallback>" }
       return node.name
     })()
-    this.checkConstraints = getSubFunctions(this.contractName, name).map((it) => {
+    this.checkConstraints = [...getSubFunctions(this.contractName, name), [this.contractName, name]].map((it) => {
       if (!this.functionConstraints.has(it[0]) ||
         !this.functionConstraints.get(it[0])!.has(it[1])) { return new Set() }
       return this.functionConstraints.get(it[0])!.get(it[1])!
