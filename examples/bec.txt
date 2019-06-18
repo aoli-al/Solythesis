@@ -1,0 +1,4 @@
+standard BasicToken {
+  sum_balance = Sum (), (a), balances[a], true;
+  constraint  totalSupply == sum_balance; 
+}

@@ -11,7 +11,6 @@ import {
   SyntaxKind,
 } from "./nodes/Node"
 import { generateNewVarName } from "./StateVariableGenerator"
-import { Parser } from "solidity-parser-antlr/dist/antlr4";
 
 function Node(this: Node, kind: SyntaxKind) {
   this.children = []
