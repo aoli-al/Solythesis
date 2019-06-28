@@ -310,6 +310,17 @@ export function canOptimize(contract: string, caller: string) {
 
 const rawGraph = (surya.graph([process.argv[2]]) as string).split("\n").slice(0, -25).join("\n") + "}"
 
+export function getCallers(contract: string, caller: string): string[] {
+  const graph = dot.read(rawGraph)
+  const stack = [contract + "." + caller]
+  const visited = new Set(stack)
+  return graph.predecessors(stack.pop()!) as string []
+  // return result.split("\n").slice(1).map((desc) => {
+  //   const [left, right] = desc.split("::")
+  //   return [left.split(" ").slice(-1)[0], right.split(" ")[0]]
+  // })
+}
+
 export function getSubFunctions(contract: string, caller: string): Array<[string, string]> {
   const graph = dot.read(rawGraph)
   const stack = [contract + "." + caller]

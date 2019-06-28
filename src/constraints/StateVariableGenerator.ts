@@ -18,9 +18,11 @@ export class GenStateVariables extends ConstraintVisitor {
   public stateVariables: StateVariableDeclaration[] = []
   public muWithTypes: Map<string, ElementaryTypeName> = new Map()
   public dynamicArrays: number = 0
-  constructor(contractVars: Map<string, TypeName>) {
+  public forallOptimization: boolean
+  constructor(contractVars: Map<string, TypeName>, globalMemory: boolean = true) {
     super()
     this.contractVars = contractVars
+    this.forallOptimization = globalMemory
   }
   public analysis(constraint: QuantityExp) {
     this.muWithTypes = new Map()
@@ -87,10 +89,14 @@ export class GenStateVariables extends ConstraintVisitor {
       node.index = generateNewVarName("index")
       node.mu.forEach((it) => {
         const name = generateNewVarName(it.name + "_addr")
-        this.createStateVariable(name, [createElementaryTypeName("uint256")])
+        if (this.forallOptimization) {
+          this.createStateVariable(name, [createElementaryTypeName("uint256")])
+          node.memoryLocation.set(it.name, this.dynamicArrays)
+          this.dynamicArrays += 1
+        } else {
+          this.createStateVariable(it.name, [createArray(node.muWithTypes.get(it.name)!)])
+        }
         node.name.push(name)
-        node.memoryLocation.set(it.name, this.dynamicArrays)
-        this.dynamicArrays += 1
       })
       this.createStateVariable(node.index, [createElementaryTypeName("uint256")])
     }

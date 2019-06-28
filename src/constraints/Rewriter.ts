@@ -1,5 +1,5 @@
 import {
-  ASTNode, BinaryOperation, BinOp, Block, BooleanLiteral, ElementaryTypeName, Expression, ExpressionList,
+  ASTNode, BinaryOperation, BinOp, Block, BooleanLiteral, ElementaryTypeName, Expression,
   ExpressionStatement, ForStatement, FunctionCall, Identifier, IndexAccess, NumberLiteral, Statement,
 } from "solidity-parser-antlr"
 import { ConstraintVisitor } from "../visitors/ConstraintVisitor"
