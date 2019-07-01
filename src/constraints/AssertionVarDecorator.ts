@@ -347,13 +347,15 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
         this.functionDecorators.pre.push(createVariableDeclarationStmt([decl]))
         if (globalArray) {
           const initAssembly = createGlobalArray(arr, it)
-          if (this.depthRequired) {
-            const loadAssembly = loadGlobalArray(arr, it)
+          const loadAssembly = loadGlobalArray(arr, it)
+          if (!this.canAddAssertions) {
+            this.functionDecorators.pre.push(loadAssembly)
+          } else if (this.depthRequired) {
             const ifStmt = createIfStatment(
               createBinaryOperation(createIdentifier(depthTracker), createNumberLiteral("1"), "<="),
               initAssembly, loadAssembly)
             this.functionDecorators.pre.push(ifStmt)
-          } else {
+          } else if (this.canAddAssertions) {
             this.functionDecorators.pre.push(initAssembly)
           }
         }
