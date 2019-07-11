@@ -79,7 +79,8 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       if (node.name.length === 0) { return  "<Fallback>" }
       return node.name
     })()
-    this.depthRequired = getCallers(this.contractName, name).length > 0
+    this.depthRequired = getCallers(this.contractName, name).length > 0 ||
+      getSubFunctions(this.contractName, name).length > 0
     this.checkConstraints = [...getSubFunctions(this.contractName, name), [this.contractName, name]].map((it) => {
       if (!this.functionConstraints.has(it[0]) ||
         !this.functionConstraints.get(it[0])!.has(it[1])) { return new Set() as Set<Node>  }
@@ -88,17 +89,15 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     this.canOptimize = canOptimize(this.contractName, name)
     node.body = this.visit(node.body)
     if (node.body) {
-      if (this.canAddAssertions && this.checkConstraints.size !== 0 && this.depthRequired) {
+      if (this.canAddAssertions && this.checkConstraints.size !== 0) {
         node.body.statements.push(...this.generateAssertions())
         node.body.statements.unshift(...this.functionDecorators.pre)
-        const depth = createIdentifier(depthTracker)
-        const one = createNumberLiteral("1")
-        const increaseOne = createBinaryOperation(depth, one, "+=")
-        node.body.statements.unshift(createExpressionStmt(increaseOne))
-        const decreaseOne = createExpressionStmt(createBinaryOperation(depth, one, "-="))
-        this.pendingReturns.forEach((it) => {
-          it.statements.unshift(decreaseOne)
-        })
+        if (this.depthRequired) {
+          const depth = createIdentifier(depthTracker)
+          const one = createNumberLiteral("1")
+          const increaseOne = createBinaryOperation(depth, one, "+=")
+          node.body.statements.unshift(createExpressionStmt(increaseOne))
+        }
       } else {
         node.body.statements.unshift(...this.functionDecorators.pre)
       }
