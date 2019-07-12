@@ -10,7 +10,7 @@ mkdir ~/results
 parity_pid=$!
 # sleep 4
 python3 $2 ws://$4:8546 "/home/ubuntu/scripts/data/$3.csv"\
- "/home/ubuntu/tests/$1.sol" "/home/ubuntu/scripts/keys/leo123leo456" "/home/ubuntu/scripts/keys/leo123leo789"&
+ "/home/ubuntu/tests/$1.sol" "/home/ubuntu/scripts/keys/leo123leo456" "/home/ubuntu/scripts/keys/leo123leo987"&
 replay=$!
 # sudo blktrace -d /dev/xvdf -o $2-$4 &
 nohup /home/ubuntu/.local/bin/psrecord $parity_pid --interval 0.1 --log /home/ubuntu/results/$1-$3.txt  &
@@ -21,8 +21,8 @@ miner=$!
 wait $replay
 kill $psrecord
 kill $miner
+sleep 10
 kill $parity_pid
-sleep 5
 kill -9 $parity_pid
 mv /tmp/parity/chains/DevelopmentChain/db/5121426b82ed1df6/overlayrecent/db/LOG /home/ubuntu/results/$1-$3.log
 # sudo killall blktrace

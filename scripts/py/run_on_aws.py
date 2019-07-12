@@ -144,6 +144,7 @@ def generate_tests():
             yield [benchmark[0]+t, *benchmark[1:]]
 
 
-test(next(generate_tests()))
+with Pool(2) as p:
+    print(p.map(test, generate_tests()))
 
 
