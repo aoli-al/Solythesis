@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 cd ~
+export DEBIAN_FRONTEND=noninteractive
 sudo apt update
 sudo apt install -y build-essential cmake libudev-dev
 git clone https://github.com/Leeleo3x/parity-ethereum

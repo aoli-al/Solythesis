@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+export DEBIAN_FRONTEND=noninteractive
 sudo apt install -y python3-pip
 pip3 install progressbar
 pip3 install py-solc
