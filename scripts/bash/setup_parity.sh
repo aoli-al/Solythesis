@@ -2,10 +2,10 @@
 
 cd ~
 export DEBIAN_FRONTEND=noninteractive
-sudo apt update
-sudo apt install -y build-essential cmake libudev-dev
+#sudo apt update
+#sudo apt install -y build-essential cmake libudev-dev
 git clone https://github.com/Leeleo3x/parity-ethereum
-curl https://sh.rustup.rs -sSf | sh -s -- -y
+#curl https://sh.rustup.rs -sSf | sh -s -- -y
 cd parity-ethereum
 ~/.cargo/bin/cargo build --release
 

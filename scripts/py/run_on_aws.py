@@ -96,7 +96,7 @@ def create_sender():
         move_files(ssh, "../../scripts", "scripts")
         move_files(ssh, "../../tests", "tests")
         execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh")
-        execute_remote_command(ssh, "bash ~/scripts/bash/setup_bench.sh")
+        # execute_remote_command(ssh, "bash ~/scripts/bash/setup_bench.sh")
     except Exception as e:
         print(e)
         instance.terminate()
