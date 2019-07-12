@@ -4,7 +4,7 @@ import progressbar
 import argparse
 from bench import Bench
 
-ITER = 2000
+ITER = 10
 
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('endpoint')
