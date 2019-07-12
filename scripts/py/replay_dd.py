@@ -2,12 +2,21 @@ import sys
 import time
 from bench import Bench
 import progressbar
+import argparse
+
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('endpoint')
+parser.add_argument('csv')
+parser.add_argument('path')
+parser.add_argument('key1')
+parser.add_argument('key2')
+parser.add_argument("--pow", type=bool)
+args = parser.parse_args()
+bench = Bench(args.endpoint, args.path, 'DozerDoll', args.pow)
+contract_creator = bench.import_account(args.key1)
 
 MINT_GAS = 180286
 TRANSFER = 70618
-
-bench = Bench(sys.argv[1], sys.argv[3], 'DozerDoll')
-contract_creator = bench.import_account(sys.argv[4])
 
 NUM_OF_CONTRACT = 31
 dd_addr = [bench.call_contract_function(contract_creator[0], 'constructor', ["Dozer", "DD"],
@@ -21,8 +30,12 @@ current_time = time.time()
 OPTIONS = 5
 USERS = 5
 
-users = [bench.new_address(*contract_creator) for i in range(USERS)]
+users = []
+for i in range(USERS):
+    [addr, result] = bench.new_address_and_transfer(*contract_creator)
+    users.append(addr)
 print(users)
+bench.wait_for_result(result)
 
 ITER = 1000
 

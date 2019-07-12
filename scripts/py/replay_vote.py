@@ -4,14 +4,22 @@ from bench import Bench
 import time
 import random
 import progressbar
+import argparse
 
 
 GAS_CREATE_ISSUE = 281909
 GAS_VOTE = 49840
 
-
-bench = Bench(sys.argv[1], sys.argv[3], 'AdvancedTokenVote1202')
-contract_creator = bench.import_account(sys.argv[4])
+parser = argparse.ArgumentParser()
+parser.add_argument('endpoint')
+parser.add_argument('csv')
+parser.add_argument('path')
+parser.add_argument('key1')
+parser.add_argument('key2')
+parser.add_argument("--pow", type=bool)
+args = parser.parse_args()
+bench = Bench(args.endpoint, args.path, 'AdvancedTokenVote1202', args.pow)
+contract_creator = bench.import_account(args.key1)
 
 NUM_OF_CONTRACT = 150
 OPTIONS = 5
@@ -25,7 +33,7 @@ print(vote_addr)
 
 users = []
 for i in range(USERS):
-    [addr, result] = bench.new_address(*contract_creator)
+    [addr, result] = bench.new_address_and_transfer(*contract_creator)
     users.append(addr)
 print(users)
 bench.wait_for_result(result)
