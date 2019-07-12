@@ -25,7 +25,7 @@ def create_new_instance(count):
     return instances
 
 
-def execute_remote_command(ssh, command, cwd="~", block=True):
+def execute_remote_command(ssh, command, block=True):
     print(command)
     stdin, stdout, stderr = ssh.exec_command(command, get_pty=True)
     if block:
@@ -38,9 +38,13 @@ def execute_remote_command(ssh, command, cwd="~", block=True):
 
 
 def move_files(ssh, src, dst):
-    ssh.exec_command("cd ~", get_pty=True)
     scp = SCPClient(ssh.get_transport())
     scp.put(src, dst, recursive=True)
+
+
+def fetch_files(ssh, src, dst):
+    scp = SCPClient(ssh.get_transport())
+    scp.get(src, dst, recursive=True)
 
 
 def execute_local_command(command):
@@ -118,7 +122,7 @@ def test(args):
     except Exception as e:
         print(e)
         pass
-    move_files(sender_client, "/home/ubuntu/results", "/data/{}-{}".format(contract, csv))
+    fetch_files(sender_client, "/home/ubuntu/results", "/data/{}-{}".format(contract, csv))
     sender_client.close()
     receiver_client.close()
     sender.terminate()
