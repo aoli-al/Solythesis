@@ -27,14 +27,14 @@ def create_new_instance(count):
 
 def execute_remote_command(ssh, command, cwd="~", block=True):
     print(command)
-    stdin, stdout, stderr = ssh.exec_command(command, get_pty=block)
-    # if block:
-    #     line_buf = ''
-    #     while not stdout.channel.exit_status_ready():
-    #         line_buf += stdout.read(1).decode("utf-8")
-    #         if line_buf.endswith('\n'):
-    #             print(line_buf)
-    #             line_buf = ''
+    stdin, stdout, stderr = ssh.exec_command(command, get_pty=True)
+    if block:
+        line_buf = ''
+        while not stdout.channel.exit_status_ready():
+            line_buf += stdout.read(1).decode("utf-8")
+            if line_buf.endswith('\n'):
+                print(line_buf)
+                line_buf = ''
 
 
 def move_files(ssh, src, dst):
@@ -115,7 +115,8 @@ def test(args):
         execute_remote_command(sender_client,
                                "bash ~/scripts/bash/test_sync.sh {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address))
-    except:
+    except Exception as e:
+        print(e)
         pass
     move_files(sender_client, "/home/ubuntu/results", "/data/{}-{}".format(contract, csv))
     sender_client.close()
@@ -139,7 +140,6 @@ def generate_tests():
             yield [benchmark[0]+t, *benchmark[1:]]
 
 
-with Pool(1) as p:
-    p.map(test, generate_tests())
+test(next(generate_tests()))
 
 
