@@ -106,8 +106,8 @@ def create_sender():
 
 def test(args):
     [contract, script_path, csv] = args
-    [sender, sender_client] = create_sender()
     [receiver, receiver_client] = create_receiver()
+    [sender, sender_client] = create_sender()
     execute_remote_command(receiver_client, "bash ~/scripts/bash/run_receiver.sh", block=False)
     execute_remote_command(sender_client,
                            "bash ~/scripts/bash/test_sync.sh {} {} {} {}"
