@@ -1,0 +1,4 @@
+standard AdvancedTokenVote1202 {
+  sum_votes = Sum (a), (b), weights[a][b], ballots[a][b];
+  constraint ForAll (x,y), y == 0 || sum_votes[x][y] == weightedVoteCounts[x][y];
+}

@@ -1,0 +1,685 @@
+    /* "t2.sol":552:1829  contract PausableToken {... */
+  mstore(0x40, 0x80)
+  callvalue
+    /* "--CODEGEN--":8:17   */
+  dup1
+    /* "--CODEGEN--":5:7   */
+  iszero
+  tag_1
+  jumpi
+    /* "--CODEGEN--":30:31   */
+  0x00
+    /* "--CODEGEN--":27:28   */
+  dup1
+    /* "--CODEGEN--":20:32   */
+  revert
+    /* "--CODEGEN--":5:7   */
+tag_1:
+    /* "t2.sol":552:1829  contract PausableToken {... */
+  pop
+  dataSize(sub_0)
+  dup1
+  dataOffset(sub_0)
+  0x00
+  codecopy
+  0x00
+  return
+stop
+
+sub_0: assembly {
+        /* "t2.sol":552:1829  contract PausableToken {... */
+      mstore(0x40, 0x80)
+      callvalue
+        /* "--CODEGEN--":8:17   */
+      dup1
+        /* "--CODEGEN--":5:7   */
+      iszero
+      tag_1
+      jumpi
+        /* "--CODEGEN--":30:31   */
+      0x00
+        /* "--CODEGEN--":27:28   */
+      dup1
+        /* "--CODEGEN--":20:32   */
+      revert
+        /* "--CODEGEN--":5:7   */
+    tag_1:
+        /* "t2.sol":552:1829  contract PausableToken {... */
+      pop
+      jumpi(tag_2, lt(calldatasize, 0x04))
+      shr(0xe0, calldataload(0x00))
+      dup1
+      0x18160ddd
+      eq
+      tag_3
+      jumpi
+      dup1
+      0x83f12fec
+      eq
+      tag_4
+      jumpi
+    tag_2:
+      0x00
+      dup1
+      revert
+        /* "t2.sol":632:658  uint256 public totalSupply */
+    tag_3:
+      tag_5
+      tag_6
+      jump	// in
+    tag_5:
+      0x40
+      dup1
+      mload
+      swap2
+      dup3
+      mstore
+      mload
+      swap1
+      dup2
+      swap1
+      sub
+      0x20
+      add
+      swap1
+      return
+        /* "t2.sol":767:1827  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+    tag_4:
+      tag_7
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x40
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_8
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_8:
+        /* "t2.sol":767:1827  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+      dup2
+      add
+      swap1
+      0x20
+      dup2
+      add
+      dup2
+      calldataload
+        /* "--CODEGEN--":21:32   */
+      0x0100000000
+        /* "--CODEGEN--":5:33   */
+      dup2
+      gt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_9
+      jumpi
+        /* "--CODEGEN--":46:47   */
+      0x00
+        /* "--CODEGEN--":43:44   */
+      dup1
+        /* "--CODEGEN--":36:48   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_9:
+        /* "t2.sol":767:1827  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+      dup3
+      add
+        /* "--CODEGEN--":35:44   */
+      dup4
+        /* "--CODEGEN--":28:32   */
+      0x20
+        /* "--CODEGEN--":12:26   */
+      dup3
+        /* "--CODEGEN--":8:33   */
+      add
+        /* "--CODEGEN--":5:45   */
+      gt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_10
+      jumpi
+        /* "--CODEGEN--":58:59   */
+      0x00
+        /* "--CODEGEN--":55:56   */
+      dup1
+        /* "--CODEGEN--":48:60   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_10:
+        /* "t2.sol":767:1827  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+      dup1
+      calldataload
+      swap1
+      0x20
+      add
+      swap2
+        /* "--CODEGEN--":101:110   */
+      dup5
+        /* "--CODEGEN--":95:97   */
+      0x20
+        /* "--CODEGEN--":81:93   */
+      dup4
+        /* "--CODEGEN--":77:98   */
+      mul
+        /* "--CODEGEN--":67:75   */
+      dup5
+        /* "--CODEGEN--":63:99   */
+      add
+        /* "--CODEGEN--":60:111   */
+      gt
+        /* "--CODEGEN--":39:50   */
+      0x0100000000
+        /* "--CODEGEN--":25:37   */
+      dup4
+        /* "--CODEGEN--":22:51   */
+      gt
+        /* "--CODEGEN--":11:119   */
+      or
+        /* "--CODEGEN--":8:10   */
+      iszero
+      tag_11
+      jumpi
+        /* "--CODEGEN--":132:133   */
+      0x00
+        /* "--CODEGEN--":129:130   */
+      dup1
+        /* "--CODEGEN--":122:134   */
+      revert
+        /* "--CODEGEN--":8:10   */
+    tag_11:
+        /* "t2.sol":767:1827  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+      swap2
+      swap1
+      dup1
+      dup1
+      0x20
+      mul
+      0x20
+      add
+      mload(0x40)
+      swap1
+      dup2
+      add
+      0x40
+      mstore
+      dup1
+      swap4
+      swap3
+      swap2
+      swap1
+      dup2
+      dup2
+      mstore
+      0x20
+      add
+      dup4
+      dup4
+      0x20
+      mul
+        /* "--CODEGEN--":30:33   */
+      dup1
+        /* "--CODEGEN--":22:28   */
+      dup3
+        /* "--CODEGEN--":14:20   */
+      dup5
+        /* "--CODEGEN--":1:34   */
+      calldatacopy
+        /* "--CODEGEN--":99:100   */
+      0x00
+        /* "--CODEGEN--":81:97   */
+      swap3
+      add
+        /* "--CODEGEN--":74:101   */
+      swap2
+      swap1
+      swap2
+      mstore
+      pop
+        /* "t2.sol":767:1827  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+      swap3
+      swap6
+      pop
+      pop
+      swap2
+      calldataload
+      swap3
+      pop
+      tag_12
+      swap2
+      pop
+      pop
+      jump	// in
+    tag_7:
+      0x40
+      dup1
+      mload
+      swap2
+      iszero
+      iszero
+      dup3
+      mstore
+      mload
+      swap1
+      dup2
+      swap1
+      sub
+      0x20
+      add
+      swap1
+      return
+        /* "t2.sol":632:658  uint256 public totalSupply */
+    tag_6:
+      sload(0x01)
+      dup2
+      jump	// out
+        /* "t2.sol":767:1827  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+    tag_12:
+        /* "t2.sol":875:892  _receivers.length */
+      dup2
+      mload
+        /* "t2.sol":852:856  bool */
+      0x00
+        /* "t2.sol":956:967  sum_balance */
+      dup1
+      sload
+        /* "t2.sol":852:856  bool */
+      swap1
+      swap2
+        /* "t2.sol":875:892  _receivers.length */
+      swap1
+        /* "t2.sol":915:936  uint256(cnt) * _value */
+      dup4
+      dup3
+      mul
+      swap1
+        /* "t2.sol":981:988  cnt > 0 */
+      dup3
+      iszero
+      dup1
+      iszero
+      swap1
+        /* "t2.sol":981:1001  cnt > 0 && cnt <= 20 */
+      tag_14
+      jumpi
+      pop
+        /* "t2.sol":999:1001  20 */
+      0x14
+        /* "t2.sol":992:995  cnt */
+      dup4
+        /* "t2.sol":992:1001  cnt <= 20 */
+      gt
+      iszero
+        /* "t2.sol":981:1001  cnt > 0 && cnt <= 20 */
+    tag_14:
+        /* "t2.sol":973:1002  require(cnt > 0 && cnt <= 20) */
+      tag_15
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_15:
+        /* "t2.sol":1035:1045  msg.sender */
+      caller
+        /* "t2.sol":1008:1023  uint256 current */
+      0x00
+        /* "t2.sol":1026:1046  balances[msg.sender] */
+      swap1
+      dup2
+      mstore
+        /* "t2.sol":1026:1034  balances */
+      0x02
+        /* "t2.sol":1026:1046  balances[msg.sender] */
+      0x20
+      mstore
+      0x40
+      swap1
+      keccak256
+      sload
+        /* "t2.sol":1060:1070  _value > 0 */
+      dup6
+      iszero
+      dup1
+      iszero
+      swap1
+        /* "t2.sol":1060:1091  _value > 0 && current >= amount */
+      tag_16
+      jumpi
+      pop
+        /* "t2.sol":1085:1091  amount */
+      dup3
+        /* "t2.sol":1074:1081  current */
+      dup2
+        /* "t2.sol":1074:1091  current >= amount */
+      lt
+      iszero
+        /* "t2.sol":1060:1091  _value > 0 && current >= amount */
+    tag_16:
+        /* "t2.sol":1052:1092  require(_value > 0 && current >= amount) */
+      tag_17
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_17:
+        /* "t2.sol":1130:1137  current */
+      dup1
+        /* "t2.sol":1123:1126  sss */
+      dup3
+        /* "t2.sol":1123:1137  sss >= current */
+      lt
+      iszero
+        /* "t2.sol":1116:1138  assert(sss >= current) */
+      tag_18
+      jumpi
+      invalid
+    tag_18:
+        /* "t2.sol":1148:1162  sss -= current */
+      swap1
+      dup2
+      swap1
+      sub
+      swap1
+        /* "t2.sol":1188:1207  current.sub(amount) */
+      tag_19
+        /* "t2.sol":1155:1162  current */
+      dup2
+        /* "t2.sol":1200:1206  amount */
+      dup5
+        /* "t2.sol":1188:1207  current.sub(amount) */
+      0xffffffff
+        /* "t2.sol":1188:1199  current.sub */
+      tag_20
+        /* "t2.sol":1188:1207  current.sub(amount) */
+      and
+      jump	// in
+    tag_19:
+        /* "t2.sol":1225:1239  sss += current */
+      swap2
+      dup3
+      add
+      swap2
+        /* "t2.sol":1178:1207  current = current.sub(amount) */
+      swap1
+      pop
+        /* "t2.sol":1256:1270  sss >= current */
+      dup1
+      dup3
+      lt
+      iszero
+        /* "t2.sol":1249:1271  assert(sss >= current) */
+      tag_21
+      jumpi
+      invalid
+    tag_21:
+        /* "t2.sol":1300:1310  msg.sender */
+      caller
+        /* "t2.sol":1291:1311  balances[msg.sender] */
+      0x00
+      swap1
+      dup2
+      mstore
+        /* "t2.sol":1291:1299  balances */
+      0x02
+        /* "t2.sol":1291:1311  balances[msg.sender] */
+      0x20
+      mstore
+      0x40
+      dup2
+      keccak256
+        /* "t2.sol":1291:1321  balances[msg.sender] = current */
+      dup3
+      swap1
+      sstore
+        /* "t2.sol":1327:1662  for (uint i = 0; i < cnt; i++) {... */
+    tag_22:
+        /* "t2.sol":1348:1351  cnt */
+      dup5
+        /* "t2.sol":1344:1345  i */
+      dup2
+        /* "t2.sol":1344:1351  i < cnt */
+      lt
+        /* "t2.sol":1327:1662  for (uint i = 0; i < cnt; i++) {... */
+      iszero
+      tag_23
+      jumpi
+        /* "t2.sol":1376:1384  balances */
+      0x02
+        /* "t2.sol":1376:1399  balances[_receivers[i]] */
+      0x00
+        /* "t2.sol":1385:1395  _receivers */
+      dup10
+        /* "t2.sol":1396:1397  i */
+      dup4
+        /* "t2.sol":1385:1398  _receivers[i] */
+      dup2
+      mload
+      dup2
+      lt
+      tag_25
+      jumpi
+      invalid
+    tag_25:
+      0x20
+      mul
+      0x20
+      add
+      add
+      mload
+      sub(shl(0xa0, 0x01), 0x01)
+        /* "t2.sol":1376:1399  balances[_receivers[i]] */
+      and
+      sub(shl(0xa0, 0x01), 0x01)
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      sload
+        /* "t2.sol":1366:1399  current = balances[_receivers[i]] */
+      swap2
+      pop
+        /* "t2.sol":1443:1450  current */
+      dup2
+        /* "t2.sol":1436:1439  sss */
+      dup4
+        /* "t2.sol":1436:1450  sss >= current */
+      lt
+      iszero
+        /* "t2.sol":1429:1451  assert(sss >= current) */
+      tag_26
+      jumpi
+      invalid
+    tag_26:
+        /* "t2.sol":1463:1477  sss -= current */
+      swap2
+      dup2
+      swap1
+      sub
+      swap2
+        /* "t2.sol":1507:1526  current.add(_value) */
+      tag_27
+        /* "t2.sol":1470:1477  current */
+      dup3
+        /* "t2.sol":1519:1525  _value */
+      dup9
+        /* "t2.sol":1507:1526  current.add(_value) */
+      0xffffffff
+        /* "t2.sol":1507:1518  current.add */
+      tag_28
+        /* "t2.sol":1507:1526  current.add(_value) */
+      and
+      jump	// in
+    tag_27:
+        /* "t2.sol":1548:1562  sss += current */
+      swap3
+      dup4
+      add
+      swap3
+        /* "t2.sol":1497:1526  current = current.add(_value) */
+      swap2
+      pop
+        /* "t2.sol":1581:1595  sss >= current */
+      dup2
+      dup4
+      lt
+      iszero
+        /* "t2.sol":1574:1596  assert(sss >= current) */
+      tag_29
+      jumpi
+      invalid
+    tag_29:
+        /* "t2.sol":1648:1655  current */
+      dup2
+        /* "t2.sol":1622:1630  balances */
+      0x02
+        /* "t2.sol":1622:1645  balances[_receivers[i]] */
+      0x00
+        /* "t2.sol":1631:1641  _receivers */
+      dup11
+        /* "t2.sol":1642:1643  i */
+      dup5
+        /* "t2.sol":1631:1644  _receivers[i] */
+      dup2
+      mload
+      dup2
+      lt
+      tag_30
+      jumpi
+      invalid
+    tag_30:
+      0x20
+      swap1
+      dup2
+      mul
+      swap2
+      swap1
+      swap2
+      add
+      dup2
+      add
+      mload
+      sub(shl(0xa0, 0x01), 0x01)
+        /* "t2.sol":1622:1645  balances[_receivers[i]] */
+      and
+      dup3
+      mstore
+      dup2
+      add
+      swap2
+      swap1
+      swap2
+      mstore
+      0x40
+      add
+      0x00
+      keccak256
+        /* "t2.sol":1622:1655  balances[_receivers[i]] = current */
+      sstore
+        /* "t2.sol":1353:1356  i++ */
+      0x01
+      add
+        /* "t2.sol":1327:1662  for (uint i = 0; i < cnt; i++) {... */
+      jump(tag_22)
+    tag_23:
+      pop
+        /* "t2.sol":1675:1686  sum_balance */
+      0x00
+        /* "t2.sol":1675:1692  sum_balance = sss */
+      dup3
+      swap1
+      sstore
+        /* "t2.sol":1707:1718  totalSupply */
+      sload(0x01)
+        /* "t2.sol":1707:1725  totalSupply == sss */
+      dup3
+      eq
+        /* "t2.sol":1700:1726  assert(totalSupply == sss) */
+      tag_31
+      jumpi
+      invalid
+    tag_31:
+      pop
+        /* "t2.sol":1741:1745  true */
+      0x01
+      swap7
+        /* "t2.sol":767:1827  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+      swap6
+      pop
+      pop
+      pop
+      pop
+      pop
+      pop
+      jump	// out
+        /* "t2.sol":305:416  function sub (uint256 a, uint256 b) internal pure returns (uint256) {... */
+    tag_20:
+        /* "t2.sol":364:371  uint256 */
+      0x00
+        /* "t2.sol":391:392  a */
+      dup3
+        /* "t2.sol":386:387  b */
+      dup3
+        /* "t2.sol":386:392  b <= a */
+      gt
+      iszero
+        /* "t2.sol":379:393  assert(b <= a) */
+      tag_34
+      jumpi
+      invalid
+    tag_34:
+      pop
+        /* "t2.sol":406:411  a - b */
+      swap1
+      sub
+      swap1
+        /* "t2.sol":305:416  function sub (uint256 a, uint256 b) internal pure returns (uint256) {... */
+      jump	// out
+        /* "t2.sol":419:549  function add (uint256 a, uint256 b) internal pure returns (uint256) {... */
+    tag_28:
+        /* "t2.sol":478:485  uint256 */
+      0x00
+        /* "t2.sol":505:510  a + b */
+      dup3
+      dup3
+      add
+        /* "t2.sol":523:529  c >= a */
+      dup4
+      dup2
+      lt
+      iszero
+        /* "t2.sol":516:530  assert(c >= a) */
+      tag_36
+      jumpi
+      invalid
+    tag_36:
+        /* "t2.sol":543:544  c */
+      swap4
+        /* "t2.sol":419:549  function add (uint256 a, uint256 b) internal pure returns (uint256) {... */
+      swap3
+      pop
+      pop
+      pop
+      jump	// out
+
+    auxdata: 0xa165627a7a72305820d67da19b6a1714e0a69e62c90145816a953993f8ab42a75becd551bbc5a7fc8c0029
+}

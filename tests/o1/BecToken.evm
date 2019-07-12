@@ -1,0 +1,1616 @@
+    /* "out.sol":1893:1927  string public name = "BeautyChain" */
+  0xc0
+    /* "out.sol":1854:2451  contract BecToken is PausableToken {... */
+  0x40
+    /* "out.sol":1893:1927  string public name = "BeautyChain" */
+  mstore
+  0x0b
+    /* "out.sol":1854:2451  contract BecToken is PausableToken {... */
+  0x80
+    /* "out.sol":1893:1927  string public name = "BeautyChain" */
+  dup2
+  swap1
+  mstore
+  0x426561757479436861696e000000000000000000000000000000000000000000
+  0xa0
+  swap1
+  dup2
+  mstore
+  tag_1
+  swap2
+  0x04
+  swap2
+  swap1
+  tag_2
+  jump	// in
+tag_1:
+  pop
+    /* "out.sol":1931:1959  string public symbol = "BEC" */
+  0x40
+  dup1
+  mload
+  dup1
+  dup3
+  add
+  swap1
+  swap2
+  mstore
+  0x03
+  dup1
+  dup3
+  mstore
+  0x4245430000000000000000000000000000000000000000000000000000000000
+  0x20
+  swap1
+  swap3
+  add
+  swap2
+  dup3
+  mstore
+  tag_3
+  swap2
+  0x05
+  swap2
+  tag_2
+  jump	// in
+tag_3:
+  pop
+    /* "out.sol":1963:1994  string public version = '1.0.0' */
+  0x40
+  dup1
+  mload
+  dup1
+  dup3
+  add
+  swap1
+  swap2
+  mstore
+  0x05
+  dup1
+  dup3
+  mstore
+  0x312e302e30000000000000000000000000000000000000000000000000000000
+  0x20
+  swap1
+  swap3
+  add
+  swap2
+  dup3
+  mstore
+  tag_4
+  swap2
+  0x06
+  swap2
+  tag_2
+  jump	// in
+tag_4:
+  pop
+    /* "out.sol":1998:2024  uint8 public decimals = 18 */
+  0x07
+  dup1
+  sload
+  not(0xff)
+  and
+    /* "out.sol":2022:2024  18 */
+  0x12
+    /* "out.sol":1998:2024  uint8 public decimals = 18 */
+  or
+  swap1
+  sstore
+    /* "out.sol":2028:2449  constructor () public {... */
+  callvalue
+    /* "--CODEGEN--":5:7   */
+  dup1
+  iszero
+  tag_5
+  jumpi
+    /* "--CODEGEN--":30:31   */
+  0x00
+    /* "--CODEGEN--":27:28   */
+  dup1
+    /* "--CODEGEN--":20:32   */
+  revert
+    /* "--CODEGEN--":5:7   */
+tag_5:
+  pop
+    /* "out.sol":2097:2105  decimals */
+  and(0xff, sload(0x07))
+    /* "out.sol":2084:2086  10 */
+  0x0a
+    /* "out.sol":2084:2107  10**(uint256(decimals)) */
+  exp
+    /* "out.sol":2070:2080  7000000000 */
+  0x01a13b8600
+    /* "out.sol":2070:2108  7000000000 * (10**(uint256(decimals))) */
+  mul
+    /* "out.sol":2097:2105  decimals */
+  0x01
+    /* "out.sol":2056:2108  totalSupply = 7000000000 * (10**(uint256(decimals))) */
+  sstore
+    /* "out.sol":2163:2173  msg.sender */
+  caller
+  0x00
+    /* "out.sol":2154:2174  balances[msg.sender] */
+  swap1
+  dup2
+  mstore
+    /* "out.sol":2154:2162  balances */
+  0x02
+    /* "out.sol":2154:2174  balances[msg.sender] */
+  0x20
+  mstore
+  0x40
+  dup2
+  keccak256
+  sload
+    /* "out.sol":2139:2150  sum_balance */
+  swap1
+  sload
+    /* "out.sol":2139:2174  sum_balance >= balances[msg.sender] */
+  lt
+  iszero
+    /* "out.sol":2132:2175  assert(sum_balance >= balances[msg.sender]) */
+  tag_8
+  jumpi
+  invalid
+tag_8:
+    /* "out.sol":2209:2219  msg.sender */
+  caller
+    /* "out.sol":2200:2220  balances[msg.sender] */
+  0x00
+  swap1
+  dup2
+  mstore
+    /* "out.sol":2200:2208  balances */
+  0x02
+    /* "out.sol":2200:2220  balances[msg.sender] */
+  0x20
+  mstore
+  0x40
+  dup2
+  keccak256
+  dup1
+  sload
+    /* "out.sol":2185:2220  sum_balance -= balances[msg.sender] */
+  dup3
+  sload
+  sub
+  dup3
+  sstore
+  0x01
+    /* "out.sol":2259:2270  totalSupply */
+  sload
+    /* "out.sol":2236:2270  balances[msg.sender] = totalSupply */
+  dup1
+  dup3
+  sstore
+    /* "out.sol":2288:2323  sum_balance += balances[msg.sender] */
+  dup3
+  sload
+  add
+  swap2
+  dup3
+  swap1
+  sstore
+    /* "out.sol":2355:2375  balances[msg.sender] */
+  sload
+  gt
+    /* "out.sol":2340:2375  sum_balance >= balances[msg.sender] */
+  iszero
+    /* "out.sol":2333:2376  assert(sum_balance >= balances[msg.sender]) */
+  tag_9
+  jumpi
+  invalid
+tag_9:
+    /* "out.sol":2426:2437  sum_balance */
+  sload(0x00)
+    /* "out.sol":2411:2422  totalSupply */
+  sload(0x01)
+    /* "out.sol":2411:2437  totalSupply == sum_balance */
+  eq
+    /* "out.sol":2404:2438  assert(totalSupply == sum_balance) */
+  tag_10
+  jumpi
+  invalid
+tag_10:
+    /* "out.sol":1854:2451  contract BecToken is PausableToken {... */
+  jump(tag_11)
+tag_2:
+  dup3
+  dup1
+  sload
+  0x01
+  dup2
+  0x01
+  and
+  iszero
+  0x0100
+  mul
+  sub
+  and
+  0x02
+  swap1
+  div
+  swap1
+  0x00
+  mstore
+  keccak256(0x00, 0x20)
+  swap1
+  0x1f
+  add
+  0x20
+  swap1
+  div
+  dup2
+  add
+  swap3
+  dup3
+  0x1f
+  lt
+  tag_13
+  jumpi
+  dup1
+  mload
+  not(0xff)
+  and
+  dup4
+  dup1
+  add
+  or
+  dup6
+  sstore
+  jump(tag_15)
+tag_13:
+  dup3
+  dup1
+  add
+  0x01
+  add
+  dup6
+  sstore
+  dup3
+  iszero
+  tag_15
+  jumpi
+  swap2
+  dup3
+  add
+tag_14:
+  dup3
+  dup2
+  gt
+  iszero
+  tag_15
+  jumpi
+  dup3
+  mload
+  dup3
+  sstore
+  swap2
+  0x20
+  add
+  swap2
+  swap1
+  0x01
+  add
+  swap1
+  jump(tag_14)
+tag_15:
+  pop
+  tag_16
+  swap3
+  swap2
+  pop
+  tag_17
+  jump	// in
+tag_16:
+  pop
+  swap1
+  jump	// out
+tag_17:
+  tag_18
+  swap2
+  swap1
+tag_19:
+  dup1
+  dup3
+  gt
+  iszero
+  tag_16
+  jumpi
+  0x00
+  dup2
+  sstore
+  0x01
+  add
+  jump(tag_19)
+tag_18:
+  swap1
+  jump	// out
+tag_11:
+  dataSize(sub_0)
+  dup1
+  dataOffset(sub_0)
+  0x00
+  codecopy
+  0x00
+  return
+stop
+
+sub_0: assembly {
+        /* "out.sol":1854:2451  contract BecToken is PausableToken {... */
+      mstore(0x40, 0x80)
+      callvalue
+        /* "--CODEGEN--":8:17   */
+      dup1
+        /* "--CODEGEN--":5:7   */
+      iszero
+      tag_1
+      jumpi
+        /* "--CODEGEN--":30:31   */
+      0x00
+        /* "--CODEGEN--":27:28   */
+      dup1
+        /* "--CODEGEN--":20:32   */
+      revert
+        /* "--CODEGEN--":5:7   */
+    tag_1:
+        /* "out.sol":1854:2451  contract BecToken is PausableToken {... */
+      pop
+      jumpi(tag_2, lt(calldatasize, 0x04))
+      shr(0xe0, calldataload(0x00))
+      dup1
+      0x06fdde03
+      eq
+      tag_3
+      jumpi
+      dup1
+      0x18160ddd
+      eq
+      tag_4
+      jumpi
+      dup1
+      0x313ce567
+      eq
+      tag_5
+      jumpi
+      dup1
+      0x54fd4d50
+      eq
+      tag_6
+      jumpi
+      dup1
+      0x83f12fec
+      eq
+      tag_7
+      jumpi
+      dup1
+      0x95d89b41
+      eq
+      tag_8
+      jumpi
+    tag_2:
+      0x00
+      dup1
+      revert
+        /* "out.sol":1893:1927  string public name = "BeautyChain" */
+    tag_3:
+      tag_9
+      tag_10
+      jump	// in
+    tag_9:
+      0x40
+      dup1
+      mload
+      0x20
+      dup1
+      dup3
+      mstore
+      dup4
+      mload
+      dup2
+      dup4
+      add
+      mstore
+      dup4
+      mload
+      swap2
+      swap3
+      dup4
+      swap3
+      swap1
+      dup4
+      add
+      swap2
+      dup6
+      add
+      swap1
+      dup1
+      dup4
+      dup4
+      0x00
+        /* "--CODEGEN--":8:108   */
+    tag_11:
+        /* "--CODEGEN--":33:36   */
+      dup4
+        /* "--CODEGEN--":30:31   */
+      dup2
+        /* "--CODEGEN--":27:37   */
+      lt
+        /* "--CODEGEN--":8:108   */
+      iszero
+      tag_13
+      jumpi
+        /* "--CODEGEN--":90:101   */
+      dup2
+      dup2
+      add
+        /* "--CODEGEN--":84:102   */
+      mload
+        /* "--CODEGEN--":71:82   */
+      dup4
+      dup3
+      add
+        /* "--CODEGEN--":64:103   */
+      mstore
+        /* "--CODEGEN--":52:54   */
+      0x20
+        /* "--CODEGEN--":45:55   */
+      add
+        /* "--CODEGEN--":8:108   */
+      jump(tag_11)
+    tag_13:
+        /* "--CODEGEN--":12:26   */
+      pop
+        /* "out.sol":1893:1927  string public name = "BeautyChain" */
+      pop
+      pop
+      pop
+      swap1
+      pop
+      swap1
+      dup2
+      add
+      swap1
+      0x1f
+      and
+      dup1
+      iszero
+      tag_14
+      jumpi
+      dup1
+      dup3
+      sub
+      dup1
+      mload
+      0x01
+      dup4
+      0x20
+      sub
+      0x0100
+      exp
+      sub
+      not
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap2
+      pop
+    tag_14:
+      pop
+      swap3
+      pop
+      pop
+      pop
+      mload(0x40)
+      dup1
+      swap2
+      sub
+      swap1
+      return
+        /* "out.sol":632:658  uint256 public totalSupply */
+    tag_4:
+      tag_15
+      tag_16
+      jump	// in
+    tag_15:
+      0x40
+      dup1
+      mload
+      swap2
+      dup3
+      mstore
+      mload
+      swap1
+      dup2
+      swap1
+      sub
+      0x20
+      add
+      swap1
+      return
+        /* "out.sol":1998:2024  uint8 public decimals = 18 */
+    tag_5:
+      tag_17
+      tag_18
+      jump	// in
+    tag_17:
+      0x40
+      dup1
+      mload
+      0xff
+      swap1
+      swap3
+      and
+      dup3
+      mstore
+      mload
+      swap1
+      dup2
+      swap1
+      sub
+      0x20
+      add
+      swap1
+      return
+        /* "out.sol":1963:1994  string public version = '1.0.0' */
+    tag_6:
+      tag_9
+      tag_20
+      jump	// in
+        /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+    tag_7:
+      tag_25
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x40
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_26
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_26:
+        /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+      dup2
+      add
+      swap1
+      0x20
+      dup2
+      add
+      dup2
+      calldataload
+        /* "--CODEGEN--":21:32   */
+      0x0100000000
+        /* "--CODEGEN--":5:33   */
+      dup2
+      gt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_27
+      jumpi
+        /* "--CODEGEN--":46:47   */
+      0x00
+        /* "--CODEGEN--":43:44   */
+      dup1
+        /* "--CODEGEN--":36:48   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_27:
+        /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+      dup3
+      add
+        /* "--CODEGEN--":35:44   */
+      dup4
+        /* "--CODEGEN--":28:32   */
+      0x20
+        /* "--CODEGEN--":12:26   */
+      dup3
+        /* "--CODEGEN--":8:33   */
+      add
+        /* "--CODEGEN--":5:45   */
+      gt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_28
+      jumpi
+        /* "--CODEGEN--":58:59   */
+      0x00
+        /* "--CODEGEN--":55:56   */
+      dup1
+        /* "--CODEGEN--":48:60   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_28:
+        /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+      dup1
+      calldataload
+      swap1
+      0x20
+      add
+      swap2
+        /* "--CODEGEN--":101:110   */
+      dup5
+        /* "--CODEGEN--":95:97   */
+      0x20
+        /* "--CODEGEN--":81:93   */
+      dup4
+        /* "--CODEGEN--":77:98   */
+      mul
+        /* "--CODEGEN--":67:75   */
+      dup5
+        /* "--CODEGEN--":63:99   */
+      add
+        /* "--CODEGEN--":60:111   */
+      gt
+        /* "--CODEGEN--":39:50   */
+      0x0100000000
+        /* "--CODEGEN--":25:37   */
+      dup4
+        /* "--CODEGEN--":22:51   */
+      gt
+        /* "--CODEGEN--":11:119   */
+      or
+        /* "--CODEGEN--":8:10   */
+      iszero
+      tag_29
+      jumpi
+        /* "--CODEGEN--":132:133   */
+      0x00
+        /* "--CODEGEN--":129:130   */
+      dup1
+        /* "--CODEGEN--":122:134   */
+      revert
+        /* "--CODEGEN--":8:10   */
+    tag_29:
+        /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+      swap2
+      swap1
+      dup1
+      dup1
+      0x20
+      mul
+      0x20
+      add
+      mload(0x40)
+      swap1
+      dup2
+      add
+      0x40
+      mstore
+      dup1
+      swap4
+      swap3
+      swap2
+      swap1
+      dup2
+      dup2
+      mstore
+      0x20
+      add
+      dup4
+      dup4
+      0x20
+      mul
+        /* "--CODEGEN--":30:33   */
+      dup1
+        /* "--CODEGEN--":22:28   */
+      dup3
+        /* "--CODEGEN--":14:20   */
+      dup5
+        /* "--CODEGEN--":1:34   */
+      calldatacopy
+        /* "--CODEGEN--":99:100   */
+      0x00
+        /* "--CODEGEN--":81:97   */
+      swap3
+      add
+        /* "--CODEGEN--":74:101   */
+      swap2
+      swap1
+      swap2
+      mstore
+      pop
+        /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+      swap3
+      swap6
+      pop
+      pop
+      swap2
+      calldataload
+      swap3
+      pop
+      tag_30
+      swap2
+      pop
+      pop
+      jump	// in
+    tag_25:
+      0x40
+      dup1
+      mload
+      swap2
+      iszero
+      iszero
+      dup3
+      mstore
+      mload
+      swap1
+      dup2
+      swap1
+      sub
+      0x20
+      add
+      swap1
+      return
+        /* "out.sol":1931:1959  string public symbol = "BEC" */
+    tag_8:
+      tag_9
+      tag_32
+      jump	// in
+        /* "out.sol":1893:1927  string public name = "BeautyChain" */
+    tag_10:
+      0x04
+      dup1
+      sload
+      0x40
+      dup1
+      mload
+      0x20
+      0x02
+      0x01
+      dup6
+      and
+      iszero
+      0x0100
+      mul
+      not(0x00)
+      add
+      swap1
+      swap5
+      and
+      swap4
+      swap1
+      swap4
+      div
+      0x1f
+      dup2
+      add
+      dup5
+      swap1
+      div
+      dup5
+      mul
+      dup3
+      add
+      dup5
+      add
+      swap1
+      swap3
+      mstore
+      dup2
+      dup2
+      mstore
+      swap3
+      swap2
+      dup4
+      add
+      dup3
+      dup3
+      dup1
+      iszero
+      tag_37
+      jumpi
+      dup1
+      0x1f
+      lt
+      tag_38
+      jumpi
+      0x0100
+      dup1
+      dup4
+      sload
+      div
+      mul
+      dup4
+      mstore
+      swap2
+      0x20
+      add
+      swap2
+      jump(tag_37)
+    tag_38:
+      dup3
+      add
+      swap2
+      swap1
+      0x00
+      mstore
+      keccak256(0x00, 0x20)
+      swap1
+    tag_39:
+      dup2
+      sload
+      dup2
+      mstore
+      swap1
+      0x01
+      add
+      swap1
+      0x20
+      add
+      dup1
+      dup4
+      gt
+      tag_39
+      jumpi
+      dup3
+      swap1
+      sub
+      0x1f
+      and
+      dup3
+      add
+      swap2
+    tag_37:
+      pop
+      pop
+      pop
+      pop
+      pop
+      dup2
+      jump	// out
+        /* "out.sol":632:658  uint256 public totalSupply */
+    tag_16:
+      sload(0x01)
+      dup2
+      jump	// out
+        /* "out.sol":1998:2024  uint8 public decimals = 18 */
+    tag_18:
+      and(0xff, sload(0x07))
+      dup2
+      jump	// out
+        /* "out.sol":1963:1994  string public version = '1.0.0' */
+    tag_20:
+      0x06
+      dup1
+      sload
+      0x40
+      dup1
+      mload
+      0x20
+      0x02
+      0x01
+      dup6
+      and
+      iszero
+      0x0100
+      mul
+      not(0x00)
+      add
+      swap1
+      swap5
+      and
+      swap4
+      swap1
+      swap4
+      div
+      0x1f
+      dup2
+      add
+      dup5
+      swap1
+      div
+      dup5
+      mul
+      dup3
+      add
+      dup5
+      add
+      swap1
+      swap3
+      mstore
+      dup2
+      dup2
+      mstore
+      swap3
+      swap2
+      dup4
+      add
+      dup3
+      dup3
+      dup1
+      iszero
+      tag_37
+      jumpi
+      dup1
+      0x1f
+      lt
+      tag_38
+      jumpi
+      0x0100
+      dup1
+      dup4
+      sload
+      div
+      mul
+      dup4
+      mstore
+      swap2
+      0x20
+      add
+      swap2
+      jump(tag_37)
+        /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+    tag_30:
+        /* "out.sol":875:892  _receivers.length */
+      dup2
+      mload
+        /* "out.sol":852:856  bool */
+      0x00
+      swap1
+        /* "out.sol":915:936  uint256(cnt) * _value */
+      dup3
+      dup2
+      mul
+        /* "out.sol":950:957  cnt > 0 */
+      dup2
+      iszero
+      dup1
+      iszero
+      swap1
+        /* "out.sol":950:970  cnt > 0 && cnt <= 20 */
+      tag_44
+      jumpi
+      pop
+        /* "out.sol":968:970  20 */
+      0x14
+        /* "out.sol":961:964  cnt */
+      dup3
+        /* "out.sol":961:970  cnt <= 20 */
+      gt
+      iszero
+        /* "out.sol":950:970  cnt > 0 && cnt <= 20 */
+    tag_44:
+        /* "out.sol":942:971  require(cnt > 0 && cnt <= 20) */
+      tag_45
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_45:
+        /* "out.sol":994:995  0 */
+      0x00
+        /* "out.sol":985:991  _value */
+      dup5
+        /* "out.sol":985:995  _value > 0 */
+      gt
+        /* "out.sol":985:1029  _value > 0 && balances[msg.sender] >= amount */
+      dup1
+      iszero
+      tag_46
+      jumpi
+      pop
+        /* "out.sol":1008:1018  msg.sender */
+      caller
+        /* "out.sol":999:1019  balances[msg.sender] */
+      0x00
+      swap1
+      dup2
+      mstore
+        /* "out.sol":999:1007  balances */
+      0x02
+        /* "out.sol":999:1019  balances[msg.sender] */
+      0x20
+      mstore
+      0x40
+      swap1
+      keccak256
+      sload
+        /* "out.sol":999:1029  balances[msg.sender] >= amount */
+      dup2
+      gt
+      iszero
+        /* "out.sol":985:1029  _value > 0 && balances[msg.sender] >= amount */
+    tag_46:
+        /* "out.sol":977:1030  require(_value > 0 && balances[msg.sender] >= amount) */
+      tag_47
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_47:
+        /* "out.sol":1085:1095  msg.sender */
+      caller
+        /* "out.sol":1076:1096  balances[msg.sender] */
+      0x00
+      swap1
+      dup2
+      mstore
+        /* "out.sol":1076:1084  balances */
+      0x02
+        /* "out.sol":1076:1096  balances[msg.sender] */
+      0x20
+      mstore
+      0x40
+      dup2
+      keccak256
+      sload
+        /* "out.sol":1061:1072  sum_balance */
+      swap1
+      sload
+        /* "out.sol":1061:1096  sum_balance >= balances[msg.sender] */
+      lt
+      iszero
+        /* "out.sol":1054:1097  assert(sum_balance >= balances[msg.sender]) */
+      tag_48
+      jumpi
+      invalid
+    tag_48:
+        /* "out.sol":1131:1141  msg.sender */
+      caller
+        /* "out.sol":1122:1142  balances[msg.sender] */
+      0x00
+      swap1
+      dup2
+      mstore
+        /* "out.sol":1122:1130  balances */
+      0x02
+        /* "out.sol":1122:1142  balances[msg.sender] */
+      0x20
+      mstore
+      0x40
+      dup2
+      keccak256
+      dup1
+      sload
+        /* "out.sol":1107:1142  sum_balance -= balances[msg.sender] */
+      dup3
+      sload
+      sub
+      swap1
+      swap2
+      sstore
+        /* "out.sol":1181:1201  balances[msg.sender] */
+      sload
+        /* "out.sol":1181:1213  balances[msg.sender].sub(amount) */
+      tag_49
+      swap1
+        /* "out.sol":1206:1212  amount */
+      dup3
+        /* "out.sol":1181:1213  balances[msg.sender].sub(amount) */
+      0xffffffff
+        /* "out.sol":1181:1205  balances[msg.sender].sub */
+      tag_50
+        /* "out.sol":1181:1213  balances[msg.sender].sub(amount) */
+      and
+      jump	// in
+    tag_49:
+        /* "out.sol":1167:1177  msg.sender */
+      caller
+        /* "out.sol":1158:1178  balances[msg.sender] */
+      0x00
+      swap1
+      dup2
+      mstore
+        /* "out.sol":1158:1166  balances */
+      0x02
+        /* "out.sol":1158:1178  balances[msg.sender] */
+      0x20
+      mstore
+      0x40
+      dup2
+      keccak256
+        /* "out.sol":1158:1213  balances[msg.sender] = balances[msg.sender].sub(amount) */
+      dup3
+      dup2
+      sstore
+        /* "out.sol":1231:1266  sum_balance += balances[msg.sender] */
+      dup2
+      sload
+      swap1
+      swap3
+      add
+      swap1
+      dup2
+      swap1
+      sstore
+        /* "out.sol":1298:1318  balances[msg.sender] */
+      swap1
+      sload
+      gt
+        /* "out.sol":1283:1318  sum_balance >= balances[msg.sender] */
+      iszero
+        /* "out.sol":1276:1319  assert(sum_balance >= balances[msg.sender]) */
+      tag_51
+      jumpi
+      invalid
+    tag_51:
+        /* "out.sol":1344:1350  uint i */
+      0x00
+        /* "out.sol":1339:1720  for (uint i = 0; i < cnt; i++) {... */
+    tag_52:
+        /* "out.sol":1360:1363  cnt */
+      dup3
+        /* "out.sol":1356:1357  i */
+      dup2
+        /* "out.sol":1356:1363  i < cnt */
+      lt
+        /* "out.sol":1339:1720  for (uint i = 0; i < cnt; i++) {... */
+      iszero
+      tag_53
+      jumpi
+        /* "out.sol":1422:1430  balances */
+      0x02
+        /* "out.sol":1422:1445  balances[_receivers[i]] */
+      0x00
+        /* "out.sol":1431:1441  _receivers */
+      dup8
+        /* "out.sol":1442:1443  i */
+      dup4
+        /* "out.sol":1431:1444  _receivers[i] */
+      dup2
+      mload
+      dup2
+      lt
+      tag_55
+      jumpi
+      invalid
+    tag_55:
+      0x20
+      mul
+      0x20
+      add
+      add
+      mload
+      sub(shl(0xa0, 0x01), 0x01)
+        /* "out.sol":1422:1445  balances[_receivers[i]] */
+      and
+      sub(shl(0xa0, 0x01), 0x01)
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      sload
+        /* "out.sol":1407:1418  sum_balance */
+      sload(0x00)
+        /* "out.sol":1407:1445  sum_balance >= balances[_receivers[i]] */
+      lt
+      iszero
+        /* "out.sol":1400:1446  assert(sum_balance >= balances[_receivers[i]]) */
+      tag_56
+      jumpi
+      invalid
+    tag_56:
+        /* "out.sol":1473:1481  balances */
+      0x02
+        /* "out.sol":1473:1496  balances[_receivers[i]] */
+      0x00
+        /* "out.sol":1482:1492  _receivers */
+      dup8
+        /* "out.sol":1493:1494  i */
+      dup4
+        /* "out.sol":1482:1495  _receivers[i] */
+      dup2
+      mload
+      dup2
+      lt
+      tag_57
+      jumpi
+      invalid
+    tag_57:
+      0x20
+      mul
+      0x20
+      add
+      add
+      mload
+      sub(shl(0xa0, 0x01), 0x01)
+        /* "out.sol":1473:1496  balances[_receivers[i]] */
+      and
+      sub(shl(0xa0, 0x01), 0x01)
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      sload
+        /* "out.sol":1458:1469  sum_balance */
+      0x00
+      dup1
+        /* "out.sol":1458:1496  sum_balance -= balances[_receivers[i]] */
+      dup3
+      dup3
+      sload
+      sub
+      swap3
+      pop
+      pop
+      dup2
+      swap1
+      sstore
+      pop
+        /* "out.sol":1542:1577  balances[_receivers[i]].add(_value) */
+      tag_58
+        /* "out.sol":1570:1576  _value */
+      dup6
+        /* "out.sol":1542:1550  balances */
+      0x02
+        /* "out.sol":1542:1565  balances[_receivers[i]] */
+      0x00
+        /* "out.sol":1551:1561  _receivers */
+      dup10
+        /* "out.sol":1562:1563  i */
+      dup6
+        /* "out.sol":1551:1564  _receivers[i] */
+      dup2
+      mload
+      dup2
+      lt
+      tag_59
+      jumpi
+      invalid
+    tag_59:
+      0x20
+      mul
+      0x20
+      add
+      add
+      mload
+      sub(shl(0xa0, 0x01), 0x01)
+        /* "out.sol":1542:1565  balances[_receivers[i]] */
+      and
+      sub(shl(0xa0, 0x01), 0x01)
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      sload
+        /* "out.sol":1542:1569  balances[_receivers[i]].add */
+      tag_60
+      swap1
+        /* "out.sol":1542:1577  balances[_receivers[i]].add(_value) */
+      swap2
+      swap1
+      0xffffffff
+      and
+      jump	// in
+    tag_58:
+        /* "out.sol":1516:1524  balances */
+      0x02
+        /* "out.sol":1516:1539  balances[_receivers[i]] */
+      0x00
+        /* "out.sol":1525:1535  _receivers */
+      dup9
+        /* "out.sol":1536:1537  i */
+      dup5
+        /* "out.sol":1525:1538  _receivers[i] */
+      dup2
+      mload
+      dup2
+      lt
+      tag_61
+      jumpi
+      invalid
+    tag_61:
+      0x20
+      mul
+      0x20
+      add
+      add
+      mload
+      sub(shl(0xa0, 0x01), 0x01)
+        /* "out.sol":1516:1539  balances[_receivers[i]] */
+      and
+      sub(shl(0xa0, 0x01), 0x01)
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+        /* "out.sol":1516:1577  balances[_receivers[i]] = balances[_receivers[i]].add(_value) */
+      dup2
+      swap1
+      sstore
+      pop
+        /* "out.sol":1614:1622  balances */
+      0x02
+        /* "out.sol":1614:1637  balances[_receivers[i]] */
+      0x00
+        /* "out.sol":1623:1633  _receivers */
+      dup8
+        /* "out.sol":1634:1635  i */
+      dup4
+        /* "out.sol":1623:1636  _receivers[i] */
+      dup2
+      mload
+      dup2
+      lt
+      tag_62
+      jumpi
+      invalid
+    tag_62:
+      0x20
+      mul
+      0x20
+      add
+      add
+      mload
+      sub(shl(0xa0, 0x01), 0x01)
+        /* "out.sol":1614:1637  balances[_receivers[i]] */
+      and
+      sub(shl(0xa0, 0x01), 0x01)
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      sload
+        /* "out.sol":1599:1610  sum_balance */
+      0x00
+      dup1
+        /* "out.sol":1599:1637  sum_balance += balances[_receivers[i]] */
+      dup3
+      dup3
+      sload
+      add
+      swap3
+      pop
+      pop
+      dup2
+      swap1
+      sstore
+      pop
+        /* "out.sol":1671:1679  balances */
+      0x02
+        /* "out.sol":1671:1694  balances[_receivers[i]] */
+      0x00
+        /* "out.sol":1680:1690  _receivers */
+      dup8
+        /* "out.sol":1691:1692  i */
+      dup4
+        /* "out.sol":1680:1693  _receivers[i] */
+      dup2
+      mload
+      dup2
+      lt
+      tag_63
+      jumpi
+      invalid
+    tag_63:
+      0x20
+      mul
+      0x20
+      add
+      add
+      mload
+      sub(shl(0xa0, 0x01), 0x01)
+        /* "out.sol":1671:1694  balances[_receivers[i]] */
+      and
+      sub(shl(0xa0, 0x01), 0x01)
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      sload
+        /* "out.sol":1656:1667  sum_balance */
+      sload(0x00)
+        /* "out.sol":1656:1694  sum_balance >= balances[_receivers[i]] */
+      lt
+      iszero
+        /* "out.sol":1649:1695  assert(sum_balance >= balances[_receivers[i]]) */
+      tag_64
+      jumpi
+      invalid
+    tag_64:
+        /* "out.sol":1365:1368  i++ */
+      0x01
+      add
+        /* "out.sol":1339:1720  for (uint i = 0; i < cnt; i++) {... */
+      jump(tag_52)
+    tag_53:
+      pop
+        /* "out.sol":1755:1766  sum_balance */
+      sload(0x00)
+        /* "out.sol":1740:1751  totalSupply */
+      sload(0x01)
+        /* "out.sol":1740:1766  totalSupply == sum_balance */
+      eq
+        /* "out.sol":1733:1767  assert(totalSupply == sum_balance) */
+      tag_65
+      jumpi
+      invalid
+    tag_65:
+      pop
+        /* "out.sol":1782:1786  true */
+      0x01
+      swap5
+        /* "out.sol":767:1851  function batchTransfer (address[] memory _receivers, uint256 _value) public returns (bool) {... */
+      swap4
+      pop
+      pop
+      pop
+      pop
+      jump	// out
+        /* "out.sol":1931:1959  string public symbol = "BEC" */
+    tag_32:
+      0x05
+      dup1
+      sload
+      0x40
+      dup1
+      mload
+      0x20
+      0x02
+      0x01
+      dup6
+      and
+      iszero
+      0x0100
+      mul
+      not(0x00)
+      add
+      swap1
+      swap5
+      and
+      swap4
+      swap1
+      swap4
+      div
+      0x1f
+      dup2
+      add
+      dup5
+      swap1
+      div
+      dup5
+      mul
+      dup3
+      add
+      dup5
+      add
+      swap1
+      swap3
+      mstore
+      dup2
+      dup2
+      mstore
+      swap3
+      swap2
+      dup4
+      add
+      dup3
+      dup3
+      dup1
+      iszero
+      tag_37
+      jumpi
+      dup1
+      0x1f
+      lt
+      tag_38
+      jumpi
+      0x0100
+      dup1
+      dup4
+      sload
+      div
+      mul
+      dup4
+      mstore
+      swap2
+      0x20
+      add
+      swap2
+      jump(tag_37)
+        /* "out.sol":305:416  function sub (uint256 a, uint256 b) internal pure returns (uint256) {... */
+    tag_50:
+        /* "out.sol":364:371  uint256 */
+      0x00
+        /* "out.sol":391:392  a */
+      dup3
+        /* "out.sol":386:387  b */
+      dup3
+        /* "out.sol":386:392  b <= a */
+      gt
+      iszero
+        /* "out.sol":379:393  assert(b <= a) */
+      tag_71
+      jumpi
+      invalid
+    tag_71:
+      pop
+        /* "out.sol":406:411  a - b */
+      swap1
+      sub
+      swap1
+        /* "out.sol":305:416  function sub (uint256 a, uint256 b) internal pure returns (uint256) {... */
+      jump	// out
+        /* "out.sol":419:549  function add (uint256 a, uint256 b) internal pure returns (uint256) {... */
+    tag_60:
+        /* "out.sol":478:485  uint256 */
+      0x00
+        /* "out.sol":505:510  a + b */
+      dup3
+      dup3
+      add
+        /* "out.sol":523:529  c >= a */
+      dup4
+      dup2
+      lt
+      iszero
+        /* "out.sol":516:530  assert(c >= a) */
+      tag_73
+      jumpi
+      invalid
+    tag_73:
+        /* "out.sol":543:544  c */
+      swap4
+        /* "out.sol":419:549  function add (uint256 a, uint256 b) internal pure returns (uint256) {... */
+      swap3
+      pop
+      pop
+      pop
+      jump	// out
+
+    auxdata: 0xa165627a7a72305820c02f0594d5745733b37ef7dd4d724ad2d0a403e7306a306c19ce9783f300a9e80029
+}
