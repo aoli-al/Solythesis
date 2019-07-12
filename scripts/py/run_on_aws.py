@@ -9,7 +9,7 @@ from scp import SCPClient
 def create_new_instance(count):
     ec2 = boto3.resource('ec2', region_name='us-west-1')
     instances = ec2.create_instances(
-        ImageId='ami-06397100adf427136',
+        ImageId='ami-020aab6b5e86ef94a',
         UserData='Leo-bench',
         MinCount=count,
         MaxCount=count,
@@ -112,19 +112,19 @@ def test(args):
     execute_remote_command(sender_client,
                            "bash ~/scripts/bash/test_sync.sh {} {} {} {}"
                            .format(contract, script_path, csv, receiver.public_ip_address))
-    move_files(sender_client, "/home/ubuntu/results", "./results")
+    move_files(sender_client, "/home/ubuntu/results", "/data/{}-{}".format(contract, csv))
     sender_client.close()
     receiver_client.close()
     sender.terminate()
     receiver.terminate()
 
 
-benchmarks = [("kc", "~/repos/playground/replay.py", "erc721"),
-              ("kc", "~/repos/playground/replay_dd.py", "tran"),
-              ("test", "~/repos/playground/replay.py", "erc20"),
-              ("test", "~/repos/playground/replay_bec.py", "transfer"),
-              ("test", "~/repos/playground/replay_bec.py", "batchTransfer"),
-              ("vote", "~/repos/playground/replay_vote.py", "v")]
+benchmarks = [("kc", "~/scripts/py/replay.py", "erc721"),
+              ("kc", "~/scripts/py/replay_dd.py", "tran"),
+              ("test", "~/scripts/py/replay.py", "erc20"),
+              ("test", "~/scripts/py/replay_bec.py", "transfer"),
+              ("test", "~/scripts/py/replay_bec.py", "batchTransfer"),
+              ("vote", "~/scripts/py/replay_vote.py", "v")]
 tests = ["", "_secured", "_noopt"]
 
 
