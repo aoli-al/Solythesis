@@ -26,15 +26,15 @@ def create_new_instance(count):
 
 
 def execute_remote_command(ssh, command, cwd="~", block=True):
-    ssh.exec_command("cd " + cwd, get_pty=True)
-    stdin, stdout, stderr = ssh.exec_command(command)
-    if block:
-        line_buf = ''
-        while not stdout.channel.exit_status_ready():
-            line_buf += stdout.read(1).decode("utf-8")
-            if line_buf.endswith('\n'):
-                print(line_buf)
-                line_buf = ''
+    print(command)
+    stdin, stdout, stderr = ssh.exec_command(command, get_pty=block)
+    # if block:
+    #     line_buf = ''
+    #     while not stdout.channel.exit_status_ready():
+    #         line_buf += stdout.read(1).decode("utf-8")
+    #         if line_buf.endswith('\n'):
+    #             print(line_buf)
+    #             line_buf = ''
 
 
 def move_files(ssh, src, dst):
@@ -108,10 +108,15 @@ def test(args):
     [contract, script_path, csv] = args
     [receiver, receiver_client] = create_receiver()
     [sender, sender_client] = create_sender()
-    execute_remote_command(receiver_client, "bash ~/scripts/bash/run_receiver.sh", block=False)
-    execute_remote_command(sender_client,
-                           "bash ~/scripts/bash/test_sync.sh {} {} {} {}"
-                           .format(contract, script_path, csv, receiver.public_ip_address))
+    print(contract+csv + ": " + receiver.public_ip_address)
+    print(contract+csv + ": " + sender.public_ip_address)
+    try:
+        execute_remote_command(receiver_client, "bash ~/scripts/bash/run_receiver.sh", block=False)
+        execute_remote_command(sender_client,
+                               "bash ~/scripts/bash/test_sync.sh {} {} {} {}"
+                               .format(contract, script_path, csv, receiver.public_ip_address))
+    except:
+        pass
     move_files(sender_client, "/home/ubuntu/results", "/data/{}-{}".format(contract, csv))
     sender_client.close()
     receiver_client.close()
