@@ -1,0 +1,30 @@
+[parity]
+no_consensus = true
+chain = "./config.json"
+
+
+[mining]
+reseal_min_period = 0
+min_gas_price = 0
+author = "0x0289b6400c70047460743B2F8eA6AE86376E958F"
+
+[rpc]
+interface = "all"
+apis = ["all"]
+hosts = ["all"]
+
+[ipc]
+apis = ["all"]
+
+
+[ipfs]
+enable = false # this is the default
+hosts = ["all"]
+
+
+[websockets]
+apis = ["all"]
+
+[misc]
+logging = "error"
+log_file = "./parity.log"
