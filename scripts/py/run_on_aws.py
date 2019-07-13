@@ -30,12 +30,15 @@ def execute_remote_command(ssh, command, block=True):
     print(command)
     stdin, stdout, stderr = ssh.exec_command(command, get_pty=True)
     if block:
-        line_buf = ''
-        while not stdout.channel.exit_status_ready():
-            line_buf += stdout.read(1).decode("utf-8")
-            if line_buf.endswith('\n'):
-                print(line_buf)
-                line_buf = ''
+        while True:
+            print(stdout.readline())
+            if stdout.channel.exit_status_ready():
+                break
+        # while not stdout.channel.exit_status_ready():
+        #     line_buf += stdout.read(1).decode("utf-8")
+        #     if line_buf.endswith('\n'):
+        #         print(line_buf)
+        #         line_buf = ''
 
 
 def move_files(ssh, src, dst):
