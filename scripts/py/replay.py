@@ -12,8 +12,8 @@ parser.add_argument('csv')
 parser.add_argument('path')
 parser.add_argument('key1')
 parser.add_argument('key2')
-parser.add_argument("--pow", type=bool, dest="pow", action="store_true")
-parser.add_argument("--progress-bar", type=bool, dest="progress_bar", action="store_true")
+parser.add_argument("--pow", dest="pow", action="store_true")
+parser.add_argument("--progress-bar", dest="progress_bar", action="store_true")
 args = parser.parse_args()
 
 if 'erc20' in args.csv:
