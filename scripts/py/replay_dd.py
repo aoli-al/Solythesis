@@ -10,7 +10,8 @@ parser.add_argument('csv')
 parser.add_argument('path')
 parser.add_argument('key1')
 parser.add_argument('key2')
-parser.add_argument("--pow", type=bool)
+parser.add_argument("--pow", type=bool, dest="pow", action="store_true")
+parser.add_argument("--progress-bar", type=bool, dest="progress_bar", action="store_true")
 args = parser.parse_args()
 bench = Bench(args.endpoint, args.path, 'DozerDoll', args.pow)
 contract_creator = bench.import_account(args.key1)
@@ -37,13 +38,16 @@ for i in range(USERS):
 print(users)
 bench.wait_for_result(result)
 
-ITER = 2000
+ITER = 500
 
 bar = progressbar.ProgressBar(maxval=ITER,
                               widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 bar.start()
 for i in range(ITER):
-    bar.update(i)
+    if args.progress_bar:
+        bar.update(i)
+    else:
+        print(i)
     for k in range(NUM_OF_CONTRACT):
         bench.call_contract_function(contract_creator[0], 'mintUniqueTokenTo',
                                      [users[0], i, "Token!!!"],

@@ -2,6 +2,7 @@ import boto3
 import paramiko
 import subprocess
 import time
+import sys
 from multiprocessing import Pool
 from scp import SCPClient
 
@@ -138,13 +139,15 @@ benchmarks = [("kc", "~/scripts/py/replay.py", "erc721"),
 tests = ["", "_secured", "_noopt"]
 
 
-def generate_tests():
-    for benchmark in benchmarks:
-        for t in tests:
-            yield [benchmark[0]+t, *benchmark[1:]]
+def generate_tests(i):
+    for t in tests:
+        yield [benchmarks[i][0]+t, *benchmarks[i][1:]]
 
 
-with Pool(2) as p:
-    print(p.map(test, generate_tests()))
+with Pool(1) as p:
+    p.map(test, generate_tests(int(sys.argv[1])))
+
+# with Pool(2) as p:
+#     print(p.map(test, generate_tests()))
 
 

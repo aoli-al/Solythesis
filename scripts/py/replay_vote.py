@@ -16,7 +16,8 @@ parser.add_argument('csv')
 parser.add_argument('path')
 parser.add_argument('key1')
 parser.add_argument('key2')
-parser.add_argument("--pow", type=bool)
+parser.add_argument("--pow", type=bool, dest="pow", action="store_true")
+parser.add_argument("--progress-bar", type=bool, dest="progress_bar", action="store_true")
 args = parser.parse_args()
 bench = Bench(args.endpoint, args.path, 'AdvancedTokenVote1202', args.pow)
 contract_creator = bench.import_account(args.key1)
@@ -45,7 +46,10 @@ bar = progressbar.ProgressBar(maxval=ITER,
 bar.start()
 
 for i in range(ITER):
-    bar.update(i)
+    if args.progress_bar:
+        bar.update(i)
+    else:
+        print(i)
     for k in range(5):
         for j in range(28):
             result = bench.call_contract_function(contract_creator[0], 'createIssue',

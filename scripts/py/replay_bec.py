@@ -11,7 +11,8 @@ parser.add_argument('csv')
 parser.add_argument('path')
 parser.add_argument('key1')
 parser.add_argument('key2')
-parser.add_argument("--pow", type=bool)
+parser.add_argument("--pow", type=bool, dest="pow", action="store_true")
+parser.add_argument("--progress-bar", type=bool, dest="progress_bar", action="store_true")
 args = parser.parse_args()
 
 if 'transfer' in args.csv:
@@ -27,7 +28,7 @@ bec_addr = [bench.call_contract_function(a[0][0], 'constructor', [], private_key
 bec_addr = [bench.wait_for_result(x).contractAddress for x in bec_addr]
 
 count = 0
-ITER = 2000
+ITER = 500
 
 
 def generate(idx, k):
@@ -47,7 +48,10 @@ bar.start()
 
 idx = 0
 for i in range(ITER):
-    bar.update(i)
+    if args.progress_bar:
+        bar.update(i)
+    else:
+        print(i)
     for k in range(NUM_OF_CONTRACT):
         result = generate(idx, k)
     tx_receipt = bench.wait_for_result(result)

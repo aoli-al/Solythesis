@@ -4,7 +4,7 @@ import progressbar
 import argparse
 from bench import Bench
 
-ITER = 1000
+ITER = 250
 
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('endpoint')
@@ -12,7 +12,8 @@ parser.add_argument('csv')
 parser.add_argument('path')
 parser.add_argument('key1')
 parser.add_argument('key2')
-parser.add_argument("--pow", type=bool)
+parser.add_argument("--pow", type=bool, dest="pow", action="store_true")
+parser.add_argument("--progress-bar", type=bool, dest="progress_bar", action="store_true")
 args = parser.parse_args()
 
 if 'erc20' in args.csv:
@@ -58,7 +59,10 @@ bar.start()
 idx = 0
 gas = 0
 for idx in range(ITER):
-    bar.update(idx)
+    if args.progress_bar:
+        bar.update(idx)
+    else:
+        print(idx)
     transaction = transactions[idx]
     if int(transaction['status']) == 0:
         continue
