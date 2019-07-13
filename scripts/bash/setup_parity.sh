@@ -7,6 +7,7 @@ export DEBIAN_FRONTEND=noninteractive
 git clone https://github.com/Leeleo3x/parity-ethereum
 #curl https://sh.rustup.rs -sSf | sh -s -- -y
 cd parity-ethereum
+git checkout batch_packing
 ~/.cargo/bin/cargo build --release
 
 
