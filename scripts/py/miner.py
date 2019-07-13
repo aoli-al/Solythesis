@@ -3,7 +3,7 @@ import threading
 import sys
 
 # parity = web3.Web3.IPCProvider(sys.argv[1], timeout=12000000)
-parity = web3.Web3.WebsocketProvider(sys.argv[1])
+parity = web3.Web3.WebsocketProvider(sys.argv[1], websocket_timeout=65535)
 w3 = web3.Web3(parity)
 
 idx = 0

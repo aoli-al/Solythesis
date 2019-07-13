@@ -15,7 +15,7 @@ replay=$!
 # sudo blktrace -d /dev/xvdf -o $2-$4 &
 nohup /home/ubuntu/.local/bin/psrecord $parity_pid --interval 0.1 --log /home/ubuntu/results/$1-$3.txt  &
 psrecord=$!
-nohup python3 ~/repos/playground/miner.py ws://$4:8546&
+python3 ~/repos/playground/miner.py ws://$4:8546 &
 miner=$!
 
 wait $replay
@@ -26,8 +26,10 @@ kill $parity_pid
 kill -9 $parity_pid
 mv /tmp/parity/chains/DevelopmentChain/db/5121426b82ed1df6/overlayrecent/db/LOG /home/ubuntu/results/$1-$3.log
 # sudo killall blktrace
-# sleep 5
-# ~/repos/parity-ethereum/target/release/parity export blocks --config ./config.dev-insecure.toml --base-path=/data/parity ./$2-$4.bin
+sleep 5
+~/parity-ethereum/target/release/parity export blocks \
+  --config /home/ubuntu/scripts/parity/config.dev-insecure.toml  --chain /home/ubuntu/scripts/parity/config.json \
+ --base-path=/tmp/parity ~/results/$2-$4.bin
 # rm -rf /data/parity
 # ~/repos/parity-ethereum/target/release/parity import --config ./config.dev-insecure.toml  --base-path=/data/parity --logging=info ./$2-$4.bin
 # blkparse $2-$4 -f "%5T.%9t, %p, %C, %a, %d, %N\n" -a read -a write -o $2-$4.blk
