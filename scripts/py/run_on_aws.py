@@ -10,7 +10,7 @@ from scp import SCPClient
 def create_new_instance(count):
     ec2 = boto3.resource('ec2', region_name='us-west-1')
     instances = ec2.create_instances(
-        ImageId='ami-09fe6edeedec4bf7a',
+        ImageId='ami-0e65a0ccc7550e6f3',
         UserData='Leo-bench',
         MinCount=count,
         MaxCount=count,
