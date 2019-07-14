@@ -119,13 +119,17 @@ def test(args):
     print(contract+csv + ": " + receiver.public_ip_address)
     print(contract+csv + ": " + sender.public_ip_address)
     try:
-        execute_remote_command(receiver_client, "bash ~/scripts/bash/run_receiver.sh", block=False)
         execute_remote_command(sender_client,
                                "bash ~/scripts/bash/test_sync.sh {} {} {} {}"
+                               .format(contract, script_path, csv, receiver.public_ip_address), block=False)
+        execute_remote_command(receiver_client,
+                               "bash ~/scripts/bash/run_receiver.sh {} {} {} {}"
+                               .format(contract, script_path, csv, receiver.public_ip_address))
+        execute_remote_command(sender_client,
+                               "bash ~/scripts/bash/finish_sync.sh {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-        pass
     fetch_files(sender_client, "/home/ubuntu/results", "/data/{}-{}".format(contract, csv))
     sender_client.close()
     receiver_client.close()
