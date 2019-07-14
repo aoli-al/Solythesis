@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+cd ~
 rm nohup.out
 rm -rf /tmp/parity
 mkdir ~/results
@@ -8,7 +9,7 @@ mkdir ~/results
   --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/config.json\
   --base-path=/tmp/parity --bootnodes=enode://5a3bf48fcb9dd123b50232b360e73c31bdc0992a6dd3bff1ed8efc7766856cc90f5127dd8102d4ca07b168a97a3c976c7be5a4d2a677b0c27da85733d21ee46a@$4:30303  &
 parity_pid=$!
-nohup ~/.local/bin/psrecord $parity_pid --interval 0.1 --log ~/results/$1-$3.txt  &
+~/.local/bin/psrecord $parity_pid --interval 0.1 --log ~/results/$1-$3.txt
 psrecord=$!
 # sleep 4
 #python3 $2 ws://$4:8546 ~/scripts/data/$3.csv\
