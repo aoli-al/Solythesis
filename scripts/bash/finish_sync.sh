@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 killall psrecord
-kill parity
+killall parity
 sleep 10
-kill -9 parity
+killall -9 parity
 mv /tmp/parity/chains/DevelopmentChain/db/5121426b82ed1df6/overlayrecent/db/LOG ~/results/$1-$3.log
 # sudo killall blktrace
 sleep 5

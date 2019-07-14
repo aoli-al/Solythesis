@@ -26,5 +26,5 @@ hosts = ["all"]
 apis = ["all"]
 
 [misc]
-logging = "error"
+logging = "info"
 log_file = "./parity.log"

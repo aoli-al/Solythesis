@@ -84,6 +84,7 @@ def create_receiver():
                              auth_timeout=30000)
     try:
         move_files(ssh, "../../scripts", "scripts")
+        move_files(ssh, "../../tests", "tests")
         execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh", block=False)
     except Exception as e:
         print(e)
