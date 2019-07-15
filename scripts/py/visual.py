@@ -36,7 +36,9 @@ for i in range(6):
         f = open("/data/{}/{}.log".format(name, name))
         for line in f:
             result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
-            m[idx][benchmark[2]] = float(result.group(1))
+            if result:
+                m[idx][benchmark[2]] = float(result.group(1))
+        print(m[idx][benchmark[2]])
 generate_table(m)
 
 for i in range(6):
