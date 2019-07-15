@@ -5,6 +5,7 @@ import time
 import sys
 from multiprocessing import Pool
 from scp import SCPClient
+from utils import *
 
 
 def create_new_instance(count):
@@ -136,20 +137,6 @@ def test(args):
     receiver_client.close()
     sender.terminate()
     receiver.terminate()
-
-
-benchmarks = [("kc", "~/scripts/py/replay.py", "erc721"),
-              ("kc", "~/scripts/py/replay_dd.py", "tran"),
-              ("test", "~/scripts/py/replay.py", "erc20"),
-              ("test", "~/scripts/py/replay_bec.py", "transfer"),
-              ("test", "~/scripts/py/replay_bec.py", "batchTransfer"),
-              ("vote", "~/scripts/py/replay_vote.py", "v")]
-tests = ["", "_secured", "_noopt"]
-
-
-def generate_tests(i):
-    for t in tests:
-        yield [benchmarks[i][0]+t, *benchmarks[i][1:]]
 
 
 with Pool(1) as p:
