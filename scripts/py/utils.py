@@ -7,6 +7,10 @@ benchmarks = [("kc", "~/scripts/py/replay.py", "erc721"),
 tests = ["", "_secured", "_noopt"]
 
 
-def generate_tests(i):
-    for t in tests:
+def generate_tests(i, j=None):
+    if j:
+        t = tests[j]
         yield [benchmarks[i][0]+t, *benchmarks[i][1:]]
+    else:
+        for t in tests:
+            yield [benchmarks[i][0]+t, *benchmarks[i][1:]]

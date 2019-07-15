@@ -140,7 +140,7 @@ def test(args):
 
 
 with Pool(1) as p:
-    p.map(test, generate_tests(int(sys.argv[1])))
+    p.map(test, generate_tests(int(sys.argv[1]), int(sys.argv[2])))
 
 # with Pool(2) as p:
 #     print(p.map(test, generate_tests()))
