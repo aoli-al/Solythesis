@@ -34,11 +34,12 @@ for i in range(6):
         idx = name_mapping(name)
         if idx not in m:
             m[idx] = {}
-        f = open("/data/{}/{}.log".format(name, name))
+        f = open("/data/{}/{}.stat".format(name, name))
         for line in f:
-            result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
+            # result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
+            result = re.match(r"rocksdb.bytes.written COUNT : (\d*)", line)
             if result:
-                m[idx][benchmark[2]] = float(result.group(1))
+                m[idx][benchmark[2]] = int(result.group(1)) / 1024 / 1024 / 1024
         print(m[idx][benchmark[2]])
 generate_table(m, "& %.2f ")
 
