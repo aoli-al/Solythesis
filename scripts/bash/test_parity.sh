@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 rm -rf /data/leo
 rm -rf ./$1.bin
 nohup $2 --config ./config.dev-insecure.toml --unsafe-expose   --jsonrpc-cors=all\

@@ -25,6 +25,7 @@ def generate_table(m):
             s += "& %.3f\\%%" % m[r][c]
         s += "\\\\"
         print(s)
+    print("\\cline{2-8}")
 
 
 for i in range(6):
