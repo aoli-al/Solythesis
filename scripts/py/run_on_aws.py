@@ -139,6 +139,23 @@ def test(args):
     receiver.terminate()
 
 
+def test_2(args):
+    [contract, script_path, csv] = args
+    [receiver, receiver_client] = create_receiver()
+    print(contract+csv + ": " + receiver.public_ip_address)
+    try:
+        execute_remote_command(receiver_client,
+                               "bash ~/scripts/bash/run_receiver.sh {} {} {} {}"
+                               .format(contract, script_path, csv, receiver.public_ip_address))
+    except Exception as e:
+        print(e)
+    fetch_files(receiver_client, "/home/ubuntu/results", "/data/{}-{}".format(contract, csv))
+    sender_client.close()
+    receiver_client.close()
+    sender.terminate()
+    receiver.terminate()
+
+
 with Pool(1) as p:
     p.map(test, generate_tests(int(sys.argv[1]), int(sys.argv[2])))
 

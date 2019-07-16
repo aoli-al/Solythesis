@@ -4,7 +4,7 @@ import progressbar
 import argparse
 from bench import Bench
 
-ITER = 250
+ITER = 500
 
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('endpoint')
@@ -58,6 +58,7 @@ bar.start()
 
 idx = 0
 gas = 0
+num_of_blocks = 0
 for idx in range(ITER):
     if args.progress_bar:
         bar.update(idx)
@@ -77,5 +78,8 @@ for idx in range(ITER):
         gas += int(transaction['gasUsed'])
         if gas >= 8000000:
             bench.wait_for_result(result)
+            num_of_blocks += 1
+            if num_of_blocks == 500:
+                exit(0)
             gas = 0
 bench.wait_for_result(result)
