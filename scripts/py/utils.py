@@ -8,7 +8,7 @@ tests = ["", "_secured", "_noopt"]
 
 
 def generate_tests(i, j=None):
-    if j:
+    if j is not None:
         t = tests[j]
         yield [benchmarks[i][0]+t, *benchmarks[i][1:]]
     else:
