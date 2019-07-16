@@ -16,13 +16,13 @@ def name_mapping(name):
     return "O"
 
 
-def generate_table(m):
+def generate_table(m, formatter):
     corder = ["erc20", "tran", "batchTransfer", "v", "erc721", "tran"]
     rorder = ["S", "S-N", "O"]
     for r in rorder:
         s = " & \\textbf{%s}"% r
         for c in corder:
-            s += "& %.3f\\%%" % m[r][c]
+            s += formatter % m[r][c]
         s += "\\\\"
         print(s)
 
@@ -39,7 +39,7 @@ for i in range(6):
             if result:
                 m[idx][benchmark[2]] = float(result.group(1))
         print(m[idx][benchmark[2]])
-generate_table(m)
+generate_table(m, "& %.2f ")
 
 for i in range(6):
     for benchmark in generate_tests(i):
@@ -51,7 +51,4 @@ for i in range(6):
         res = res[[1]]
         print(np.mean(res).values[0])
         m[idx][benchmark[2]] = np.mean(res).values[0]
-generate_table(m)
-
-
-
+generate_table(m, "& %.3f\\%%")
