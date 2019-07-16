@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 nohup ~/parity-ethereum/target/release/parity --accounts-refresh=0 \
-   --fast-unlock --no-warp --config \
+   --fast-unlock --no-warp --config --no-consensus \
    /home/ubuntu/scripts/parity/config.dev-insecure.toml \
-   --chain=/home/ubuntu/scripts/parity/config.json  \
+   --chain=/home/ubuntu/scripts/parity/foundation.json  \
    --base-path=/tmp/parity --logging=info  \
    --unsafe-expose --jsonrpc-cors=all &
 
