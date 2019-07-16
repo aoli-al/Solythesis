@@ -17,7 +17,7 @@ def name_mapping(name):
 
 
 def generate_table(m, formatter):
-    corder = ["erc20", "tran", "batchTransfer", "v", "erc721", "tran"]
+    corder = ["erc20", "transfer", "batchTransfer", "v", "erc721", "tran"]
     rorder = ["S", "S-N", "O"]
     for r in rorder:
         s = " & \\textbf{%s}"% r
