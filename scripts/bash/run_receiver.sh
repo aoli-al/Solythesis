@@ -15,8 +15,9 @@ sleep 1
 python3 ~/scripts/py/miner.py ws://127.0.0.1:8546 &
 miner=$!
 wait $replay
-killall parity
 sleep 5
+killall parity
+sleep 2
 kill $miner
 killall -9 parity
 
