@@ -9,7 +9,7 @@ mkdir results
    --base-path=/home/leo/fullnode --logging=info  \
    --unsafe-expose --jsonrpc-cors=all --no-discovery  &
 
-sleep 5
+sleep 10
 python3 $2 ws://127.0.0.1:8546 ~/scripts/data/$3.csv\
   ~/tests/$1.sol ~/scripts/keys/leo123leo987 ~/scripts/keys/leo123leo456 --pow
 replay=$!
@@ -24,9 +24,9 @@ sleep 5
 killall -9 parity
 
 ~/parity-ethereum/target/release/parity export blocks \
-  --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/config.json \
+  --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/foundation.json \
  --base-path=/home/leo/fullnode ~/results/$1-$3-mainchain.bin  --from 5052259
 
-~/parity-ethereum/target/release/parity export import ~/results/$1-$3-mainchain.bin\
-  --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/config.json \
+~/parity-ethereum/target/release/parity import ~/results/$1-$3-mainchain.bin\
+  --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/foundation.json \
   --base-path=/home/leo/import --log-file=/home/leo/results/parity.log
