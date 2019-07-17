@@ -27,6 +27,13 @@ def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0cc
     return instances
 
 
+def clean_up(instance):
+    volumes = instance.volumes
+    instance.terminate()
+    for volume in volumes:
+        volume.delete()
+
+
 def execute_remote_command(ssh, command, block=True):
     print(command)
     stdin, stdout, stderr = ssh.exec_command(command, get_pty=True)
@@ -91,7 +98,7 @@ def create_receiver():
 
 
 def create_receiver_singleton():
-    instance = create_new_instance(1, security_group='Monitor', image_id="ami-00fcd4aa774da6ca9")[0]
+    instance = create_new_instance(1, security_group='Monitor', image_id="ami-01d4e1599b6e0e751")[0]
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     privkey = paramiko.RSAKey.from_private_key_file('../keys/Leo-remote.pem')
@@ -150,8 +157,8 @@ def test(args):
     fetch_files(sender_client, "/home/ubuntu/results", "/data/{}-{}".format(contract, csv))
     sender_client.close()
     receiver_client.close()
-    sender.terminate()
-    receiver.terminate()
+    clean_up(sender)
+    clean_up(receiver)
 
 
 def test_2(args):
@@ -166,8 +173,7 @@ def test_2(args):
         print(e)
     fetch_files(receiver_client, "/home/leo/results", "/data/mainnet-{}-{}".format(contract, csv))
     receiver_client.close()
-    receiver.terminate()
-
+    clean_up(receiver)
 
 with Pool(1) as p:
     p.map(test_2, generate_tests(*[int(x) for x in sys.argv[1:]]))
