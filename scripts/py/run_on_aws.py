@@ -98,7 +98,7 @@ def create_receiver():
 
 
 def create_receiver_singleton():
-    instance = create_new_instance(1, security_group='Monitor', image_id="ami-012cf6b44317ddf45")[0]
+    instance = create_new_instance(1, security_group='Monitor', image_id="ami-04a4f29a9644e4693")[0]
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     privkey = paramiko.RSAKey.from_private_key_file('../keys/Leo-remote.pem')
