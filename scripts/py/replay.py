@@ -47,9 +47,10 @@ for idx in range(ITER):
     bench.transfer(contract_creator[0], new, 10000000000, contract_creator[1])
     idx += 1
 
-contract_address = [bench.call_contract_function(contract_creator[0], 'constructor', constructor_args, private_key=contract_creator[1])
+contract_address = [bench.call_contract_function(contract_creator[0], 'constructor', constructor_args,
+                                                 private_key=contract_creator[1], wait=True)
                     for i in range(NUM_OF_CONTRACT)]
-contract_address = [bench.wait_for_result(x).contractAddress for x in contract_address]
+contract_address = [bench.wait_for_result(x, gen_pow=False).contractAddress for x in contract_address]
 
 
 bar = progressbar.ProgressBar(maxval=len(transactions),

@@ -27,9 +27,10 @@ OPTIONS = 5
 USERS = 5
 ITER = 200
 
-vote_addr = [bench.call_contract_function(contract_creator[0], 'constructor', [], private_key=contract_creator[1])
+vote_addr = [bench.call_contract_function(contract_creator[0], 'constructor', [], private_key=contract_creator[1],
+                                          wait=True)
              for i in range(NUM_OF_CONTRACT)]
-vote_addr = [bench.wait_for_result(x).contractAddress for x in vote_addr]
+vote_addr = [bench.wait_for_result(x, gen_pow=False).contractAddress for x in vote_addr]
 print(vote_addr)
 
 users = []

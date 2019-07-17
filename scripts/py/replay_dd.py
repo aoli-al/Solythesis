@@ -23,8 +23,8 @@ bench.wait_for_result(result)
 
 NUM_OF_CONTRACT = 31
 dd_addr = [bench.call_contract_function(contract_creator[0], 'constructor', ["Dozer", "DD"],
-                                        private_key=contract_creator[1]) for i in range(NUM_OF_CONTRACT)]
-dd_addr = [bench.wait_for_result(x).contractAddress for x in dd_addr]
+                                        private_key=contract_creator[1], wait=True) for i in range(NUM_OF_CONTRACT)]
+dd_addr = [bench.wait_for_result(x, gen_pow=False).contractAddress for x in dd_addr]
 print(dd_addr)
 
 

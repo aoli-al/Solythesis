@@ -23,9 +23,9 @@ else:
 bench = Bench(args.endpoint, args.path, 'BecToken', args.pow)
 a = [bench.import_account(args.key1), bench.import_account(args.key2)]
 
-bec_addr = [bench.call_contract_function(a[0][0], 'constructor', [], private_key=a[0][1])
+bec_addr = [bench.call_contract_function(a[0][0], 'constructor', [], private_key=a[0][1], wait=True)
             for i in range(NUM_OF_CONTRACT)]
-bec_addr = [bench.wait_for_result(x).contractAddress for x in bec_addr]
+bec_addr = [bench.wait_for_result(x, gen_pow=False).contractAddress for x in bec_addr]
 
 count = 0
 ITER = 2000

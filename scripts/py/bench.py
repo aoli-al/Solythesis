@@ -19,7 +19,7 @@ ALL_OUTPUT_VALUES = (
 
 class Bench:
     REQUEST = {
-        'gas': 3147727,
+        'gas': 3141592,
         'gasPrice': 1
     }
 
@@ -38,7 +38,7 @@ class Bench:
             self.nonce_map[sender] = self.w3.eth.getTransactionCount(sender)
         return self.nonce_map[sender]
 
-    def call_contract_function(self, sender, name, args, contract_addr=None, private_key=None):
+    def call_contract_function(self, sender, name, args, contract_addr=None, private_key=None, wait=False):
         nonce = self.get_nonce(sender)
         if contract_addr:
             func = getattr(self.contract.functions, name)
@@ -58,6 +58,8 @@ class Bench:
         else:
             self.w3.parity.personal.unlockAccount(sender, 'x')
             result = self.w3.eth.sendTransaction(tx_data)
+        if wait and self.pow:
+            self.wait_for_result(result)
         return result
 
     def replace_addresses_recursive(self, argv):
@@ -144,6 +146,7 @@ class Bench:
                                    "0xD1FE5700000000000000000000000000D1FE5700000000000000000000000001")
         receipt = self.w3.eth.waitForTransactionReceipt(result)
         if check_successful:
-            print(receipt)
+            if receipt.status != 1:
+                print(receipt)
             assert(receipt.status == 1)
         return receipt
