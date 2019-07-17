@@ -19,7 +19,7 @@ ALL_OUTPUT_VALUES = (
 
 class Bench:
     REQUEST = {
-        'gas': 8000000,
+        'gas': 3147727,
         'gasPrice': 1
     }
 
@@ -105,8 +105,8 @@ class Bench:
         return result
 
     def compile_contract(self, path, contract_name):
-        compiled_sol = compile_files([path], output_values=ALL_OUTPUT_VALUES, optimize=True, optimize_runs=200,
-                                     solc_binary="/snap/bin/solc")
+        compiled_sol = compile_files([path], output_values=ALL_OUTPUT_VALUES, optimize=True, optimize_runs=200)
+                                     # solc_binary="/snap/bin/solc")
         contract = compiled_sol[path + ':' + contract_name]
         return self.w3.eth.contract(abi=contract['abi'], bytecode=contract['bin'])
 
@@ -136,7 +136,7 @@ class Bench:
         result = self.transfer(sender, new, 10000000000, private_key)
         return [new, result]
 
-    def wait_for_result(self, result, gen_pow=True, check_successful=False):
+    def wait_for_result(self, result, gen_pow=True, check_successful=True):
         if gen_pow and self.pow:
             work = self.w3.eth.getWork()
             self.w3.eth.submitWork("0x0000000000000002",
@@ -144,5 +144,6 @@ class Bench:
                                    "0xD1FE5700000000000000000000000000D1FE5700000000000000000000000001")
         receipt = self.w3.eth.waitForTransactionReceipt(result)
         if check_successful:
+            print(receipt)
             assert(receipt.status == 1)
         return receipt

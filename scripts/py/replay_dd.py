@@ -18,6 +18,8 @@ contract_creator = bench.import_account(args.key1)
 
 MINT_GAS = 180286
 TRANSFER = 70618
+[addr, result] = bench.new_address_and_transfer(*contract_creator)
+bench.wait_for_result(result)
 
 NUM_OF_CONTRACT = 31
 dd_addr = [bench.call_contract_function(contract_creator[0], 'constructor', ["Dozer", "DD"],
@@ -38,7 +40,7 @@ for i in range(USERS):
 print(users)
 bench.wait_for_result(result)
 
-ITER = 500
+ITER = 2000
 
 bar = progressbar.ProgressBar(maxval=ITER,
                               widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
