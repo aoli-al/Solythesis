@@ -8,7 +8,7 @@ from scp import SCPClient
 from utils import *
 
 
-def create_new_instance(count):
+def create_new_instance(count, security_group='all-open'):
     ec2 = boto3.resource('ec2', region_name='us-west-1')
     instances = ec2.create_instances(
         ImageId='ami-0e65a0ccc7550e6f3',
@@ -17,7 +17,7 @@ def create_new_instance(count):
         MaxCount=count,
         InstanceType='t2.xlarge',
         SecurityGroups=[
-            'all-open',
+            security_group,
         ],
         KeyName='Leo-remote'
     )
@@ -58,10 +58,6 @@ def execute_local_command(command):
     print(stdout)
 
 
-def install_cargo(ssh):
-    execute_remote_command(ssh, "~/scripts/bash/setup_parity.sh")
-
-
 def install_bench_dependencies(ssh):
     execute_remote_command(ssh, "~/scripts/bash/setup_bench.sh")
 
@@ -86,7 +82,26 @@ def create_receiver():
     try:
         move_files(ssh, "../../scripts", "scripts")
         move_files(ssh, "../../tests", "tests")
-        execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh", block=False)
+        execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh batch_packing", block=False)
+    except Exception as e:
+        print(e)
+        instance.terminate()
+        exit(0)
+    return [instance, ssh]
+
+
+def create_receiver_singleton():
+    instance = create_new_instance(1, 'Monitor')[0]
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    privkey = paramiko.RSAKey.from_private_key_file('../keys/Leo-remote.pem')
+    connect_until_successful(ssh, instance.public_dns_name,
+                             username='leo', pkey=privkey, timeout=30000, banner_timeout=30000,
+                             auth_timeout=30000)
+    try:
+        move_files(ssh, "../../scripts", "scripts")
+        move_files(ssh, "../../tests", "tests")
+        execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh metrics", block=False)
     except Exception as e:
         print(e)
         instance.terminate()
@@ -105,7 +120,7 @@ def create_sender():
                                  auth_timeout=30000)
         move_files(ssh, "../../scripts", "scripts")
         move_files(ssh, "../../tests", "tests")
-        execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh")
+        execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh batch_packing")
         # execute_remote_command(ssh, "bash ~/scripts/bash/setup_bench.sh")
     except Exception as e:
         print(e)
@@ -141,18 +156,16 @@ def test(args):
 
 def test_2(args):
     [contract, script_path, csv] = args
-    [receiver, receiver_client] = create_receiver()
+    [receiver, receiver_client] = create_receiver_singleton()
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
         execute_remote_command(receiver_client,
-                               "bash ~/scripts/bash/run_receiver.sh {} {} {} {}"
+                               "bash ~/scripts/bash/run_receiver_singleton.sh {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    fetch_files(receiver_client, "/home/ubuntu/results", "/data/{}-{}".format(contract, csv))
-    sender_client.close()
+    fetch_files(receiver_client, "/home/leo/results", "/data/mainnet-{}-{}".format(contract, csv))
     receiver_client.close()
-    sender.terminate()
     receiver.terminate()
 
 
