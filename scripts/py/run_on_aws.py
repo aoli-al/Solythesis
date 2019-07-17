@@ -30,8 +30,8 @@ def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0cc
 def clean_up(instance):
     volumes = instance.volumes
     instance.terminate()
-    for volume in volumes:
-        volume.delete()
+    #  for volume in volumes:
+        #  volume.delete()
 
 
 def execute_remote_command(ssh, command, block=True):
