@@ -8,10 +8,10 @@ from scp import SCPClient
 from utils import *
 
 
-def create_new_instance(count, security_group='all-open'):
+def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0ccc7550e6f3"):
     ec2 = boto3.resource('ec2', region_name='us-west-1')
     instances = ec2.create_instances(
-        ImageId='ami-0e65a0ccc7550e6f3',
+        ImageId=image_id,
         UserData='Leo-bench',
         MinCount=count,
         MaxCount=count,
@@ -91,7 +91,7 @@ def create_receiver():
 
 
 def create_receiver_singleton():
-    instance = create_new_instance(1, 'Monitor')[0]
+    instance = create_new_instance(1, security_group='Monitor', image_id="ami-00fcd4aa774da6ca9")[0]
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     privkey = paramiko.RSAKey.from_private_key_file('../keys/Leo-remote.pem')
@@ -170,7 +170,7 @@ def test_2(args):
 
 
 with Pool(1) as p:
-    p.map(test, generate_tests(int(sys.argv[1]), int(sys.argv[2])))
+    p.map(test_2, generate_tests(*[int(x) for x in sys.argv[1:]]))
 
 # with Pool(2) as p:
 #     print(p.map(test, generate_tests()))
