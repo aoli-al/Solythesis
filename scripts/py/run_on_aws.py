@@ -141,6 +141,7 @@ def test(args):
     [sender, sender_client] = setup_sender(instances[1])
     print(contract+csv + ": " + receiver.public_ip_address)
     print(contract+csv + ": " + sender.public_ip_address)
+    result = True
     try:
         execute_remote_command(sender_client,
                                "bash ~/scripts/bash/test_sync.sh {} {} {} {}"
@@ -154,10 +155,13 @@ def test(args):
         fetch_files(sender_client, "/home/leo/results", "/data/rep-{}-{}".format(contract, csv))
     except Exception as e:
         print(e)
+        result = False
     sender_client.close()
     receiver_client.close()
     clean_up(sender)
     clean_up(receiver)
+    if not result:
+        test(args)
 
 
 def test_2(args):
