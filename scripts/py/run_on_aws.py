@@ -83,7 +83,7 @@ def setup_receiver(instance):
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     privkey = paramiko.RSAKey.from_private_key_file('../keys/Leo-remote.pem')
     connect_until_successful(ssh, instance.public_dns_name,
-                             username='ubuntu', pkey=privkey, timeout=30000, banner_timeout=30000,
+                             username='leo', pkey=privkey, timeout=30000, banner_timeout=30000,
                              auth_timeout=30000)
     try:
         move_files(ssh, "../../scripts", "scripts")
@@ -121,7 +121,7 @@ def setup_sender(instance):
     privkey = paramiko.RSAKey.from_private_key_file('../keys/Leo-remote.pem')
     try:
         connect_until_successful(ssh, instance.public_dns_name,
-                                 username='ubuntu', pkey=privkey, timeout=30000, banner_timeout=30000,
+                                 username='leo', pkey=privkey, timeout=30000, banner_timeout=30000,
                                  auth_timeout=30000)
         move_files(ssh, "../../scripts", "scripts")
         move_files(ssh, "../../tests", "tests")
@@ -153,7 +153,7 @@ def test(args):
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    fetch_files(sender_client, "/home/ubuntu/results", "/data/rep-{}-{}".format(contract, csv))
+    fetch_files(sender_client, "/home/leo/results", "/data/rep-{}-{}".format(contract, csv))
     sender_client.close()
     receiver_client.close()
     clean_up(sender)
@@ -175,7 +175,7 @@ def test_2(args):
     clean_up(receiver)
 
 with Pool(1) as p:
-    p.map(test_2, generate_tests(*[int(x) for x in sys.argv[1:]]))
+    p.map(test, generate_tests(*[int(x) for x in sys.argv[1:]]))
 
 # with Pool(2) as p:
 #     print(p.map(test, generate_tests()))
