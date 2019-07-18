@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 cd ~
-pip3 install psrecord
 rm nohup.out
 rm -rf /tmp/parity
 mkdir ~/results
