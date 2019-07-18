@@ -4,7 +4,7 @@ nohup ~/parity-ethereum/target/release/parity --accounts-refresh=0 \
    --fast-unlock --no-warp --config \
    /home/leo/scripts/parity/config.dev-insecure.toml \
    --chain=/home/leo/scripts/parity/foundation.json  \
-   --base-path=/home/leo/fullnode --logging=info  \
+   --base-path=/tmp/leo --db-path=/home/leo/fullnode/chains --logging=info  \
    --unsafe-expose --jsonrpc-cors=all --no-discovery  \
    --bootnodes=enode://20c9dba148de1201f80798f7fa178a795709bc43dcfcb22a79615c11a3f38886d0ba41c59420e15fb17c0098fba9c8b6c21315bcd43e38e0c32a77bc77dcb3b7@$4:30303  &
 
