@@ -147,13 +147,13 @@ def test(args):
                                .format(contract, script_path, csv, receiver.public_ip_address), block=False)
         execute_remote_command(receiver_client,
                                "bash ~/scripts/bash/run_receiver.sh {} {} {} {}"
-                               .format(contract, script_path, csv, receiver.public_ip_address))
+                               .format(contract, script_path, csv, sender.public_ip_address))
         execute_remote_command(sender_client,
                                "bash ~/scripts/bash/finish_sync.sh {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    fetch_files(sender_client, "/home/ubuntu/results", "/data/{}-{}".format(contract, csv))
+    fetch_files(sender_client, "/home/ubuntu/results", "/data/rep-{}-{}".format(contract, csv))
     sender_client.close()
     receiver_client.close()
     clean_up(sender)
