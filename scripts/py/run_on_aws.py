@@ -151,9 +151,9 @@ def test(args):
         execute_remote_command(sender_client,
                                "bash ~/scripts/bash/finish_sync.sh {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address))
+        fetch_files(sender_client, "/home/leo/results", "/data/rep-{}-{}".format(contract, csv))
     except Exception as e:
         print(e)
-    fetch_files(sender_client, "/home/leo/results", "/data/rep-{}-{}".format(contract, csv))
     sender_client.close()
     receiver_client.close()
     clean_up(sender)
