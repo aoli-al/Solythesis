@@ -9,7 +9,7 @@ mkdir results
    --base-path=/home/leo/fullnode --logging=info  \
    --unsafe-expose --jsonrpc-cors=all --no-discovery  &
 
-sleep 10
+sleep 30
 python3 $2 ws://127.0.0.1:8546 ~/scripts/data/$3.csv\
   ~/tests/$1.sol ~/scripts/keys/leo123leo987 ~/scripts/keys/leo123leo456 --pow
 replay=$!
