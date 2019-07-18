@@ -8,7 +8,7 @@ mv /tmp/parity/chains/DevelopmentChain/db/5121426b82ed1df6/overlayrecent/db/LOG 
 # sudo killall blktrace
 sleep 5
 ~/parity-ethereum/target/release/parity export blocks \
-  --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/config.json \
+  --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/foundation.json \
  --base-path=/tmp/parity ~/results/$1-$3.bin
 # rm -rf /data/parity
 # ~/repos/parity-ethereum/target/release/parity import --config ./config.dev-insecure.toml  --base-path=/data/parity --logging=info ./$2-$4.bin

@@ -2,8 +2,8 @@
 
 nohup ~/parity-ethereum/target/release/parity --accounts-refresh=0 \
    --fast-unlock --no-warp --config \
-   /home/ubuntu/scripts/parity/config.dev-insecure.toml \
-   --chain=/home/ubuntu/scripts/parity/foundation.json  \
+   /home/leo/scripts/parity/config.dev-insecure.toml \
+   --chain=/home/leo/scripts/parity/foundation.json  \
    --base-path=/home/leo/fullnode --logging=info  \
    --unsafe-expose --jsonrpc-cors=all --no-discovery  &
 
