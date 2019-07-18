@@ -30,6 +30,23 @@ def generate_table(m, formatter):
 
 for i in range(6):
     for benchmark in generate_tests(i):
+        name = "rep-" + benchmark[0] + "-" + benchmark[2]
+        print(name)
+        idx = name_mapping(name)
+        if idx not in m:
+            m[idx] = {}
+        f = open("/data/{}/parity.log".format(name, name))
+        for line in f:
+            # result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
+            result = re.findall(r"Import completed in .+ (\d+) blocks", line)
+            if result:
+                print(result)
+                m[idx][benchmark[2]] = int(result[0])
+        print(m[idx][benchmark[2]])
+generate_table(m, "& %d ")
+
+for i in range(6):
+    for benchmark in generate_tests(i):
         name = "mainnet-" + benchmark[0] + "-" + benchmark[2]
         print(name)
         idx = name_mapping(name)
