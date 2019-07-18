@@ -78,8 +78,7 @@ def connect_until_successful(ssh, *args, **xargs):
         connect_until_successful(ssh, *args, **xargs)
 
 
-def create_receiver():
-    instance = create_new_instance(1)[0]
+def setup_receiver(instance):
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     privkey = paramiko.RSAKey.from_private_key_file('../keys/Leo-remote.pem')
@@ -89,7 +88,7 @@ def create_receiver():
     try:
         move_files(ssh, "../../scripts", "scripts")
         move_files(ssh, "../../tests", "tests")
-        execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh batch_packing", block=False)
+        execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh metrics", block=False)
     except Exception as e:
         print(e)
         instance.terminate()
@@ -116,8 +115,7 @@ def create_receiver_singleton():
     return [instance, ssh]
 
 
-def create_sender():
-    instance = create_new_instance(1)[0]
+def setup_sender(instance):
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     privkey = paramiko.RSAKey.from_private_key_file('../keys/Leo-remote.pem')
@@ -127,7 +125,7 @@ def create_sender():
                                  auth_timeout=30000)
         move_files(ssh, "../../scripts", "scripts")
         move_files(ssh, "../../tests", "tests")
-        execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh batch_packing")
+        execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh metrics")
         # execute_remote_command(ssh, "bash ~/scripts/bash/setup_bench.sh")
     except Exception as e:
         print(e)
@@ -137,9 +135,10 @@ def create_sender():
 
 
 def test(args):
+    instances = create_new_instance(2, image_id="ami-04a4f29a9644e4693")
     [contract, script_path, csv] = args
-    [receiver, receiver_client] = create_receiver()
-    [sender, sender_client] = create_sender()
+    [receiver, receiver_client] = setup_receiver(instances[0])
+    [sender, sender_client] = setup_sender(instances[1])
     print(contract+csv + ": " + receiver.public_ip_address)
     print(contract+csv + ": " + sender.public_ip_address)
     try:

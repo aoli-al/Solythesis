@@ -3,10 +3,11 @@
 nohup ~/parity-ethereum/target/release/parity --accounts-refresh=0 \
    --fast-unlock --no-warp --config \
    /home/ubuntu/scripts/parity/config.dev-insecure.toml \
-   --chain=/home/ubuntu/scripts/parity/config.json  \
-   --base-path=/tmp/parity --logging=info  \
+   --chain=/home/ubuntu/scripts/parity/foundation.json  \
+   --base-path=/home/leo/fullnode --logging=info  \
    --unsafe-expose --jsonrpc-cors=all --no-discovery  &
 
+sleep 30
 python3 $2 ws://127.0.0.1:8546 ~/scripts/data/$3.csv\
  ~/tests/$1.sol ~/scripts/keys/leo123leo987 ~/scripts/keys/leo123leo456 &
 replay=$!

@@ -6,8 +6,8 @@ rm -rf /tmp/parity
 mkdir ~/results
 # sudo rm $2-$4.blktrace.*
 nohup ~/parity-ethereum/target/release/parity --accounts-refresh=0 --fast-unlock --no-warp \
-  --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/config.json\
-  --base-path=/tmp/parity --no-discovery  --bootnodes=enode://5a3bf48fcb9dd123b50232b360e73c31bdc0992a6dd3bff1ed8efc7766856cc90f5127dd8102d4ca07b168a97a3c976c7be5a4d2a677b0c27da85733d21ee46a@$4:30303  &
+  --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/foundation.json\
+  --base-path=/home/leo/fullnode --no-discovery  --unsafe-expose  --bootnodes=enode://5a3bf48fcb9dd123b50232b360e73c31bdc0992a6dd3bff1ed8efc7766856cc90f5127dd8102d4ca07b168a97a3c976c7be5a4d2a677b0c27da85733d21ee46a@$4:30303  &
 parity_pid=$!
 ~/.local/bin/psrecord $parity_pid --interval 0.1 --log ~/results/$1-$3.txt
 psrecord=$!
