@@ -135,7 +135,7 @@ def setup_sender(instance):
 
 
 def test(args):
-    instances = create_new_instance(2, image_id="ami-04a4f29a9644e4693")
+    instances = create_new_instance(2, image_id="ami-07695e0338baae1ea")
     [contract, script_path, csv] = args
     [receiver, receiver_client] = setup_receiver(instances[0])
     [sender, sender_client] = setup_sender(instances[1])
