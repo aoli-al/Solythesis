@@ -10,12 +10,12 @@ nohup ~/parity-ethereum/target/release/parity --accounts-refresh=0 \
 
 
 sleep 30
-python3 $2 /tmp/leo/ethereum/jsonrpc.ipc ~/scripts/data/$3.csv\
+python3 $2 /tmp/leo/jsonrpc.ipc ~/scripts/data/$3.csv\
  ~/tests/$1.sol ~/scripts/keys/leo123leo987 ~/scripts/keys/leo123leo456 &
 replay=$!
 sleep 1
 # sudo blktrace -d /dev/xvdf -o $2-$4 &
-python3 ~/scripts/py/miner.py /tmp/leo/ethereum/jsonrpc.ipc &
+python3 ~/scripts/py/miner.py /tmp/leo/jsonrpc.ipc &
 miner=$!
 wait $replay
 sleep 5
