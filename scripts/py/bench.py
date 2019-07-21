@@ -24,7 +24,7 @@ class Bench:
     }
 
     def __init__(self, endpoint, contract_path, contract_name, pow=True):
-        client = web3.Web3.WebsocketProvider(endpoint, websocket_timeout=30)
+        client = web3.Web3.IPCProvider(endpoint, timeout=30)
         self.w3 = web3.Web3(client)
         self.pow = pow
         self.nonce_map = {}
