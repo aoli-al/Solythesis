@@ -18,6 +18,8 @@ eth = web3.eth.Eth(Web3(Web3.HTTPProvider('https://mainnet.infura.io/v3/f1fba10f
 #         if transaction['to'] and transaction['to'].lower() == ADDR:
 #             print(transaction)
 
+contract_account = set()
+
 transfer = 0
 contract = 0
 
@@ -28,7 +30,8 @@ for i in range(7000000, 8000000):
     for transaction in block.transactions:
         if not transaction['to']:
             contract += 1
-        elif eth.getCode(transaction['to']):
+        elif transaction['to'] in contract_account or eth.getCode(transaction['to']):
+            contract_account.add(transaction['to'])
             contract += 1
         else:
             transfer += 1
