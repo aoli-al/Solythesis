@@ -96,8 +96,8 @@ def setup_receiver(instance):
     return [instance, ssh]
 
 
-def create_receiver_singleton():
-    instance = create_new_instance(1, security_group='Monitor', image_id="ami-04a4f29a9644e4693")[0]
+def create_receiver_singleton(image_id="ami-04a4f29a9644e4693"):
+    instance = create_new_instance(1, security_group='Monitor', image_id=image_id)[0]
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     privkey = paramiko.RSAKey.from_private_key_file('../keys/Leo-remote.pem')
@@ -178,8 +178,24 @@ def test_2(args):
     receiver_client.close()
     clean_up(receiver)
 
+
+def test_3(args):
+    [contract, script_path, csv] = args
+    [receiver, receiver_client] = create_receiver_singleton()
+    print(contract+csv + ": " + receiver.public_ip_address)
+    try:
+        move_files(receiver_client, "/data/mainnet-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
+        execute_remote_command(receiver_client,
+                               "bash ~/scripts/bash/import.sh {} {} {} {}"
+                               .format(contract, script_path, csv, receiver.public_ip_address))
+    except Exception as e:
+        print(e)
+    fetch_files(receiver_client, "/home/leo/parity.log", "/data/mainnet-{}-{}/parity-io.log".format(contract, csv))
+    receiver_client.close()
+    clean_up(receiver)
+
 with Pool(1) as p:
-    p.map(test, generate_tests(*[int(x) for x in sys.argv[1:]]))
+    p.map(test_3, generate_tests(*[int(x) for x in sys.argv[1:]]))
 
 # with Pool(2) as p:
 #     print(p.map(test, generate_tests()))
