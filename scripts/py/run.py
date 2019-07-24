@@ -12,7 +12,7 @@ def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0cc
     ec2 = boto3.resource('ec2', region_name='us-west-1')
     instances = ec2.create_instances(
         ImageId=image_id,
-        UserData='#cloud-config\nrepo_upgrade: none',
+        UserData='Leo-bench',
         MinCount=count,
         MaxCount=count,
         InstanceType='t2.xlarge',
@@ -181,7 +181,7 @@ def test_2(args):
 
 def test_3(args):
     [contract, script_path, csv] = args
-    [receiver, receiver_client] = create_receiver_singleton("ami-01881f2d630b1e344")
+    [receiver, receiver_client] = create_receiver_singleton("ami-00b32a96f0b0fe652")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
         move_files(receiver_client, "/data/mainnet-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
@@ -190,11 +190,11 @@ def test_3(args):
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    fetch_files(receiver_client, "/home/leo/parity.log", "/data/mainnet-{}-{}/parity-mid-io-1000.log".format(contract, csv))
+    fetch_files(receiver_client, "/home/leo/parity.log", "/data/mainnet-{}-{}/parity-real-mid-io.log".format(contract, csv))
     receiver_client.close()
     clean_up(receiver)
 
-with Pool(18) as p:
+with Pool(1) as p:
     p.map(test_3, generate_tests(*[int(x) for x in sys.argv[1:]]))
 
 # with Pool(2) as p:
