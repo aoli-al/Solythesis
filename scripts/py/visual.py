@@ -81,7 +81,7 @@ for i in range(6):
         idx = name_mapping(name)
         if idx not in m:
             m[idx] = {}
-        f = open("/data/{}/parity-mid-io-1000.log".format(name, name))
+        f = open("/data/{}/parity-3000-m5-hashbrown.log".format(name, name))
         for line in f:
             # result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
             result = re.findall(r"Import completed in .+ (\d+) tx/s", line)

@@ -18,5 +18,5 @@ def generate_tests(i=None, j=None):
     else:
         for benchmark in benchmarks:
             for test in tests:
-                yield [benchmark[0]+t, *benchmark[1:]]
+                yield [benchmark[0]+test, *benchmark[1:]]
 

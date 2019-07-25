@@ -15,7 +15,7 @@ def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0cc
         UserData='#cloud-config\nrepo_upgrade: none',
         MinCount=count,
         MaxCount=count,
-        InstanceType='t2.xlarge',
+        InstanceType='m5.xlarge',
         SecurityGroups=[
             security_group,
         ],
@@ -181,7 +181,7 @@ def test_2(args):
 
 def test_3(args):
     [contract, script_path, csv] = args
-    [receiver, receiver_client] = create_receiver_singleton("ami-01881f2d630b1e344")
+    [receiver, receiver_client] = create_receiver_singleton("ami-0743bccc2aee3cf56")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
         move_files(receiver_client, "/data/mainnet-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
@@ -190,7 +190,7 @@ def test_3(args):
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    fetch_files(receiver_client, "/home/leo/parity.log", "/data/mainnet-{}-{}/parity-mid-io-1000.log".format(contract, csv))
+    fetch_files(receiver_client, "/home/leo/parity.log", "/data/mainnet-{}-{}/parity-3000-m5-hashbrown.log".format(contract, csv))
     receiver_client.close()
     clean_up(receiver)
 
