@@ -108,7 +108,7 @@ class Bench:
 
     def compile_contract(self, path, contract_name):
         compiled_sol = compile_files([path], output_values=ALL_OUTPUT_VALUES, optimize=True, optimize_runs=200,
-                                     solc_binary="/snap/bin/solc")
+                                      solc_binary="/snap/bin/solc")
         contract = compiled_sol[path + ':' + contract_name]
         return self.w3.eth.contract(abi=contract['abi'], bytecode=contract['bin'])
 
