@@ -7,6 +7,8 @@ from multiprocessing import Pool
 from scp import SCPClient
 from utils import *
 
+IOPS=3000
+INSTANCE = "m4"
 
 def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0ccc7550e6f3"):
     ec2 = boto3.resource('ec2', region_name='us-west-1')
@@ -15,10 +17,24 @@ def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0cc
         UserData='#cloud-config\nrepo_upgrade: none',
         MinCount=count,
         MaxCount=count,
-        InstanceType='m5.xlarge',
+        InstanceType=INSTANCE+'.xlarge',
         SecurityGroups=[
             security_group,
         ],
+        BlockDeviceMappings=[
+            {
+                'DeviceName': '/dev/sda1',
+                'VirtualName': 'ephemeral0',
+                'Ebs': {
+                    'DeleteOnTermination': True,
+                    'Iops': IOPS,
+                    'SnapshotId': 'snap-0e575de0b0e63f70b',
+                    'VolumeSize': 250,
+                    'VolumeType': 'io1',
+                    'Encrypted': False,
+                    },
+                },
+            ],
         KeyName='Leo-remote'
     )
     for instance in instances:
@@ -181,7 +197,7 @@ def test_2(args):
 
 def test_3(args):
     [contract, script_path, csv] = args
-    [receiver, receiver_client] = create_receiver_singleton("ami-0743bccc2aee3cf56")
+    [receiver, receiver_client] = create_receiver_singleton("ami-0085f1c5327955fda")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
         move_files(receiver_client, "/data/mainnet-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
@@ -190,7 +206,9 @@ def test_3(args):
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    fetch_files(receiver_client, "/home/leo/parity.log", "/data/mainnet-{}-{}/parity-3000-m5-hashbrown.log".format(contract, csv))
+    #  fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
+    fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
+    #  fetch_files(receiver_client, "/home/leo/parity.log", "/data/mainnet-{}-{}/parity-{}-{}.log".format(contract, csv, IOPS, INSTANCE))
     receiver_client.close()
     clean_up(receiver)
 
