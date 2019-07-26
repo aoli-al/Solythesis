@@ -43,6 +43,31 @@ for i in range(6):
             continue
 generate_table(m, "& %.3f\\%%")
 
+
+for benchmark in generate_tests():
+    name = benchmark[0] + "-" + benchmark[2]
+    idx = name_mapping(name)
+    if idx not in m:
+        m[idx] = {}
+    try:
+        f = open("/data/mainnet-{0}/metric-{0}.log".format(name))
+        total = 0
+        store = 0
+        for line in f:
+            # result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
+            result = re.findall(r"TOTALTIME: (\d*)", line)
+            if result:
+                total += int(result[0])
+            result = re.findall(r"STORETIME: (\d*)", line)
+            if result:
+                store += int(result[0])
+        m[idx][benchmark[2]] = [total, store]
+        print(name)
+        print(m[idx][benchmark[2]])
+    except:
+        continue
+generate_table(m, "& %d/%d\\%%")
+
 for i in range(6):
     for benchmark in generate_tests(i):
         name = benchmark[0] + "-" + benchmark[2]
