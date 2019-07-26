@@ -8,7 +8,7 @@ from scp import SCPClient
 from utils import *
 
 IOPS=3000
-INSTANCE = "m4"
+INSTANCE = "m5"
 
 def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0ccc7550e6f3"):
     ec2 = boto3.resource('ec2', region_name='us-west-1')
@@ -28,7 +28,7 @@ def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0cc
                 'Ebs': {
                     'DeleteOnTermination': True,
                     'Iops': IOPS,
-                    'SnapshotId': 'snap-0e575de0b0e63f70b',
+                    'SnapshotId': 'snap-0efbe9444b9abdb24',
                     'VolumeSize': 250,
                     'VolumeType': 'io1',
                     'Encrypted': False,
@@ -197,12 +197,12 @@ def test_2(args):
 
 def test_3(args):
     [contract, script_path, csv] = args
-    [receiver, receiver_client] = create_receiver_singleton("ami-0085f1c5327955fda")
+    [receiver, receiver_client] = create_receiver_singleton("ami-082dd52bb62011f64")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
-        move_files(receiver_client, "/data/mainnet-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
+        #  move_files(receiver_client, "/data/mainnet-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
         execute_remote_command(receiver_client,
-                               "bash ~/scripts/bash/import.sh {} {} {} {}"
+                               "bash ~/scripts/bash/run_receiver_singleton.sh {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
