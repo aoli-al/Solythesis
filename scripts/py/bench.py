@@ -20,7 +20,7 @@ ALL_OUTPUT_VALUES = (
 
 class Bench:
     REQUEST = {
-        'gas': 3141592,
+        'gas': 8141592,
         'gasPrice': 1
     }
 
@@ -52,6 +52,8 @@ class Bench:
         }
         if contract_addr:
             attributes['to'] = contract_addr
+        else:
+            attributes['gasPrice'] = 2
         tx_data = func(*args).buildTransaction(attributes)
         if private_key:
             signed_txn = self.w3.eth.account.signTransaction(tx_data, private_key=private_key)
