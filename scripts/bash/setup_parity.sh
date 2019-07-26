@@ -7,8 +7,8 @@ export DEBIAN_FRONTEND=noninteractive
 #git clone https://github.com/Leeleo3x/parity-ethereum
 #curl https://sh.rustup.rs -sSf | sh -s -- -y
 cd parity-ethereum
-git checkout $1
-git pull origin $1
+# git checkout $1
+# git pull origin $1
 ~/.cargo/bin/cargo build --release
 pip3 install psrecord
 
