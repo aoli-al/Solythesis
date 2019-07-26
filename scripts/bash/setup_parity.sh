@@ -3,7 +3,9 @@
 cd ~
 export DEBIAN_FRONTEND=noninteractive
 #sudo apt update
-#sudo apt install -y build-essential cmake libudev-dev
+# sudo apt install -y linux-tools-aws
+sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'
+sudo sh -c 'echo 0 >/proc/sys/kernel/kptr_restrict'
 #git clone https://github.com/Leeleo3x/parity-ethereum
 #curl https://sh.rustup.rs -sSf | sh -s -- -y
 cd parity-ethereum
