@@ -206,9 +206,9 @@ def test_3(args):
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    #  fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
-    fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
-    #  fetch_files(receiver_client, "/home/leo/parity.log", "/data/mainnet-{}-{}/parity-{}-{}.log".format(contract, csv, IOPS, INSTANCE))
+    # fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
+    # fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
+    fetch_files(receiver_client, "/home/leo/metric.log", "/data/mainnet-{}-{}/metric-{}-{}.log".format(contract, csv, IOPS, INSTANCE))
     receiver_client.close()
     clean_up(receiver)
 

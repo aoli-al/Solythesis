@@ -25,7 +25,7 @@ contract_creator = bench.import_account(args.key1)
 NUM_OF_CONTRACT = 150
 OPTIONS = 5
 USERS = 5
-ITER = 50
+ITER = 200
 
 vote_addr = [bench.call_contract_function(contract_creator[0], 'constructor', [], private_key=contract_creator[1],
                                           wait=True)
