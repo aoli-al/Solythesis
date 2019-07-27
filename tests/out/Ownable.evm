@@ -1,0 +1,211 @@
+    /* "test.sol":4997:5786  contract Ownable {... */
+  mstore(0x40, 0x80)
+    /* "test.sol":5249:5299  constructor() public {... */
+  callvalue
+    /* "--CODEGEN--":8:17   */
+  dup1
+    /* "--CODEGEN--":5:7   */
+  iszero
+  tag_1
+  jumpi
+    /* "--CODEGEN--":30:31   */
+  0x00
+    /* "--CODEGEN--":27:28   */
+  dup1
+    /* "--CODEGEN--":20:32   */
+  revert
+    /* "--CODEGEN--":5:7   */
+tag_1:
+  pop
+    /* "test.sol":5276:5281  owner */
+  0x00
+    /* "test.sol":5276:5294  owner = msg.sender */
+  dup1
+  sload
+  not(sub(shl(0xa0, 0x01), 0x01))
+  and
+    /* "test.sol":5284:5294  msg.sender */
+  caller
+    /* "test.sol":5276:5294  owner = msg.sender */
+  or
+  swap1
+  sstore
+    /* "test.sol":4997:5786  contract Ownable {... */
+  dataSize(sub_0)
+  dup1
+  dataOffset(sub_0)
+  0x00
+  codecopy
+  0x00
+  return
+stop
+
+sub_0: assembly {
+        /* "test.sol":4997:5786  contract Ownable {... */
+      mstore(0x40, 0x80)
+      callvalue
+        /* "--CODEGEN--":8:17   */
+      dup1
+        /* "--CODEGEN--":5:7   */
+      iszero
+      tag_1
+      jumpi
+        /* "--CODEGEN--":30:31   */
+      0x00
+        /* "--CODEGEN--":27:28   */
+      dup1
+        /* "--CODEGEN--":20:32   */
+      revert
+        /* "--CODEGEN--":5:7   */
+    tag_1:
+        /* "test.sol":4997:5786  contract Ownable {... */
+      pop
+      jumpi(tag_2, lt(calldatasize, 0x04))
+      shr(0xe0, calldataload(0x00))
+      dup1
+      0x8da5cb5b
+      eq
+      tag_3
+      jumpi
+      dup1
+      0xf2fde38b
+      eq
+      tag_4
+      jumpi
+    tag_2:
+      0x00
+      dup1
+      revert
+        /* "test.sol":5018:5038  address public owner */
+    tag_3:
+      tag_5
+      tag_6
+      jump	// in
+    tag_5:
+      0x40
+      dup1
+      mload
+      sub(shl(0xa0, 0x01), 0x01)
+      swap1
+      swap3
+      and
+      dup3
+      mstore
+      mload
+      swap1
+      dup2
+      swap1
+      sub
+      0x20
+      add
+      swap1
+      return
+        /* "test.sol":5609:5783  function transferOwnership(address newOwner) onlyOwner public {... */
+    tag_4:
+      tag_7
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x20
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_8
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_8:
+      pop
+        /* "test.sol":5609:5783  function transferOwnership(address newOwner) onlyOwner public {... */
+      calldataload
+      sub(shl(0xa0, 0x01), 0x01)
+      and
+      tag_9
+      jump	// in
+    tag_7:
+      stop
+        /* "test.sol":5018:5038  address public owner */
+    tag_6:
+      storebegin
+      and(sub(shl(0xa0, 0x01), 0x01), sload(0x00))
+      dup2
+      storeend
+      jump	// out
+        /* "test.sol":5609:5783  function transferOwnership(address newOwner) onlyOwner public {... */
+    tag_9:
+        /* "test.sol":5429:5434  owner */
+      and(sub(shl(0xa0, 0x01), 0x01), sload(0x00))
+        /* "test.sol":5415:5425  msg.sender */
+      caller
+        /* "test.sol":5415:5434  msg.sender == owner */
+      eq
+        /* "test.sol":5407:5435  require(msg.sender == owner) */
+      tag_11
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_11:
+      sub(shl(0xa0, 0x01), 0x01)
+        /* "test.sol":5685:5707  newOwner != address(0) */
+      dup2
+      and
+        /* "test.sol":5677:5708  require(newOwner != address(0)) */
+      tag_13
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_13:
+        /* "test.sol":5740:5745  owner */
+      0x00
+      dup1
+      sload
+        /* "test.sol":5719:5756  OwnershipTransferred(owner, newOwner) */
+      mload(0x40)
+      sub(shl(0xa0, 0x01), 0x01)
+      dup1
+      dup6
+      and
+      swap4
+        /* "test.sol":5740:5745  owner */
+      swap3
+      and
+      swap2
+        /* "test.sol":5719:5756  OwnershipTransferred(owner, newOwner) */
+      0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0
+      swap2
+      log3
+        /* "test.sol":5762:5767  owner */
+      0x00
+        /* "test.sol":5762:5778  owner = newOwner */
+      dup1
+      sload
+      not(sub(shl(0xa0, 0x01), 0x01))
+      and
+      sub(shl(0xa0, 0x01), 0x01)
+      swap3
+      swap1
+      swap3
+      and
+      swap2
+      swap1
+      swap2
+      or
+      swap1
+      sstore
+        /* "test.sol":5609:5783  function transferOwnership(address newOwner) onlyOwner public {... */
+      jump	// out
+
+    auxdata: 0xa265627a7a72305820ed183ba4d65dbd2c8105589f999d604caa23967ed67c617f7563badfbf38ebb564736f6c63782b302e352e392d646576656c6f702e323031392e372e32362b636f6d6d69742e63363862633334652e6d6f64005b
+}

@@ -1,4 +1,4 @@
-    /* "out.sol":25:254  contract BecToken {... */
+    /* "../out.sol":25:254  contract BecToken {... */
   mstore(0x40, 0x80)
   callvalue
     /* "--CODEGEN--":8:17   */
@@ -15,7 +15,7 @@
   revert
     /* "--CODEGEN--":5:7   */
 tag_1:
-    /* "out.sol":25:254  contract BecToken {... */
+    /* "../out.sol":25:254  contract BecToken {... */
   pop
   dataSize(sub_0)
   dup1
@@ -27,7 +27,7 @@ tag_1:
 stop
 
 sub_0: assembly {
-        /* "out.sol":25:254  contract BecToken {... */
+        /* "../out.sol":25:254  contract BecToken {... */
       mstore(0x40, 0x80)
       callvalue
         /* "--CODEGEN--":8:17   */
@@ -44,7 +44,7 @@ sub_0: assembly {
       revert
         /* "--CODEGEN--":5:7   */
     tag_1:
-        /* "out.sol":25:254  contract BecToken {... */
+        /* "../out.sol":25:254  contract BecToken {... */
       pop
       jumpi(tag_2, lt(calldatasize, 0x04))
       shr(0xe0, calldataload(0x00))
@@ -57,7 +57,7 @@ sub_0: assembly {
       0x00
       dup1
       revert
-        /* "out.sol":96:252  function test(uint256 t) public returns (uint256) {... */
+        /* "../out.sol":96:252  function test(uint256 t) public returns (uint256) {... */
     tag_3:
       tag_4
       0x04
@@ -83,7 +83,7 @@ sub_0: assembly {
         /* "--CODEGEN--":2:4   */
     tag_5:
       pop
-        /* "out.sol":96:252  function test(uint256 t) public returns (uint256) {... */
+        /* "../out.sol":96:252  function test(uint256 t) public returns (uint256) {... */
       calldataload
       tag_6
       jump	// in
@@ -104,11 +104,11 @@ sub_0: assembly {
       swap1
       return
     tag_6:
-        /* "out.sol":137:144  uint256 */
+        /* "../out.sol":137:144  uint256 */
       0x00
-        /* "out.sol":156:157  a */
+        /* "../out.sol":156:157  a */
       dup1
-        /* "out.sol":156:160  a[t] */
+        /* "../out.sol":156:160  a[t] */
       storebegin
       0x00
       dup4
@@ -124,15 +124,15 @@ sub_0: assembly {
       keccak256
       sload
       storeend
-        /* "out.sol":152:153  x */
+        /* "../out.sol":152:153  x */
       0x01
-        /* "out.sol":152:160  x = a[t] */
+        /* "../out.sol":152:160  x = a[t] */
       sstore
-        /* "out.sol":231:233  30 */
+        /* "../out.sol":231:233  30 */
       0x1e
-        /* "out.sol":224:225  a */
+        /* "../out.sol":224:225  a */
       0x00
-        /* "out.sol":224:228  a[t] */
+        /* "../out.sol":224:228  a[t] */
       storebegin
       0x00
       dup5
@@ -148,7 +148,7 @@ sub_0: assembly {
       keccak256
       swap1
       storeend
-        /* "out.sol":224:233  a[t] = 30 */
+        /* "../out.sol":224:233  a[t] = 30 */
       storebegin
       pop
       dup2
@@ -157,13 +157,13 @@ sub_0: assembly {
       storeend
       pop
       pop
-        /* "out.sol":246:247  x */
+        /* "../out.sol":246:247  x */
       sload(0x01)
-        /* "out.sol":96:252  function test(uint256 t) public returns (uint256) {... */
+        /* "../out.sol":96:252  function test(uint256 t) public returns (uint256) {... */
       swap2
       swap1
       pop
       jump	// out
 
-    auxdata: 0xa265627a7a723058202357668fc9cd25ac4b2027ccc66ba87db29d72e3a1143411e0a3cf5322dfb96b64736f6c63782b302e352e392d646576656c6f702e323031392e372e32372b636f6d6d69742e61626437313562302e6d6f64005b
+    auxdata: 0xa265627a7a72305820006ada30f44a0c4b186fe10e82a9fd46cc50ec30ce1e13dde1f6714fc4f2666164736f6c63782b302e352e392d646576656c6f702e323031392e372e32372b636f6d6d69742e61626437313562302e6d6f64005b
 }

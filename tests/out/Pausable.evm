@@ -1,0 +1,355 @@
+    /* "test.sol":5901:6656  contract Pausable is Ownable {... */
+  mstore(0x40, 0x80)
+    /* "test.sol":5992:5997  false */
+  0x00
+    /* "test.sol":5971:5997  bool public paused = false */
+  dup1
+  sload
+  not(sub(shl(0xa8, 0x01), 0x01))
+    /* "test.sol":5276:5294  owner = msg.sender */
+  and
+    /* "test.sol":5284:5294  msg.sender */
+  caller
+    /* "test.sol":5276:5294  owner = msg.sender */
+  or
+  swap1
+  sstore
+    /* "test.sol":5901:6656  contract Pausable is Ownable {... */
+  dataSize(sub_0)
+  dup1
+  dataOffset(sub_0)
+  0x00
+  codecopy
+  0x00
+  return
+stop
+
+sub_0: assembly {
+        /* "test.sol":5901:6656  contract Pausable is Ownable {... */
+      mstore(0x40, 0x80)
+      callvalue
+        /* "--CODEGEN--":8:17   */
+      dup1
+        /* "--CODEGEN--":5:7   */
+      iszero
+      tag_1
+      jumpi
+        /* "--CODEGEN--":30:31   */
+      0x00
+        /* "--CODEGEN--":27:28   */
+      dup1
+        /* "--CODEGEN--":20:32   */
+      revert
+        /* "--CODEGEN--":5:7   */
+    tag_1:
+        /* "test.sol":5901:6656  contract Pausable is Ownable {... */
+      pop
+      jumpi(tag_2, lt(calldatasize, 0x04))
+      shr(0xe0, calldataload(0x00))
+      dup1
+      0x3f4ba83a
+      eq
+      tag_3
+      jumpi
+      dup1
+      0x5c975abb
+      eq
+      tag_4
+      jumpi
+      dup1
+      0x8456cb59
+      eq
+      tag_5
+      jumpi
+      dup1
+      0x8da5cb5b
+      eq
+      tag_6
+      jumpi
+      dup1
+      0xf2fde38b
+      eq
+      tag_7
+      jumpi
+    tag_2:
+      0x00
+      dup1
+      revert
+        /* "test.sol":6562:6654  function unpause() onlyOwner whenPaused public {... */
+    tag_3:
+      tag_8
+      tag_9
+      jump	// in
+    tag_8:
+      stop
+        /* "test.sol":5971:5997  bool public paused = false */
+    tag_4:
+      tag_10
+      tag_11
+      jump	// in
+    tag_10:
+      0x40
+      dup1
+      mload
+      swap2
+      iszero
+      iszero
+      dup3
+      mstore
+      mload
+      swap1
+      dup2
+      swap1
+      sub
+      0x20
+      add
+      swap1
+      return
+        /* "test.sol":6390:6480  function pause() onlyOwner whenNotPaused public {... */
+    tag_5:
+      tag_8
+      tag_13
+      jump	// in
+        /* "test.sol":5018:5038  address public owner */
+    tag_6:
+      tag_14
+      tag_15
+      jump	// in
+    tag_14:
+      0x40
+      dup1
+      mload
+      sub(shl(0xa0, 0x01), 0x01)
+      swap1
+      swap3
+      and
+      dup3
+      mstore
+      mload
+      swap1
+      dup2
+      swap1
+      sub
+      0x20
+      add
+      swap1
+      return
+        /* "test.sol":5609:5783  function transferOwnership(address newOwner) onlyOwner public {... */
+    tag_7:
+      tag_8
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x20
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_17
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_17:
+      pop
+        /* "test.sol":5609:5783  function transferOwnership(address newOwner) onlyOwner public {... */
+      calldataload
+      sub(shl(0xa0, 0x01), 0x01)
+      and
+      tag_18
+      jump	// in
+        /* "test.sol":6562:6654  function unpause() onlyOwner whenPaused public {... */
+    tag_9:
+        /* "test.sol":5429:5434  owner */
+      and(sub(shl(0xa0, 0x01), 0x01), sload(0x00))
+        /* "test.sol":5415:5425  msg.sender */
+      caller
+        /* "test.sol":5415:5434  msg.sender == owner */
+      eq
+        /* "test.sol":5407:5435  require(msg.sender == owner) */
+      tag_20
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_20:
+        /* "test.sol":6292:6298  paused */
+      sload(0x00)
+      shl(0xa0, 0x01)
+      swap1
+      div
+      0xff
+      and
+        /* "test.sol":6284:6299  require(paused) */
+      tag_22
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_22:
+        /* "test.sol":6624:6629  false */
+      0x00
+        /* "test.sol":6615:6629  paused = false */
+      dup1
+      sload
+      not(shl(0xa0, 0xff))
+      and
+      dup2
+      sstore
+        /* "test.sol":6640:6649  Unpause() */
+      mload(0x40)
+      0x7805862f689e2f13df9f062ff482ad3ad112aca9e0847911ed832e158c525b33
+      swap2
+        /* "test.sol":6624:6629  false */
+      swap1
+        /* "test.sol":6640:6649  Unpause() */
+      log1
+        /* "test.sol":6562:6654  function unpause() onlyOwner whenPaused public {... */
+      jump	// out
+        /* "test.sol":5971:5997  bool public paused = false */
+    tag_11:
+      storebegin
+      sload(0x00)
+      shl(0xa0, 0x01)
+      swap1
+      div
+      0xff
+      and
+      dup2
+      storeend
+      jump	// out
+        /* "test.sol":6390:6480  function pause() onlyOwner whenNotPaused public {... */
+    tag_13:
+        /* "test.sol":5429:5434  owner */
+      and(sub(shl(0xa0, 0x01), 0x01), sload(0x00))
+        /* "test.sol":5415:5425  msg.sender */
+      caller
+        /* "test.sol":5415:5434  msg.sender == owner */
+      eq
+        /* "test.sol":5407:5435  require(msg.sender == owner) */
+      tag_25
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_25:
+        /* "test.sol":6140:6146  paused */
+      sload(0x00)
+      shl(0xa0, 0x01)
+      swap1
+      div
+      0xff
+      and
+        /* "test.sol":6139:6146  !paused */
+      iszero
+        /* "test.sol":6131:6147  require(!paused) */
+      tag_27
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_27:
+        /* "test.sol":6444:6450  paused */
+      0x00
+        /* "test.sol":6444:6457  paused = true */
+      dup1
+      sload
+      not(shl(0xa0, 0xff))
+      and
+      shl(0xa0, 0x01)
+      or
+      dup2
+      sstore
+        /* "test.sol":6468:6475  Pause() */
+      mload(0x40)
+      0x6985a02210a168e66602d3235cb6db0e70f92b3ba4d376a33c0f3d9434bff625
+      swap2
+        /* "test.sol":6444:6450  paused */
+      swap1
+        /* "test.sol":6468:6475  Pause() */
+      log1
+        /* "test.sol":6390:6480  function pause() onlyOwner whenNotPaused public {... */
+      jump	// out
+        /* "test.sol":5018:5038  address public owner */
+    tag_15:
+      storebegin
+      and(sub(shl(0xa0, 0x01), 0x01), sload(0x00))
+      dup2
+      storeend
+      jump	// out
+        /* "test.sol":5609:5783  function transferOwnership(address newOwner) onlyOwner public {... */
+    tag_18:
+        /* "test.sol":5429:5434  owner */
+      and(sub(shl(0xa0, 0x01), 0x01), sload(0x00))
+        /* "test.sol":5415:5425  msg.sender */
+      caller
+        /* "test.sol":5415:5434  msg.sender == owner */
+      eq
+        /* "test.sol":5407:5435  require(msg.sender == owner) */
+      tag_30
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_30:
+      sub(shl(0xa0, 0x01), 0x01)
+        /* "test.sol":5685:5707  newOwner != address(0) */
+      dup2
+      and
+        /* "test.sol":5677:5708  require(newOwner != address(0)) */
+      tag_32
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_32:
+        /* "test.sol":5740:5745  owner */
+      0x00
+      dup1
+      sload
+        /* "test.sol":5719:5756  OwnershipTransferred(owner, newOwner) */
+      mload(0x40)
+      sub(shl(0xa0, 0x01), 0x01)
+      dup1
+      dup6
+      and
+      swap4
+        /* "test.sol":5740:5745  owner */
+      swap3
+      and
+      swap2
+        /* "test.sol":5719:5756  OwnershipTransferred(owner, newOwner) */
+      0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0
+      swap2
+      log3
+        /* "test.sol":5762:5767  owner */
+      0x00
+        /* "test.sol":5762:5778  owner = newOwner */
+      dup1
+      sload
+      not(sub(shl(0xa0, 0x01), 0x01))
+      and
+      sub(shl(0xa0, 0x01), 0x01)
+      swap3
+      swap1
+      swap3
+      and
+      swap2
+      swap1
+      swap2
+      or
+      swap1
+      sstore
+        /* "test.sol":5609:5783  function transferOwnership(address newOwner) onlyOwner public {... */
+      jump	// out
+
+    auxdata: 0xa265627a7a7230582018d611b6d3d48d9023c1c2807fb08ad6e247904b29ab1bf5c16eb854197b916964736f6c63782b302e352e392d646576656c6f702e323031392e372e32362b636f6d6d69742e63363862633334652e6d6f64005b
+}
