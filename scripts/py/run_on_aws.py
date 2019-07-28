@@ -28,7 +28,7 @@ def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0cc
                 'Ebs': {
                     'DeleteOnTermination': True,
                     'Iops': IOPS,
-                    'SnapshotId': 'snap-0efbe9444b9abdb24',
+                    'SnapshotId': 'snap-046f265d262447d78',
                     'VolumeSize': 250,
                     'VolumeType': 'io1',
                     'Encrypted': False,
@@ -197,7 +197,7 @@ def test_2(args):
 
 def test_3(args):
     [contract, script_path, csv] = args
-    [receiver, receiver_client] = create_receiver_singleton("ami-082dd52bb62011f64")
+    [receiver, receiver_client] = create_receiver_singleton("ami-08fd5bbd1c3e6380d")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
         #  move_files(receiver_client, "/data/mainnet-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
