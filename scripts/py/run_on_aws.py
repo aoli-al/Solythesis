@@ -28,7 +28,6 @@ def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0cc
                 'Ebs': {
                     'DeleteOnTermination': True,
                     'Iops': IOPS,
-                    'SnapshotId': 'snap-046f265d262447d78',
                     'VolumeSize': 250,
                     'VolumeType': 'io1',
                     'Encrypted': False,
@@ -181,8 +180,8 @@ def test(args):
 
 
 def test_2(args):
-    [contract, script_path, csv] = args
-    [receiver, receiver_client] = create_receiver_singleton()
+    [contract, script_path, csv, skip] = args
+    [receiver, receiver_client] = create_receiver_singleton("ami-0d48509e84d1b4052")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
         execute_remote_command(receiver_client,
@@ -190,25 +189,25 @@ def test_2(args):
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    fetch_files(receiver_client, "/home/leo/results", "/data/mainnet-{}-{}".format(contract, csv))
+    fetch_files(receiver_client, "/home/leo/results", "/data/rerun2-{}-{}".format(contract, csv))
     receiver_client.close()
     clean_up(receiver)
 
 
 def test_3(args):
-    [contract, script_path, csv] = args
-    [receiver, receiver_client] = create_receiver_singleton("ami-08fd5bbd1c3e6380d")
+    [contract, script_path, csv, skip] = args
+    [receiver, receiver_client] = create_receiver_singleton("ami-0f9670ed38e552f5e")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
-        #  move_files(receiver_client, "/data/mainnet-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
+        move_files(receiver_client, "/data/mainnet-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
         execute_remote_command(receiver_client,
-                               "bash ~/scripts/bash/run_receiver_singleton.sh {} {} {} {}"
-                               .format(contract, script_path, csv, receiver.public_ip_address))
+                               "bash ~/scripts/bash/import.sh {} {} {} {} {}"
+                               .format(contract, script_path, csv, receiver.public_ip_address, skip+5052259))
     except Exception as e:
         print(e)
     # fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
-    # fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
-    fetch_files(receiver_client, "/home/leo/metric.log", "/data/mainnet-{}-{}/metric-{}-{}.log".format(contract, csv, IOPS, INSTANCE))
+    fetch_files(receiver_client, "/home/leo/storage.log", "/data/mainnet-{}-{}/sha3.log".format(contract, csv))
+    #  fetch_files(receiver_client, "/home/leo/metric.log", "/data/mainnet-{}-{}/metric-{}-{}.log".format(contract, csv, IOPS, INSTANCE))
     receiver_client.close()
     clean_up(receiver)
 

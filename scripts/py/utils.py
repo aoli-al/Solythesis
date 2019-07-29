@@ -1,9 +1,9 @@
-benchmarks = [("kc", "~/scripts/py/replay.py", "erc721"),
-              ("kc", "~/scripts/py/replay_dd.py", "tran"),
-              ("test", "~/scripts/py/replay.py", "erc20"),
-              ("test", "~/scripts/py/replay_bec.py", "transfer"),
-              ("test", "~/scripts/py/replay_bec.py", "batchTransfer"),
-              ("vote", "~/scripts/py/replay_vote.py", "v")]
+benchmarks = [("kc", "~/scripts/py/replay.py", "erc721", 100),
+              ("kc", "~/scripts/py/replay_dd.py", "tran", 33),
+              ("test", "~/scripts/py/replay.py", "erc20", 100),
+              ("test", "~/scripts/py/replay_bec.py", "transfer", 155),
+              ("test", "~/scripts/py/replay_bec.py", "batchTransfer", 115),
+              ("vote", "~/scripts/py/replay_vote.py", "v", 151)]
 tests = ["", "_secured", "_noopt"]
 
 

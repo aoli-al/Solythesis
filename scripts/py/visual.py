@@ -27,48 +27,84 @@ def generate_table(m, formatter):
         print(s)
     print("\\cline{2-8}")
 
-for i in range(6):
-    for benchmark in generate_tests(i):
+#  for i in range(6):
+    #  for benchmark in generate_tests(i):
+        #  name = benchmark[0] + "-" + benchmark[2]
+        #  idx = name_mapping(name)
+        #  if idx not in m:
+            #  m[idx] = {}
+        #  try:
+            #  res = pd.read_csv("/data/rep-{}/{}.txt".format(name, name), sep="\s+", header=None, dtype=np.float64, skiprows=1)
+            #  res = res[[1]]
+            #  m[idx][benchmark[2]] = np.mean(res).values[0]
+            #  print(name)
+            #  print(m[idx][benchmark[2]])
+        #  except:
+            #  continue
+#  generate_table(m, "& %.3f\\%%")
+#
+#
+#  for benchmark in generate_tests():
+    #  name = benchmark[0] + "-" + benchmark[2]
+    #  idx = name_mapping(name)
+    #  if idx not in m:
+        #  m[idx] = {}
+    #  try:
+        #  f = open("/data/mainnet-{0}/metric-3000-m5.log".format(name))
+        #  total = 0
+        #  store = 0
+        #  for line in f:
+            #  result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
+            #  result = re.findall(r"TOTALTIME: (\d*)", line)
+            #  if result:
+                #  total += int(result[0])
+            #  result = re.findall(r"STORETIME: (\d*)", line)
+            #  if result:
+                #  store += int(result[0])
+        #  print(total)
+        #  print(store)
+        #  m[idx][benchmark[2]] =  "%.2f" % (store/10**6) + "/%.2f" % (total/10**6)
+        #  print(name)
+        #  print(m[idx][benchmark[2]])
+    #  except:
+        #  continue
+#  generate_table(m, "& %s")
+
+
+def store_inst(name):
+    data = {
+            "LOAD": 0,
+            "STORE": 0,
+            "SHA3": 0,
+            "TOTAL": 0,
+            "UNIQUE_SHA3": 0,
+            "SHA3 64": 0
+            "SHA3 32": 0
+            }
+    count = 0
+    with open("/data/mainnet-{}/storage.log".format(name)) as f:
+        for line in f:
+            for key in data.keys():
+                result = re.findall(key + r": (\d*)", line)
+                if result:
+                    data[key] += int(result[0])
+                    if key == 'SHA3 64':
+                        count += 1
+    return str(int(data['TOTAL']/count))
+
+
+def generate(func):
+    m = {}
+    for benchmark in generate_tests():
         name = benchmark[0] + "-" + benchmark[2]
         idx = name_mapping(name)
         if idx not in m:
             m[idx] = {}
-        try:
-            res = pd.read_csv("/data/rep-{}/{}.txt".format(name, name), sep="\s+", header=None, dtype=np.float64, skiprows=1)
-            res = res[[1]]
-            m[idx][benchmark[2]] = np.mean(res).values[0]
-            print(name)
-            print(m[idx][benchmark[2]])
-        except:
-            continue
-generate_table(m, "& %.3f\\%%")
+        m[idx][benchmark[2]] = func(name)
+    generate_table(m, "& %s")
 
-
-for benchmark in generate_tests():
-    name = benchmark[0] + "-" + benchmark[2]
-    idx = name_mapping(name)
-    if idx not in m:
-        m[idx] = {}
-    try:
-        f = open("/data/mainnet-{0}/metric-3000-m5.log".format(name))
-        total = 0
-        store = 0
-        for line in f:
-            # result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
-            result = re.findall(r"TOTALTIME: (\d*)", line)
-            if result:
-                total += int(result[0])
-            result = re.findall(r"STORETIME: (\d*)", line)
-            if result:
-                store += int(result[0])
-        print(total)
-        print(store)
-        m[idx][benchmark[2]] =  "%.3f" % (store/10**6) + "/%.3f" % (total/10**6) 
-        print(name)
-        print(m[idx][benchmark[2]])
-    except:
-        continue
-generate_table(m, "& %s")
+generate(store_inst)
+exit(0)
 
 for i in range(6):
     for benchmark in generate_tests(i):
@@ -111,7 +147,7 @@ for i in range(6):
         f = open("/data/{}/parity-100-m5.log".format(name, name))
         for line in f:
             # result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
-            result = re.findall(r"Import completed in .+ (\d+) tx/s", line)
+            result = re.findall(r"Import completed in .+ (\d+) blocks", line)
             if result:
                 print(result)
                 m[idx][benchmark[2]] = int(result[0])

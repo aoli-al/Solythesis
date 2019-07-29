@@ -21,7 +21,7 @@ TRANSFER = 70618
 [addr, result] = bench.new_address_and_transfer(*contract_creator)
 bench.wait_for_result(result)
 
-NUM_OF_CONTRACT = 31
+NUM_OF_CONTRACT = 132
 dd_addr = [bench.call_contract_function(contract_creator[0], 'constructor', ["Dozer", "DD"],
                                         private_key=contract_creator[1], wait=True) for i in range(NUM_OF_CONTRACT)]
 dd_addr = [bench.wait_for_result(x, gen_pow=False).contractAddress for x in dd_addr]
@@ -45,15 +45,31 @@ ITER = 2000
 bar = progressbar.ProgressBar(maxval=ITER,
                               widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 bar.start()
+
+gas = 0 
+num_of_blocks = 0
 for i in range(ITER):
     if args.progress_bar:
         bar.update(i)
     else:
         print(i)
     for k in range(NUM_OF_CONTRACT):
-        bench.call_contract_function(contract_creator[0], 'mintUniqueTokenTo',
+        result = bench.call_contract_function(contract_creator[0], 'mintUniqueTokenTo',
                                      [users[0], i, "Token!!!"],
                                      dd_addr[k], contract_creator[1])
+        gas += MINT_GAS
+        if gas >= 8000000:
+            bench.wait_for_result(result, check_successful=True)
+            num_of_blocks += 1
+            if num_of_blocks == ITER:
+                exit(0)
+            gas = 0
+    for k in range(NUM_OF_CONTRACT):
         result = bench.call_contract_function(users[0], 'transfer', [users[1], i], dd_addr[k])
-    bench.wait_for_result(result, check_successful=True)
-
+        gas += TRANSFER
+        if gas >= 8000000:
+            bench.wait_for_result(result, check_successful=True)
+            num_of_blocks += 1
+            if num_of_blocks == ITER:
+                exit(0)
+            gas = 0

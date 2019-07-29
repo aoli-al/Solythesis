@@ -29,4 +29,4 @@ killall -9 parity
 
 ~/parity-ethereum/target/release/parity import ~/results/$1-$3-mainchain.bin\
   --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/foundation.json \
-  --base-path=/home/leo/import --log-file=/home/leo/results/parity.log --logging=error > metric.log
+  --base-path=/home/leo/import --log-file=/home/leo/results/parity.log --logging=info
