@@ -196,7 +196,7 @@ def test_2(args):
 
 def test_3(args):
     [contract, script_path, csv, skip] = args
-    [receiver, receiver_client] = create_receiver_singleton("ami-0f9670ed38e552f5e")
+    [receiver, receiver_client] = create_receiver_singleton("ami-0ae2aa40437bede54")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
         move_files(receiver_client, "/data/mainnet-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")

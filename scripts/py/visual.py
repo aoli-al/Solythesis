@@ -78,11 +78,11 @@ def store_inst(name):
             "SHA3": 0,
             "TOTAL": 0,
             "UNIQUE_SHA3": 0,
-            "SHA3 64": 0
+            "SHA3 64": 0,
             "SHA3 32": 0
             }
     count = 0
-    with open("/data/mainnet-{}/storage.log".format(name)) as f:
+    with open("/data/mainnet-{}/sha3.log".format(name)) as f:
         for line in f:
             for key in data.keys():
                 result = re.findall(key + r": (\d*)", line)
@@ -90,7 +90,7 @@ def store_inst(name):
                     data[key] += int(result[0])
                     if key == 'SHA3 64':
                         count += 1
-    return str(int(data['TOTAL']/count))
+    return str(int(data['SHA3 32']/count) + int(data['SHA3 64']/count))
 
 
 def generate(func):
