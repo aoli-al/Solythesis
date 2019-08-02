@@ -28,18 +28,24 @@ bec_addr = [bench.call_contract_function(a[0][0], 'constructor', [], private_key
 bec_addr = [bench.wait_for_result(x, gen_pow=False).contractAddress for x in bec_addr]
 
 count = 0
-ITER = 2000
+ITER = 10000
+
+addr = 0
+def next_address():
+    global addr
+    addr += 1
+    yield Web3.toChecksumAddress("0x%040x" % addr)
 
 
 def generate(idx, k):
     if 'transfer' in sys.argv[2]:
-        return bench.call_contract_function(a[idx][0], 'transfer',
-                                            [a[idx ^ 1][0], 1],
-                                            bec_addr[k], a[idx][1])
+        return bench.call_contract_function(a[0][0], 'transfer',
+                                            [next(next_address()), 1],
+                                            bec_addr[k], a[0][1])
     else:
-        return bench.call_contract_function(a[idx][0], 'batchTransfer',
-                                            [[a[idx ^ 1][0]] * 5, 1],
-                                            bec_addr[k], a[idx][1])
+        return bench.call_contract_function(a[0][0], 'batchTransfer',
+                                            [[next(next_address()) for i in range(5)], 1],
+                                            bec_addr[k], a[0][1])
 
 
 bar = progressbar.ProgressBar(maxval=ITER,

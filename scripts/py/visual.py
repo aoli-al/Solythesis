@@ -103,44 +103,83 @@ def generate(func):
         m[idx][benchmark[2]] = func(name)
     generate_table(m, "& %s")
 
-generate(store_inst)
+#  generate(store_inst)
+#  exit(0)
+
+#  for i in range(6):
+    #  for benchmark in generate_tests(i):
+        #  name = benchmark[0] + "-" + benchmark[2]
+        #  idx = name_mapping(name)
+        #  if idx not in m:
+            #  m[idx] = {}
+        #  f = open("/data/rep-{}/db.stat".format(name, name))
+        #  for line in f:
+            #  result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
+            #  result = re.findall(r"rocksdb\.bytes\.written COUNT : (\d*)", line)
+            #  if result:
+                #  m[idx][benchmark[2]] = int(result[0]) / 1024 / 1024 / 1024
+#  generate_table(m, "& %.2f ")
+
+for benchmark in generate_tests():
+    name = "mainnet10000-" + benchmark[0] + "-" + benchmark[2]
+    idx = name_mapping(name)
+    if idx not in m:
+        m[idx] = {}
+    try:
+        f = open("/data/{}/parity-opt-2-12500-m5.log".format(name, name))
+        for line in f:
+            #  result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
+            result = re.findall(r"Import completed in .+ (\d+) blocks", line)
+            if result:
+                #  print(result)
+                m[idx][benchmark[2]] = int(result[0])
+        #  print(m[idx][benchmark[2]])
+    except:
+        pass
+generate_table(m, "& %d ")
+
+for benchmark in generate_tests():
+    name = "mainnet10000-" + benchmark[0] + "-" + benchmark[2]
+    idx = name_mapping(name)
+    if idx not in m:
+        m[idx] = {}
+    try:
+        f = open("/data/{}/parity-noopt-12500-m5.log".format(name, name))
+        for line in f:
+            #  result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
+            result = re.findall(r"Import completed in .+ (\d+) tx/s", line)
+            result = re.findall(r"Import completed in .+ (\d+) blocks", line)
+            if result:
+                #  print(result)
+                m[idx][benchmark[2]] = int(result[0])
+        #  print(m[idx][benchmark[2]])
+    except:
+        pass
+generate_table(m, "& %d ")
+
+for benchmark in generate_tests():
+    name = "mainnet10000-" + benchmark[0] + "-" + benchmark[2]
+    idx = name_mapping(name)
+    if idx not in m:
+        m[idx] = {}
+    try:
+        f = open("/data/{}/parity-inline-12500-m5.log".format(name, name))
+        for line in f:
+            #  result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
+            result = re.findall(r"Import completed in .+ (\d+) tx/s", line)
+            result = re.findall(r"Import completed in .+ (\d+) blocks", line)
+            if result:
+                #  print(result)
+                m[idx][benchmark[2]] = int(result[0])
+        #  print(m[idx][benchmark[2]])
+    except:
+        pass
+generate_table(m, "& %d ")
 exit(0)
 
 for i in range(6):
     for benchmark in generate_tests(i):
-        name = benchmark[0] + "-" + benchmark[2]
-        idx = name_mapping(name)
-        if idx not in m:
-            m[idx] = {}
-        f = open("/data/rep-{}/db.stat".format(name, name))
-        for line in f:
-            # result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
-            result = re.findall(r"rocksdb\.bytes\.written COUNT : (\d*)", line)
-            if result:
-                m[idx][benchmark[2]] = int(result[0]) / 1024 / 1024 / 1024
-generate_table(m, "& %.2f ")
-
-#  for i in range(6):
-    #  for benchmark in generate_tests(i):
-        #  name = "mainnet-" + benchmark[0] + "-" + benchmark[2]
-        #  print(name)
-        #  idx = name_mapping(name)
-        #  if idx not in m:
-            #  m[idx] = {}
-        #  f = open("/data/{}/parity.log".format(name, name))
-        #  for line in f:
-            #  result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
-            #  result = re.findall(r"Import completed in .+ (\d+) blocks", line)
-            #  if result:
-                #  print(result)
-                #  m[idx][benchmark[2]] = int(result[0])
-        #  print(m[idx][benchmark[2]])
-#  generate_table(m, "& %d ")
-
-for i in range(6):
-    for benchmark in generate_tests(i):
         name = "mainnet-" + benchmark[0] + "-" + benchmark[2]
-        print(name)
         idx = name_mapping(name)
         if idx not in m:
             m[idx] = {}
