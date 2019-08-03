@@ -20,7 +20,7 @@ ALL_OUTPUT_VALUES = (
 
 class Bench:
     REQUEST = {
-        'gas': 7141592,
+        'gas': 79415920,
         'gasPrice': 1
     }
 
