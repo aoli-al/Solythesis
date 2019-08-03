@@ -12,7 +12,7 @@ cd parity-ethereum
 # git checkout $1
 # git pull origin $1
 # ~/.cargo/bin/cargo build --release
-RUSTFLAGS=-g ~/.cargo/bin/cargo build --release
+~/.cargo/bin/cargo build --release
 # pip3 install psrecord
 
 #~/parity-ethereum/target/release/parity --accounts \

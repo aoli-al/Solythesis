@@ -181,15 +181,15 @@ def test(args):
 
 def test_2(args):
     [contract, script_path, csv, skip] = args
-    [receiver, receiver_client] = create_receiver_singleton("ami-00ccaac1ec8f9e666")
+    [receiver, receiver_client] = create_receiver_singleton("ami-0942fcd5c5b7a3bac")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
         execute_remote_command(receiver_client,
-                               "bash ~/scripts/bash/run_receiver_singleton.sh {} {} {} {}"
+                               "bash ~/scripts/bash/run_receiver_singleton_empty.sh {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    fetch_files(receiver_client, "/home/leo/results", "/data/mainnet10000-{}-{}".format(contract, csv))
+    fetch_files(receiver_client, "/home/leo/results", "/data/empty10000-{}-{}".format(contract, csv))
     receiver_client.close()
     clean_up(receiver)
 
@@ -212,7 +212,7 @@ def test_3(args):
     clean_up(receiver)
 
 with Pool(18) as p:
-    p.map(test_3, generate_tests(*[int(x) for x in sys.argv[1:]]))
+    p.map(test_2, generate_tests(*[int(x) for x in sys.argv[1:]]))
 
 # with Pool(2) as p:
 #     print(p.map(test, generate_tests()))
