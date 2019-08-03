@@ -7,7 +7,7 @@ from multiprocessing import Pool
 from scp import SCPClient
 from utils import *
 
-IOPS=3000
+IOPS=12500
 INSTANCE = "m5"
 
 def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0ccc7550e6f3"):
@@ -181,7 +181,7 @@ def test(args):
 
 def test_2(args):
     [contract, script_path, csv, skip] = args
-    [receiver, receiver_client] = create_receiver_singleton("ami-0d48509e84d1b4052")
+    [receiver, receiver_client] = create_receiver_singleton("ami-00ccaac1ec8f9e666")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
         execute_remote_command(receiver_client,
@@ -189,25 +189,25 @@ def test_2(args):
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    fetch_files(receiver_client, "/home/leo/results", "/data/rerun2-{}-{}".format(contract, csv))
+    fetch_files(receiver_client, "/home/leo/results", "/data/mainnet10000-{}-{}".format(contract, csv))
     receiver_client.close()
     clean_up(receiver)
 
 
 def test_3(args):
     [contract, script_path, csv, skip] = args
-    [receiver, receiver_client] = create_receiver_singleton("ami-0ae2aa40437bede54")
+    [receiver, receiver_client] = create_receiver_singleton("ami-0942fcd5c5b7a3bac")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
-        move_files(receiver_client, "/data/mainnet-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
+        move_files(receiver_client, "/data/mainnet10000-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
         execute_remote_command(receiver_client,
                                "bash ~/scripts/bash/import.sh {} {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address, skip+5052259))
     except Exception as e:
         print(e)
-    # fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
-    fetch_files(receiver_client, "/home/leo/storage.log", "/data/mainnet-{}-{}/sha3.log".format(contract, csv))
-    #  fetch_files(receiver_client, "/home/leo/metric.log", "/data/mainnet-{}-{}/metric-{}-{}.log".format(contract, csv, IOPS, INSTANCE))
+    fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet10000-dwarf-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
+    #  fetch_files(receiver_client, "/home/leo/storage.log", "/data/mainnet-{}-{}/sha3.log".format(contract, csv))
+    #  fetch_files(receiver_client, "/home/leo/parity.log", "/data/mainnet10000-{}-{}/parity-inline-{}-{}.log".format(contract, csv, IOPS, INSTANCE))
     receiver_client.close()
     clean_up(receiver)
 

@@ -138,7 +138,7 @@ class Bench:
 
     def new_address_and_transfer(self, sender, private_key):
         new = self.w3.parity.personal.newAccount('x')
-        result = self.transfer(sender, new, 1000000000000, private_key)
+        result = self.transfer(sender, new, 100000000000000, private_key)
         return [new, result]
 
     def wait_for_result(self, result, gen_pow=True, check_successful=True):

@@ -4,7 +4,7 @@ import progressbar
 import argparse
 from bench import Bench
 
-ITER = 2000
+ITER = 10000
 
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('endpoint')
@@ -44,7 +44,7 @@ for idx in range(ITER):
     if int(transaction['status']) == 0:
         continue
     new = bench.address_mapping(transaction['from'])
-    bench.transfer(contract_creator[0], new, 10000000000, contract_creator[1])
+    bench.transfer(contract_creator[0], new, 100000000000000, contract_creator[1])
     idx += 1
 
 contract_address = [bench.call_contract_function(contract_creator[0], 'constructor', constructor_args,

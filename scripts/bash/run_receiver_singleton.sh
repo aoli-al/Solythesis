@@ -6,11 +6,11 @@ mkdir results
    --fast-unlock --no-warp --no-consensus --config \
    ~/scripts/parity/config.dev-insecure.toml \
    --chain ~/scripts/parity/foundation.json  \
-   --base-path=/home/leo/fullnode --logging=error \
-   --unsafe-expose --jsonrpc-cors=all --no-discovery  &
+   --base-path=/home/leo/fullnode_bak --logging=error \
+   --unsafe-expose --jsonrpc-cors=all --no-discovery  --cache-size 8096 &
 
 sleep 30
-python3 $2 /home/leo/fullnode/jsonrpc.ipc ~/scripts/data/$3.csv\
+python3 $2 /home/leo/fullnode_bak/jsonrpc.ipc ~/scripts/data/$3.csv\
   ~/tests/$1.sol ~/scripts/keys/leo123leo987 ~/scripts/keys/leo123leo456 --pow
 replay=$!
 sleep 1
@@ -25,7 +25,7 @@ killall -9 parity
 
 ~/parity-ethereum/target/release/parity export blocks \
   --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/foundation.json \
- --base-path=/home/leo/fullnode ~/results/$1-$3-mainchain.bin  --from 5052259
+ --base-path=/home/leo/fullnode_bak ~/results/$1-$3-mainchain.bin  --from 5052259
 
 ~/parity-ethereum/target/release/parity import ~/results/$1-$3-mainchain.bin\
   --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/foundation.json \
