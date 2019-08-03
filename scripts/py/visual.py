@@ -82,14 +82,15 @@ def store_inst(name):
             "SHA3 32": 0
             }
     count = 0
-    with open("/data/mainnet-{}/sha3.log".format(name)) as f:
+    with open("/data/mainnet10000-{}/storage.log".format(name)) as f:
         for line in f:
             for key in data.keys():
                 result = re.findall(key + r": (\d*)", line)
                 if result:
                     data[key] += int(result[0])
-                    if key == 'SHA3 64':
+                    if key == 'STORE':
                         count += 1
+    return str(int(data['LOAD']/count))
     return str(int(data['SHA3 32']/count) + int(data['SHA3 64']/count))
 
 
@@ -103,8 +104,8 @@ def generate(func):
         m[idx][benchmark[2]] = func(name)
     generate_table(m, "& %s")
 
-#  generate(store_inst)
-#  exit(0)
+generate(store_inst)
+exit(0)
 
 #  for i in range(6):
     #  for benchmark in generate_tests(i):
