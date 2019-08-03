@@ -17,9 +17,9 @@ sleep 1
 # sudo blktrace -d /dev/xvdf -o $2-$4 &
 #python3 ~/scripts/py/miner.py ws://127.0.0.1:8546 &
 #miner=$!
-wait $replay
+# wait $replay
 killall parity
-sleep 5
+sleep 120
 #kill $miner
 killall -9 parity
 
