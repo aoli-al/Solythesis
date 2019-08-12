@@ -104,8 +104,8 @@ def generate(func):
         m[idx][benchmark[2]] = func(name)
     generate_table(m, "& %s")
 
-generate(store_inst)
-exit(0)
+#  generate(store_inst)
+#  exit(0)
 
 #  for i in range(6):
     #  for benchmark in generate_tests(i):
@@ -176,7 +176,7 @@ for benchmark in generate_tests():
     except:
         pass
 generate_table(m, "& %d ")
-exit(0)
+#  exit(0)
 
 for i in range(6):
     for benchmark in generate_tests(i):
@@ -201,7 +201,7 @@ for i in range(6):
         idx = name_mapping(name)
         if idx not in m:
             m[idx] = {}
-        f = open("/data/{}/{}.stat".format(name, name))
+        f = open("/data/rep-{}/db.stat".format(name, name))
         for line in f:
             # result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
             result = re.findall(r"rocksdb\.bytes\.written COUNT : (\d*)", line)
