@@ -35,7 +35,6 @@ def read(path):
     pending = ""
     with open(path) as f:
         line = f.readline()
-        print(line)
         while line:
             if line[0] == "#":
                 line = f.readline()
@@ -74,8 +73,8 @@ def read(path):
             line = f.readline()
 
 
-    # for (key, value) in sorted(result.items(), reverse=True, key=lambda x: x[1]):
-    #     print(key + ": " + str(value))
+    for (key, value) in sorted(result.items(), reverse=True, key=lambda x: x[1]):
+        print(key + ": " + str(value))
     # print(sum(result.values()))
     # for key, value in signature.items():
     #     print(key + ": " + str(value[1]))
@@ -86,11 +85,20 @@ def read(path):
     # keys.remove("keccakf")
     values = [signature[x][1] for x in keys[:-1]]
     values.append(other)
-    plt.pie(values, labels=keys, autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.pie(values, labels=keys, autopct='%1.1f%%', startangle=140)
     plt.axis('equal')
-    plt.tight_layout()
-    plt.title(path)
+    # plt.tight_layout()
+    plt.title("BEC-REP-O")
     plt.show()
+    s = ""
+    x = 0
+    for i in range(len(keys)-1):
+        tt = round(values[i]/sum(values), 3)
+        x += tt
+        s += "%1.1f/%s," % (tt * 100, keys[i])
+    s += "%1.1f/others" % ((1-x) * 100)
+    print(path)
+    print(s)
     return keys, values
 # plt.hold(False)
 
@@ -117,18 +125,15 @@ for i in range(0, 6):
     # rr("/Users/leo/tests/vis2/mainnet10000-opt-{}-{}-12500-m5.txt")
     x = np.arange(len(keys[0]))
 
-    plt.xticks(x + w * len(values) / 2, keys[0], rotation='vertical')
-    plt.ylabel('Counts')
-    plt.title('opt-'+test[2])
-    t = 0
-    for vv in values:
-        ax1.bar(x+t, vv, width=w, align='center')
-        t += w
-    # s0 = ax1.bar(x, values[0], width=0.2, align='center')
-    # s1 = ax1.bar(x+0.2, values[1], width=0.2, align='center')
-    # s3 = ax1.bar(x+0.4, values[2], width=0.2, align='center')
-    plt.show()
-    plt.clf()
+    # plt.xticks(x + w * len(values) / 2, keys[0], rotation='vertical')
+    # plt.ylabel('Counts')
+    # plt.title('opt-'+test[2])
+    # t = 0
+    # for vv in values:
+    #     ax1.bar(x+t, vv, width=w, align='center')
+    #     t += w
+    # plt.show()
+    # plt.clf()
     # print(values)
     # s1 = ax1.bar(x+w, keys[0], width=w, color='b', align='center')
 
