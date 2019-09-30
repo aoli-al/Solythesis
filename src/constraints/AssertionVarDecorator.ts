@@ -1,11 +1,11 @@
 import * as _ from "lodash"
 import {
   BinOp, Block, ContractDefinition, Expression, ExpressionStatement, ForStatement, FunctionDefinition,
-  Identifier, ReturnStatement, Statement, StateVariableDeclaration, TypeName, Visitor, ArrayTypeName, FunctionCall, IndexAccess, ASTNode,
+  Identifier, ReturnStatement, Statement, StateVariableDeclaration, TypeName, Visitor,
 } from "solidity-parser-antlr"
 import { optimizeStorageAccess } from "../optimizer/StorageAccessOptimizer"
 import { ContractVisitor } from "../visitors/ContractVisitor"
-import { CMPExpression, ForAllExpression, Iden, Node, QuantityExp, SumExpression } from "./nodes/Node"
+import { Forall, Node, QuantityExp, Sum} from "./nodes/Node"
 import { PendingStatements } from "./PendingStatements"
 import { Rewriter } from "./Rewriter"
 import { generateNewVarName } from "./StateVariableGenerator"
@@ -24,6 +24,7 @@ import {
   loadArrayValue,
   getCallers,
 } from "./utilities"
+import { SubstutionAnalyzer } from "src/analyzer/SubstitutionAnalyzer"
 
 export const updateOps = ["=", "-=", "+=", "*=", "/="]
 const depthTracker = generateNewVarName("depth")
@@ -40,10 +41,11 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
   public enableMappingOptimization: boolean
   public canOptimize: boolean = false
   public pendingReturns: Block[] = []
-  public forAllCacheMap: Map<ForAllExpression, [string[], Identifier]> = new Map()
+  public forAllCacheMap: Map<Forall, [string[], Identifier]> = new Map()
   private contractName: string = ""
   private forallOptimization: boolean
   private depthRequired: boolean = false
+  private virtualRun: boolean = false
   private functionConstraints: Map<string, Map<string, Set<Node>>>
   constructor(constraints: Node[], functionConstraints: Map<string, Map<string, Set<Node>>>,
               variables: Map<string, StateVariableDeclaration[]>,
@@ -121,35 +123,24 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     if (statement.expression.type !== "BinaryOperation") { return statement }
     const binOp = statement.expression
     if (!updateOps.includes(binOp.operator)) { return statement }
-    if (binOp.left.type !== "IndexAccess") { return statement }
-    let indices = [binOp.left.index]
 
-    let base = binOp.left.base
-    while (base.type === "IndexAccess") {
-      indices.push(base.index)
-      base = base.base
-    }
-    indices = indices.reverse()
-    if (base.type !== "Identifier") { return statement }
     const constraintPair: Array<[QuantityExp, Map<string, Expression>]> = []
-    const generate = (constraint: Node, identifier: Identifier) => {
-      getChildren(constraint).map((it) => generate(it, identifier)).forEach((it) => pendingStatements.merge(it))
+    const generate = (constraint: Node) => {
       if (constraint.type === "ForAllExpression" || constraint.type === "SumExpression") {
-        const muIndices: Map<string, Expression> = new Map()
-        getMuIndices(constraint, identifier.name)
-          .map((it, id) => muIndices.set(it, indices[id]))
+        const [result, muBinding] = (new SubstutionAnalyzer(constraint, binOp)).run()
+        if (!result) { return new PendingStatements() }
         const pendingStmts = constraint.type === "ForAllExpression"
-          ? this.generateForAll(constraint, identifier, muIndices)
-          : this.generateSum(constraint, identifier, muIndices)
+          ? muBinding.forEach((it) => this.generateForall(constraint, it))
+          : this.generateSum(constraint, muBinding)
         if (!pendingStmts.isEmpty()) {
-          constraintPair.push([constraint, muIndices])
+          constraintPair.push([constraint, muBinding])
         }
         return pendingStmts
       }
       return new PendingStatements()
     }
     const pendingStatements = new PendingStatements()
-    this.constraints.forEach((it) => pendingStatements.merge(generate(it, base as Identifier)))
+    this.constraints.forEach((it) => pendingStatements.merge(generate(it)))
     if (pendingStatements.isEmpty()) { return statement }
     if (!this.enableMappingOptimization ||
       constraintPair.filter((it) => it[0].type === "SumExpression").length === 0) {
@@ -188,7 +179,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       return assertions
     }
   }
-  private generateAssertionsForAll(node: ForAllExpression) {
+  private generateAssertionsForAll(node: Forall) {
     if (node.constraint.type === "CMPExpression") {
       const binrayExp = createBinaryOperation(
         new Rewriter(this.stateVarCache).visit(node.constraint.left) as Expression,
@@ -242,70 +233,37 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       return forLoop
     }
   }
-  private generateForAll(node: ForAllExpression, identifier: Identifier,
-                         indices: Map<string, Expression>): PendingStatements {
-    if (!getMonitoredVariables(node, node.mu[0].name).has(identifier.name)) { return new PendingStatements() }
-    const gen = (operator: BinOp) => {
-      const variable = createIdentifier(node.name[0])
-      const left = new Rewriter(this.stateVarCache, indices)
-        .visit((node.constraint as CMPExpression).right) as Expression
-      const condition = createBinaryOperation(left, variable, operator)
-      const trueBody = createExpressionStmt(createBinaryOperation(variable, left as Expression, "="))
-      const forAllUpdate = createIfStatment(condition, trueBody)
-      if (node.muDescriptor) {
-        return createIfStatment(
-          new Rewriter(this.stateVarCache, indices).visit(node.muDescriptor) as Expression, forAllUpdate)
-      }
-      return forAllUpdate
-    }
-    switch (node.constraint.type) {
-      case "CMPExpression": {
-        switch (node.constraint.op) {
-          case "<":
-          case "<=": {
-            return new PendingStatements([gen("<")])
-          }
-          case ">":
-          case ">=": {
-            return new PendingStatements([gen(">")])
-          }
-        }
-        break
-      }
-      case "MuExpression": {
-        const block = createBaseASTNode("Block") as Block
-        block.statements = []
-        const arrays = this.generateOrCreateForAllCache(node)
-        const index = arrays[1] as Identifier
-        arrays[0].forEach((it, idx) => {
-          const value = indices.get(node.mu[idx].name)!
-          if (!this.forallOptimization) {
-            const push = createFunctionCall(createMemberAccess(createIdentifier(it), "push"), [value])
-            block.statements.push(createExpressionStmt(push))
+
+  private generateForall(node: Forall, muBindings: Map<string, Expression>): PendingStatements {
+    const block = createBaseASTNode("Block") as Block
+    node.mu.filter((it) => !muBindings.has(it.name)).forEach((it) => node.unboundedMu.add(it.name))
+    block.statements = []
+    const arrays = this.generateOrCreateForAllCache(node)
+    const index = arrays[1] as Identifier
+    arrays[0].forEach((it, idx) => {
+      if (!node.unboundedMu.has(node.mu[idx].name)) {
+        const value = muBindings.get(node.mu[idx].name)!
+        if (!this.forallOptimization) {
+          const push = createFunctionCall(createMemberAccess(createIdentifier(it), "push"), [value])
+          block.statements.push(createExpressionStmt(push))
+        } else {
+          if (this.canOptimize) {
+            const assignment = createBinaryOperation(
+              createIndexAccess(createIdentifier(it), index), muBindings.get(node.mu[idx].name)!, "=")
+            block.statements.push(createExpressionStmt(assignment))
           } else {
-            if (this.canOptimize) {
-              const assignment = createBinaryOperation(
-                createIndexAccess(createIdentifier(it), index), indices.get(node.mu[idx].name)!, "=")
-              block.statements.push(createExpressionStmt(assignment))
-            } else {
-              const tmpVar = generateNewVarName("tmp")
-              const varDecl = createVariableDeclaration(tmpVar, node.muWithTypes.get(node.mu[idx].name)!, false)
-              block.statements.push(createVariableDeclarationStmt([varDecl], indices.get(node.mu[idx].name)!))
-              block.statements.push(storeArrayValue(it, index.name, tmpVar))
-            }
+            const tmpVar = generateNewVarName("tmp")
+            const varDecl = createVariableDeclaration(tmpVar, node.muWithTypes.get(node.mu[idx].name)!, false)
+            block.statements.push(createVariableDeclarationStmt([varDecl], muBindings.get(node.mu[idx].name)!))
+            block.statements.push(storeArrayValue(it, index.name, tmpVar))
           }
-        })
-        if (this.forallOptimization) {
-          block.statements.push(createExpressionStmt(createBinaryOperation(index, createNumberLiteral("1"), "+=")))
         }
-        if (node.muDescriptor) {
-          return new PendingStatements(
-            [createIfStatment(new Rewriter(this.stateVarCache, indices).visit(node.muDescriptor) as Expression, block)])
-        }
-        return new PendingStatements([block])
       }
+    })
+    if (this.forallOptimization) {
+      block.statements.push(createExpressionStmt(createBinaryOperation(index, createNumberLiteral("1"), "+=")))
     }
-    return new PendingStatements()
+    return new PendingStatements([block])
   }
 
   private generateOrCreateStateVarCache(name: string): string {
@@ -327,7 +285,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     }
   }
 
-  private generateOrCreateForAllCache(node: ForAllExpression): [string[], Identifier] {
+  private generateOrCreateForAllCache(node: Forall): [string[], Identifier] {
     const globalArray = !this.canOptimize
     if (!this.forAllCacheMap.has(node)) {
       const names: string[] = []
@@ -369,10 +327,8 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     return this.forAllCacheMap.get(node)!
   }
 
-  private generateSum(node: SumExpression, identifier: Identifier,
+  private generateSum(node: Sum,
                       muIndices: Map<string, Expression>): PendingStatements {
-    if (node.mu.filter((it) => getMonitoredVariables(node, it.name)
-      .has(identifier.name)).length === 0) { return new PendingStatements() }
     const createIndexAccessRecursive = (object: Expression, expressions: Expression[]): Expression => {
       if (expressions.length === 0) { return object }
       const indexAccess = createIndexAccess(object, expressions[0])
@@ -414,4 +370,5 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
 
     return new PendingStatements([gen("-=")], [gen("+=")])
   }
+
 }

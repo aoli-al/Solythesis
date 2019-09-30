@@ -19,10 +19,10 @@ export function optimizeStorageAccess(constraintsPair: Array<[QuantityExp, Map<s
   const collector = new IndexAccessCollector()
   constraintsPair.map((it) => {
     if (it[0].type === "ForAllExpression") {
-      visit(new Rewriter(stateVarCache, it[1]).visit(it[0].constraint), collector)
+      visit(new Rewriter(stateVarCache, it[1]).visit(it[0].condition), collector)
     } else {
-      visit(new Rewriter(stateVarCache, it[1]).visit(it[0].constraint), collector)
-      visit(new Rewriter(stateVarCache, it[1]).visit(it[0].body), collector)
+      visit(new Rewriter(stateVarCache, it[1]).visit(it[0].condition), collector)
+      visit(new Rewriter(stateVarCache, it[1]).visit(it[0].expression), collector)
     }
   })
   const tmpVars: Array<[string, IndexAccess, VariableDeclarationStatement, ExpressionStatement]> =

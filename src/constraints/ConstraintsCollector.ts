@@ -5,7 +5,7 @@ import {
 } from "solidity-parser-antlr"
 import { optimizeStorageAccess } from "../optimizer/StorageAccessOptimizer"
 import { ContractVisitor } from "../visitors/ContractVisitor"
-import { CMPExpression, ForAllExpression, Iden, Node, QuantityExp, SumExpression } from "./nodes/Node"
+import {  Node} from "./nodes/Node"
 import { PendingStatements } from "./PendingStatements"
 import { Rewriter } from "./Rewriter"
 import { generateNewVarName } from "./StateVariableGenerator"

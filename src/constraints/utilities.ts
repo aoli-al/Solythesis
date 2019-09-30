@@ -7,7 +7,7 @@ import {
 } from "solidity-parser-antlr"
 import * as surya from "surya"
 import {
-  MuExp, MuExpTypes, Node, PrimaryExpression, SExpTypes, SIdentifier, SumExpression,
+  Node,
   SyntaxKind,
 } from "./nodes/Node"
 import { generateNewVarName } from "./StateVariableGenerator"
@@ -159,19 +159,16 @@ export function createExpressionStmt(expression: Expression) {
 
 export function getChildren(node: Node): Node[] {
   switch (node.type) {
-    case "MuExpression":
-    case "SExpression":
-    case "CMPExpression": {
+    case "BinaryExpression": {
       return [node.left, node.right]
     }
     case "ForAllExpression": {
-      return [node.mu[0], node.constraint]
+      return [...node.mu, node.condition]
     }
     case "SumExpression": {
-      return [...node.mu, node.body, node.constraint]
+      return [...node.mu, ...node.free, node.expression, node.condition]
     }
-    case "SIndexedAccess":
-    case "MuIndexedAccess": {
+    case "IndexedAccess": {
       return [node.object, node.index]
     }
   }
@@ -192,20 +189,16 @@ export function getSVariables(node: Node): Set<string> {
     .reduce((accumulator, set) => new Set([...accumulator, ...set]), new Set())
 }
 
-export function getMonitoredVariables(node: Node, mu: string): Set<string> {
+export function getMonitoredVariables(node: Node): Set<string> {
   switch (node.type) {
-    case "MuIndexedAccess": {
-      if (node.index.name === mu) {
-        let currentNode = node.object
-        while (currentNode.type !== "SIdentifier") {
-          currentNode = currentNode.object
-        }
-        return new Set([(currentNode as SIdentifier).name])
+    case "Identifier": {
+      if (!node.isMu) {
+        return new Set([node.name])
       }
     }
   }
   return getChildren(node)
-    .map((name) => getMonitoredVariables(name, mu))
+    .map((name) => getMonitoredVariables(name))
     .reduce((accumulator, set) => new Set([...accumulator, ...set]), new Set())
 }
 
@@ -227,24 +220,13 @@ export function getMuIndices(node: Node, stateVar: string): string[] {
   }, [])
 }
 
-export function getMonitoredStateVariables(node: Node): Set<string> {
-  switch (node.type) {
-    case "SIdentifier": {
-      return new Set([node.name])
-    }
-  }
-  return getChildren(node)
-    .map((name) => getMonitoredStateVariables(name))
-    .reduce((accumulator, set) => new Set([...accumulator, ...set]), new Set())
-}
-
-export function getUpdatedVariable(node: Expression): string | undefined {
+export function getUpdatedVariable(node: Expression): string {
   switch (node.type) {
     case "Identifier": return node.name
     case "IndexAccess": return getUpdatedVariable(node.base)
     case "MemberAccess": return getUpdatedVariable(node.expression)
   }
-  return undefined
+  return ""
 }
 
 export function checkSafeAdd(left: Expression, right: Expression) {

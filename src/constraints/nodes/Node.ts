@@ -1,9 +1,10 @@
-import { ElementaryTypeName } from "solidity-parser-antlr";
+import { ElementaryTypeName, TypeName } from "solidity-parser-antlr"
 
-interface Expression {
+interface BaseNode {
   parent?: Node
   children: Node[]
   type: SyntaxKind
+  typeName?: TypeName
 }
 
 export type ArithmeticOp =
@@ -29,94 +30,65 @@ export type TypeString =
 export type BinOp =
   | ArithmeticOp
   | ComparisonOp
+  | "&&"
 
-export interface PrimaryExpression extends Expression {
+export interface PrimaryExpression extends BaseNode {
   type: "PrimaryExpression"
-  typeName: TypeString
   value: string
+  typeName: ElementaryTypeName
 }
 
-export interface BinaryExpression extends Expression {
+export interface BinaryExpression extends BaseNode {
+  type: "BinaryExpression"
   op: BinOp
-  left: Exp
-  right: Exp
+  left: Expresssion
+  right: Expresssion
 }
 
-export interface MuExpression extends BinaryExpression {
-  type: "MuExpression"
-  left: MuExp
-  right: MuExp
-}
-
-export interface SExpression extends BinaryExpression {
-  type: "SExpression"
-  left: SExp
-  right: SExp
-}
-
-export interface CMPExpression extends BinaryExpression {
-  type: "CMPExpression"
-  op: ComparisonOp
-  left: SExp
-  right: MuExp
-}
-
-export interface Identifier extends Expression {
+export interface Identifier extends BaseNode {
+  type: "Identifier"
   name: string
+  isMu: boolean
 }
 
-export interface SIdentifier extends Identifier {
-  type: "SIdentifier"
-}
-
-export interface MuIdentifier extends Identifier {
-  type: "MuIdentifier"
-}
-
-export interface ForAllExpression extends Expression {
+export interface Forall extends BaseNode {
   type: "ForAllExpression"
-  constraint: CMPExpression | MuExp
-  mu: MuIdentifier[]
-  muWithTypes: Map<string, ElementaryTypeName>
   memoryLocation: Map<string, number>
-  muDescriptor?: MuExpression
-  name: string[]
   index: string
+  name: string[]
+  mu: Identifier[]
+  universe: Map<string, [string, string]>
+  muWithTypes: Map<string, ElementaryTypeName>
+  unboundedMu: Set<string>
+  condition: Expresssion
 }
 
-export interface SumExpression extends Expression {
+export interface Sum extends BaseNode {
   type: "SumExpression"
-  mu: MuIdentifier[]
-  free: MuIdentifier[]
-  body: MuExp
-  constraint: SExp | MuExpression | MuIndexedAccess
-  muDescriptor?: MuExpression
-  name: string
+  mu: Identifier[]
+  free: Identifier[]
+  expression: Expresssion
+  condition: Expresssion
   cacheName: string
+  name: string
+  universe: Map<string, [string, string]>
+  muWithTypes: Map<string, ElementaryTypeName>
+  unboundedMu: Set<string>
 }
 
-export interface IndexedAccess extends Expression {
-  object: SIdentifier | MuIndexedAccess
-  index: Exp
+export interface IndexedAccess extends BaseNode {
+  type: "IndexedAccess"
+  object: Expresssion
+  index: Identifier
 }
 
-export interface SIndexedAccess extends IndexedAccess {
-  type: "SIndexedAccess"
-  index: SExp
-}
-
-export interface MuIndexedAccess extends IndexedAccess {
-  type: "MuIndexedAccess"
-  index: MuIdentifier
-}
-
-export interface MemberAccess extends Expression {
+export interface MemberAccess extends BaseNode {
   type: "MemberAccess"
-  expression: SIdentifier
+  expression: Expresssion
   memberName: string
 }
 
-export interface DummyNode extends Expression {
+export interface DummyNode extends BaseNode {
   type: "DummyNode"
 }
 
@@ -124,50 +96,28 @@ export type SyntaxKind =
   | "PrimaryExpression"
   | "ForAllExpression"
   | "SumExpression"
-  | "SIndexedAccess"
-  | "MuIndexedAccess"
   | "DummyNode"
-  | "MuIdentifier"
-  | "SIdentifier"
-  | "MuExpression"
-  | "SExpression"
-  | "CMPExpression"
+  | "IndexedAccess"
+  | "Identifier"
   | "MemberAccess"
+  | "BinaryExpression"
 
 export type Node =
   | DummyNode
-  | PrimaryExpression
-  | CMPExpression
-  | MuExp
-  | SExp
   | QuantityExp
+  | Expresssion
+
+export type Expresssion =
+  | IndexedAccess
+  | BinaryExpression
+  | MemberAccess
+  | Identifier
+  | PrimaryExpression
 
 export type QuantityExp =
-  | SumExpression
-  | ForAllExpression
+  | Sum
+  | Forall
 
-export type MuExp =
-  | MuExpression
-  | MuIndexedAccess
-  | PrimaryExpression
-  | MuIdentifier
-  | MuIdentifier
 
-export type SExp =
-  | SExpression
-  | SIndexedAccess
-  | SIdentifier
-  | PrimaryExpression
-  | MemberAccess
-
-export type Exp =
-  | SExp
-  | MuExp
-
-export type Iden =
-  | SIdentifier
-  | MuIdentifier
-
-export const SExpTypes: SyntaxKind[] = ["SExpression", "SIndexedAccess",
-  "SumExpression", "SIdentifier", "PrimaryExpression", "MemberAccess"]
-export const MuExpTypes: SyntaxKind[] = ["MuExpression", "MuIndexedAccess", "PrimaryExpression", "MuIdentifier"]
+export const ExpressionTypes: SyntaxKind[] = ["PrimaryExpression", "BinaryExpression", "IndexedAccess",
+  "MemberAccess", "Identifier"]

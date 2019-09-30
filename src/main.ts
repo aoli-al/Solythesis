@@ -10,9 +10,10 @@ import { GenStateVariables as StateVariableGenerator } from "./constraints/State
 import { Printer } from "./printer/Printer"
 import { VariableCollector } from "./visitors/VariableCollector"
 import { ConstraintsCollector } from "./constraints/ConstraintsCollector";
+import { StandardSemanticAnalyzer } from "./analyzer/SemanticAnalyzer"
 
-
-function generate(contractPath: string, constraintPath: string, postfix: string, stateVarOpt: boolean, forallOpt: boolean) {
+function generate(contractPath: string, constraintPath: string,
+                  postfix: string, stateVarOpt: boolean, forallOpt: boolean) {
   const contract = fs.readFileSync(contractPath)
   const constraint = fs.readFileSync(process.argv[3])
   const ast = parser.parse(contract.toString("utf-8"), { range: true })
@@ -24,22 +25,24 @@ function generate(contractPath: string, constraintPath: string, postfix: string,
   const tokenStream = new CommonTokenStream(lexer)
   const p = new SolidityParser(tokenStream)
   const constraintBuilder = new ConstraintBuilder()
-  const stateVarGen = new StateVariableGenerator(variableCollector.variables, forallOpt)
-
-  const stateVars: Map<string, StateVariableDeclaration[]> = new Map()
   constraintBuilder.visit(p.sourceUnit())
-  constraintBuilder.constraint.forEach((constraints, c) => {
-    stateVars.set(c,
-      constraints
+  const constraints = [...constraintBuilder.constraint.values()].reduce((left, right) => [...left, ...right])
+  const semanticAnalyzer = new StandardSemanticAnalyzer(variableCollector.variables)
+  constraints.forEach((it) => semanticAnalyzer.visit(it))
+
+  const stateVarGen = new StateVariableGenerator(forallOpt)
+  const stateVars: Map<string, StateVariableDeclaration[]> = new Map()
+  constraintBuilder.constraint.forEach((cons, contr) => {
+    stateVars.set(contr,
+      cons
         .filter((it) => it.type === "ForAllExpression" || it.type === "SumExpression")
         .map((it) => stateVarGen.analysis(it as QuantityExp)).reduce((left, right) => [...left, ...right]))
   })
-  const constraints = [...constraintBuilder.constraint.values()].reduce((left, right) => [...left, ...right])
   const constraintsCollector = new ConstraintsCollector(constraints)
   constraintsCollector.visit(ast)
   const decorator =
     new AssertionDectorator(constraints, constraintsCollector.functionConstraints,
-      stateVars, stateVarGen.contractVars, stateVarOpt, forallOpt)
+      stateVars, semanticAnalyzer.contractVars, stateVarOpt, forallOpt)
   decorator.visit(ast)
   const printer = new Printer(contract.toString("utf-8"))
   visit(ast, printer)

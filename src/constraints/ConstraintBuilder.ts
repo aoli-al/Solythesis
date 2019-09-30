@@ -7,11 +7,11 @@ import {
 } from "../antlr/SolidityParser"
 import { SolidityVisitor } from "../antlr/SolidityVisitor"
 import {
-  ArithmeticOp, BinOp, CMPExpression, ComparisonOp, ComparisonOpList, Exp, ForAllExpression, Iden,
-  Identifier, MuExp, MuExpression, MuExpTypes, MuIdentifier, MuIndexedAccess, Node, PrimaryExpression, SExp,
-  SExpression, SExpTypes, SIdentifier, SIndexedAccess, SumExpression, SyntaxKind, MemberAccess,
+  BinOp, ComparisonOp, ComparisonOpList, Forall,
+  Identifier, Node, PrimaryExpression,
+  Sum, SyntaxKind, Expresssion as Expression, IndexedAccess, MemberAccess, BinaryExpression,
 } from "./nodes/Node"
-import { objectAllocator } from "./utilities"
+import { objectAllocator, createElementaryTypeName } from "./utilities"
 
 let counter = 0
 export function generateNewVarName(base: string) {
@@ -22,7 +22,6 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
 
   public constraint: Map<string, Node[]> = new Map()
   public currentContract: string = ""
-  public muVariables: string[] = []
   public arrayCount = 0
 
   constructor() {
@@ -65,19 +64,9 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
       case 1: { return this.visit(context.getChild(0)) }
       case 4: {
         if (context.getChild(1).text === "[") {
-          const index = this.visit(context.expression(1))!
-          const node = (() => {
-            if (index.type === "MuIdentifier") {
-              const n = this.createNode("MuIndexedAccess") as MuIndexedAccess
-              n.index = index
-              return n
-            } else {
-              const n = this.createNode("SIndexedAccess") as SIndexedAccess
-              n.index = index as SExp
-              return n
-            }
-          })()
-          node.object = this.visit(context.expression(0))! as MuIndexedAccess | SIdentifier
+          const node = this.createNode("IndexedAccess") as IndexedAccess
+          node.index = this.visit(context.expression(1)) as Identifier
+          node.object = this.visit(context.expression(0)) as Expression
           return node
         }
       }
@@ -85,33 +74,16 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
         const left = this.visit(context.expression(0))!
         const right = this.visit(context.getChild(2))!
         if ("." === context.getChild(1).text) {
-          const node = this.createNode("MemberAccess") as MemberAccess
-          node.expression = left as SIdentifier
-          node.memberName = (right as Identifier).name
-          return node
+          const n = this.createNode("MemberAccess") as MemberAccess
+          n.expression = left as Expression
+          n.memberName = (right as Identifier).name
+          return n
+
         }
-        const op = context.getChild(1).text as BinOp
-        if (MuExpTypes.includes(left.type) && MuExpTypes.includes(right.type)) {
-          const node = this.createNode("MuExpression") as MuExpression
-          node.left = left as MuExp
-          node.right = right as MuExp
-          node.op = op
-          return node
-        }
-        if (SExpTypes.includes(left.type) && SExpTypes.includes(right.type)) {
-          const node = this.createNode("SExpression") as SExpression
-          node.left = left as SExp
-          node.right = right as SExp
-          node.op = op
-          return node
-        }
-        if (ComparisonOpList.includes(op)) {
-          const node = this.createNode("CMPExpression") as CMPExpression
-          node.left = left as SExp
-          node.right = right as MuExp
-          node.op = op as ComparisonOp
-          return node
-        }
+        const node = this.createNode("BinaryExpression") as BinaryExpression
+        node.left = left as Expression
+        node.right = right as Expression
+        node.op = context.getChild(1).text as BinOp
       }
     }
     return null
@@ -126,7 +98,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
   public visitNumberLiteral(context: NumberLiteralContext): Node {
     const node = this.createNode("PrimaryExpression") as PrimaryExpression
     node.value = context.text
-    node.typeName = "number"
+    node.typeName = createElementaryTypeName("uin256")
     return node
   }
 
@@ -134,48 +106,31 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     if (context.BooleanLiteral()) {
       const node = this.createNode("PrimaryExpression") as PrimaryExpression
       node.value = context.text
-      node.typeName = "boolean"
+      node.typeName = createElementaryTypeName("boolean")
       return node
     }
     return this.visit(context.getChild(0))
   }
 
   public visitIdentifier(context: IdentifierContext): Node {
-    let node
-    if (this.muVariables.includes(context.text)) {
-      node = this.createNode("MuIdentifier") as Iden
-    } else {
-      node = this.createNode("SIdentifier") as Iden
-    }
+    const node = this.createNode("Identifier") as Identifier
     node.name = context.text
     return node
   }
 
   public visitForAllExpression(context: ForAllExpressionContext): Node {
-    const node = this.createNode("ForAllExpression") as ForAllExpression
-    this.muVariables = context.identifierList().identifier().map((it) => it.text)
-    node.mu = context.identifierList().identifier().map((it) => this.visit(it) as MuIdentifier)
-    node.constraint = this.visit(context.expression(0)) as CMPExpression
-    if (context.expression().length === 2) {
-      node.muDescriptor = this.visit(context.expression(1)) as MuExpression
-    }
-    this.muVariables = []
+    const node = this.createNode("ForAllExpression") as Forall
+    node.mu = context.identifierList().identifier().map((it) => this.visit(it) as Identifier)
+    node.condition = this.visit(context.expression()) as Expression
     return node
   }
 
   public visitSumExpression(context: SumExpressionContext): Node {
-    const node = this.createNode("SumExpression") as SumExpression
-    this.muVariables = context.identifierList()
-      .map((it) => it.identifier().map((identifier) => identifier.text))
-      .reduce((left, right) => [...left, ...right], [])
-    node.free = context.identifierList(0).identifier().map((it) => this.visit(it) as MuIdentifier)
-    node.mu = context.identifierList(1).identifier().map((it) => this.visit(it) as MuIdentifier)
-    node.body = this.visit(context.expression(0)) as MuExp
-    node.constraint = this.visit(context.expression(1)) as MuExpression
-    if (context.expression().length === 3) {
-      node.muDescriptor = this.visit(context.expression(2)) as MuExpression
-    }
-    this.muVariables = []
+    const node = this.createNode("SumExpression") as Sum
+    node.mu = context.identifierList(0).identifier().map((it) => this.visit(it) as Identifier)
+    node.free = context.identifierList(1).identifier().map((it) => this.visit(it) as Identifier)
+    node.expression = this.visit(context.expression(0)) as Expression
+    node.condition = this.visit(context.expression(1)) as Expression
     return node
   }
 }
