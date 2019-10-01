@@ -5,7 +5,7 @@ import {
 } from "solidity-parser-antlr"
 import { optimizeStorageAccess } from "../optimizer/StorageAccessOptimizer"
 import { ContractVisitor } from "../visitors/ContractVisitor"
-import { Forall, Node, QuantityExp, Sum} from "./nodes/Node"
+import { Forall, Node, QuantityExp, Sum, Identifier as Iden} from "./nodes/Node"
 import { PendingStatements } from "./PendingStatements"
 import { Rewriter } from "./Rewriter"
 import { generateNewVarName } from "./StateVariableGenerator"
@@ -23,6 +23,7 @@ import {
   storeArrayValue,
   loadArrayValue,
   getCallers,
+  createForloop,
 } from "./utilities"
 import { SubstutionAnalyzer } from "src/analyzer/SubstitutionAnalyzer"
 
@@ -127,15 +128,19 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     const constraintPair: Array<[QuantityExp, Map<string, Expression>]> = []
     const generate = (constraint: Node) => {
       if (constraint.type === "ForAllExpression" || constraint.type === "SumExpression") {
-        const [result, muBinding] = (new SubstutionAnalyzer(constraint, binOp)).run()
+        const [result, muBindings] = (new SubstutionAnalyzer(constraint, binOp)).run()
         if (!result) { return new PendingStatements() }
-        const pendingStmts = constraint.type === "ForAllExpression"
-          ? muBinding.forEach((it) => this.generateForall(constraint, it))
-          : this.generateSum(constraint, muBinding)
-        if (!pendingStmts.isEmpty()) {
-          constraintPair.push([constraint, muBinding])
-        }
-        return pendingStmts
+
+        const ps = new PendingStatements()
+        muBindings.forEach((muBinding) => {
+          const pendingStmts = constraint.type === "ForAllExpression"
+            ? this.generateForall(constraint, muBinding)
+            : this.generateSum(constraint, muBinding)
+          if (!pendingStmts.isEmpty()) {
+            constraintPair.push([constraint, muBinding])
+          }
+          ps.merge(pendingStatements)
+        })
       }
       return new PendingStatements()
     }
@@ -187,17 +192,16 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       const functionCall = createFunctionCall(createIdentifier("assert"), [binrayExp], [])
       return createExpressionStmt(functionCall)
     } else {
-      const forLoop = createBaseASTNode("ForStatement") as ForStatement
       const indexIdentifier = createIdentifier(generateNewVarName("index"))
-      forLoop.initExpression = createVariableDeclarationStmt(
+      const initExpression = createVariableDeclarationStmt(
         [createVariableDeclaration(indexIdentifier.name, createElementaryTypeName("uint256"), false)],
         createNumberLiteral("0"))
       const length = this.forallOptimization ? this.generateOrCreateForAllCache(node)[1]
         : createMemberAccess(createIdentifier(this.generateOrCreateForAllCache(node)[0][0]), "length")
-      forLoop.conditionExpression = createBinaryOperation(indexIdentifier, length, "<")
-      forLoop.loopExpression = createExpressionStmt(
+      const conditionExpression = createBinaryOperation(indexIdentifier, length, "<")
+      const loopExpression = createExpressionStmt(
         createBinaryOperation(indexIdentifier, createNumberLiteral("1"), "+="))
-      forLoop.body = createBaseASTNode("Block") as Block
+      const body = createBaseASTNode("Block") as Block
       const statements: Statement[] = []
       const map: Map<string, Expression> = new Map()
       this.generateOrCreateForAllCache(node)[0].forEach((value, index) => {
@@ -213,8 +217,8 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       })
       const exp = new Rewriter(this.stateVarCache, map).visit(node.constraint) as Expression
       const functionCall = createFunctionCall(createIdentifier("assert"), [exp], [])
-      forLoop.body.statements = [...statements, createExpressionStmt(functionCall)]
-
+      body.statements = [...statements, createExpressionStmt(functionCall)]
+      const forLoop = createForloop(body, initExpression, conditionExpression, loopExpression)
       if (!this.forallOptimization) {
         const expressions: Statement[] = []
         this.generateOrCreateForAllCache(node)[0].forEach((value) => {
@@ -328,32 +332,33 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
   }
 
   private generateSum(node: Sum,
-                      muIndices: Map<string, Expression>): PendingStatements {
+                      muMapping: Map<string, Expression>): PendingStatements {
+    const diffVar = [...node.free, ...node.mu].filter((it) => !muMapping.has(it.name))
+    diffVar.forEach((it) => node.unboundedMu.add(it.name))
+    const [result, firstFor, lastFor] = this.loopUnboundedArrays(node, diffVar)
+    const muMappingWithUnbounded = new Map([...Array.from(muMapping), ...result])
     const createIndexAccessRecursive = (object: Expression, expressions: Expression[]): Expression => {
       if (expressions.length === 0) { return object }
       const indexAccess = createIndexAccess(object, expressions[0])
       return createIndexAccessRecursive(indexAccess, expressions.slice(1))
     }
-
     const cacheOrGenerate = (name: string) => {
       const typeName = this.contractVars.get(name)!
       if (typeName.type === "ElementaryTypeName") {
         return createIdentifier(this.generateOrCreateStateVarCache(name))
       } else {
-        return createIndexAccessRecursive(createIdentifier(name), node.free.map((it) => muIndices.get(it.name)!))
+        return createIndexAccessRecursive(createIdentifier(name),
+          node.free.map((it) => muMappingWithUnbounded.get(it.name)!))
       }
     }
     const gen = (operator: BinOp) => {
       const base = cacheOrGenerate(node.name)
-      const v = (node.constraint.type === "MuIndexedAccess")
-        ? createIndexAccess(base, new Rewriter(this.stateVarCache, muIndices).visit(node.constraint) as Expression)
-        : base
-      const right = new Rewriter(this.stateVarCache, muIndices).visit(node.body) as Expression
+      const right = new Rewriter(this.stateVarCache, muMappingWithUnbounded).visit(node.expression) as Expression
       const safeOperation = createExpressionStmt(createFunctionCall(
         createIdentifier("assert"),
-        [createBinaryOperation(v, right, ">=")],
+        [createBinaryOperation(base, right, ">=")],
       ))
-      const statement = createExpressionStmt(createBinaryOperation(v, right, operator))
+      const statement = createExpressionStmt(createBinaryOperation(base, right, operator))
       const statements: Statement[] = operator === "-=" ? [safeOperation, statement] : [statement, safeOperation]
       const block = createBlock(statements)
       let muUpdate: Statement = block
@@ -369,6 +374,34 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     }
 
     return new PendingStatements([gen("-=")], [gen("+=")])
+  }
+  private loopUnboundedArrays(node: QuantityExp, identifiers: Iden[]):
+    [Array<[string, Expression]>, ForStatement?, ForStatement?] {
+    let lastFor: ForStatement | undefined
+    let firstFor: ForStatement | undefined
+    const createLoop = (identifier: Iden): [string, Expression] => {
+      const indexIdentifier = createIdentifier(generateNewVarName("index"))
+      const storeIdentifier = createIdentifier(node.universe.get(identifier.name)![1])
+      const initExpression = createVariableDeclarationStmt(
+        [createVariableDeclaration(indexIdentifier.name, createElementaryTypeName("uint256"), false)],
+        createNumberLiteral("0"))
+      const length = createMemberAccess(storeIdentifier, "length")
+      const conditionExpression = createBinaryOperation(indexIdentifier, length, "<")
+      const loopExpression = createExpressionStmt(
+        createBinaryOperation(indexIdentifier, createNumberLiteral("1"), "+="))
+      const body = createBaseASTNode("Block") as Block
+      const forLoop = createForloop(body, initExpression, conditionExpression, loopExpression)
+      if (lastFor) {
+        (lastFor.body as Block).statements.push(forLoop)
+      } else {
+        firstFor = forLoop
+      }
+      lastFor = forLoop
+      return [identifier.name,
+              createIndexAccess(storeIdentifier, indexIdentifier)]
+    }
+    const result = identifiers.map((it) => createLoop(it))
+    return [result, firstFor, lastFor]
   }
 
 }

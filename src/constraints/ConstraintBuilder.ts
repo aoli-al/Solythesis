@@ -127,8 +127,8 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
 
   public visitSumExpression(context: SumExpressionContext): Node {
     const node = this.createNode("SumExpression") as Sum
-    node.mu = context.identifierList(0).identifier().map((it) => this.visit(it) as Identifier)
-    node.free = context.identifierList(1).identifier().map((it) => this.visit(it) as Identifier)
+    node.free = context.identifierList(0).identifier().map((it) => this.visit(it) as Identifier)
+    node.mu = context.identifierList(1).identifier().map((it) => this.visit(it) as Identifier)
     node.expression = this.visit(context.expression(0)) as Expression
     node.condition = this.visit(context.expression(1)) as Expression
     return node

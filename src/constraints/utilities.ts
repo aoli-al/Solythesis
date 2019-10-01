@@ -1,5 +1,5 @@
 import * as dot from "graphlib-dot"
-import parser, { SourceUnit, ContractDefinition, FunctionDefinition } from "solidity-parser-antlr"
+import parser, { SourceUnit, ContractDefinition, FunctionDefinition, SimpleStatement, ForStatement } from "solidity-parser-antlr"
 import {
   ArrayTypeName, ASTNode, ASTNodeTypeString, BaseASTNode, BinaryOperation, BinOp, Block, ElementaryTypeName,
   Expression, ExpressionStatement, FunctionCall, Identifier, IfStatement, IndexAccess, Mapping, MemberAccess,
@@ -33,6 +33,18 @@ export function createNode(kind: SyntaxKind): Node {
 
 export function createBaseASTNode(type: ASTNodeTypeString) {
   return new (objectAllocator.getBaseASTNodeConstructor())(type)
+}
+
+export function createForloop(body: Statement,
+                              initExpression?: SimpleStatement,
+                              conditionExpression?: Expression,
+                              loopExpression?: ExpressionStatement) {
+  const forLoop = createBaseASTNode("ForStatement") as ForStatement
+  forLoop.initExpression = initExpression
+  forLoop.conditionExpression = conditionExpression
+  forLoop.loopExpression = loopExpression
+  forLoop.body = body
+  return forLoop
 }
 
 export function createBlock(statements: Statement[]) {
