@@ -6,7 +6,7 @@ mkdir results
 # perf record -F 1000 -g
 # perf record -F 100 --call-graph dwarf
 ~/parity-ethereum/target/release/parity import ~/$1-$3-mainchain.bin \
-  --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/foundation.json \
+  --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/config.json \
   --base-path=/home/leo/empty --log-file=/home/leo/parity.log --logging=info
 
 # ~/parity-ethereum/target/release/parity export blocks ~/$1-$3-prep.bin \

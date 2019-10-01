@@ -122,15 +122,15 @@ def generate(func):
 #  generate_table(m, "& %.2f ")
 
 for benchmark in generate_tests():
-    name = "mainnet10000-" + benchmark[0] + "-" + benchmark[2]
+    name = "empty10000-" + benchmark[0] + "-" + benchmark[2]
     idx = name_mapping(name)
     if idx not in m:
         m[idx] = {}
     try:
-        f = open("/data/{}/parity-opt-2-12500-m5.log".format(name, name))
+        f = open("/data/{}/parity-noopt-12500-m5.log".format(name, name))
         for line in f:
             #  result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
-            result = re.findall(r"Import completed in .+ (\d+) blocks", line)
+            result = re.findall(r"Import completed in .+ (\d+) tx/s", line)
             if result:
                 #  print(result)
                 m[idx][benchmark[2]] = int(result[0])
