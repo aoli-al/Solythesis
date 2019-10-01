@@ -1,6 +1,6 @@
-import { ConstraintVisitor } from "src/visitors/ConstraintVisitor"
-import { QuantityExp, BinaryExpression, Identifier } from "src/constraints/nodes/Node"
-import { createNode } from "src/constraints/utilities"
+import { ConstraintVisitor } from "../visitors/ConstraintVisitor"
+import { QuantityExp, BinaryExpression, Identifier } from "../constraints/nodes/Node"
+import { createNode } from "../constraints/utilities"
 
 export class PositionMuVarAnalyzer extends ConstraintVisitor {
   private muSet: Set<string> = new Set()

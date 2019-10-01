@@ -1,7 +1,7 @@
 import assert from "assert"
 import { ElementaryTypeName, Mapping, StateVariableDeclaration, TypeName } from "solidity-parser-antlr"
 import { ConstraintVisitor } from "../visitors/ConstraintVisitor"
-import {Forall, QuantityExp, Sum, Identifier } from "./nodes/Node"
+import {ForAllExpression, QuantityExp, SumExpression, Identifier } from "./nodes/Node"
 import {
   createArray, createBaseASTNode, createElementaryTypeName, createMapping,
   createStateVariableDeclaration, createVariableDeclaration,
@@ -47,13 +47,24 @@ export class GenStateVariables {
     return map
   }
 
-  private Sum(node: Sum) {
+  private Sum(node: SumExpression) {
     this.createStateVariable(node.name, node.typeName!)
-    node.universe = this.createUniverse([...node.mu, ...node.free])
+    node.universe = this.createUniverse([...node.mu, ...node.free].filter((it) => node.unboundedMu.has(it.name)))
   }
 
-  private Forall(node: Forall) {
-    node.universe = this.createUniverse(node.mu)
+  private Forall(node: ForAllExpression) {
+    node.universe = this.createUniverse(node.mu.filter((it) => node.unboundedMu.has(it.name)))
+    node.mu.filter((it) => !node.unboundedMu.has(it.name)).forEach((it) => {
+      const name = generateNewVarName(it.name + "_addr")
+      if (this.forallOptimization) {
+        this.createStateVariable(name, createElementaryTypeName("uint256"))
+        node.memoryLocation.set(it.name, this.dynamicArrays)
+        this.dynamicArrays += 1
+      } else {
+        this.createStateVariable(it.name, createArray(node.muWithTypes.get(it.name)!))
+      }
+      node.muStateVars.set(it.name, name)
+    })
     this.createStateVariable(node.index, createElementaryTypeName("uint256"))
   }
 }

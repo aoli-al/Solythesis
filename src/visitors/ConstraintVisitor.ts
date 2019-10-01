@@ -1,12 +1,12 @@
 import * as _ from "lodash"
 import {
-  Forall, Node, PrimaryExpression,
-  Sum, MemberAccess, BinaryExpression, IndexedAccess, Identifier,
+  ForAllExpression, Node, PrimaryExpression,
+  SumExpression, MemberAccess, BinaryExpression, IndexedAccess, Identifier,
 } from "../constraints/nodes/Node"
 
 export abstract class ConstraintVisitor {
-  public Sum?: (node: Sum) => void
-  public Forall?: (node: Forall) => void
+  public SumExpression?: (node: SumExpression) => void
+  public ForAllExpression?: (node: ForAllExpression) => void
   public MemberAccess?: (node: MemberAccess) => void
   public BinaryExpression?: (node: BinaryExpression) => void
   public IndexedAccess?: (node: IndexedAccess) => void

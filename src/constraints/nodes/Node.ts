@@ -51,7 +51,7 @@ export interface Identifier extends BaseNode {
   isMu: boolean
 }
 
-export interface Forall extends BaseNode {
+export interface ForAllExpression extends BaseNode {
   type: "ForAllExpression"
   memoryLocation: Map<string, number>
   index: string
@@ -61,12 +61,12 @@ export interface Forall extends BaseNode {
   muWithTypes: Map<string, ElementaryTypeName>
   unboundedMu: Set<string>
   positionMuVarMap: Map<string, Expression>
-  positionMuVarAssertions: [Expression]
+  positionMuVarAssertions: Expression[]
   positionMuDependencyMap: Map<string, Set<string>>
   condition: Expression
 }
 
-export interface Sum extends BaseNode {
+export interface SumExpression extends BaseNode {
   type: "SumExpression"
   mu: Identifier[]
   free: Identifier[]
@@ -77,7 +77,7 @@ export interface Sum extends BaseNode {
   universe: Map<string, [string, string]>
   muWithTypes: Map<string, ElementaryTypeName>
   positionMuVarMap: Map<string, Expression>
-  positionMuVarAssertions: [Expression]
+  positionMuVarAssertions: Expression[]
   positionMuDependencyMap: Map<string, Set<string>>
   unboundedMu: Set<string>
 }
@@ -121,8 +121,8 @@ export type Expression =
   | PrimaryExpression
 
 export type QuantityExp =
-  | Sum
-  | Forall
+  | SumExpression
+  | ForAllExpression
 
 export const ExpressionTypes: SyntaxKind[] = ["PrimaryExpression", "BinaryExpression", "IndexedAccess",
   "MemberAccess", "Identifier"]

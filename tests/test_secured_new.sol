@@ -45,50 +45,62 @@ contract BasicToken is ERC20Basic {
   using SafeMath for uint256;
   mapping (address=>uint256) balances;
   function transfer (address _to, uint256 _value) public returns (bool) {
-    uint256 tmp_sum_balance_2 = sum_balance;
+    uint256 tmp_sum_balance_13 = sum_balance;
     require(_to != address(0));
     require(_value > 0 && _value <= balances[msg.sender]);
     {
-      uint256 opt_3 = balances[msg.sender];
+      uint256 opt_14 = balances[msg.sender];
       {
-        assert(tmp_sum_balance_2 >= opt_3);
-        tmp_sum_balance_2 -= opt_3;
+        if (true) {
+          assert(tmp_sum_balance_13 >= opt_14);
+          tmp_sum_balance_13 -= opt_14;
+        }
+
       }
 
-      opt_3 = opt_3.sub(_value);
+      opt_14 = opt_14.sub(_value);
       {
-        tmp_sum_balance_2 += opt_3;
-        assert(tmp_sum_balance_2 >= opt_3);
+        if (true) {
+          tmp_sum_balance_13 += opt_14;
+          assert(tmp_sum_balance_13 >= opt_14);
+        }
+
       }
 
-      balances[msg.sender] = opt_3;
+      balances[msg.sender] = opt_14;
     }
 
     {
-      uint256 opt_4 = balances[_to];
+      uint256 opt_15 = balances[_to];
       {
-        assert(tmp_sum_balance_2 >= opt_4);
-        tmp_sum_balance_2 -= opt_4;
+        if (true) {
+          assert(tmp_sum_balance_13 >= opt_15);
+          tmp_sum_balance_13 -= opt_15;
+        }
+
       }
 
-      opt_4 = opt_4.add(_value);
+      opt_15 = opt_15.add(_value);
       {
-        tmp_sum_balance_2 += opt_4;
-        assert(tmp_sum_balance_2 >= opt_4);
+        if (true) {
+          tmp_sum_balance_13 += opt_15;
+          assert(tmp_sum_balance_13 >= opt_15);
+        }
+
       }
 
-      balances[_to] = opt_4;
+      balances[_to] = opt_15;
     }
 
     emit Transfer(msg.sender, _to, _value);
     {
-      assert(totalSupply == tmp_sum_balance_2);
-      sum_balance = tmp_sum_balance_2;
+      assert(totalSupply == tmp_sum_balance_13);
+      sum_balance = tmp_sum_balance_13;
       return true;
     }
 
-    assert(totalSupply == tmp_sum_balance_2);
-    sum_balance = tmp_sum_balance_2;
+    assert(totalSupply == tmp_sum_balance_13);
+    sum_balance = tmp_sum_balance_13;
   }
 
   function balanceOf (address _owner) public view returns (uint256 balance) {
@@ -105,52 +117,64 @@ contract ERC20 is ERC20Basic {
 contract StandardToken is ERC20, BasicToken {
   mapping (address=>mapping (address=>uint256)) internal allowed;
   function transferFrom (address _from, address _to, uint256 _value) public returns (bool) {
-    uint256 tmp_sum_balance_5 = sum_balance;
+    uint256 tmp_sum_balance_16 = sum_balance;
     require(_to != address(0));
     require(_value > 0 && _value <= balances[_from]);
     require(_value <= allowed[_from][msg.sender]);
     {
-      uint256 opt_6 = balances[_from];
+      uint256 opt_17 = balances[_from];
       {
-        assert(tmp_sum_balance_5 >= opt_6);
-        tmp_sum_balance_5 -= opt_6;
+        if (true) {
+          assert(tmp_sum_balance_16 >= opt_17);
+          tmp_sum_balance_16 -= opt_17;
+        }
+
       }
 
-      opt_6 = opt_6.sub(_value);
+      opt_17 = opt_17.sub(_value);
       {
-        tmp_sum_balance_5 += opt_6;
-        assert(tmp_sum_balance_5 >= opt_6);
+        if (true) {
+          tmp_sum_balance_16 += opt_17;
+          assert(tmp_sum_balance_16 >= opt_17);
+        }
+
       }
 
-      balances[_from] = opt_6;
+      balances[_from] = opt_17;
     }
 
     {
-      uint256 opt_7 = balances[_to];
+      uint256 opt_18 = balances[_to];
       {
-        assert(tmp_sum_balance_5 >= opt_7);
-        tmp_sum_balance_5 -= opt_7;
+        if (true) {
+          assert(tmp_sum_balance_16 >= opt_18);
+          tmp_sum_balance_16 -= opt_18;
+        }
+
       }
 
-      opt_7 = opt_7.add(_value);
+      opt_18 = opt_18.add(_value);
       {
-        tmp_sum_balance_5 += opt_7;
-        assert(tmp_sum_balance_5 >= opt_7);
+        if (true) {
+          tmp_sum_balance_16 += opt_18;
+          assert(tmp_sum_balance_16 >= opt_18);
+        }
+
       }
 
-      balances[_to] = opt_7;
+      balances[_to] = opt_18;
     }
 
     allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
     emit Transfer(_from, _to, _value);
     {
-      assert(totalSupply == tmp_sum_balance_5);
-      sum_balance = tmp_sum_balance_5;
+      assert(totalSupply == tmp_sum_balance_16);
+      sum_balance = tmp_sum_balance_16;
       return true;
     }
 
-    assert(totalSupply == tmp_sum_balance_5);
-    sum_balance = tmp_sum_balance_5;
+    assert(totalSupply == tmp_sum_balance_16);
+    sum_balance = tmp_sum_balance_16;
   }
 
   function approve (address _spender, uint256 _value) public returns (bool) {
@@ -234,55 +258,67 @@ contract PausableToken is StandardToken, Pausable {
   }
 
   function batchTransfer (address[] memory _receivers, uint256 _value) whenNotPaused public returns (bool) {
-    uint256 tmp_sum_balance_8 = sum_balance;
+    uint256 tmp_sum_balance_19 = sum_balance;
     uint cnt = _receivers.length;
     uint256 amount = uint256(cnt) * _value;
     require(cnt > 0 && cnt <= 20);
     require(_value > 0 && balances[msg.sender] >= amount);
     {
-      uint256 opt_9 = balances[msg.sender];
+      uint256 opt_20 = balances[msg.sender];
       {
-        assert(tmp_sum_balance_8 >= opt_9);
-        tmp_sum_balance_8 -= opt_9;
+        if (true) {
+          assert(tmp_sum_balance_19 >= opt_20);
+          tmp_sum_balance_19 -= opt_20;
+        }
+
       }
 
-      opt_9 = opt_9.sub(amount);
+      opt_20 = opt_20.sub(amount);
       {
-        tmp_sum_balance_8 += opt_9;
-        assert(tmp_sum_balance_8 >= opt_9);
+        if (true) {
+          tmp_sum_balance_19 += opt_20;
+          assert(tmp_sum_balance_19 >= opt_20);
+        }
+
       }
 
-      balances[msg.sender] = opt_9;
+      balances[msg.sender] = opt_20;
     }
 
     for (uint i = 0; i < cnt; i++) {
       {
-        uint256 opt_10 = balances[_receivers[i]];
+        uint256 opt_21 = balances[_receivers[i]];
         {
-          assert(tmp_sum_balance_8 >= opt_10);
-          tmp_sum_balance_8 -= opt_10;
+          if (true) {
+            assert(tmp_sum_balance_19 >= opt_21);
+            tmp_sum_balance_19 -= opt_21;
+          }
+
         }
 
-        opt_10 = opt_10.add(_value);
+        opt_21 = opt_21.add(_value);
         {
-          tmp_sum_balance_8 += opt_10;
-          assert(tmp_sum_balance_8 >= opt_10);
+          if (true) {
+            tmp_sum_balance_19 += opt_21;
+            assert(tmp_sum_balance_19 >= opt_21);
+          }
+
         }
 
-        balances[_receivers[i]] = opt_10;
+        balances[_receivers[i]] = opt_21;
       }
 
       emit Transfer(msg.sender, _receivers[i], _value);
     }
 
     {
-      assert(totalSupply == tmp_sum_balance_8);
-      sum_balance = tmp_sum_balance_8;
+      assert(totalSupply == tmp_sum_balance_19);
+      sum_balance = tmp_sum_balance_19;
       return true;
     }
 
-    assert(totalSupply == tmp_sum_balance_8);
-    sum_balance = tmp_sum_balance_8;
+    assert(totalSupply == tmp_sum_balance_19);
+    sum_balance = tmp_sum_balance_19;
   }
 
 }
@@ -292,25 +328,31 @@ contract BecToken is PausableToken {
   string public version = '1.0.0';
   uint8 public decimals = 18;
   constructor () public {
-    uint256 tmp_sum_balance_11 = sum_balance;
+    uint256 tmp_sum_balance_22 = sum_balance;
     totalSupply = 7000000000 * (10**(uint256(decimals)));
     {
-      uint256 opt_12 = balances[msg.sender];
+      uint256 opt_23 = balances[msg.sender];
       {
-        assert(tmp_sum_balance_11 >= opt_12);
-        tmp_sum_balance_11 -= opt_12;
+        if (true) {
+          assert(tmp_sum_balance_22 >= opt_23);
+          tmp_sum_balance_22 -= opt_23;
+        }
+
       }
 
-      opt_12 = totalSupply;
+      opt_23 = totalSupply;
       {
-        tmp_sum_balance_11 += opt_12;
-        assert(tmp_sum_balance_11 >= opt_12);
+        if (true) {
+          tmp_sum_balance_22 += opt_23;
+          assert(tmp_sum_balance_22 >= opt_23);
+        }
+
       }
 
-      balances[msg.sender] = opt_12;
+      balances[msg.sender] = opt_23;
     }
 
-    sum_balance = tmp_sum_balance_11;
+    sum_balance = tmp_sum_balance_22;
   }
 
   function () external payable {

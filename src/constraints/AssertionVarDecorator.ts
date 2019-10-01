@@ -5,7 +5,7 @@ import {
 } from "solidity-parser-antlr"
 import { optimizeStorageAccess } from "../optimizer/StorageAccessOptimizer"
 import { ContractVisitor } from "../visitors/ContractVisitor"
-import { Forall, Node, QuantityExp, Sum, Identifier as Iden} from "./nodes/Node"
+import { ForAllExpression, Node, QuantityExp, SumExpression, Identifier as Iden} from "./nodes/Node"
 import { PendingStatements } from "./PendingStatements"
 import { Rewriter } from "./Rewriter"
 import { generateNewVarName } from "./StateVariableGenerator"
@@ -24,7 +24,7 @@ import {
   getCallers,
   createForloop,
 } from "./utilities"
-import { SubstutionAnalyzer } from "src/analyzer/SubstitutionAnalyzer"
+import { SubstutionAnalyzer } from "../analyzer/SubstitutionAnalyzer"
 
 export const updateOps = ["=", "-=", "+=", "*=", "/="]
 const depthTracker = generateNewVarName("depth")
@@ -41,7 +41,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
   public enableMappingOptimization: boolean
   public canOptimize: boolean = false
   public pendingReturns: Block[] = []
-  public forAllCacheMap: Map<Forall, [Map<string, string>, Identifier]> = new Map()
+  public forAllCacheMap: Map<ForAllExpression, [Map<string, string>, Identifier]> = new Map()
   private contractName: string = ""
   private forallOptimization: boolean
   private depthRequired: boolean = false
@@ -126,11 +126,11 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
 
     const constraintPair: Array<[QuantityExp, Map<string, Expression>]> = []
     const generate = (constraint: Node) => {
+      const ps = new PendingStatements()
       if (constraint.type === "ForAllExpression" || constraint.type === "SumExpression") {
-        const [result, muBindings] = (new SubstutionAnalyzer(constraint, binOp)).run()
-        if (!result) { return new PendingStatements() }
+        const [result, muBindings] = (new SubstutionAnalyzer(constraint, binOp.left)).run()
+        if (!result) { return ps }
 
-        const ps = new PendingStatements()
         muBindings.forEach((muBinding) => {
           const pendingStmts = constraint.type === "ForAllExpression"
             ? this.generateForall(constraint, muBinding)
@@ -138,10 +138,10 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
           if (!pendingStmts.isEmpty()) {
             constraintPair.push([constraint, muBinding])
           }
-          ps.merge(pendingStatements)
+          ps.merge(pendingStmts)
         })
       }
-      return new PendingStatements()
+      return ps
     }
     const pendingStatements = new PendingStatements()
     this.constraints.forEach((it) => pendingStatements.merge(generate(it)))
@@ -185,7 +185,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       return assertions
     }
   }
-  private generateAssertionsForAll(node: Forall) {
+  private generateAssertionsForAll(node: ForAllExpression) {
     const forallCache = this.generateOrCreateForAllCache(node)
 
     const muRaw: Map<string, Expression> = new Map()
@@ -239,7 +239,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     return firstFor ? firstFor : lastBlock
   }
 
-  private generateForall(node: Forall, muBindings: Map<string, Expression>): PendingStatements {
+  private generateForall(node: ForAllExpression, muBindings: Map<string, Expression>): PendingStatements {
     const block = createBaseASTNode("Block") as Block
     node.mu.filter((it) => !muBindings.has(it.name) && !node.positionMuVarMap.has(it.name))
     .forEach((it) => node.unboundedMu.add(it.name))
@@ -289,7 +289,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     }
   }
 
-  private generateOrCreateForAllCache(node: Forall): [Map<string, string>, Identifier] {
+  private generateOrCreateForAllCache(node: ForAllExpression): [Map<string, string>, Identifier] {
     const globalArray = !this.canOptimize
     if (!this.forAllCacheMap.has(node)) {
       const names: Map<string, string> = new Map()
@@ -334,26 +334,26 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     return this.forAllCacheMap.get(node)!
   }
 
-  private generateSum(node: Sum,
+  private generateSum(node: SumExpression,
                       muMapping: Map<string, Expression>): PendingStatements {
     const diffVar = [...node.free, ...node.mu].filter((it) => !muMapping.has(it.name))
     diffVar.forEach((it) => node.unboundedMu.add(it.name))
-    const [muMappingWithUnbounded, lastBlock, firstFor] = this.generateUnboundedFreeVars(node, muMapping)
     const createIndexAccessRecursive = (object: Expression, expressions: Expression[]): Expression => {
       if (expressions.length === 0) { return object }
       const indexAccess = createIndexAccess(object, expressions[0])
       return createIndexAccessRecursive(indexAccess, expressions.slice(1))
     }
-    const cacheOrGenerate = (name: string) => {
-      const typeName = this.contractVars.get(name)!
-      if (typeName.type === "ElementaryTypeName") {
-        return createIdentifier(this.findOrCreateStateVarCache(name))
-      } else {
-        return createIndexAccessRecursive(createIdentifier(name),
-          node.free.map((it) => muMappingWithUnbounded.get(it.name)!))
-      }
-    }
     const gen = (operator: BinOp) => {
+      const [muMappingWithUnbounded, lastBlock, firstFor] = this.generateUnboundedFreeVars(node, muMapping)
+      const cacheOrGenerate = (name: string) => {
+        const typeName = this.contractVars.get(name)!
+        if (typeName.type === "ElementaryTypeName") {
+          return createIdentifier(this.findOrCreateStateVarCache(name))
+        } else {
+          return createIndexAccessRecursive(createIdentifier(name),
+            node.free.map((it) => muMappingWithUnbounded.get(it.name)!))
+        }
+      }
       const base = cacheOrGenerate(node.name)
       const right = new Rewriter(this.stateVarCache, muMappingWithUnbounded).visit(node.expression) as Expression
       const safeOperation = createExpressionStmt(createFunctionCall(
@@ -363,9 +363,8 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       const statement = createExpressionStmt(createBinaryOperation(base, right, operator))
       const statements: Statement[] = operator === "-=" ? [safeOperation, statement] : [statement, safeOperation]
       const block = createBlock(statements)
-      let muUpdate: Statement = block
       const condition = new Rewriter(this.stateVarCache, muMappingWithUnbounded).visit(node.condition) as Expression
-      muUpdate = createIfStatment(condition, block)
+      const muUpdate = createIfStatment(condition, block)
       lastBlock.statements.push(muUpdate)
       return firstFor ? firstFor : lastBlock
     }

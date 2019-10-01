@@ -1,9 +1,10 @@
 import * as dot from "graphlib-dot"
-import parser, { SourceUnit, ContractDefinition, FunctionDefinition, SimpleStatement, ForStatement } from "solidity-parser-antlr"
+import parser, { SourceUnit, ContractDefinition, FunctionDefinition,
+  SimpleStatement, ForStatement } from "solidity-parser-antlr"
 import {
   ArrayTypeName, ASTNode, ASTNodeTypeString, BaseASTNode, BinaryOperation, BinOp, Block, ElementaryTypeName,
   Expression, ExpressionStatement, FunctionCall, Identifier, IfStatement, IndexAccess, Mapping, MemberAccess,
-  NumberLiteral, Statement, TypeName, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration, visit,
+  NumberLiteral, Statement, TypeName, VariableDeclaration, VariableDeclarationStatement, StateVariableDeclaration,
 } from "solidity-parser-antlr"
 import * as surya from "surya"
 import {
@@ -262,6 +263,7 @@ export function checkSafeSub(left: Expression, right: Expression) {
 }
 
 export function equal(a: Expression, b: Expression): boolean {
+  if (a === undefined) { return b === undefined }
   if (b.type !== a.type) { return false }
   const c = b as any
   switch (a.type) {
@@ -283,6 +285,20 @@ export function equal(a: Expression, b: Expression): boolean {
         && a.arguments.filter((value, idx) => !equal(value, c.arguments[idx])).length === 0
     case "ElementaryTypeNameExpression":
       return a.typeName.name === c.typeName.name
+  }
+  return false
+}
+
+export function equalType(a: TypeName, b: TypeName): boolean {
+  if (a.type !== b.type) { return false }
+  const c = b as any
+  switch (a.type) {
+    case "ArrayTypeName":
+      return equalType(a.baseTypeName, c.baseTypeName) && equal(a.length!, c.length!)
+    case "ElementaryTypeName":
+      return a.name === c.name
+    case "Mapping":
+        return equalType(a.keyType, c.keyType) && equalType(a.valueType, c.valueType)
   }
   return false
 }

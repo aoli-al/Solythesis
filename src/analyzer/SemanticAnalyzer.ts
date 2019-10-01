@@ -1,11 +1,11 @@
 import assert from "assert"
 import { ElementaryTypeName, Mapping, StateVariableDeclaration, TypeName} from "solidity-parser-antlr"
-import { ConstraintVisitor } from "src/visitors/ConstraintVisitor"
-import { QuantityExp, Identifier, Forall, IndexedAccess, BinaryExpression, ComparisonOpList,
-   PrimaryExpression, MemberAccess, Sum } from "src/constraints/nodes/Node"
-import { createElementaryTypeName, createMapping } from "src/constraints/utilities"
-import { NameValueContext } from "src/antlr/SolidityParser"
+import { ConstraintVisitor } from "../visitors/ConstraintVisitor"
+import { QuantityExp, Identifier, ForAllExpression, IndexedAccess, BinaryExpression, ComparisonOpList,
+   PrimaryExpression, MemberAccess, SumExpression } from "../constraints/nodes/Node"
+import { createElementaryTypeName, createMapping, equal, equalType } from "../constraints/utilities"
 import { PositionMuVarAnalyzer } from "./PositionMuVarAnalyzer"
+import { generateNewVarName } from "../constraints/ConstraintBuilder"
 
 export class StandardSemanticAnalyzer extends ConstraintVisitor {
   public contractVars: Map<string, TypeName>
@@ -22,17 +22,30 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
     this.visit(constraint)
   }
 
-  public Forall = (node: Forall) => {
+  public createUniverse(nodes: Identifier[])  {
+    const createUniverseForEachIdentifier = (node: Identifier) => {
+      const checker = generateNewVarName(node.name + "_checker")
+      const store = generateNewVarName(node.name + "_store")
+      return [checker, store]
+    }
+    const map = new Map()
+    nodes.forEach((it) => map.set(it.name, createUniverseForEachIdentifier(it)))
+    return map
+  }
+
+  public ForAllExpression = (node: ForAllExpression) => {
     this.muVars = new Set(node.mu.map((it) => it.name))
     assert(this.muVars.size === node.mu.length, "You can not declare two \
       free variables with the same name.")
     this.expectedType = createElementaryTypeName("boolean")
     this.visit(node.condition)
+    this.expectedType = undefined
     node.mu.forEach((it) => this.visit(it))
+    node.universe = this.createUniverse(node.mu)
     new PositionMuVarAnalyzer(node).run()
   }
 
-  public Sum = (node: Sum) => {
+  public SumExpression = (node: SumExpression) => {
     this.muVars = new Set([...node.mu, ...node.free].map((it) => it.name))
     assert(this.muVars.size === node.mu.length + node.free.length, "You can not declare two \
       free variables with the same name.")
@@ -40,6 +53,7 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
     this.visit(node.expression)
     this.expectedType = createElementaryTypeName("boolean")
     this.visit(node.condition)
+    this.expectedType = undefined
     node.free.forEach((it) => this.visit(it))
     node.mu.forEach((it) => this.visit(it))
     const typeStack = node.mu.map((it) => it.typeName!)
@@ -52,6 +66,7 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
     }
     node.typeName = createMappingRecursive(typeStack)
     this.contractVars.set(node.name, node.typeName)
+    node.universe = this.createUniverse([...node.mu, ...node.free])
     new PositionMuVarAnalyzer(node).run()
   }
 
@@ -60,21 +75,23 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
       node.isMu = true
       if (this.muTypeMap.has(node.name)) {
         if (this.expectedType) {
-          assert(this.expectedType === this.muTypeMap.get(node.name), "type conflict")
+          assert(equalType(this.expectedType, this.muTypeMap.get(node.name)!), "type conflict")
         }
         node.typeName = this.muTypeMap.get(node.name)!
       }
       if (this.expectedType) {
         if (this.muTypeMap.has(node.name)) {
-          assert(this.expectedType === this.muTypeMap.get(node.name), "type conflict")
+          assert(equalType(this.expectedType, this.muTypeMap.get(node.name)!), "type conflict")
         } else {
           this.muTypeMap.set(node.name, this.expectedType)
         }
         node.typeName = this.expectedType
       }
+      return
     } else if (this.contractVars.has(node.name)) {
       node.isMu = false
       node.typeName = this.contractVars.get(node.name)!
+      return
     }
     assert(false, "Undeclared variable.")
   }
@@ -84,7 +101,7 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
     assert(node.object.typeName && node.object.typeName.type === "Mapping",
       "wrong type for indexed expression")
     if (this.expectedType) {
-      assert(this.expectedType === (node.object.typeName as Mapping).valueType,
+      assert(equalType(this.expectedType, (node.object.typeName as Mapping).valueType),
         "wrong expected type")
     }
     this.expectedType = (node.object.typeName as Mapping).keyType
@@ -95,7 +112,7 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
   }
 
   public BinaryExpression = (node: BinaryExpression) => {
-    if (node.op in ComparisonOpList || node.op === "&&") {
+    if (ComparisonOpList.includes(node.op) || node.op === "&&") {
       if (this.expectedType) {
         assert(this.expectedType.type === "ElementaryTypeName" &&
           this.expectedType.name === "boolean")
@@ -111,6 +128,7 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
     this.visit(node.left)
     this.expectedType = node.left.typeName
     this.visit(node.right)
+    this.expectedType = undefined
   }
 
   public MemberAccess = (node: MemberAccess) => {

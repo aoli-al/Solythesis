@@ -7,9 +7,9 @@ import {
 } from "../antlr/SolidityParser"
 import { SolidityVisitor } from "../antlr/SolidityVisitor"
 import {
-  BinOp, ComparisonOp, ComparisonOpList, Forall,
+  BinOp, ComparisonOp, ComparisonOpList, ForAllExpression,
   Identifier, Node, PrimaryExpression,
-  Sum, SyntaxKind, Expression, IndexedAccess, MemberAccess, BinaryExpression,
+  SumExpression, SyntaxKind, Expression, IndexedAccess, MemberAccess, BinaryExpression,
 } from "./nodes/Node"
 import { objectAllocator, createElementaryTypeName } from "./utilities"
 import { PositionMuVarAnalyzer } from "src/analyzer/PositionMuVarAnalyzer"
@@ -85,6 +85,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
         node.left = left as Expression
         node.right = right as Expression
         node.op = context.getChild(1).text as BinOp
+        return node
       }
     }
     return null
@@ -120,18 +121,26 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
   }
 
   public visitForAllExpression(context: ForAllExpressionContext): Node {
-    const node = this.createNode("ForAllExpression") as Forall
+    const node = this.createNode("ForAllExpression") as ForAllExpression
     node.mu = context.identifierList().identifier().map((it) => this.visit(it) as Identifier)
     node.condition = this.visit(context.expression()) as Expression
+    node.unboundedMu = new Set()
+    node.positionMuDependencyMap = new Map()
+    node.positionMuVarMap = new Map()
+    node.positionMuVarAssertions = []
     return node
   }
 
   public visitSumExpression(context: SumExpressionContext): Node {
-    const node = this.createNode("SumExpression") as Sum
-    node.free = context.identifierList(0).identifier().map((it) => this.visit(it) as Identifier)
-    node.mu = context.identifierList(1).identifier().map((it) => this.visit(it) as Identifier)
+    const node = this.createNode("SumExpression") as SumExpression
+    node.free = context.identifierList(1).identifier().map((it) => this.visit(it) as Identifier)
+    node.mu = context.identifierList(0).identifier().map((it) => this.visit(it) as Identifier)
     node.expression = this.visit(context.expression(0)) as Expression
     node.condition = this.visit(context.expression(1)) as Expression
+    node.unboundedMu = new Set()
+    node.positionMuDependencyMap = new Map()
+    node.positionMuVarMap = new Map()
+    node.positionMuVarAssertions = []
     return node
   }
 }

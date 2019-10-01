@@ -1,10 +1,10 @@
 import assert from "assert"
-import { Node, IndexedAccess, Identifier, Sum, Forall, BinaryExpression,
-  Expression as Expr, QuantityExp } from "src/constraints/nodes/Node"
+import { Node, IndexedAccess, Identifier, SumExpression, ForAllExpression, BinaryExpression,
+  Expression as Expr, QuantityExp } from "../constraints/nodes/Node"
 import { Expression, ExpressionStatement, Identifier as Iden, TypeName } from "solidity-parser-antlr"
-import { ConstraintVisitor } from "src/visitors/ConstraintVisitor"
+import { ConstraintVisitor } from "../visitors/ConstraintVisitor"
 import { equal, createExpressionStmt, createFunctionCall, createIdentifier, createBinaryOperation,
-  getMonitoredVariables, getUpdatedVariable } from "src/constraints/utilities"
+  getMonitoredVariables, getUpdatedVariable } from "../constraints/utilities"
 import { basename } from "path"
 
 export class SubstutionAnalyzer extends ConstraintVisitor {
@@ -61,12 +61,12 @@ export class SubstutionAnalyzer extends ConstraintVisitor {
     this.visit(node.right)
   }
 
-  public Sum = (node: Sum) => {
+  public SumExpression = (node: SumExpression) => {
     this.visit(node.expression)
     this.visit(node.condition)
   }
 
-  public Forall = (node: Forall) => {
+  public ForAllExpression = (node: ForAllExpression) => {
     this.visit(node.condition)
   }
 

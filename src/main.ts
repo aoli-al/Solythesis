@@ -30,22 +30,30 @@ function generate(contractPath: string, constraintPath: string,
   const semanticAnalyzer = new StandardSemanticAnalyzer(variableCollector.variables)
   constraints.forEach((it) => semanticAnalyzer.visit(it))
 
-  const stateVarGen = new StateVariableGenerator(forallOpt)
   const stateVars: Map<string, StateVariableDeclaration[]> = new Map()
+  const constraintsCollector = new ConstraintsCollector(constraints)
+  constraintsCollector.visit(ast)
+  const decoratorRound1 =
+    new AssertionDectorator(constraints, constraintsCollector.functionConstraints,
+      stateVars, semanticAnalyzer.contractVars, stateVarOpt, forallOpt)
+  decoratorRound1.visit(ast)
+
+  const stateVarGen = new StateVariableGenerator(forallOpt)
   constraintBuilder.constraint.forEach((cons, contr) => {
     stateVars.set(contr,
       cons
         .filter((it) => it.type === "ForAllExpression" || it.type === "SumExpression")
         .map((it) => stateVarGen.analysis(it as QuantityExp)).reduce((left, right) => [...left, ...right]))
   })
-  const constraintsCollector = new ConstraintsCollector(constraints)
-  constraintsCollector.visit(ast)
-  const decorator =
+
+  const newAst = parser.parse(contract.toString("utf-8"), { range: true })
+  const decoratorRound2 =
     new AssertionDectorator(constraints, constraintsCollector.functionConstraints,
       stateVars, semanticAnalyzer.contractVars, stateVarOpt, forallOpt)
-  decorator.visit(ast)
+  decoratorRound2.visit(newAst)
+
   const printer = new Printer(contract.toString("utf-8"))
-  visit(ast, printer)
+  visit(newAst, printer)
 
   function fileNameAndExt(path: string): [string, string] {
     return [path.substr(0, path.lastIndexOf(".")), path.substr(path.lastIndexOf(".") + 1, path.length)]
@@ -56,5 +64,5 @@ function generate(contractPath: string, constraintPath: string,
 
 }
 
-generate(process.argv[2], process.argv[3], "secured", true, true)
-generate(process.argv[2], process.argv[3], "noopt", false, false)
+generate(process.argv[2], process.argv[3], "secured_new", true, true)
+generate(process.argv[2], process.argv[3], "noopt_new", false, false)
