@@ -54,5 +54,6 @@ export class GenStateVariables {
 
   private Forall(node: Forall) {
     node.universe = this.createUniverse(node.mu)
+    this.createStateVariable(node.index, createElementaryTypeName("uint256"))
   }
 }

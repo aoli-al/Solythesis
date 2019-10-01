@@ -13,7 +13,7 @@ import {
   createBaseASTNode, createBinaryOperation, createBlock, createElementaryTypeName,
   createExpressionStmt, createFunctionCall, createIdentifier, createIfStatment, createIndexAccess,
   createMemberAccess, createNumberLiteral, createVariableDeclaration, createVariableDeclarationStmt,
-  getChildren, getMonitoredStateVariables, getMonitoredVariables, getMuIndices, getUpdatedVariable,
+  getChildren, getMonitoredVariables, getUpdatedVariable,
   createArray, canOptimize, createStateVariableDeclaration,
 } from "./utilities"
 
@@ -63,7 +63,7 @@ export class ConstraintsCollector extends ContractVisitor implements Visitor  {
     const stack = [v]
     while (stack.length !== 0) {
       const variable = stack.pop()!
-      this.constraints.filter((it) => getMonitoredStateVariables(it).has(variable)).forEach((it) => {
+      this.constraints.filter((it) => getMonitoredVariables(it).has(variable)).forEach((it) => {
         if (!this.checkConstraints.has(it)) {
           this.checkConstraints.add(it)
           if (it.type === "SumExpression") {

@@ -189,11 +189,10 @@ export function getChildren(node: Node): Node[] {
 
 export function getSVariables(node: Node): Set<string> {
   switch (node.type) {
-    case "MuIdentifier": {
-      return new Set()
-    }
-    case "SIdentifier": {
-      return new Set([node.name])
+    case "Identifier": {
+      if (!node.isMu) {
+        return new Set([node.name])
+      }
     }
   }
   return getChildren(node)
@@ -214,23 +213,23 @@ export function getMonitoredVariables(node: Node): Set<string> {
     .reduce((accumulator, set) => new Set([...accumulator, ...set]), new Set())
 }
 
-export function getMuIndices(node: Node, stateVar: string): string[] {
-  switch (node.type) {
-    case "MuIndexedAccess": {
-      if (node.object.type === "SIdentifier" && node.object.name === stateVar) {
-        return [node.index.name]
-      } else {
-        const indecis = getMuIndices(node.object, stateVar)
-        if (indecis.length > 0) {
-          return [...indecis, node.index.name]
-        }
-      }
-    }
-  }
-  return getChildren(node).map((it) => getMuIndices(it, stateVar)).reduce((left, right) => {
-    if (left.length > 0) { return left } else { return right }
-  }, [])
-}
+// export function getMuIndices(node: Node, stateVar: string): string[] {
+//   switch (node.type) {
+//     case "MuIndexedAccess": {
+//       if (node.object.type === "SIdentifier" && node.object.name === stateVar) {
+//         return [node.index.name]
+//       } else {
+//         const indecis = getMuIndices(node.object, stateVar)
+//         if (indecis.length > 0) {
+//           return [...indecis, node.index.name]
+//         }
+//       }
+//     }
+//   }
+//   return getChildren(node).map((it) => getMuIndices(it, stateVar)).reduce((left, right) => {
+//     if (left.length > 0) { return left } else { return right }
+//   }, [])
+// }
 
 export function getUpdatedVariable(node: Expression): string {
   switch (node.type) {

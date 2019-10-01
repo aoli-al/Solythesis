@@ -5,6 +5,7 @@ import { QuantityExp, Identifier, Forall, IndexedAccess, BinaryExpression, Compa
    PrimaryExpression, MemberAccess, Sum } from "src/constraints/nodes/Node"
 import { createElementaryTypeName, createMapping } from "src/constraints/utilities"
 import { NameValueContext } from "src/antlr/SolidityParser"
+import { PositionMuVarAnalyzer } from "./PositionMuVarAnalyzer"
 
 export class StandardSemanticAnalyzer extends ConstraintVisitor {
   public contractVars: Map<string, TypeName>
@@ -28,6 +29,7 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
     this.expectedType = createElementaryTypeName("boolean")
     this.visit(node.condition)
     node.mu.forEach((it) => this.visit(it))
+    new PositionMuVarAnalyzer(node).run()
   }
 
   public Sum = (node: Sum) => {
@@ -50,6 +52,7 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
     }
     node.typeName = createMappingRecursive(typeStack)
     this.contractVars.set(node.name, node.typeName)
+    new PositionMuVarAnalyzer(node).run()
   }
 
   public Identifier = (node: Identifier) => {

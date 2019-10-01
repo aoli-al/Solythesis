@@ -9,9 +9,10 @@ import { SolidityVisitor } from "../antlr/SolidityVisitor"
 import {
   BinOp, ComparisonOp, ComparisonOpList, Forall,
   Identifier, Node, PrimaryExpression,
-  Sum, SyntaxKind, Expresssion as Expression, IndexedAccess, MemberAccess, BinaryExpression,
+  Sum, SyntaxKind, Expression, IndexedAccess, MemberAccess, BinaryExpression,
 } from "./nodes/Node"
 import { objectAllocator, createElementaryTypeName } from "./utilities"
+import { PositionMuVarAnalyzer } from "src/analyzer/PositionMuVarAnalyzer"
 
 let counter = 0
 export function generateNewVarName(base: string) {

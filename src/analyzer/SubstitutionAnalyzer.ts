@@ -1,5 +1,6 @@
 import assert from "assert"
-import { Node, IndexedAccess, Identifier, Sum, Forall, BinaryExpression } from "src/constraints/nodes/Node"
+import { Node, IndexedAccess, Identifier, Sum, Forall, BinaryExpression,
+  Expression as Expr, QuantityExp } from "src/constraints/nodes/Node"
 import { Expression, ExpressionStatement, Identifier as Iden, TypeName } from "solidity-parser-antlr"
 import { ConstraintVisitor } from "src/visitors/ConstraintVisitor"
 import { equal, createExpressionStmt, createFunctionCall, createIdentifier, createBinaryOperation,
@@ -8,23 +9,23 @@ import { basename } from "path"
 
 export class SubstutionAnalyzer extends ConstraintVisitor {
   public map: Array<Map<string, Expression>> = []
-  public constraint: Node
+  public constraint: QuantityExp
   public currentExpression: Expression
   public assertions: ExpressionStatement[] = []
   public stateVarName: string = ""
-  constructor(constraint: Node, expression: Expression) {
+  constructor(constraint: QuantityExp, expression: Expression) {
     super()
     this.currentExpression = expression
     this.constraint = constraint
   }
 
-  public run(): [boolean, Array<Map<string, Expression>>] {
+  public run(): [boolean, Array<Map<string, Expression>>, ExpressionStatement[]] {
     if (!getMonitoredVariables(this.constraint)
       .has(getUpdatedVariable(this.currentExpression))) {
-      return [false, this.map]
+      return [false, this.map, this.assertions]
     }
     if (this.currentExpression.type !== "IndexAccess") {
-      return [true, this.map]
+      return [true, this.map, this.assertions]
     }
     let base: Expression = this.currentExpression
     while (base.type === "IndexAccess") {
@@ -33,7 +34,7 @@ export class SubstutionAnalyzer extends ConstraintVisitor {
     assert(base.type === "Identifier", "Must be identifier here.")
     this.stateVarName = (base as Iden).name
     this.visit(this.constraint)
-    return [true, this.map]
+    return [true, this.map, this.assertions]
   }
 
   public IndexedAccess = (node: IndexedAccess) => {
@@ -44,15 +45,20 @@ export class SubstutionAnalyzer extends ConstraintVisitor {
     if ((base as Identifier).name !== this.stateVarName) {
       return
     }
-    const map: Map<string, Expression> = new Map()
+    const maps: Map<string, Expression> = new Map()
     let ebase: Expression = this.currentExpression
     let cbase: Node = node
     while (cbase.type === "IndexedAccess" && ebase.type === "IndexAccess") {
-      this.update(cbase.index, ebase.index, map)
+      this.update(cbase.index, ebase.index, maps)
       cbase = cbase.object
       ebase = ebase.base
     }
-    this.map.push(map)
+    this.map.push(maps)
+  }
+
+  public BinaryExpression = (node: BinaryExpression) => {
+    this.visit(node.left)
+    this.visit(node.right)
   }
 
   public Sum = (node: Sum) => {
@@ -62,11 +68,6 @@ export class SubstutionAnalyzer extends ConstraintVisitor {
 
   public Forall = (node: Forall) => {
     this.visit(node.condition)
-  }
-
-  public BinaryExpression = (node: BinaryExpression) => {
-    this.visit(node.left)
-    this.visit(node.right)
   }
 
   private update(node: Identifier, expression: Expression, map: Map<string, Expression>) {

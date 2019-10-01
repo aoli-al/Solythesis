@@ -41,8 +41,8 @@ export interface PrimaryExpression extends BaseNode {
 export interface BinaryExpression extends BaseNode {
   type: "BinaryExpression"
   op: BinOp
-  left: Expresssion
-  right: Expresssion
+  left: Expression
+  right: Expression
 }
 
 export interface Identifier extends BaseNode {
@@ -55,36 +55,42 @@ export interface Forall extends BaseNode {
   type: "ForAllExpression"
   memoryLocation: Map<string, number>
   index: string
-  name: string[]
+  muStateVars: Map<string, string>
   mu: Identifier[]
   universe: Map<string, [string, string]>
   muWithTypes: Map<string, ElementaryTypeName>
   unboundedMu: Set<string>
-  condition: Expresssion
+  positionMuVarMap: Map<string, Expression>
+  positionMuVarAssertions: [Expression]
+  positionMuDependencyMap: Map<string, Set<string>>
+  condition: Expression
 }
 
 export interface Sum extends BaseNode {
   type: "SumExpression"
   mu: Identifier[]
   free: Identifier[]
-  expression: Expresssion
-  condition: Expresssion
+  expression: Expression
+  condition: Expression
   cacheName: string
   name: string
   universe: Map<string, [string, string]>
   muWithTypes: Map<string, ElementaryTypeName>
+  positionMuVarMap: Map<string, Expression>
+  positionMuVarAssertions: [Expression]
+  positionMuDependencyMap: Map<string, Set<string>>
   unboundedMu: Set<string>
 }
 
 export interface IndexedAccess extends BaseNode {
   type: "IndexedAccess"
-  object: Expresssion
+  object: Expression
   index: Identifier
 }
 
 export interface MemberAccess extends BaseNode {
   type: "MemberAccess"
-  expression: Expresssion
+  expression: Expression
   memberName: string
 }
 
@@ -105,9 +111,9 @@ export type SyntaxKind =
 export type Node =
   | DummyNode
   | QuantityExp
-  | Expresssion
+  | Expression
 
-export type Expresssion =
+export type Expression =
   | IndexedAccess
   | BinaryExpression
   | MemberAccess
@@ -117,7 +123,6 @@ export type Expresssion =
 export type QuantityExp =
   | Sum
   | Forall
-
 
 export const ExpressionTypes: SyntaxKind[] = ["PrimaryExpression", "BinaryExpression", "IndexedAccess",
   "MemberAccess", "Identifier"]
