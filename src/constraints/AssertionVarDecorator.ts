@@ -187,30 +187,33 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
   }
   private generateAssertionsForAll(node: ForAllExpression) {
     const forallCache = this.generateOrCreateForAllCache(node)
-
     const muRaw: Map<string, Expression> = new Map()
+    const indexIdentifier = createIdentifier(generateNewVarName("index"))
+    const tmpStatements: Statement[] = []
+    forallCache[0].forEach((localArray, muName) => {
+      if (this.canOptimize || !this.forallOptimization) {
+        muRaw.set(muName, createIndexAccess(createIdentifier(localArray), indexIdentifier))
+      } else {
+        const tmpVar = generateNewVarName("tmp")
+        const varDecl = createVariableDeclaration(tmpVar, node.muWithTypes.get(muName)!, false)
+        tmpStatements.push(createVariableDeclarationStmt([varDecl]))
+        tmpStatements.push(loadArrayValue(localArray, indexIdentifier.name, tmpVar))
+        muRaw.set(muName, createIdentifier(tmpVar))
+      }
+    })
     const [muMap, lastBlock, firstFor] = this.generateUnboundedFreeVars(node, muRaw)
-    const body = createBaseASTNode("Block") as Block
+    let body = createBaseASTNode("Block") as Block
     if (firstFor) {
       body.statements = [firstFor]
+    } else {
+      body = lastBlock
     }
     const statements = lastBlock.statements
+    statements.unshift(...tmpStatements)
     const exp = new Rewriter(this.stateVarCache, muMap).visit(node.condition) as Expression
     const functionCall = createFunctionCall(createIdentifier("assert"), [exp], [])
     statements.push(createExpressionStmt(functionCall))
     if (forallCache[0].size > 0) {
-      const indexIdentifier = createIdentifier(generateNewVarName("index"))
-      forallCache[0].forEach((localArray, muName) => {
-        if (this.canOptimize || !this.forallOptimization) {
-          muRaw.set(muName, createIndexAccess(createIdentifier(localArray), indexIdentifier))
-        } else {
-          const tmpVar = generateNewVarName("tmp")
-          const varDecl = createVariableDeclaration(tmpVar, node.muWithTypes.get(muName)!, false)
-          statements.unshift(createVariableDeclarationStmt([varDecl]))
-          statements.unshift(loadArrayValue(localArray, indexIdentifier.name, tmpVar))
-          muRaw.set(muName, createIdentifier(tmpVar))
-        }
-      })
       const initExpression = createVariableDeclarationStmt(
         [createVariableDeclaration(indexIdentifier.name, createElementaryTypeName("uint256"), false)],
         createNumberLiteral("0"))
@@ -242,7 +245,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
   private generateForall(node: ForAllExpression, muBindings: Map<string, Expression>): PendingStatements {
     const block = createBaseASTNode("Block") as Block
     node.mu.filter((it) => !muBindings.has(it.name) && !node.positionMuVarMap.has(it.name))
-    .forEach((it) => node.unboundedMu.add(it.name))
+      .forEach((it) => node.unboundedMu.add(it.name))
     block.statements = []
     const forallCache = this.generateOrCreateForAllCache(node)
     const index = forallCache[1] as Identifier
@@ -264,7 +267,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
         }
       }
     })
-    if (this.forallOptimization) {
+    if (this.forallOptimization && node.mu.length !== node.unboundedMu.size) {
       block.statements.push(createExpressionStmt(createBinaryOperation(index, createNumberLiteral("1"), "+=")))
     }
     return new PendingStatements([block])
@@ -336,8 +339,6 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
 
   private generateSum(node: SumExpression,
                       muMapping: Map<string, Expression>): PendingStatements {
-    const diffVar = [...node.free, ...node.mu].filter((it) => !muMapping.has(it.name))
-    diffVar.forEach((it) => node.unboundedMu.add(it.name))
     const createIndexAccessRecursive = (object: Expression, expressions: Expression[]): Expression => {
       if (expressions.length === 0) { return object }
       const indexAccess = createIndexAccess(object, expressions[0])
@@ -391,10 +392,9 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       const body = createBlock([])
       const forLoop = createForloop(body, initExpression, conditionExpression, loopExpression)
       if (!firstFor) {
-        lastBlock.statements.push(forLoop)
-      } else {
         firstFor = forLoop
       }
+      lastBlock.statements.push(forLoop)
       lastBlock = forLoop.body as Block
       node.unboundedMu.add(identifier.name)
       muMapping.set(identifier.name, createIndexAccess(storeIdentifier, indexIdentifier))

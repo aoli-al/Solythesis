@@ -2,8 +2,8 @@ import assert from "assert"
 import { ElementaryTypeName, Mapping, StateVariableDeclaration, TypeName} from "solidity-parser-antlr"
 import { ConstraintVisitor } from "../visitors/ConstraintVisitor"
 import { QuantityExp, Identifier, ForAllExpression, IndexedAccess, BinaryExpression, ComparisonOpList,
-   PrimaryExpression, MemberAccess, SumExpression } from "../constraints/nodes/Node"
-import { createElementaryTypeName, createMapping, equal, equalType } from "../constraints/utilities"
+   PrimaryExpression, MemberAccess, SumExpression, Node } from "../constraints/nodes/Node"
+import { createElementaryTypeName, createMapping, equal, equalType, createArray } from "../constraints/utilities"
 import { PositionMuVarAnalyzer } from "./PositionMuVarAnalyzer"
 import { generateNewVarName } from "../constraints/ConstraintBuilder"
 
@@ -17,8 +17,9 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
     this.contractVars = contractVars
   }
 
-  public analysis(constraint: QuantityExp) {
+  public analysis(constraint: Node) {
     this.muTypeMap = new Map()
+    this.muVars = new Set()
     this.visit(constraint)
   }
 
@@ -26,6 +27,9 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
     const createUniverseForEachIdentifier = (node: Identifier) => {
       const checker = generateNewVarName(node.name + "_checker")
       const store = generateNewVarName(node.name + "_store")
+      this.contractVars.set(checker,
+        createMapping(node.typeName! as ElementaryTypeName, createElementaryTypeName("boolean")))
+      this.contractVars.set(store, createArray(node.typeName!))
       return [checker, store]
     }
     const map = new Map()
@@ -43,6 +47,7 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
     node.mu.forEach((it) => this.visit(it))
     node.universe = this.createUniverse(node.mu)
     new PositionMuVarAnalyzer(node).run()
+    node.muWithTypes = this.muTypeMap
   }
 
   public SumExpression = (node: SumExpression) => {
@@ -68,6 +73,7 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
     this.contractVars.set(node.name, node.typeName)
     node.universe = this.createUniverse([...node.mu, ...node.free])
     new PositionMuVarAnalyzer(node).run()
+    node.muWithTypes = this.muTypeMap
   }
 
   public Identifier = (node: Identifier) => {
@@ -125,6 +131,7 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
       }
       node.typeName = createElementaryTypeName("uint256")
     }
+    this.expectedType = undefined
     this.visit(node.left)
     this.expectedType = node.left.typeName
     this.visit(node.right)

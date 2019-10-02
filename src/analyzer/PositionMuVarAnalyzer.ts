@@ -35,6 +35,9 @@ export class PositionMuVarAnalyzer extends ConstraintVisitor {
         this.node.positionMuDependencyMap.set(name, this.muSet)
       }
       this.muSet = new Set()
+    } else {
+      this.visit(node.left)
+      this.visit(node.right)
     }
   }
 

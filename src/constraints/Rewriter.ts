@@ -60,9 +60,12 @@ export class Rewriter extends ConstraintVisitor {
         const bool = createBaseASTNode("BooleanLiteral") as BooleanLiteral
         bool.value = node.value === "true"
         this.stack.push(bool)
+        return
       }
+      case "address":
       case "uint256": {
         this.stack.push(createNumberLiteral(node.value))
+        return
       }
     }
   }

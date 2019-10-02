@@ -28,7 +28,7 @@ function generate(contractPath: string, constraintPath: string,
   constraintBuilder.visit(p.sourceUnit())
   const constraints = [...constraintBuilder.constraint.values()].reduce((left, right) => [...left, ...right])
   const semanticAnalyzer = new StandardSemanticAnalyzer(variableCollector.variables)
-  constraints.forEach((it) => semanticAnalyzer.visit(it))
+  constraints.forEach((it) => semanticAnalyzer.analysis(it))
 
   const stateVars: Map<string, StateVariableDeclaration[]> = new Map()
   const constraintsCollector = new ConstraintsCollector(constraints)
@@ -39,6 +39,7 @@ function generate(contractPath: string, constraintPath: string,
   decoratorRound1.visit(ast)
 
   const stateVarGen = new StateVariableGenerator(forallOpt)
+  stateVars.clear()
   constraintBuilder.constraint.forEach((cons, contr) => {
     stateVars.set(contr,
       cons

@@ -100,7 +100,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
   public visitNumberLiteral(context: NumberLiteralContext): Node {
     const node = this.createNode("PrimaryExpression") as PrimaryExpression
     node.value = context.text
-    node.typeName = createElementaryTypeName("uin256")
+    node.typeName = createElementaryTypeName("uint256")
     return node
   }
 
@@ -128,6 +128,8 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     node.positionMuDependencyMap = new Map()
     node.positionMuVarMap = new Map()
     node.positionMuVarAssertions = []
+    node.muStateVars = new Map()
+    node.index = generateNewVarName("index")
     return node
   }
 

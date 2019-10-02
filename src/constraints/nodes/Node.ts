@@ -58,7 +58,7 @@ export interface ForAllExpression extends BaseNode {
   muStateVars: Map<string, string>
   mu: Identifier[]
   universe: Map<string, [string, string]>
-  muWithTypes: Map<string, ElementaryTypeName>
+  muWithTypes: Map<string, TypeName>
   unboundedMu: Set<string>
   positionMuVarMap: Map<string, Expression>
   positionMuVarAssertions: Expression[]
@@ -75,7 +75,7 @@ export interface SumExpression extends BaseNode {
   cacheName: string
   name: string
   universe: Map<string, [string, string]>
-  muWithTypes: Map<string, ElementaryTypeName>
+  muWithTypes: Map<string, TypeName>
   positionMuVarMap: Map<string, Expression>
   positionMuVarAssertions: Expression[]
   positionMuDependencyMap: Map<string, Set<string>>

@@ -29,7 +29,13 @@ export function optimizeStorageAccess(constraintsPair: Array<[QuantityExp, Map<s
     collector.nodes.map((it) => {
       const baseVar = getIndexAccessBase(it) as Identifier
       let type = contractVars.get(baseVar.name)!
-      while (type.type === "Mapping") { type = type.valueType }
+      while (type.type === "Mapping" || type.type === "ArrayTypeName") {
+        if (type.type === "Mapping") {
+          type = type.valueType
+        } else {
+          type = type.baseTypeName
+        }
+      }
       const name = generateNewVarName("opt")
       const decl = createVariableDeclaration(name, type, false)
       const update = createExpressionStmt(createBinaryOperation(it, createIdentifier(name), "="))

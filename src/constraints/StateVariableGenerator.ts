@@ -20,6 +20,8 @@ export class GenStateVariables {
     this.forallOptimization = globalMemory
   }
   public analysis(constraint: QuantityExp) {
+    this.stateVars = []
+    this.createUniverse(constraint)
     if (constraint.type === "ForAllExpression") {
       this.Forall(constraint)
     } else {
@@ -32,28 +34,21 @@ export class GenStateVariables {
     this.stateVars.push(createStateVariableDeclaration([createVariableDeclaration(name, typeName, true)]))
   }
 
-  public createUniverse(nodes: Identifier[])  {
-    const createUniverseForEachIdentifier = (node: Identifier) => {
-      const checker = generateNewVarName(node.name + "_checker")
-      const store = generateNewVarName(node.name + "_store")
-
+  public createUniverse(node: QuantityExp)  {
+    node.unboundedMu.forEach((it) => {
+      const [checker, store] = node.universe.get(it)!
       this.createStateVariable(checker,
-        createMapping(node.typeName! as ElementaryTypeName, createElementaryTypeName("boolean")))
-      this.createStateVariable(checker, createArray(node.typeName!))
-      return [checker, store]
-    }
-    const map = new Map()
-    nodes.forEach((it) => map.set(it.name, createUniverseForEachIdentifier(it)))
-    return map
+        createMapping(node.muWithTypes.get(it)! as ElementaryTypeName, createElementaryTypeName("boolean")))
+      this.createStateVariable(store, createArray(node.muWithTypes.get(it)!))
+    })
   }
 
   private Sum(node: SumExpression) {
     this.createStateVariable(node.name, node.typeName!)
-    node.universe = this.createUniverse([...node.mu, ...node.free].filter((it) => node.unboundedMu.has(it.name)))
   }
 
   private Forall(node: ForAllExpression) {
-    node.universe = this.createUniverse(node.mu.filter((it) => node.unboundedMu.has(it.name)))
+    node.memoryLocation = new Map()
     node.mu.filter((it) => !node.unboundedMu.has(it.name)).forEach((it) => {
       const name = generateNewVarName(it.name + "_addr")
       if (this.forallOptimization) {
@@ -65,6 +60,8 @@ export class GenStateVariables {
       }
       node.muStateVars.set(it.name, name)
     })
-    this.createStateVariable(node.index, createElementaryTypeName("uint256"))
+    if (node.mu.length !== node.unboundedMu.size) {
+      this.createStateVariable(node.index, createElementaryTypeName("uint256"))
+    }
   }
 }
