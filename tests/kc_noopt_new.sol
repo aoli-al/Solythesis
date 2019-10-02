@@ -184,8 +184,8 @@ _transferFrom(from, to, tokenId);
 depth_0 -= 1;
 if (depth_0 == 0) {
 {
-for (uint256 index_138 = 0; index_138 < a.length; index_138 += 1) {
-assert(_ownedTokensCount[a[index_138]] == sum_ownersToken[a[index_138]]);
+for (uint256 index_130 = 0; index_130 < a.length; index_130 += 1) {
+assert(_ownedTokensCount[a[index_130]] == sum_ownersToken[a[index_130]]);
 }
 
 a.length = 0;
@@ -202,8 +202,8 @@ safeTransferFrom(from, to, tokenId, "");
 depth_0 -= 1;
 if (depth_0 == 0) {
 {
-for (uint256 index_140 = 0; index_140 < a.length; index_140 += 1) {
-assert(_ownedTokensCount[a[index_140]] == sum_ownersToken[a[index_140]]);
+for (uint256 index_132 = 0; index_132 < a.length; index_132 += 1) {
+assert(_ownedTokensCount[a[index_132]] == sum_ownersToken[a[index_132]]);
 }
 
 a.length = 0;
@@ -221,8 +221,8 @@ require(_checkOnERC721Received(from, to, tokenId, _data));
 depth_0 -= 1;
 if (depth_0 == 0) {
 {
-for (uint256 index_142 = 0; index_142 < a.length; index_142 += 1) {
-assert(_ownedTokensCount[a[index_142]] == sum_ownersToken[a[index_142]]);
+for (uint256 index_134 = 0; index_134 < a.length; index_134 += 1) {
+assert(_ownedTokensCount[a[index_134]] == sum_ownersToken[a[index_134]]);
 }
 
 a.length = 0;
@@ -250,54 +250,34 @@ return (spender == owner || getApproved(tokenId) == spender || isApprovedForAll(
 }
 
 function _mint (address to, uint256 tokenId) internal {
-uint256 tmp_sum_tokenCount_145 = sum_tokenCount;
+uint256 tmp_sum_tokenCount_137 = sum_tokenCount;
 require(to != address(0));
 require(!_exists(tokenId));
 {
 if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
-assert(sum_ownersToken[tokenId] >= 1);
+assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
 {
-a.push(tokenId);
+a.push(_tokenOwner[tokenId]);
 }
-sum_ownersToken[tokenId] -= 1;
-}
-
-}
-{
-if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
-assert(sum_ownersToken[tokenId] >= 1);
-{
-a.push(tokenId);
-}
-sum_ownersToken[tokenId] -= 1;
+sum_ownersToken[_tokenOwner[tokenId]] -= 1;
 }
 
 }
 _tokenOwner[tokenId] = to;{
 if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
 {
-a.push(tokenId);
+a.push(_tokenOwner[tokenId]);
 }
-sum_ownersToken[tokenId] += 1;
-assert(sum_ownersToken[tokenId] >= 1);
-}
-
-}
-{
-if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
-{
-a.push(tokenId);
-}
-sum_ownersToken[tokenId] += 1;
-assert(sum_ownersToken[tokenId] >= 1);
+sum_ownersToken[_tokenOwner[tokenId]] += 1;
+assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
 }
 
 }
 
 {
 if (to != 0x0000000000000000000000000000000000000000) {
-assert(tmp_sum_tokenCount_145 >= _ownedTokensCount[to]);
-tmp_sum_tokenCount_145 -= _ownedTokensCount[to];
+assert(tmp_sum_tokenCount_137 >= _ownedTokensCount[to]);
+tmp_sum_tokenCount_137 -= _ownedTokensCount[to];
 }
 
 }
@@ -306,14 +286,14 @@ a.push(to);
 }
 _ownedTokensCount[to] = _ownedTokensCount[to].add(1);{
 if (to != 0x0000000000000000000000000000000000000000) {
-tmp_sum_tokenCount_145 += _ownedTokensCount[to];
-assert(tmp_sum_tokenCount_145 >= _ownedTokensCount[to]);
+tmp_sum_tokenCount_137 += _ownedTokensCount[to];
+assert(tmp_sum_tokenCount_137 >= _ownedTokensCount[to]);
 }
 
 }
 
 emit Transfer(address(0), to, tokenId);
-sum_tokenCount = tmp_sum_tokenCount_145;
+sum_tokenCount = tmp_sum_tokenCount_137;
 }
 
 function _burn (address owner, uint256 tokenId) internal {
@@ -339,41 +319,21 @@ assert(sum_tokenCount >= _ownedTokensCount[owner]);
 
 {
 if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
-assert(sum_ownersToken[tokenId] >= 1);
+assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
 {
-a.push(tokenId);
+a.push(_tokenOwner[tokenId]);
 }
-sum_ownersToken[tokenId] -= 1;
-}
-
-}
-{
-if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
-assert(sum_ownersToken[tokenId] >= 1);
-{
-a.push(tokenId);
-}
-sum_ownersToken[tokenId] -= 1;
+sum_ownersToken[_tokenOwner[tokenId]] -= 1;
 }
 
 }
 _tokenOwner[tokenId] = address(0);{
 if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
 {
-a.push(tokenId);
+a.push(_tokenOwner[tokenId]);
 }
-sum_ownersToken[tokenId] += 1;
-assert(sum_ownersToken[tokenId] >= 1);
-}
-
-}
-{
-if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
-{
-a.push(tokenId);
-}
-sum_ownersToken[tokenId] += 1;
-assert(sum_ownersToken[tokenId] >= 1);
+sum_ownersToken[_tokenOwner[tokenId]] += 1;
+assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
 }
 
 }
@@ -427,41 +387,21 @@ assert(sum_tokenCount >= _ownedTokensCount[to]);
 
 {
 if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
-assert(sum_ownersToken[tokenId] >= 1);
+assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
 {
-a.push(tokenId);
+a.push(_tokenOwner[tokenId]);
 }
-sum_ownersToken[tokenId] -= 1;
-}
-
-}
-{
-if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
-assert(sum_ownersToken[tokenId] >= 1);
-{
-a.push(tokenId);
-}
-sum_ownersToken[tokenId] -= 1;
+sum_ownersToken[_tokenOwner[tokenId]] -= 1;
 }
 
 }
 _tokenOwner[tokenId] = to;{
 if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
 {
-a.push(tokenId);
+a.push(_tokenOwner[tokenId]);
 }
-sum_ownersToken[tokenId] += 1;
-assert(sum_ownersToken[tokenId] >= 1);
-}
-
-}
-{
-if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
-{
-a.push(tokenId);
-}
-sum_ownersToken[tokenId] += 1;
-assert(sum_ownersToken[tokenId] >= 1);
+sum_ownersToken[_tokenOwner[tokenId]] += 1;
+assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
 }
 
 }
@@ -725,8 +665,8 @@ _mint(to, tokenId);
 depth_0 -= 1;
 if (depth_0 == 0) {
 {
-for (uint256 index_149 = 0; index_149 < a.length; index_149 += 1) {
-assert(_ownedTokensCount[a[index_149]] == sum_ownersToken[a[index_149]]);
+for (uint256 index_141 = 0; index_141 < a.length; index_141 += 1) {
+assert(_ownedTokensCount[a[index_141]] == sum_ownersToken[a[index_141]]);
 }
 
 a.length = 0;
@@ -741,8 +681,8 @@ return true;
 depth_0 -= 1;
 if (depth_0 == 0) {
 {
-for (uint256 index_150 = 0; index_150 < a.length; index_150 += 1) {
-assert(_ownedTokensCount[a[index_150]] == sum_ownersToken[a[index_150]]);
+for (uint256 index_142 = 0; index_142 < a.length; index_142 += 1) {
+assert(_ownedTokensCount[a[index_142]] == sum_ownersToken[a[index_142]]);
 }
 
 a.length = 0;
@@ -764,8 +704,8 @@ _setTokenURI(tokenId, tokenURI);
 depth_0 -= 1;
 if (depth_0 == 0) {
 {
-for (uint256 index_152 = 0; index_152 < a.length; index_152 += 1) {
-assert(_ownedTokensCount[a[index_152]] == sum_ownersToken[a[index_152]]);
+for (uint256 index_144 = 0; index_144 < a.length; index_144 += 1) {
+assert(_ownedTokensCount[a[index_144]] == sum_ownersToken[a[index_144]]);
 }
 
 a.length = 0;
@@ -780,8 +720,8 @@ return true;
 depth_0 -= 1;
 if (depth_0 == 0) {
 {
-for (uint256 index_153 = 0; index_153 < a.length; index_153 += 1) {
-assert(_ownedTokensCount[a[index_153]] == sum_ownersToken[a[index_153]]);
+for (uint256 index_145 = 0; index_145 < a.length; index_145 += 1) {
+assert(_ownedTokensCount[a[index_145]] == sum_ownersToken[a[index_145]]);
 }
 
 a.length = 0;
@@ -857,8 +797,8 @@ _setTokenURI(_tokenId, _tokenURI);
 depth_0 -= 1;
 if (depth_0 == 0) {
 {
-for (uint256 index_155 = 0; index_155 < a.length; index_155 += 1) {
-assert(_ownedTokensCount[a[index_155]] == sum_ownersToken[a[index_155]]);
+for (uint256 index_147 = 0; index_147 < a.length; index_147 += 1) {
+assert(_ownedTokensCount[a[index_147]] == sum_ownersToken[a[index_147]]);
 }
 
 a.length = 0;
@@ -875,8 +815,8 @@ safeTransferFrom(msg.sender, _to, _tokenId);
 depth_0 -= 1;
 if (depth_0 == 0) {
 {
-for (uint256 index_157 = 0; index_157 < a.length; index_157 += 1) {
-assert(_ownedTokensCount[a[index_157]] == sum_ownersToken[a[index_157]]);
+for (uint256 index_149 = 0; index_149 < a.length; index_149 += 1) {
+assert(_ownedTokensCount[a[index_149]] == sum_ownersToken[a[index_149]]);
 }
 
 a.length = 0;
@@ -896,8 +836,8 @@ safeTransferFrom(msg.sender, _to, _tokenId[i]);
 depth_0 -= 1;
 if (depth_0 == 0) {
 {
-for (uint256 index_159 = 0; index_159 < a.length; index_159 += 1) {
-assert(_ownedTokensCount[a[index_159]] == sum_ownersToken[a[index_159]]);
+for (uint256 index_151 = 0; index_151 < a.length; index_151 += 1) {
+assert(_ownedTokensCount[a[index_151]] == sum_ownersToken[a[index_151]]);
 }
 
 a.length = 0;

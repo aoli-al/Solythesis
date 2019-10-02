@@ -53,7 +53,20 @@ export class SubstutionAnalyzer extends ConstraintVisitor {
       cbase = cbase.object
       ebase = ebase.base
     }
-    this.map.push(maps)
+    if (!this.map.some((it) => {
+      for (const [key, value] of maps) {
+        if (!it.has(key)) {
+          return false
+        }
+        if (it.get(key) !== value) {
+          return false
+        }
+        return true
+      }
+      return false
+    })) {
+      this.map.push(maps)
+    }
   }
 
   public BinaryExpression = (node: BinaryExpression) => {

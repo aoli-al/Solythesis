@@ -352,7 +352,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
           return createIdentifier(this.findOrCreateStateVarCache(name))
         } else {
           return createIndexAccessRecursive(createIdentifier(name),
-            node.free.map((it) => muMappingWithUnbounded.get(it.name)!))
+            node.mu.map((it) => muMappingWithUnbounded.get(it.name)!))
         }
       }
       const base = cacheOrGenerate(node.name)
