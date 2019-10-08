@@ -127,7 +127,7 @@ for benchmark in generate_tests():
     if idx not in m:
         m[idx] = {}
     try:
-        f = open("/data/{}/parity-noopt-12500-m5.log".format(name, name))
+        f = open("/Users/leo/tests/parity_data/{}/parity-noopt-12500-m5.log".format(name, name))
         for line in f:
             #  result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
             result = re.findall(r"Import completed in .+ (\d+) tx/s", line)
@@ -145,11 +145,11 @@ for benchmark in generate_tests():
     if idx not in m:
         m[idx] = {}
     try:
-        f = open("/data/{}/parity-noopt-12500-m5.log".format(name, name))
+        f = open("/Users/leo/tests/parity_data/{}/parity-noopt-12500-m5.log".format(name, name))
         for line in f:
             #  result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
             result = re.findall(r"Import completed in .+ (\d+) tx/s", line)
-            result = re.findall(r"Import completed in .+ (\d+) blocks", line)
+            result = re.findall(r"rocksdb\.bytes\.written COUNT : (\d*)", line)
             if result:
                 #  print(result)
                 m[idx][benchmark[2]] = int(result[0])
@@ -168,7 +168,6 @@ for benchmark in generate_tests():
         for line in f:
             #  result = re.match(r"Cumulative writes:.+ingest: (\d*\.?\d*) GB", line)
             result = re.findall(r"Import completed in .+ (\d+) tx/s", line)
-            result = re.findall(r"Import completed in .+ (\d+) blocks", line)
             if result:
                 #  print(result)
                 m[idx][benchmark[2]] = int(result[0])

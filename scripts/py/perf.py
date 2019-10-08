@@ -6,7 +6,7 @@ import numpy as np
 def read(path):
     signature = {
         "verifier": [["Verifier"], 0],
-        # "keccakf": [["keccakf", "tiny_keccak"], 0],
+        "keccakf": [["keccakf", "tiny_keccak"], 0],
         # "rocksdb:low": [["rocksdb:low"], 0],
         # "rocksdb:high": [["rocksdb:high"], 0],
         "evm": [["CallCreateExecutive::exec", "exec_instruction", "Gasometer"], 0],
@@ -55,11 +55,8 @@ def read(path):
             if found:
                 eat_rest_lines(f)
                 pending = ""
-                if n != "memory" and n != "keccakf":
+                if n != "keccakf":
                     signature[n][1] += 1
-                elif n == "memory":
-                    other += 1
-                    # signature["evm"][1] += 1
                 else:
                     signature["storage"][1] += 1
                     # other += 1
@@ -82,13 +79,13 @@ def read(path):
     keys = [x for x in signature.keys()]
     keys.append('other')
     # keys.remove("memory")
-    # keys.remove("keccakf")
+    keys.remove("keccakf")
     values = [signature[x][1] for x in keys[:-1]]
     values.append(other)
     plt.pie(values, labels=keys, autopct='%1.1f%%', startangle=140)
     plt.axis('equal')
     # plt.tight_layout()
-    plt.title("BEC-REP-O")
+    plt.title(path)
     plt.show()
     s = ""
     x = 0
@@ -97,8 +94,6 @@ def read(path):
         x += tt
         s += "%1.1f/%s," % (tt * 100, keys[i])
     s += "%1.1f/others" % ((1-x) * 100)
-    print(path)
-    print(s)
     return keys, values
 # plt.hold(False)
 
