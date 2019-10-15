@@ -9,7 +9,7 @@ import { AssertionDectorator } from "./constraints/AssertionVarDecorator"
 import { GenStateVariables as StateVariableGenerator } from "./constraints/StateVariableGenerator"
 import { Printer } from "./printer/Printer"
 import { VariableCollector } from "./visitors/VariableCollector"
-import { ConstraintsCollector } from "./constraints/ConstraintsCollector";
+import { ConstraintsCollector } from "./constraints/ConstraintsCollector"
 import { StandardSemanticAnalyzer } from "./analyzer/SemanticAnalyzer"
 
 function generate(contractPath: string, constraintPath: string,

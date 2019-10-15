@@ -1,6 +1,6 @@
 import * as dot from "graphlib-dot"
 import parser, { SourceUnit, ContractDefinition, FunctionDefinition,
-  SimpleStatement, ForStatement } from "solidity-parser-antlr"
+  SimpleStatement, ForStatement, UnaryOperation, UnaryOp } from "solidity-parser-antlr"
 import {
   ArrayTypeName, ASTNode, ASTNodeTypeString, BaseASTNode, BinaryOperation, BinOp, Block, ElementaryTypeName,
   Expression, ExpressionStatement, FunctionCall, Identifier, IfStatement, IndexAccess, Mapping, MemberAccess,
@@ -139,6 +139,14 @@ export function createIndexAccess(base: Expression, index: Expression) {
   const node = createBaseASTNode("IndexAccess") as IndexAccess
   node.base = base
   node.index = index
+  return node
+}
+
+export function createUnaryOperation(base: Expression, operator: UnaryOp) {
+  const node = createBaseASTNode("UnaryOperation") as UnaryOperation
+  node.isPrefix = true
+  node.subExpression = base
+  node.operator = operator
   return node
 }
 
@@ -283,8 +291,12 @@ export function equal(a: Expression, b: Expression): boolean {
       return equal(a.expression, c.expression)
         && a.arguments.length === c.arguments.length
         && a.arguments.filter((value, idx) => !equal(value, c.arguments[idx])).length === 0
-    case "ElementaryTypeNameExpression":
-      return a.typeName.name === c.typeName.name
+    case "TypeNameExpression":
+      if (a.typeName.type === "ElementaryTypeName") {
+        return a.typeName.name === c.typeName.name
+      } else {
+        return a.typeName.namePath === c.typeName.namePath
+      }
   }
   return false
 }

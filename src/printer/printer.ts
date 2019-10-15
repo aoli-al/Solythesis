@@ -2,7 +2,7 @@ import {
   ArrayTypeName, ASTNode, BinaryOperation, Block, BooleanLiteral, ContractDefinition, ElementaryTypeName,
   Expression, ExpressionStatement, ForStatement, FunctionCall, FunctionDefinition, Identifier, IfStatement,
   IndexAccess, Mapping, MemberAccess, NumberLiteral, SourceUnit, StateVariableDeclaration, VariableDeclaration,
-  VariableDeclarationStatement, visit, Visitor, InlineAssemblyStatement, AssemblyBlock, AssemblyAssignment, AssemblyCall, HexNumber, DecimalNumber,
+  VariableDeclarationStatement, visit, Visitor, InlineAssemblyStatement, AssemblyBlock, AssemblyAssignment, AssemblyCall, HexNumber, DecimalNumber, UnaryOp, UnaryOperation,
 } from "solidity-parser-antlr"
 
 export class Printer implements Visitor {
@@ -275,6 +275,17 @@ export class Printer implements Visitor {
 
   public Identifier = (node: Identifier) => {
     this.source += node.name
+  }
+
+  public UnaryOperation = (node: UnaryOperation) => {
+    if (node.isPrefix) {
+      this.source += node.operator + " "
+    }
+    this.visitOrPrint(node.subExpression)
+    if (!node.isPrefix) {
+      this.source += " " + node.operator
+    }
+    return false
   }
 
   public ArrayTypeName = (node: ArrayTypeName) => {

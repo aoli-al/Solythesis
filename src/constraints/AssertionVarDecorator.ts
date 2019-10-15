@@ -23,6 +23,7 @@ import {
   loadArrayValue,
   getCallers,
   createForloop,
+  createUnaryOperation,
 } from "./utilities"
 import { SubstutionAnalyzer } from "../analyzer/SubstitutionAnalyzer"
 
@@ -138,7 +139,9 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
           if (!pendingStmts.isEmpty()) {
             constraintPair.push([constraint, muBinding])
           }
+          const universeUpdate = this.generateUniverseUpdate(constraint, muBinding)
           ps.merge(pendingStmts)
+          ps.post.push(...universeUpdate)
         })
       }
       return ps
@@ -154,6 +157,20 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
         [...pendingStatements.pre, statement, ...pendingStatements.post], this.contractVars, this.stateVarCache)
       return createBlock([...result[0], ...this.visit(result[1]), ...result[2]])
     }
+  }
+  private generateUniverseUpdate(node: QuantityExp, muBindings: Map<string, Expression>) {
+    const stmts: Statement[] = []
+    muBindings.forEach((binding, name) => {
+      if (node.unboundedMu.has(name)) {
+        const index = createIndexAccess(createIdentifier(node.universe.get(name)![0]), binding)
+        const condition = createUnaryOperation(index, "!")
+        const ifstmt = createIfStatment(condition,
+          createExpressionStmt(
+            createFunctionCall(createMemberAccess(createIdentifier(node.universe.get(name)![1]), "push"), [binding])))
+        stmts.push(ifstmt)
+      }
+    })
+    return stmts
   }
   private generateAssertions(): Statement[] {
     const depth = createIdentifier(depthTracker)

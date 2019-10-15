@@ -10,7 +10,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "args": ["./tests/kc.sol", "./tests/constraints3.txt"],
+      "args": ["./tests/tmp.sol", "./tests/test_constraints.txt"],
       "program": "${workspaceFolder}/src/main.ts",
       "preLaunchTask": "tsc: build - tsconfig.json",
       "outFiles": [

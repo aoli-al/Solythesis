@@ -1,0 +1,3 @@
+standard test {
+  constraint forall (x,y) a[x] == b[y];
+}

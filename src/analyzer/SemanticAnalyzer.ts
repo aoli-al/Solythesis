@@ -28,7 +28,7 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
       const checker = generateNewVarName(node.name + "_checker")
       const store = generateNewVarName(node.name + "_store")
       this.contractVars.set(checker,
-        createMapping(node.typeName! as ElementaryTypeName, createElementaryTypeName("boolean")))
+        createMapping(node.typeName! as ElementaryTypeName, createElementaryTypeName("bool")))
       this.contractVars.set(store, createArray(node.typeName!))
       return [checker, store]
     }
