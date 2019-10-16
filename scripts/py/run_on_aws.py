@@ -167,7 +167,7 @@ def test(args):
         execute_remote_command(sender_client,
                                "bash ~/scripts/bash/finish_sync.sh {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address))
-        fetch_files(sender_client, "/home/leo/results", "/data/rep-{}-{}".format(contract, csv))
+        fetch_files(sender_client, "/home/leo/results", "~/data/rep-{}-{}".format(contract, csv))
     except Exception as e:
         print(e)
         result = False
@@ -189,7 +189,7 @@ def test_2(args):
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    fetch_files(receiver_client, "/home/leo/results", "/data/empty10000-{}-{}".format(contract, csv))
+    fetch_files(receiver_client, "/home/leo/results", "~/data/empty10000-{}-{}".format(contract, csv))
     receiver_client.close()
     clean_up(receiver)
 
@@ -199,7 +199,7 @@ def test_3(args):
     [receiver, receiver_client] = create_receiver_singleton("ami-0d516953d6327e1ae")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
-        move_files(receiver_client, "/data/empty10000-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
+        move_files(receiver_client, "~/data/empty10000-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
         execute_remote_command(receiver_client,
                                "bash ~/scripts/bash/import.sh {} {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address, skip+5052259))
@@ -207,7 +207,7 @@ def test_3(args):
         print(e)
     #  fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet10000-dwarf-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
     #  fetch_files(receiver_client, "/home/leo/storage.log", "/data/mainnet-{}-{}/sha3.log".format(contract, csv))
-    fetch_files(receiver_client, "/home/leo/parity.log", "/data/empty10000-{}-{}/parity-noopt-{}-{}.log".format(contract, csv, IOPS, INSTANCE))
+    fetch_files(receiver_client, "/home/leo/parity.log", "~/data/empty10000-{}-{}/parity-noopt-{}-{}.log".format(contract, csv, IOPS, INSTANCE))
     receiver_client.close()
     clean_up(receiver)
 
