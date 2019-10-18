@@ -291,12 +291,8 @@ export function equal(a: Expression, b: Expression): boolean {
       return equal(a.expression, c.expression)
         && a.arguments.length === c.arguments.length
         && a.arguments.filter((value, idx) => !equal(value, c.arguments[idx])).length === 0
-    case "TypeNameExpression":
-      if (a.typeName.type === "ElementaryTypeName") {
+    case "ElementaryTypeNameExpression":
         return a.typeName.name === c.typeName.name
-      } else {
-        return a.typeName.namePath === c.typeName.namePath
-      }
   }
   return false
 }
@@ -307,8 +303,13 @@ export function equalType(a: TypeName, b: TypeName): boolean {
   switch (a.type) {
     case "ArrayTypeName":
       return equalType(a.baseTypeName, c.baseTypeName) && equal(a.length!, c.length!)
-    case "ElementaryTypeName":
-      return a.name === c.name
+    case "ElementaryTypeName":{
+      if (a.name === "uint" || a.name === "uint256") {
+        return c.name === "uint256" || c.name === "uint" 
+      } else {
+        return a.name === c.name
+      }
+    } 
     case "Mapping":
         return equalType(a.keyType, c.keyType) && equalType(a.valueType, c.valueType)
   }
