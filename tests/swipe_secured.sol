@@ -135,85 +135,77 @@ sum_balance = tmp_sum_balance_15;
 }
 
 function totalSupply () public view returns (uint) {
-depth_0 += 1;
-{
-depth_0 -= 1;
-if (depth_0 == 0) {
-assert(_totalSupply == sum_balance);
-}
+    {
+        if (depth_0 == 0) {
+            assert(_totalSupply == sum_balance);
+        }
 
-return _totalSupply.sub(balances[address(0)]);
-}
-
-depth_0 -= 1;
-if (depth_0 == 0) {
-assert(_totalSupply == sum_balance);
-}
-
+        return _totalSupply.sub(balances[address(0)]);
+    }
 }
 
 function balanceOf (address tokenOwner) public view returns (uint balance) {
-{
-return balances[tokenOwner];
-}
+    {
+        return balances[tokenOwner];
+    }
 
 }
 
 function transfer (address to, uint tokens) validLock permissionCheck public returns (bool success) {
-uint256 tmp_sum_balance_17 = sum_balance;
-{
-uint opt_18 = balances[msg.sender];
-{
-if (true) {
-assert(tmp_sum_balance_17 >= opt_18);
-tmp_sum_balance_17 -= opt_18;
-}
+    uint256 tmp_sum_balance_17 = sum_balance;
+    {
+        uint opt_18 = balances[msg.sender];
+        {
+            if (true) {
+                assert(tmp_sum_balance_17 >= opt_18);
+                tmp_sum_balance_17 -= opt_18;
+            }
 
-}
+        }
 
-opt_18 = opt_18.sub(tokens);
-{
-if (true) {
-tmp_sum_balance_17 += opt_18;
-assert(tmp_sum_balance_17 >= opt_18);
-}
+        opt_18 = opt_18.sub(tokens);
+        {
+            if (true) {
+                tmp_sum_balance_17 += opt_18;
+                assert(tmp_sum_balance_17 >= opt_18);
+            }
 
-}
+        }
 
-balances[msg.sender] = opt_18;
-}
+        balances[msg.sender] = opt_18;
+    }
 
-{
-uint opt_19 = balances[to];
-{
-if (true) {
-assert(tmp_sum_balance_17 >= opt_19);
-tmp_sum_balance_17 -= opt_19;
-}
+    {
+        uint opt_19 = balances[to];
+        {
+            if (true) {
+                assert(tmp_sum_balance_17 >= opt_19);
+                tmp_sum_balance_17 -= opt_19;
+            }
 
-}
+        }
 
-opt_19 = opt_19.add(tokens);
-{
-if (true) {
-tmp_sum_balance_17 += opt_19;
-assert(tmp_sum_balance_17 >= opt_19);
-}
+        opt_19 = opt_19.add(tokens);
+        {
+            if (true) {
+                tmp_sum_balance_17 += opt_19;
+                assert(tmp_sum_balance_17 >= opt_19);
+            }
 
-}
+        }
 
-balances[to] = opt_19;
-}
+        balances[to] = opt_19;
+    }
 
-emit Transfer(msg.sender, to, tokens);
-{
-assert(_totalSupply == tmp_sum_balance_17);
-sum_balance = tmp_sum_balance_17;
-return true;
-}
+    emit Transfer(msg.sender, to, tokens);
+    {
+    assert(_totalSupply == tmp_sum_balance_17);
+    sum_balance = tmp_sum_balance_17;
+    return true;
+    }
 
-assert(_totalSupply == tmp_sum_balance_17);
-sum_balance = tmp_sum_balance_17;
+    assert(_totalSupply == tmp_sum_balance_17);
+    sum_balance = tmp_sum_balance_17;
 }
 
 function approve (address spender, uint tokens) validLock permissionCheck public returns (bool success) {

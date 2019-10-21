@@ -81,8 +81,11 @@ def move_files(ssh, src, dst):
 
 
 def fetch_files(ssh, src, dst):
-    scp = SCPClient(ssh.get_transport())
-    scp.get(src, dst, recursive=True)
+    try:
+        scp = SCPClient(ssh.get_transport())
+        scp.get(src, dst, recursive=True)
+    except Exception as e:
+        raise e
 
 
 def execute_local_command(command):
@@ -193,14 +196,14 @@ def test(args):
 def test_2(args):
     [contract, script_path, csv, skip] = args
     [receiver, receiver_client] = create_receiver_singleton("ami-0e05c3ca6e6db9733")
-    print(contract+csv + ": " + receiver.public_ip_address)
+    print(contract+csv + ": " + receiver.public_ip_address + "\n" + script_path)
     try:
         execute_remote_command(receiver_client,
                                "bash ~/scripts/bash/run_receiver_singleton.sh {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address))
+        fetch_files(receiver_client, "/home/leo/tests", "/u/choi/data/test_run-{}-{}".format(contract, csv))
     except Exception as e:
         print(e)
-    fetch_files(receiver_client, "/home/leo/results", "~/data/test_run".format(contract, csv))
     receiver_client.close()
     clean_up(receiver)
 
@@ -222,7 +225,8 @@ def test_3(args):
     receiver_client.close()
     clean_up(receiver)
 
-with Pool(18) as p:
+
+with Pool(3) as p:
     p.map(test_2, generate_tests(*[int(x) for x in sys.argv[1:]]))
 
 # with Pool(2) as p:

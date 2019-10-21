@@ -128,21 +128,13 @@ sum_balance = tmp_sum_balance_33;
 }
 
 function totalSupply () public view returns (uint) {
-depth_0 += 1;
-{
-depth_0 -= 1;
-if (depth_0 == 0) {
-assert(_totalSupply == sum_balance);
-}
+    {
+        if (depth_0 == 0) {
+        assert(_totalSupply == sum_balance);
+        }
 
-return _totalSupply.sub(balances[address(0)]);
-}
-
-depth_0 -= 1;
-if (depth_0 == 0) {
-assert(_totalSupply == sum_balance);
-}
-
+        return _totalSupply.sub(balances[address(0)]);
+    }
 }
 
 function balanceOf (address tokenOwner) public view returns (uint balance) {

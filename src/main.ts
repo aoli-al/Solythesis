@@ -7,10 +7,10 @@ import { ConstraintBuilder } from "./constraints/ConstraintBuilder"
 import { QuantityExp } from "./constraints/nodes/Node"
 import { AssertionDectorator } from "./constraints/AssertionVarDecorator"
 import { GenStateVariables as StateVariableGenerator } from "./constraints/StateVariableGenerator"
-import { Printer } from "./printer/Printer"
 import { VariableCollector } from "./visitors/VariableCollector"
 import { ConstraintsCollector } from "./constraints/ConstraintsCollector"
 import { StandardSemanticAnalyzer } from "./analyzer/SemanticAnalyzer"
+import { Printer } from "./printer/printer"
 
 function generate(contractPath: string, constraintPath: string,
                   postfix: string, stateVarOpt: boolean, forallOpt: boolean) {
@@ -65,5 +65,5 @@ function generate(contractPath: string, constraintPath: string,
 
 }
 
-generate(process.argv[2], process.argv[3], "secured_new", true, true)
-generate(process.argv[2], process.argv[3], "noopt_new", false, false)
+generate(process.argv[2], process.argv[3], "secured", true, true)
+generate(process.argv[2], process.argv[3], "noopt", false, false)

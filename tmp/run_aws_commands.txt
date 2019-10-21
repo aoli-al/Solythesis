@@ -1,0 +1,1 @@
+python3 run_on_aws.py 2>&1 | tee aws_run_log.txt
