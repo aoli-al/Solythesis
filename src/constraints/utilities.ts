@@ -240,6 +240,12 @@ export function getMonitoredVariables(node: Node): Set<string> {
 //   }, [])
 // }
 
+export function createIndexAccessRecursive(object: Expression, expressions: Expression[]): Expression {
+  if (expressions.length === 0) { return object }
+  const indexAccess = createIndexAccess(object, expressions[0])
+  return createIndexAccessRecursive(indexAccess, expressions.slice(1))
+}
+
 export function getUpdatedVariable(node: Expression): string {
   switch (node.type) {
     case "Identifier": return node.name
@@ -305,11 +311,11 @@ export function equalType(a: TypeName, b: TypeName): boolean {
       return equalType(a.baseTypeName, c.baseTypeName) && equal(a.length!, c.length!)
     case "ElementaryTypeName":{
       if (a.name === "uint" || a.name === "uint256") {
-        return c.name === "uint256" || c.name === "uint" 
+        return c.name === "uint256" || c.name === "uint"
       } else {
         return a.name === c.name
       }
-    } 
+    }
     case "Mapping":
         return equalType(a.keyType, c.keyType) && equalType(a.valueType, c.valueType)
   }

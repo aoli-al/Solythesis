@@ -13,7 +13,7 @@ import { ConstraintsCollector } from "./constraints/ConstraintsCollector"
 import { StandardSemanticAnalyzer } from "./analyzer/SemanticAnalyzer"
 
 function generate(contractPath: string, constraintPath: string,
-                  postfix: string, stateVarOpt: boolean, forallOpt: boolean) {
+                  postfix: string, stateVarOpt: boolean, forallOpt: boolean, baseline: boolean = false) {
   const contract = fs.readFileSync(contractPath)
   const constraint = fs.readFileSync(process.argv[3])
   const ast = parser.parse(contract.toString("utf-8"), { range: true })
@@ -33,11 +33,25 @@ function generate(contractPath: string, constraintPath: string,
   const stateVars: Map<string, StateVariableDeclaration[]> = new Map()
   const constraintsCollector = new ConstraintsCollector(constraints)
   constraintsCollector.visit(ast)
-  const decoratorRound1 =
-    new AssertionDectorator(constraints, constraintsCollector.functionConstraints,
-      stateVars, semanticAnalyzer.contractVars, stateVarOpt, forallOpt)
-  decoratorRound1.visit(ast)
-
+  if (!baseline) {
+    const decoratorRound1 =
+      new AssertionDectorator(constraints, constraintsCollector.functionConstraints,
+        stateVars, semanticAnalyzer.contractVars, stateVarOpt, forallOpt, baseline)
+    decoratorRound1.visit(ast)
+  } else {
+    constraints.forEach((it) => {
+      switch (it.type) {
+        case "ForAllExpression": {
+          it.unboundedMu = new Set(it.mu.map((i) => i.name))
+          break
+        }
+        case "SumExpression": {
+          it.unboundedMu = new Set([...it.free, ...it.mu].map((i) => i.name))
+          break
+        }
+      }
+    })
+  }
   const stateVarGen = new StateVariableGenerator(forallOpt)
   stateVars.clear()
   constraintBuilder.constraint.forEach((cons, contr) => {
@@ -50,7 +64,7 @@ function generate(contractPath: string, constraintPath: string,
   const newAst = parser.parse(contract.toString("utf-8"), { range: true })
   const decoratorRound2 =
     new AssertionDectorator(constraints, constraintsCollector.functionConstraints,
-      stateVars, semanticAnalyzer.contractVars, stateVarOpt, forallOpt)
+      stateVars, semanticAnalyzer.contractVars, stateVarOpt, forallOpt, baseline)
   decoratorRound2.visit(newAst)
 
   const printer = new Printer(contract.toString("utf-8"))
@@ -65,5 +79,8 @@ function generate(contractPath: string, constraintPath: string,
 
 }
 
+generate(process.argv[2], process.argv[3], "base_new", false, false, true)
 generate(process.argv[2], process.argv[3], "secured_new", true, true)
 generate(process.argv[2], process.argv[3], "noopt_new", false, false)
+
+console.log("finished")

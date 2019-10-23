@@ -5,6 +5,7 @@ interface BaseNode {
   children: Node[]
   type: SyntaxKind
   typeName?: TypeName
+  precedence: number
 }
 
 export type ArithmeticOp =

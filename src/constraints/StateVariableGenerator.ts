@@ -38,7 +38,7 @@ export class GenStateVariables {
     node.unboundedMu.forEach((it) => {
       const [checker, store] = node.universe.get(it)!
       this.createStateVariable(checker,
-        createMapping(node.muWithTypes.get(it)! as ElementaryTypeName, createElementaryTypeName("boolean")))
+        createMapping(node.muWithTypes.get(it)! as ElementaryTypeName, createElementaryTypeName("bool")))
       this.createStateVariable(store, createArray(node.muWithTypes.get(it)!))
     })
   }

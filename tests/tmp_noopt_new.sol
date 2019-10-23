@@ -1,23 +1,31 @@
 pragma solidity ^0.5.0;
 contract test {
 uint256 depth_0;
-mapping (uint256=>boolean) y_checker_8;
-uint256[] y_store_9;
-mapping (uint256=>boolean) x_checker_6;
-uint256[] x_store_7;
+mapping (uint256=>bool) y_checker_13;
+uint256[] y_store_14;
+mapping (uint256=>bool) x_checker_11;
+uint256[] x_store_12;
 mapping (uint256=>uint256) a;
 mapping (uint256=>uint256) b;
 function vote (uint issueId, uint option) public returns (bool success) {
 {
 }
-a[3] = 5;if (! x_checker_6[3]) x_store_7.push(3);
+a[3] = 5;if (! x_checker_11[3]) {
+x_store_12.push(3);
+x_checker_11[3] = true;
+}
+
 {
 }
-b[2] = 6;if (! y_checker_8[2]) y_store_9.push(2);
+b[2] = 6;if (! y_checker_13[2]) {
+y_store_14.push(2);
+y_checker_13[2] = true;
+}
+
 {
-for (uint256 index_29 = 0; index_29 < x_store_7.length; index_29 += 1) {
-for (uint256 index_30 = 0; index_30 < y_store_9.length; index_30 += 1) {
-assert(a[x_store_7[index_29]] == b[y_store_9[index_30]]);
+for (uint256 index_38 = 0; index_38 < x_store_12.length; index_38 += 1) {
+for (uint256 index_39 = 0; index_39 < y_store_14.length; index_39 += 1) {
+assert(a[x_store_12[index_38]] == b[y_store_14[index_39]]);
 }
 
 }
@@ -25,9 +33,9 @@ assert(a[x_store_7[index_29]] == b[y_store_9[index_30]]);
 return false;
 }
 
-for (uint256 index_32 = 0; index_32 < x_store_7.length; index_32 += 1) {
-for (uint256 index_33 = 0; index_33 < y_store_9.length; index_33 += 1) {
-assert(a[x_store_7[index_32]] == b[y_store_9[index_33]]);
+for (uint256 index_41 = 0; index_41 < x_store_12.length; index_41 += 1) {
+for (uint256 index_42 = 0; index_42 < y_store_14.length; index_42 += 1) {
+assert(a[x_store_12[index_41]] == b[y_store_14[index_42]]);
 }
 
 }

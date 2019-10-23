@@ -118,7 +118,7 @@ uint256 depth_0;
 uint256 sum_tokenCount;
 mapping (address=>uint256) sum_ownersToken;
 address[] a;
-uint256 index_13;
+uint256 index_24;
 using SafeMath for uint256;
 using Address for address;
 bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
@@ -183,15 +183,15 @@ require(_isApprovedOrOwner(msg.sender, tokenId));
 _transferFrom(from, to, tokenId);
 depth_0 -= 1;
 if (depth_0 == 0) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_130 = 0; index_130 < a.length; index_130 += 1) {
-assert(_ownedTokensCount[a[index_130]] == sum_ownersToken[a[index_130]]);
+for (uint256 index_188 = 0; index_188 < a.length; index_188 += 1) {
+assert(_ownedTokensCount[a[index_188]] == sum_ownersToken[a[index_188]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
 }
 
 }
@@ -201,15 +201,15 @@ depth_0 += 1;
 safeTransferFrom(from, to, tokenId, "");
 depth_0 -= 1;
 if (depth_0 == 0) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_132 = 0; index_132 < a.length; index_132 += 1) {
-assert(_ownedTokensCount[a[index_132]] == sum_ownersToken[a[index_132]]);
+for (uint256 index_190 = 0; index_190 < a.length; index_190 += 1) {
+assert(_ownedTokensCount[a[index_190]] == sum_ownersToken[a[index_190]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
 }
 
 }
@@ -220,15 +220,15 @@ transferFrom(from, to, tokenId);
 require(_checkOnERC721Received(from, to, tokenId, _data));
 depth_0 -= 1;
 if (depth_0 == 0) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_134 = 0; index_134 < a.length; index_134 += 1) {
-assert(_ownedTokensCount[a[index_134]] == sum_ownersToken[a[index_134]]);
+for (uint256 index_192 = 0; index_192 < a.length; index_192 += 1) {
+assert(_ownedTokensCount[a[index_192]] == sum_ownersToken[a[index_192]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
 }
 
 }
@@ -250,9 +250,9 @@ return (spender == owner || getApproved(tokenId) == spender || isApprovedForAll(
 }
 
 function _mint (address to, uint256 tokenId) internal {
-uint256 tmp_sum_tokenCount_137 = sum_tokenCount;
+uint256 tmp_sum_tokenCount_195 = sum_tokenCount;
 require(to != address(0));
-require(!_exists(tokenId));
+require(! _exists(tokenId));
 {
 if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
 assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
@@ -276,8 +276,8 @@ assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
 
 {
 if (to != 0x0000000000000000000000000000000000000000) {
-assert(tmp_sum_tokenCount_137 >= _ownedTokensCount[to]);
-tmp_sum_tokenCount_137 -= _ownedTokensCount[to];
+assert(tmp_sum_tokenCount_195 >= _ownedTokensCount[to]);
+tmp_sum_tokenCount_195 -= _ownedTokensCount[to];
 }
 
 }
@@ -286,14 +286,14 @@ a.push(to);
 }
 _ownedTokensCount[to] = _ownedTokensCount[to].add(1);{
 if (to != 0x0000000000000000000000000000000000000000) {
-tmp_sum_tokenCount_137 += _ownedTokensCount[to];
-assert(tmp_sum_tokenCount_137 >= _ownedTokensCount[to]);
+tmp_sum_tokenCount_195 += _ownedTokensCount[to];
+assert(tmp_sum_tokenCount_195 >= _ownedTokensCount[to]);
 }
 
 }
 
 emit Transfer(address(0), to, tokenId);
-sum_tokenCount = tmp_sum_tokenCount_137;
+sum_tokenCount = tmp_sum_tokenCount_195;
 }
 
 function _burn (address owner, uint256 tokenId) internal {
@@ -410,7 +410,7 @@ emit Transfer(from, to, tokenId);
 }
 
 function _checkOnERC721Received (address from, address to, uint256 tokenId, bytes memory _data) internal returns (bool) {
-if (!to.isContract()) {
+if (! to.isContract()) {
 {
 return true;
 }
@@ -516,7 +516,7 @@ _ownedTokens[from][tokenIndex] = lastTokenId;
 _ownedTokensIndex[lastTokenId] = tokenIndex;
 }
 
-_ownedTokens[from].length--;
+_ownedTokens[from].length --;
 }
 
 function _removeTokenFromAllTokensEnumeration (uint256 tokenId) private {
@@ -525,7 +525,7 @@ uint256 tokenIndex = _allTokensIndex[tokenId];
 uint256 lastTokenId = _allTokens[lastTokenIndex];
 _allTokens[tokenIndex] = lastTokenId;
 _allTokensIndex[lastTokenId] = tokenIndex;
-_allTokens.length--;
+_allTokens.length --;
 _allTokensIndex[tokenId] = 0;
 }
 
@@ -597,7 +597,7 @@ struct Role {
     }
 function add (Role storage role, address account) internal {
 require(account != address(0));
-require(!has(role, account));
+require(! has(role, account));
 role.bearer[account] = true;
 }
 
@@ -664,15 +664,15 @@ _mint(to, tokenId);
 {
 depth_0 -= 1;
 if (depth_0 == 0) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_141 = 0; index_141 < a.length; index_141 += 1) {
-assert(_ownedTokensCount[a[index_141]] == sum_ownersToken[a[index_141]]);
+for (uint256 index_199 = 0; index_199 < a.length; index_199 += 1) {
+assert(_ownedTokensCount[a[index_199]] == sum_ownersToken[a[index_199]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
 }
 
 return true;
@@ -680,15 +680,15 @@ return true;
 
 depth_0 -= 1;
 if (depth_0 == 0) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_142 = 0; index_142 < a.length; index_142 += 1) {
-assert(_ownedTokensCount[a[index_142]] == sum_ownersToken[a[index_142]]);
+for (uint256 index_200 = 0; index_200 < a.length; index_200 += 1) {
+assert(_ownedTokensCount[a[index_200]] == sum_ownersToken[a[index_200]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
 }
 
 }
@@ -703,15 +703,15 @@ _setTokenURI(tokenId, tokenURI);
 {
 depth_0 -= 1;
 if (depth_0 == 0) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_144 = 0; index_144 < a.length; index_144 += 1) {
-assert(_ownedTokensCount[a[index_144]] == sum_ownersToken[a[index_144]]);
+for (uint256 index_202 = 0; index_202 < a.length; index_202 += 1) {
+assert(_ownedTokensCount[a[index_202]] == sum_ownersToken[a[index_202]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
 }
 
 return true;
@@ -719,15 +719,15 @@ return true;
 
 depth_0 -= 1;
 if (depth_0 == 0) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_145 = 0; index_145 < a.length; index_145 += 1) {
-assert(_ownedTokensCount[a[index_145]] == sum_ownersToken[a[index_145]]);
+for (uint256 index_203 = 0; index_203 < a.length; index_203 += 1) {
+assert(_ownedTokensCount[a[index_203]] == sum_ownersToken[a[index_203]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
 }
 
 }
@@ -796,15 +796,15 @@ _mint(_to, _tokenId);
 _setTokenURI(_tokenId, _tokenURI);
 depth_0 -= 1;
 if (depth_0 == 0) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_147 = 0; index_147 < a.length; index_147 += 1) {
-assert(_ownedTokensCount[a[index_147]] == sum_ownersToken[a[index_147]]);
+for (uint256 index_205 = 0; index_205 < a.length; index_205 += 1) {
+assert(_ownedTokensCount[a[index_205]] == sum_ownersToken[a[index_205]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
 }
 
 }
@@ -814,36 +814,36 @@ depth_0 += 1;
 safeTransferFrom(msg.sender, _to, _tokenId);
 depth_0 -= 1;
 if (depth_0 == 0) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_149 = 0; index_149 < a.length; index_149 += 1) {
-assert(_ownedTokensCount[a[index_149]] == sum_ownersToken[a[index_149]]);
+for (uint256 index_207 = 0; index_207 < a.length; index_207 += 1) {
+assert(_ownedTokensCount[a[index_207]] == sum_ownersToken[a[index_207]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
 }
 
 }
 
 function transferAll (address _to, uint256[] memory _tokenId) public {
 depth_0 += 1;
-for (uint i = 0; i < _tokenId.length; i++) {
+for (uint i = 0; i < _tokenId.length; i ++) {
 safeTransferFrom(msg.sender, _to, _tokenId[i]);
 }
 
 depth_0 -= 1;
 if (depth_0 == 0) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_151 = 0; index_151 < a.length; index_151 += 1) {
-assert(_ownedTokensCount[a[index_151]] == sum_ownersToken[a[index_151]]);
+for (uint256 index_209 = 0; index_209 < a.length; index_209 += 1) {
+assert(_ownedTokensCount[a[index_209]] == sum_ownersToken[a[index_209]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
 }
 
 }

@@ -41,66 +41,43 @@ event Transfer(address indexed from, address indexed to, uint256 value);
 }
 contract BasicToken is ERC20Basic {
 uint256 depth_0;
+mapping (address=>bool) a_checker_1;
+address[] a_store_2;
 uint256 sum_balance;
 using SafeMath for uint256;
 mapping (address=>uint256) balances;
 function transfer (address _to, uint256 _value) public returns (bool) {
-uint256 tmp_sum_balance_19 = sum_balance;
 require(_to != address(0));
 require(_value > 0 && _value <= balances[msg.sender]);
-{
-uint256 opt_20 = balances[msg.sender];
-{
-if (true) {
-assert(tmp_sum_balance_19 >= opt_20);
-tmp_sum_balance_19 -= opt_20;
+balances[msg.sender] = balances[msg.sender].sub(_value);if (! a_checker_1[msg.sender]) {
+a_store_2.push(msg.sender);
+a_checker_1[msg.sender] = true;
 }
 
-}
-
-opt_20 = opt_20.sub(_value);
-{
-if (true) {
-tmp_sum_balance_19 += opt_20;
-assert(tmp_sum_balance_19 >= opt_20);
-}
-
-}
-
-balances[msg.sender] = opt_20;
-}
-
-{
-uint256 opt_21 = balances[_to];
-{
-if (true) {
-assert(tmp_sum_balance_19 >= opt_21);
-tmp_sum_balance_19 -= opt_21;
-}
-
-}
-
-opt_21 = opt_21.add(_value);
-{
-if (true) {
-tmp_sum_balance_19 += opt_21;
-assert(tmp_sum_balance_19 >= opt_21);
-}
-
-}
-
-balances[_to] = opt_21;
+balances[_to] = balances[_to].add(_value);if (! a_checker_1[_to]) {
+a_store_2.push(_to);
+a_checker_1[_to] = true;
 }
 
 emit Transfer(msg.sender, _to, _value);
 {
-assert(totalSupply == tmp_sum_balance_19);
-sum_balance = tmp_sum_balance_19;
+for (uint256 index_2 = 0; index_2 < a_store_2.length; index_2 += 1) {
+if (index_2 == 0) sum_balance = 0;
+sum_balance += balances[a_store_2[index_2]];
+assert(sum_balance >= balances[a_store_2[index_2]]);
+}
+
+assert(totalSupply == sum_balance);
 return true;
 }
 
-assert(totalSupply == tmp_sum_balance_19);
-sum_balance = tmp_sum_balance_19;
+for (uint256 index_3 = 0; index_3 < a_store_2.length; index_3 += 1) {
+if (index_3 == 0) sum_balance = 0;
+sum_balance += balances[a_store_2[index_3]];
+assert(sum_balance >= balances[a_store_2[index_3]]);
+}
+
+assert(totalSupply == sum_balance);
 }
 
 function balanceOf (address _owner) public view returns (uint256 balance) {
@@ -117,64 +94,39 @@ event Approval(address indexed owner, address indexed spender, uint256 value);
 contract StandardToken is ERC20, BasicToken {
 mapping (address=>mapping (address=>uint256)) internal allowed;
 function transferFrom (address _from, address _to, uint256 _value) public returns (bool) {
-uint256 tmp_sum_balance_22 = sum_balance;
 require(_to != address(0));
 require(_value > 0 && _value <= balances[_from]);
 require(_value <= allowed[_from][msg.sender]);
-{
-uint256 opt_23 = balances[_from];
-{
-if (true) {
-assert(tmp_sum_balance_22 >= opt_23);
-tmp_sum_balance_22 -= opt_23;
+balances[_from] = balances[_from].sub(_value);if (! a_checker_1[_from]) {
+a_store_2.push(_from);
+a_checker_1[_from] = true;
 }
 
-}
-
-opt_23 = opt_23.sub(_value);
-{
-if (true) {
-tmp_sum_balance_22 += opt_23;
-assert(tmp_sum_balance_22 >= opt_23);
-}
-
-}
-
-balances[_from] = opt_23;
-}
-
-{
-uint256 opt_24 = balances[_to];
-{
-if (true) {
-assert(tmp_sum_balance_22 >= opt_24);
-tmp_sum_balance_22 -= opt_24;
-}
-
-}
-
-opt_24 = opt_24.add(_value);
-{
-if (true) {
-tmp_sum_balance_22 += opt_24;
-assert(tmp_sum_balance_22 >= opt_24);
-}
-
-}
-
-balances[_to] = opt_24;
+balances[_to] = balances[_to].add(_value);if (! a_checker_1[_to]) {
+a_store_2.push(_to);
+a_checker_1[_to] = true;
 }
 
 allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
 emit Transfer(_from, _to, _value);
 {
-assert(totalSupply == tmp_sum_balance_22);
-sum_balance = tmp_sum_balance_22;
+for (uint256 index_4 = 0; index_4 < a_store_2.length; index_4 += 1) {
+if (index_4 == 0) sum_balance = 0;
+sum_balance += balances[a_store_2[index_4]];
+assert(sum_balance >= balances[a_store_2[index_4]]);
+}
+
+assert(totalSupply == sum_balance);
 return true;
 }
 
-assert(totalSupply == tmp_sum_balance_22);
-sum_balance = tmp_sum_balance_22;
+for (uint256 index_5 = 0; index_5 < a_store_2.length; index_5 += 1) {
+if (index_5 == 0) sum_balance = 0;
+sum_balance += balances[a_store_2[index_5]];
+assert(sum_balance >= balances[a_store_2[index_5]]);
+}
+
+assert(totalSupply == sum_balance);
 }
 
 function approve (address _spender, uint256 _value) public returns (bool) {
@@ -258,67 +210,42 @@ return super.approve(_spender, _value);
 }
 
 function batchTransfer (address[] memory _receivers, uint256 _value) whenNotPaused public returns (bool) {
-uint256 tmp_sum_balance_25 = sum_balance;
 uint cnt = _receivers.length;
 uint256 amount = uint256(cnt) * _value;
 require(cnt > 0 && cnt <= 20);
 require(_value > 0 && balances[msg.sender] >= amount);
-{
-uint256 opt_26 = balances[msg.sender];
-{
-if (true) {
-assert(tmp_sum_balance_25 >= opt_26);
-tmp_sum_balance_25 -= opt_26;
-}
-
-}
-
-opt_26 = opt_26.sub(amount);
-{
-if (true) {
-tmp_sum_balance_25 += opt_26;
-assert(tmp_sum_balance_25 >= opt_26);
-}
-
-}
-
-balances[msg.sender] = opt_26;
+balances[msg.sender] = balances[msg.sender].sub(amount);if (! a_checker_1[msg.sender]) {
+a_store_2.push(msg.sender);
+a_checker_1[msg.sender] = true;
 }
 
 for (uint i = 0; i < cnt; i ++) {
-{
-uint256 opt_27 = balances[_receivers[i]];
-{
-if (true) {
-assert(tmp_sum_balance_25 >= opt_27);
-tmp_sum_balance_25 -= opt_27;
-}
-
-}
-
-opt_27 = opt_27.add(_value);
-{
-if (true) {
-tmp_sum_balance_25 += opt_27;
-assert(tmp_sum_balance_25 >= opt_27);
-}
-
-}
-
-balances[_receivers[i]] = opt_27;
+balances[_receivers[i]] = balances[_receivers[i]].add(_value);if (! a_checker_1[_receivers[i]]) {
+a_store_2.push(_receivers[i]);
+a_checker_1[_receivers[i]] = true;
 }
 
 emit Transfer(msg.sender, _receivers[i], _value);
 }
 
 {
-assert(totalSupply == tmp_sum_balance_25);
-sum_balance = tmp_sum_balance_25;
+for (uint256 index_6 = 0; index_6 < a_store_2.length; index_6 += 1) {
+if (index_6 == 0) sum_balance = 0;
+sum_balance += balances[a_store_2[index_6]];
+assert(sum_balance >= balances[a_store_2[index_6]]);
+}
+
+assert(totalSupply == sum_balance);
 return true;
 }
 
-assert(totalSupply == tmp_sum_balance_25);
-sum_balance = tmp_sum_balance_25;
+for (uint256 index_7 = 0; index_7 < a_store_2.length; index_7 += 1) {
+if (index_7 == 0) sum_balance = 0;
+sum_balance += balances[a_store_2[index_7]];
+assert(sum_balance >= balances[a_store_2[index_7]]);
+}
+
+assert(totalSupply == sum_balance);
 }
 
 }
@@ -328,31 +255,12 @@ string public symbol = "BEC";
 string public version = '1.0.0';
 uint8 public decimals = 18;
 constructor () public {
-uint256 tmp_sum_balance_28 = sum_balance;
 totalSupply = 7000000000 * (10**(uint256(decimals)));
-{
-uint256 opt_29 = balances[msg.sender];
-{
-if (true) {
-assert(tmp_sum_balance_28 >= opt_29);
-tmp_sum_balance_28 -= opt_29;
+balances[msg.sender] = totalSupply;if (! a_checker_1[msg.sender]) {
+a_store_2.push(msg.sender);
+a_checker_1[msg.sender] = true;
 }
 
-}
-
-opt_29 = totalSupply;
-{
-if (true) {
-tmp_sum_balance_28 += opt_29;
-assert(tmp_sum_balance_28 >= opt_29);
-}
-
-}
-
-balances[msg.sender] = opt_29;
-}
-
-sum_balance = tmp_sum_balance_28;
 }
 
 function () external payable {

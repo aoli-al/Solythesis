@@ -24,6 +24,7 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
   public constraint: Map<string, Node[]> = new Map()
   public currentContract: string = ""
   public arrayCount = 0
+  public currentPrecendence = 0
 
   constructor() {
     super()
@@ -41,13 +42,16 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
   }
 
   public visitConstraint(context: ConstraintContext): Node {
-    this.constraint.get(this.currentContract)!.push(this.visit(context.expression())!)
+    const constraint = this.visit(context.expression())!
+    constraint.precedence = this.currentPrecendence++
+    this.constraint.get(this.currentContract)!.push(constraint)
     return this.defaultResult()
   }
 
   public visitConstraintVariableDeclaration(context: ConstraintVariableDeclarationContext): Node {
     const node = this.visit(context.expression())
     if (!node) { return this.defaultResult() }
+    node.precedence = this.currentPrecendence++
     this.constraint.get(this.currentContract)!.push(node)
     if (node.type === "SumExpression") {
       node.name = context.identifier().text
@@ -145,4 +149,5 @@ export class ConstraintBuilder extends AbstractParseTreeVisitor<Node|null> imple
     node.positionMuVarAssertions = []
     return node
   }
+
 }
