@@ -433,7 +433,8 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     while (diffVar.length > 0) {
       let change = false
       diffVar = diffVar.filter((it) => {
-        if ([...node.positionMuDependencyMap.get(it.name)!].every((dep) => muMapping.has(dep))) {
+        if (node.positionMuDependencyMap.has(it.name) &&
+          [...node.positionMuDependencyMap.get(it.name)!].every((dep) => muMapping.has(dep))) {
           change = true
           muMapping.set(it.name,
             new Rewriter(this.stateVarCache, muMapping).visit(node.positionMuVarMap.get(it.name)!) as Expression)

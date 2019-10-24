@@ -103,9 +103,15 @@ export class StandardSemanticAnalyzer extends ConstraintVisitor {
   }
 
   public IndexedAccess = (node: IndexedAccess) => {
+    let previousExpectedType
+    if (this.expectedType) {
+      previousExpectedType = this.expectedType
+      this.expectedType = undefined
+    }
     this.visit(node.object)
     assert(node.object.typeName && node.object.typeName.type === "Mapping",
       "wrong type for indexed expression")
+    this.expectedType = previousExpectedType
     if (this.expectedType) {
       assert(equalType(this.expectedType, (node.object.typeName as Mapping).valueType),
         "wrong expected type")

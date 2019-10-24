@@ -22,7 +22,7 @@ export type ComparisonOp =
   | "=="
   | "!="
 
-export const ComparisonOpList = ["<", ">", "<=", ">=", "==", "!="]
+export const ComparisonOpList = ["<", ">", "<=", ">=", "==", "!=", "||"]
 
 export type TypeString =
   | "boolean"
