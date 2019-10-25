@@ -12,7 +12,7 @@ def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0cc
     ec2 = boto3.resource('ec2', region_name='us-west-1')
     instances = ec2.create_instances(
         ImageId=image_id,
-        UserData='Leo-bench',
+        UserData='Leo-bench-baseline',
         MinCount=count,
         MaxCount=count,
         InstanceType='t2.xlarge',
