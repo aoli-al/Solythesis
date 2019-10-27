@@ -194,7 +194,7 @@ def test_3(args):
     receiver_client.close()
     clean_up(receiver)
 
-with Pool(1) as p:
+with Pool(6) as p:
     p.map(test_2, generate_tests(*[int(x) for x in sys.argv[1:]]))
 
 # with Pool(2) as p:
