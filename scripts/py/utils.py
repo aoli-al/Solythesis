@@ -6,8 +6,8 @@ benchmarks = [
     ("test", "~/scripts/py/replay_bec.py", "batchTransfer", 115),
     ("vote", "~/scripts/py/replay_vote.py", "v", 151)
     ]
-# tests = ["", "_secured", "_noopt"]
-tests = ["_base_new"]
+tests = ["_secured", "_noopt"]
+#  tests = ["_base_new"]
 
 
 def generate_tests(i=None, j=None):

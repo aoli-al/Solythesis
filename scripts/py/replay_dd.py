@@ -40,7 +40,7 @@ for i in range(USERS):
 print(users)
 bench.wait_for_result(result)
 
-ITER = 10000
+ITER = 1000
 
 bar = progressbar.ProgressBar(maxval=ITER,
                               widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])

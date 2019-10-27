@@ -200,7 +200,7 @@ def test_2(args):
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    fetch_files(receiver_client, "/home/leo/results", "~/data/test_run".format(contract, csv))
+    fetch_files(receiver_client, "/home/leo/results", "/u/leo/data_1000/{}-{}".format(contract, csv))
     receiver_client.close()
     clean_up(receiver)
 
@@ -210,23 +210,30 @@ def test_3(args):
     [receiver, receiver_client] = create_receiver_singleton("ami-0e05c3ca6e6db9733")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
-        move_files(receiver_client, "~/data/empty10000-{0}-{1}/{0}-{1}-mainchain.bin".format(contract, csv), "/home/leo")
+        move_files(receiver_client, "/cs/htuser/choi/public_html/results/results_{0}_opt/test_secured-transfer-mainchain.bin".format(contract), "/home/leo")
+        move_files(receiver_client, "/cs/htuser/choi/public_html/results/results_{0}_noo/test_noopt-transfer-mainchain.bin".format(contract), "/home/leo")
         execute_remote_command(receiver_client,
-                               "bash ~/scripts/bash/import.sh {} {} {} {} {}"
-                               .format(contract, script_path, csv, receiver.public_ip_address, skip+5052259))
+                               "bash ~/scripts/bash/import.sh {} {} {} {} {} {}"
+                               .format("test_secured", script_path, "transfer", receiver.public_ip_address, skip+5052259, "import"))
+        execute_remote_command(receiver_client,
+                               "bash ~/scripts/bash/import.sh {} {} {} {} {} {}"
+                               .format("test_noopt", script_path, "transfer", receiver.public_ip_address, skip+5052259, "fullnode_bak"))
     except Exception as e:
         print(e)
     #  fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet10000-dwarf-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
     #  fetch_files(receiver_client, "/home/leo/storage.log", "/data/mainnet-{}-{}/sha3.log".format(contract, csv))
-    fetch_files(receiver_client, "/home/leo/parity.log", "~/data/empty10000-{}-{}/parity-noopt-{}-{}.log".format(contract, csv, IOPS, INSTANCE))
+    exit(0)
+    fetch_files(receiver_client, "/home/leo/test_secured-transfer.log", "test_secured-transfer.log".format(contract, csv, IOPS, INSTANCE))
+    fetch_files(receiver_client, "/home/leo/test_noopt-transfer.log", "test_noopt-transfer.log".format(contract, csv, IOPS, INSTANCE))
     receiver_client.close()
     clean_up(receiver)
 
-with Pool(18) as p:
-    p.map(test_2, generate_tests(*[int(x) for x in sys.argv[1:]]))
+#  with Pool(6) as p:
+    #  p.map(test_3, generate_tests(*[int(x) for x in sys.argv[1:]]))
 
 # with Pool(2) as p:
 #     print(p.map(test, generate_tests()))
 
 
 
+test_3(["bec", "x", "x", 0])
