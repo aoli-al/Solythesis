@@ -210,21 +210,20 @@ def test_3(args):
     [receiver, receiver_client] = create_receiver_singleton("ami-0e05c3ca6e6db9733")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
-        move_files(receiver_client, "/cs/htuser/choi/public_html/results/results_{0}_opt/test_secured-transfer-mainchain.bin".format(contract), "/home/leo")
-        move_files(receiver_client, "/cs/htuser/choi/public_html/results/results_{0}_noo/test_noopt-transfer-mainchain.bin".format(contract), "/home/leo")
+        move_files(receiver_client, "/cs/htuser/choi/public_html/results/test_run2_{0}_secured_transfer/{0}_secured-transfer-mainchain.bin".format(contract), "/home/leo")
+        move_files(receiver_client, "/cs/htuser/choi/public_html/results/test_run2_{0}_noopt_transfer/{0}_noopt-transfer-mainchain.bin".format(contract), "/home/leo")
         execute_remote_command(receiver_client,
                                "bash ~/scripts/bash/import.sh {} {} {} {} {} {}"
-                               .format("test_secured", script_path, "transfer", receiver.public_ip_address, skip+5052259, "import"))
+                               .format("{0}_secured".format(contract), script_path, "transfer", receiver.public_ip_address, skip+5052259, "import"))
         execute_remote_command(receiver_client,
                                "bash ~/scripts/bash/import.sh {} {} {} {} {} {}"
-                               .format("test_noopt", script_path, "transfer", receiver.public_ip_address, skip+5052259, "fullnode_bak"))
+                               .format("{0}_noopt".format(contract), script_path, "transfer", receiver.public_ip_address, skip+5052259, "fullnode_bak"))
     except Exception as e:
         print(e)
     #  fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet10000-dwarf-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
     #  fetch_files(receiver_client, "/home/leo/storage.log", "/data/mainnet-{}-{}/sha3.log".format(contract, csv))
-    exit(0)
-    fetch_files(receiver_client, "/home/leo/test_secured-transfer.log", "test_secured-transfer.log".format(contract, csv, IOPS, INSTANCE))
-    fetch_files(receiver_client, "/home/leo/test_noopt-transfer.log", "test_noopt-transfer.log".format(contract, csv, IOPS, INSTANCE))
+    fetch_files(receiver_client, "/home/leo/{0}_secured-transfer.log".format(contract), "{0}_secured-transfer.log".format(contract, csv, IOPS, INSTANCE))
+    fetch_files(receiver_client, "/home/leo/{0}_noopt-transfer.log".format(contract), "{0}_noopt-transfer.log".format(contract, csv, IOPS, INSTANCE))
     receiver_client.close()
     clean_up(receiver)
 
@@ -236,4 +235,4 @@ def test_3(args):
 
 
 
-test_3(["bec", "x", "x", 0])
+test_3(["ekt", "x", "x", 0])
