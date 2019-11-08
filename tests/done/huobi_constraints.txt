@@ -1,0 +1,4 @@
+standard RegularToken {
+  sum_balanceOf = map () sum balances[a] over (a) where true;
+  constraint _totalSupply == sum_balanceOf;
+}

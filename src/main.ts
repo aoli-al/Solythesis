@@ -7,10 +7,10 @@ import { ConstraintBuilder } from "./constraints/ConstraintBuilder"
 import { QuantityExp } from "./constraints/nodes/Node"
 import { AssertionDectorator } from "./constraints/AssertionVarDecorator"
 import { GenStateVariables as StateVariableGenerator } from "./constraints/StateVariableGenerator"
-import { Printer } from "./printer/Printer"
 import { VariableCollector } from "./visitors/VariableCollector"
 import { ConstraintsCollector } from "./constraints/ConstraintsCollector"
 import { StandardSemanticAnalyzer } from "./analyzer/SemanticAnalyzer"
+import { Printer } from "./printer/printer"
 
 function generate(contractPath: string, constraintPath: string,
                   postfix: string, stateVarOpt: boolean, forallOpt: boolean, baseline: boolean = false) {
@@ -19,6 +19,7 @@ function generate(contractPath: string, constraintPath: string,
   const ast = parser.parse(contract.toString("utf-8"), { range: true })
   const variableCollector = new VariableCollector()
   visit(ast, variableCollector)
+  
 
   const inputStream = new ANTLRInputStream(constraint.toString("utf-8"))
   const lexer = new SolidityLexer(inputStream)
@@ -79,8 +80,8 @@ function generate(contractPath: string, constraintPath: string,
 
 }
 
-generate(process.argv[2], process.argv[3], "base_new", false, false, true)
-generate(process.argv[2], process.argv[3], "secured_new", true, true)
-generate(process.argv[2], process.argv[3], "noopt_new", false, false)
+generate(process.argv[2], process.argv[3], "base", false, false, true)
+generate(process.argv[2], process.argv[3], "secured", true, true)
+generate(process.argv[2], process.argv[3], "noopt", false, false)
 
 console.log("finished")
