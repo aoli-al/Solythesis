@@ -245,10 +245,10 @@ contract ERC721 is ERC165, IERC721 {
     bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
 
     // Mapping from token ID to owner
-    mapping (uint256 => address) private _tokenOwner;
+    mapping (uint256 => address) internal _tokenOwner;
 
     // Mapping from token ID to approved address
-    mapping (uint256 => address) private _tokenApprovals;
+    mapping (uint256 => address) internal _tokenApprovals;
 
     // Mapping from owner to number of owned token
     mapping (address => uint256) internal _ownedTokensCount;

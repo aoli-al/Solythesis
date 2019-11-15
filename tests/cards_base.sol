@@ -231,7 +231,7 @@ address[] a_store_10;
 using SafeMath for uint256;
 using Address for address;
 bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
-mapping (uint256=>address) private _tokenOwner;
+mapping (uint256=>address) internal _tokenOwner;
 mapping (uint256=>address) private _tokenApprovals;
 mapping (address=>uint256) internal _ownedTokensCount;
 mapping (address=>mapping (address=>bool)) private _operatorApprovals;

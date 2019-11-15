@@ -13,15 +13,15 @@ benchmarks = [
 
     # ERC 721
     # ("mchh", "~/scripts/py/replay_mchh.py", "transfer", 155),
-    ("cc", "~/scripts/py/replay_cc.py", "transfer", 155),
-    ("clv", "~/scripts/py/replay_clv.py", "transfer", 155),
+    # ("cc", "~/scripts/py/replay_cc.py", "transfer", 155),
+    # ("clv", "~/scripts/py/replay_clv.py", "transfer", 155),
     ("land", "~/scripts/py/replay_land.py", "transfer", 155),
     ("cards", "~/scripts/py/replay_cards.py", "transfer", 155),
     ("kb", "~/scripts/py/replay_kb.py", "transfer", 155),
-    ("trinket", "~/scripts/py/replay_trinket.py", "transfer", 155),
-    ("packs", "~/scripts/py/replay_packs.py", "transfer", 155),
-    ("bkc", "~/scripts/py/replay_bkc.py", "transfer", 155),
-    ("egg", "~/scripts/py/replay_egg.py", "transfer", 155)
+    # ("trinket", "~/scripts/py/replay_trinket.py", "transfer", 155),
+    # ("packs", "~/scripts/py/replay_packs.py", "transfer", 155),
+    # ("bkc", "~/scripts/py/replay_bkc.py", "transfer", 155),
+    # ("egg", "~/scripts/py/replay_egg.py", "transfer", 155)
     ]
 tests = ["_base"]
 

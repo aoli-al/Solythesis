@@ -253,7 +253,7 @@ def test_3(args):
 
 # with Pool(3) as p:
 #     p.map(test_2, generate_tests(*[int(x) for x in sys.argv[1:]]))
-with Pool(10) as p:
+with Pool(2) as p:
     print(p.map(test, generate_tests()))
 # with Pool(2) as p:
 #     print(p.map(test, generate_tests()))

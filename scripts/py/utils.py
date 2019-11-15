@@ -7,16 +7,28 @@ benchmarks = [
     # ("vote", "~/scripts/py/replay_vote.py", "v", 151),
     
     ### _base
-    ("tether", "~/scripts/py/replay_tether.py", "transfer", 155),
-    ("zrx", "~/scripts/py/replay_zrx.py", "transfer", 155),
-    ("theta", "~/scripts/py/replay_theta.py", "transfer", 155),
-    ("inb", "~/scripts/py/replay_inb.py", "transfer", 155),
-    ("xin", "~/scripts/py/replay_xin.py", "transfer", 155),
+    # ("tether", "~/scripts/py/replay_tether.py", "transfer", 155),
+    # ("zrx", "~/scripts/py/replay_zrx.py", "transfer", 155),
+    # ("theta", "~/scripts/py/replay_theta.py", "transfer", 155),
+    # ("inb", "~/scripts/py/replay_inb.py", "transfer", 155),
+    # ("xin", "~/scripts/py/replay_xin.py", "transfer", 155),
     # ("hedg", "~/scripts/py/replay_hedg.py", "transfer", 155),
     # ("ekt", "~/scripts/py/replay_ekt.py", "transfer", 155),
     # ("dai", "~/scripts/py/replay_dai.py", "transfer", 155),
     # ("hot", "~/scripts/py/replay_hot.py", "transfer", 155),
     # ("swipe", "~/scripts/py/replay_swipe.py", "transfer", 155),
+
+    ### ERC721
+    ("mchh", "~/scripts/py/replay_mchh.py", "transfer", 155),
+    ("cc", "~/scripts/py/replay_cc.py", "transfer", 155),
+    ("clv", "~/scripts/py/replay_clv.py", "transfer", 155),
+    ("land", "~/scripts/py/replay_land.py", "transfer", 155),
+    ("cards", "~/scripts/py/replay_cards.py", "transfer", 155),
+    ("kb", "~/scripts/py/replay_kb.py", "transfer", 155),
+    ("trinket", "~/scripts/py/replay_trinket.py", "transfer", 155),
+    ("packs", "~/scripts/py/replay_packs.py", "transfer", 155),
+    ("bkc", "~/scripts/py/replay_bkc.py", "transfer", 155),
+    ("egg", "~/scripts/py/replay_egg.py", "transfer", 155),
     ]
 tests = ["", "_secured", "_noopt"]
 # tests = ["_base"]
