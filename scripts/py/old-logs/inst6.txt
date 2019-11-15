@@ -1,0 +1,1302 @@
+bash ~/scripts/bash/setup_parity.sh metrics
+Already on 'metrics'
+
+Your branch is up to date with 'origin/metrics'.
+
+remote: Enumerating objects: 1390, done.[K
+
+remote: Counting objects:   0% (1/1390)[K
+remote: Counting objects:   1% (14/1390)[K
+remote: Counting objects:   2% (28/1390)[K
+remote: Counting objects:   3% (42/1390)[K
+remote: Counting objects:   4% (56/1390)[K
+remote: Counting objects:   5% (70/1390)[K
+remote: Counting objects:   6% (84/1390)[K
+remote: Counting objects:   7% (98/1390)[K
+remote: Counting objects:   8% (112/1390)[K
+remote: Counting objects:   9% (126/1390)[K
+remote: Counting objects:  10% (139/1390)[K
+remote: Counting objects:  11% (153/1390)[K
+remote: Counting objects:  12% (167/1390)[K
+remote: Counting objects:  13% (181/1390)[K
+remote: Counting objects:  14% (195/1390)[K
+remote: Counting objects:  15% (209/1390)[K
+remote: Counting objects:  16% (223/1390)[K
+remote: Counting objects:  17% (237/1390)[K
+remote: Counting objects:  18% (251/1390)[K
+remote: Counting objects:  19% (265/1390)[K
+remote: Counting objects:  20% (278/1390)[K
+remote: Counting objects:  21% (292/1390)[K
+remote: Counting objects:  22% (306/1390)[K
+remote: Counting objects:  23% (320/1390)[K
+remote: Counting objects:  24% (334/1390)[K
+remote: Counting objects:  25% (348/1390)[K
+remote: Counting objects:  26% (362/1390)[K
+remote: Counting objects:  27% (376/1390)[K
+remote: Counting objects:  28% (390/1390)[K
+remote: Counting objects:  29% (404/1390)[K
+remote: Counting objects:  30% (417/1390)[K
+remote: Counting objects:  31% (431/1390)[K
+remote: Counting objects:  32% (445/1390)[K
+remote: Counting objects:  33% (459/1390)[K
+remote: Counting objects:  34% (473/1390)[K
+remote: Counting objects:  35% (487/1390)[K
+remote: Counting objects:  36% (501/1390)[K
+remote: Counting objects:  37% (515/1390)[K
+remote: Counting objects:  38% (529/1390)[K
+remote: Counting objects:  39% (543/1390)[K
+remote: Counting objects:  40% (556/1390)[K
+remote: Counting objects:  41% (570/1390)[K
+remote: Counting objects:  42% (584/1390)[K
+remote: Counting objects:  43% (598/1390)[K
+remote: Counting objects:  44% (612/1390)[K
+remote: Counting objects:  45% (626/1390)[K
+remote: Counting objects:  46% (640/1390)[K
+remote: Counting objects:  47% (654/1390)[K
+remote: Counting objects:  48% (668/1390)[K
+remote: Counting objects:  49% (682/1390)[K
+remote: Counting objects:  50% (695/1390)[K
+remote: Counting objects:  51% (709/1390)[K
+remote: Counting objects:  52% (723/1390)[K
+remote: Counting objects:  53% (737/1390)[K
+remote: Counting objects:  54% (751/1390)[K
+remote: Counting objects:  55% (765/1390)[K
+remote: Counting objects:  56% (779/1390)[K
+remote: Counting objects:  57% (793/1390)[K
+remote: Counting objects:  58% (807/1390)[K
+remote: Counting objects:  59% (821/1390)[K
+remote: Counting objects:  60% (834/1390)[K
+remote: Counting objects:  61% (848/1390)[K
+remote: Counting objects:  62% (862/1390)[K
+remote: Counting objects:  63% (876/1390)[K
+remote: Counting objects:  64% (890/1390)[K
+remote: Counting objects:  65% (904/1390)[K
+remote: Counting objects:  66% (918/1390)[K
+remote: Counting objects:  67% (932/1390)[K
+remote: Counting objects:  68% (946/1390)[K
+remote: Counting objects:  69% (960/1390)[K
+remote: Counting objects:  70% (973/1390)[K
+remote: Counting objects:  71% (987/1390)[K
+remote: Counting objects:  72% (1001/1390)[K
+remote: Counting objects:  73% (1015/1390)[K
+remote: Counting objects:  74% (1029/1390)[K
+remote: Counting objects:  75% (1043/1390)[K
+remote: Counting objects:  76% (1057/1390)[K
+remote: Counting objects:  77% (1071/1390)[K
+remote: Counting objects:  78% (1085/1390)[K
+remote: Counting objects:  79% (1099/1390)[K
+remote: Counting objects:  80% (1112/1390)[K
+remote: Counting objects:  81% (1126/1390)[K
+remote: Counting objects:  82% (1140/1390)[K
+remote: Counting objects:  83% (1154/1390)[K
+remote: Counting objects:  84% (1168/1390)[K
+remote: Counting objects:  85% (1182/1390)[K
+remote: Counting objects:  86% (1196/1390)[K
+remote: Counting objects:  87% (1210/1390)[K
+remote: Counting objects:  88% (1224/1390)[K
+remote: Counting objects:  89% (1238/1390)[K
+remote: Counting objects:  90% (1251/1390)[K
+remote: Counting objects:  91% (1265/1390)[K
+remote: Counting objects:  92% (1279/1390)[K
+remote: Counting objects:  93% (1293/1390)[K
+remote: Counting objects:  94% (1307/1390)[K
+remote: Counting objects:  95% (1321/1390)[K
+remote: Counting objects:  96% (1335/1390)[K
+remote: Counting objects:  97% (1349/1390)[K
+remote: Counting objects:  98% (1363/1390)[K
+remote: Counting objects:  99% (1377/1390)[K
+remote: Counting objects: 100% (1390/1390)[K
+remote: Counting objects: 100% (1390/1390), done.[K
+
+remote: Compressing objects:   5% (1/18)[K
+remote: Compressing objects:  11% (2/18)[K
+remote: Compressing objects:  16% (3/18)[K
+remote: Compressing objects:  22% (4/18)[K
+remote: Compressing objects:  27% (5/18)[K
+remote: Compressing objects:  33% (6/18)[K
+remote: Compressing objects:  38% (7/18)[K
+remote: Compressing objects:  44% (8/18)[K
+remote: Compressing objects:  50% (9/18)[K
+remote: Compressing objects:  55% (10/18)[K
+remote: Compressing objects:  61% (11/18)[K
+remote: Compressing objects:  66% (12/18)[K
+remote: Compressing objects:  72% (13/18)[K
+remote: Compressing objects:  77% (14/18)[K
+remote: Compressing objects:  83% (15/18)[K
+remote: Compressing objects:  88% (16/18)[K
+remote: Compressing objects:  94% (17/18)[K
+remote: Compressing objects: 100% (18/18)[K
+remote: Compressing objects: 100% (18/18), done.[K
+
+Receiving objects:   0% (1/2608)   
+Receiving objects:   1% (27/2608)   
+Receiving objects:   2% (53/2608)   
+Receiving objects:   3% (79/2608)   
+Receiving objects:   4% (105/2608)   
+Receiving objects:   5% (131/2608)   
+Receiving objects:   6% (157/2608)   
+Receiving objects:   7% (183/2608)   
+Receiving objects:   8% (209/2608)   
+Receiving objects:   9% (235/2608)   
+Receiving objects:  10% (261/2608)   
+Receiving objects:  11% (287/2608)   
+Receiving objects:  12% (313/2608)   
+Receiving objects:  13% (340/2608)   
+Receiving objects:  14% (366/2608)   
+Receiving objects:  15% (392/2608)   
+Receiving objects:  16% (418/2608)   
+Receiving objects:  17% (444/2608)   
+Receiving objects:  18% (470/2608)   
+Receiving objects:  19% (496/2608)   
+Receiving objects:  20% (522/2608)   
+Receiving objects:  21% (548/2608)   
+Receiving objects:  22% (574/2608)   
+Receiving objects:  23% (600/2608)   
+Receiving objects:  24% (626/2608)   
+Receiving objects:  25% (652/2608)   
+Receiving objects:  26% (679/2608)   
+Receiving objects:  27% (705/2608)   
+Receiving objects:  28% (731/2608)   
+Receiving objects:  29% (757/2608)   
+Receiving objects:  30% (783/2608)   
+Receiving objects:  31% (809/2608)   
+Receiving objects:  32% (835/2608)   
+Receiving objects:  33% (861/2608)   
+Receiving objects:  34% (887/2608)   
+Receiving objects:  35% (913/2608)   
+Receiving objects:  36% (939/2608)   
+Receiving objects:  37% (965/2608)   
+Receiving objects:  38% (992/2608)   
+Receiving objects:  39% (1018/2608)   
+Receiving objects:  40% (1044/2608)   
+Receiving objects:  41% (1070/2608)   
+Receiving objects:  42% (1096/2608)   
+Receiving objects:  43% (1122/2608)   
+Receiving objects:  44% (1148/2608)   
+Receiving objects:  45% (1174/2608)   
+Receiving objects:  46% (1200/2608)   
+Receiving objects:  47% (1226/2608)   
+Receiving objects:  48% (1252/2608)   
+Receiving objects:  49% (1278/2608)   
+Receiving objects:  50% (1304/2608)   
+Receiving objects:  51% (1331/2608)   
+Receiving objects:  52% (1357/2608)   
+Receiving objects:  53% (1383/2608)   
+Receiving objects:  54% (1409/2608)   
+Receiving objects:  55% (1435/2608)   
+Receiving objects:  56% (1461/2608)   
+Receiving objects:  57% (1487/2608)   
+Receiving objects:  58% (1513/2608)   
+Receiving objects:  59% (1539/2608)   
+Receiving objects:  60% (1565/2608)   
+Receiving objects:  61% (1591/2608)   
+Receiving objects:  62% (1617/2608)   
+Receiving objects:  63% (1644/2608)   
+Receiving objects:  64% (1670/2608)   
+Receiving objects:  65% (1696/2608)   
+Receiving objects:  66% (1722/2608)   
+Receiving objects:  67% (1748/2608)   
+Receiving objects:  68% (1774/2608)   
+Receiving objects:  69% (1800/2608)   
+Receiving objects:  70% (1826/2608)   
+Receiving objects:  71% (1852/2608)   
+Receiving objects:  72% (1878/2608)   
+Receiving objects:  73% (1904/2608)   
+Receiving objects:  74% (1930/2608)   
+Receiving objects:  75% (1956/2608)   
+Receiving objects:  76% (1983/2608)   
+Receiving objects:  77% (2009/2608)   
+Receiving objects:  78% (2035/2608)   
+Receiving objects:  79% (2061/2608)   
+Receiving objects:  80% (2087/2608)   
+Receiving objects:  81% (2113/2608)   
+Receiving objects:  82% (2139/2608)   
+Receiving objects:  83% (2165/2608)   
+Receiving objects:  84% (2191/2608)   
+Receiving objects:  85% (2217/2608)   
+Receiving objects:  86% (2243/2608)   
+Receiving objects:  87% (2269/2608)   
+Receiving objects:  88% (2296/2608)   
+Receiving objects:  89% (2322/2608)   
+Receiving objects:  90% (2348/2608)   
+Receiving objects:  91% (2374/2608)   
+Receiving objects:  92% (2400/2608)   
+Receiving objects:  93% (2426/2608)   
+Receiving objects:  94% (2452/2608)   
+Receiving objects:  95% (2478/2608)   
+Receiving objects:  96% (2504/2608)   
+Receiving objects:  97% (2530/2608)   
+remote: Total 2608 (delta 1374), reused 1388 (delta 1372), pack-reused 1218[K
+
+Receiving objects:  98% (2556/2608)   
+Receiving objects:  99% (2582/2608)   
+Receiving objects: 100% (2608/2608)   
+Receiving objects: 100% (2608/2608), 1.68 MiB | 15.75 MiB/s, done.
+
+Resolving deltas:   0% (0/1885)   
+Resolving deltas:   1% (19/1885)   
+Resolving deltas:   2% (42/1885)   
+Resolving deltas:   3% (58/1885)   
+Resolving deltas:   4% (79/1885)   
+Resolving deltas:   5% (95/1885)   
+Resolving deltas:   6% (130/1885)   
+Resolving deltas:   7% (132/1885)   
+Resolving deltas:   8% (154/1885)   
+Resolving deltas:   9% (172/1885)   
+Resolving deltas:  10% (189/1885)   
+Resolving deltas:  11% (208/1885)   
+Resolving deltas:  12% (233/1885)   
+Resolving deltas:  13% (248/1885)   
+Resolving deltas:  14% (269/1885)   
+Resolving deltas:  15% (283/1885)   
+Resolving deltas:  16% (314/1885)   
+Resolving deltas:  17% (322/1885)   
+Resolving deltas:  18% (340/1885)   
+Resolving deltas:  19% (370/1885)   
+Resolving deltas:  20% (378/1885)   
+Resolving deltas:  21% (414/1885)   
+Resolving deltas:  22% (415/1885)   
+Resolving deltas:  23% (434/1885)   
+Resolving deltas:  24% (467/1885)   
+Resolving deltas:  25% (480/1885)   
+Resolving deltas:  26% (493/1885)   
+Resolving deltas:  27% (510/1885)   
+Resolving deltas:  28% (530/1885)   
+Resolving deltas:  29% (552/1885)   
+Resolving deltas:  30% (570/1885)   
+Resolving deltas:  31% (587/1885)   
+Resolving deltas:  32% (605/1885)   
+Resolving deltas:  33% (625/1885)   
+Resolving deltas:  34% (641/1885)   
+Resolving deltas:  35% (662/1885)   
+Resolving deltas:  36% (679/1885)   
+Resolving deltas:  37% (698/1885)   
+Resolving deltas:  38% (718/1885)   
+Resolving deltas:  39% (736/1885)   
+Resolving deltas:  40% (754/1885)   
+Resolving deltas:  41% (774/1885)   
+Resolving deltas:  42% (792/1885)   
+Resolving deltas:  43% (817/1885)   
+Resolving deltas:  44% (832/1885)   
+Resolving deltas:  45% (849/1885)   
+Resolving deltas:  46% (868/1885)   
+Resolving deltas:  47% (886/1885)   
+Resolving deltas:  48% (905/1885)   
+Resolving deltas:  49% (940/1885)   
+Resolving deltas:  50% (944/1885)   
+Resolving deltas:  51% (969/1885)   
+Resolving deltas:  52% (990/1885)   
+Resolving deltas:  53% (1001/1885)   
+Resolving deltas:  54% (1018/1885)   
+Resolving deltas:  55% (1041/1885)   
+Resolving deltas:  56% (1062/1885)   
+Resolving deltas:  57% (1076/1885)   
+Resolving deltas:  58% (1095/1885)   
+Resolving deltas:  59% (1114/1885)   
+Resolving deltas:  60% (1132/1885)   
+Resolving deltas:  61% (1150/1885)   
+Resolving deltas:  62% (1170/1885)   
+Resolving deltas:  63% (1190/1885)   
+Resolving deltas:  64% (1207/1885)   
+Resolving deltas:  65% (1226/1885)   
+Resolving deltas:  66% (1247/1885)   
+Resolving deltas:  67% (1263/1885)   
+Resolving deltas:  68% (1282/1885)   
+Resolving deltas:  69% (1301/1885)   
+Resolving deltas:  70% (1320/1885)   
+Resolving deltas:  71% (1339/1885)   
+Resolving deltas:  72% (1359/1885)   
+Resolving deltas:  73% (1377/1885)   
+Resolving deltas:  74% (1395/1885)   
+Resolving deltas:  75% (1414/1885)   
+Resolving deltas:  76% (1433/1885)   
+Resolving deltas:  77% (1452/1885)   
+Resolving deltas:  78% (1471/1885)   
+Resolving deltas:  79% (1491/1885)   
+Resolving deltas:  80% (1508/1885)   
+Resolving deltas:  81% (1529/1885)   
+Resolving deltas:  82% (1549/1885)   
+Resolving deltas:  83% (1566/1885)   
+Resolving deltas:  84% (1584/1885)   
+Resolving deltas:  85% (1603/1885)   
+Resolving deltas:  86% (1622/1885)   
+Resolving deltas:  87% (1640/1885)   
+Resolving deltas:  88% (1659/1885)   
+Resolving deltas:  89% (1679/1885)   
+Resolving deltas:  90% (1697/1885)   
+Resolving deltas:  91% (1716/1885)   
+Resolving deltas:  92% (1741/1885)   
+Resolving deltas:  93% (1754/1885)   
+Resolving deltas:  94% (1772/1885)   
+Resolving deltas:  95% (1792/1885)   
+Resolving deltas:  96% (1828/1885)   
+Resolving deltas:  97% (1841/1885)   
+Resolving deltas:  98% (1848/1885)   
+Resolving deltas:  99% (1867/1885)   
+Resolving deltas: 100% (1885/1885)   
+Resolving deltas: 100% (1885/1885), completed with 621 local objects.
+
+From https://github.com/Leeleo3x/parity-ethereum
+
+   4253271fb..dc89bf7c8  metrics            -> origin/metrics
+
+ * [new branch]          count_instructions -> origin/count_instructions
+
+   89987745f..4365eddb5  master             -> origin/master
+
+Updating 4253271fb..dc89bf7c8
+
+Fast-forward
+
+ ethcore/evm/src/interpreter/mod.rs | 20 [32m++++++++++++++++++++[m
+
+ ethcore/src/state/mod.rs           |  4 [32m++[m[31m--[m
+
+ 2 files changed, 22 insertions(+), 2 deletions(-)
+
+[0m[0m[1m[32m   Compiling[0m evm v0.1.0 (/home/leo/parity-ethereum/ethcore/evm)
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445
+[K[0m[1m[33mwarning[0m[0m[1m: unused import: `std::collections::HashSet`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:29:5[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m29[0m[0m [0m[0m[1m[38;5;12m| [0m[0muse std::collections::HashSet;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m    [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m   [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(unused_imports)] on by default[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused import: `H512`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:32:43[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m32[0m[0m [0m[0m[1m[38;5;12m| [0m[0muse ethereum_types::{U256, H256, Address, H512, U512};[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m                                          [0m[0m[1m[33m^^^^[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused import: `memory_cache::MemoryLruCache`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:51:5[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m51[0m[0m [0m[0m[1m[38;5;12m| [0m[0muse memory_cache::MemoryLruCache;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m    [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445
+[K[0m[1m[33mwarning[0m[0m[1m: unused variable: `sum`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:253:14[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m253[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                    let mut sum: u32 = 0;[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                            [0m[0m[1m[33m^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_sum`[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m    [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(unused_variables)] on by default[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445
+[K[0m[1m[33mwarning[0m[0m[1m: unused variable: `instruction`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:504:46[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m504[0m[0m [0m[0m[1m[38;5;12m| [0m[0m    fn verify_instruction(&self, ext: &vm::Ext, instruction: Instruction, info: &InstructionInfo) -> vm::Result<()> {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                                                [0m[0m[1m[33m^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_instruction`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445
+[K[0m[1m[33mwarning[0m[0m[1m: variable does not need to be mutable[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:253:10[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m253[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                    let mut sum: u32 = 0;[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                        [0m[0m[1m[38;5;12m----[0m[0m[1m[33m^^^[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                        [0m[0m[1m[38;5;12m|[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                        [0m[0m[1m[38;5;12mhelp: remove this `mut`[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m    [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(unused_mut)] on by default[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445
+[K[0m[1m[33mwarning[0m[0m[1m: variable does not need to be mutable[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:239:13[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m239[0m[0m [0m[0m[1m[38;5;12m| [0m[0m        let mut map = HashMap::new();[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m            [0m[0m[1m[38;5;12m----[0m[0m[1m[33m^^^[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m            [0m[0m[1m[38;5;12m|[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m            [0m[0m[1m[38;5;12mhelp: remove this `mut`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445
+[K[0m[1m[33mwarning[0m[0m[1m: function is never used: `as_micro`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:76:1[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m76[0m[0m [0m[0m[1m[38;5;12m| [0m[0mfn as_micro(instant: &Instant) -> u64 {[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m   [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(dead_code)] on by default[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445
+[K[0m[1m[33mwarning[0m[0m[1m: static variable `count_sload` should have an upper case name[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:72:12[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m72[0m[0m [0m[0m[1m[38;5;12m| [0m[0mstatic mut count_sload: u32 = 0;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m           [0m[0m[1m[33m^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: convert the identifier to upper case: `COUNT_SLOAD`[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m   [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(non_upper_case_globals)] on by default[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: static variable `count_sstore` should have an upper case name[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:73:12[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m73[0m[0m [0m[0m[1m[38;5;12m| [0m[0mstatic mut count_sstore: u32 = 0;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m           [0m[0m[1m[33m^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: convert the identifier to upper case: `COUNT_SSTORE`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445
+[K[0m[1m[33mwarning[0m[0m[1m: static variable `total_inst` should have an upper case name[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:74:12[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m74[0m[0m [0m[0m[1m[38;5;12m| [0m[0mstatic mut total_inst: u32 = 0;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m           [0m[0m[1m[33m^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: convert the identifier to upper case: `TOTAL_INST`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445
+[K[0m[1m[33mwarning[0m[0m[1m: static variable `sha3_cache_mut` should have an upper case name[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:238:16[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m238[0m[0m [0m[0m[1m[38;5;12m| [0m[0m    static ref sha3_cache_mut: Mutex::<HashMap<U512, H256>> = {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m               [0m[0m[1m[33m^^^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: convert the identifier to upper case: `SHA3_CACHE_MUT`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445
+[K[0m[0m[1m[32m   Compiling[0m ethcore v1.12.0 (/home/leo/parity-ethereum/ethcore)
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445
+[K[0m[1m[33mwarning[0m[0m[1m: unused import: `core::borrow::BorrowMut`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/src/engines/instant_seal.rs:21:5[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m21[0m[0m [0m[0m[1m[38;5;12m| [0m[0muse core::borrow::BorrowMut;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m    [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m   [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(unused_imports)] on by default[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445
+[K[0m[1m[33mwarning[0m[0m[1m: unused import: `itertools::assert_equal`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/src/state/mod.rs:62:5[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m62[0m[0m [0m[0m[1m[38;5;12m| [0m[0muse itertools::assert_equal;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m    [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445
+[K[0m[1m[33mwarning[0m[0m[1m: unused variable: `col`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/client/client.rs:590:20[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m590[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                DBOp::Insert { col, key, value } => {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                               [0m[0m[1m[33m^^^[0m[0m [0m[0m[1m[33mhelp: try ignoring the field: `col: _`[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m    [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(unused_variables)] on by default[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused variable: `key`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/client/client.rs:590:25[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m590[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                DBOp::Insert { col, key, value } => {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                                    [0m[0m[1m[33m^^^[0m[0m [0m[0m[1m[33mhelp: try ignoring the field: `key: _`[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused variable: `value`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/client/client.rs:590:30[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m590[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                DBOp::Insert { col, key, value } => {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                                         [0m[0m[1m[33m^^^^^[0m[0m [0m[0m[1m[33mhelp: try ignoring the field: `value: _`[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused variable: `col`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/client/client.rs:593:20[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m593[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                DBOp::Delete { col, key } => {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                               [0m[0m[1m[33m^^^[0m[0m [0m[0m[1m[33mhelp: try ignoring the field: `col: _`[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused variable: `key`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/client/client.rs:593:25[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m593[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                DBOp::Delete { col, key } => {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                                    [0m[0m[1m[33m^^^[0m[0m [0m[0m[1m[33mhelp: try ignoring the field: `key: _`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445
+[K[0m[1m[33mwarning[0m[0m[1m: unused variable: `no_intermediate_commits`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/state/mod.rs:858:7[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m858[0m[0m [0m[0m[1m[38;5;12m| [0m[0m        let no_intermediate_commits =[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m            [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_no_intermediate_commits`[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused variable: `err`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/state/mod.rs:873:18[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m873[0m[0m [0m[0m[1m[38;5;12m| [0m[0m            Some(err) => {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                 [0m[0m[1m[33m^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_err`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445
+[K[0m[1m[33mwarning[0m[0m[1m: unused variable: `min_gas_limit`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/verification/verification.rs:286:6[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m286[0m[0m [0m[0m[1m[38;5;12m| [0m[0m    let min_gas_limit = engine.params().min_gas_limit;[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m        [0m[0m[1m[33m^^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_min_gas_limit`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445
+[K[0m[1m[33mwarning[0m[0m[1m: unused variable: `gas_limit_divisor`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/verification/verification.rs:333:6[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m333[0m[0m [0m[0m[1m[38;5;12m| [0m[0m    let gas_limit_divisor = engine.params().gas_limit_bound_divisor;[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m        [0m[0m[1m[33m^^^^^^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_gas_limit_divisor`[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused variable: `parent_gas_limit`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/verification/verification.rs:351:6[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m351[0m[0m [0m[0m[1m[38;5;12m| [0m[0m    let parent_gas_limit = *parent.gas_limit();[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m        [0m[0m[1m[33m^^^^^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_parent_gas_limit`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445
+[K[0m[1m[33mwarning[E0382][0m[0m[1m: assign to part of moved value: `engine`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/engines/clique/mod.rs:204:4[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m190[0m[0m [0m[0m[1m[38;5;12m| [0m[0m        let mut engine = Clique {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m            [0m[0m[1m[38;5;12m----------[0m[0m [0m[0m[1m[38;5;12mmove occurs because `engine` has type `engines::clique::Clique`, which does not implement the `Copy` trait[0m
+
+[0m[1m[38;5;12m...[0m
+
+[0m[1m[38;5;12m201[0m[0m [0m[0m[1m[38;5;12m| [0m[0m        let res = Arc::new(engine);[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                           [0m[0m[1m[38;5;12m------[0m[0m [0m[0m[1m[38;5;12mvalue moved here[0m
+
+[0m[1m[38;5;12m...[0m
+
+[0m[1m[38;5;12m204[0m[0m [0m[0m[1m[38;5;12m| [0m[0m            engine.step_service = Some(StepService::start(Arc::downgrade(&res) as Weak<Engine<_>>));[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m            [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mvalue partially assigned here after move[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m    [0m[0m[1m[38;5;12m= [0m[0m[1mwarning[0m[0m: this error has been downgraded to a warning for backwards compatibility with previous releases[0m
+
+[0m    [0m[0m[1m[38;5;12m= [0m[0m[1mwarning[0m[0m: this represents potential undefined behavior in your code and this warning will become a hard error in the future[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445
+[K[0m[1m[33mwarning[0m[0m[1m: field is never used: `counter`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/src/engines/instant_seal.rs:45:2[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m45[0m[0m [0m[0m[1m[38;5;12m| [0m[0m    counter: u32,[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m    [0m[0m[1m[33m^^^^^^^^^^^^[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m   [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(dead_code)] on by default[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445
+[K[0m[0m[1m[32m   Compiling[0m ethcore-light v1.12.0 (/home/leo/parity-ethereum/ethcore/light)
+
+[0m[0m[1m[32m   Compiling[0m ethcore-private-tx v1.0.0 (/home/leo/parity-ethereum/ethcore/private-tx)
+
+[0m[0m[1m[32m   Compiling[0m node-filter v1.12.0 (/home/leo/parity-ethereum/ethcore/node-filter)
+
+[0m[0m[1m[32m   Compiling[0m parity-ipfs-api v1.12.0 (/home/leo/parity-ethereum/ipfs)
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 433/445
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 434/445
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 435/445
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 436/445
+[K[0m[0m[1m[32m   Compiling[0m ethcore-sync v1.12.0 (/home/leo/parity-ethereum/ethcore/sync)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 437/445
+[K[0m[0m[1m[32m   Compiling[0m parity-updater v1.12.0 (/home/leo/parity-ethereum/updater)
+
+[0m[0m[1m[32m   Compiling[0m ethcore-service v0.1.0 (/home/leo/parity-ethereum/ethcore/service)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 438/445
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 439/445
+[K[0m[0m[1m[32m   Compiling[0m parity-rpc v1.12.0 (/home/leo/parity-ethereum/rpc)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 440/445
+[K[0m[0m[1m[32m   Compiling[0m parity-rpc-client v1.4.0 (/home/leo/parity-ethereum/cli-signer/rpc-client)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 441/445
+[K[0m[0m[1m[32m   Compiling[0m cli-signer v1.4.0 (/home/leo/parity-ethereum/cli-signer)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 442/445
+[K[0m[0m[1m[32m   Compiling[0m parity-ethereum v2.6.0 (/home/leo/parity-ethereum)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 443/445
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 444/445
+[K[0m[0m[1m[32m    Finished[0m release [optimized] target(s) in 5m 51s
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+thetax: 52.53.125.153
+bash ~/scripts/bash/import.sh theta x transfer 52.  53.125.153 5052259 import
+Loading config file from /home/leo/scripts/parity/config.dev-insecure.toml
+
+[1;30m2019-11-12 22:04:03 UTC[0m Configured for [1;37methereum[0m using [1;33mInstantSeal[0m engine
+
+INSTRUCTIONS ::  8239 lines 467 store 159 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+INSTRUCTIONS ::  253 lines 2 store 3 load
+
+[1;30m2019-11-12 22:13:48 UTC[0m Import completed in 585 seconds, 10155 blocks, 17 blk/s, 1550155 transactions, 2646 tx/s, 77850 Mgas, 132 Mgas/s
+
+[1;30m2019-11-12 22:13:48 UTC[0m unable to get mut ref for engine for shutdown.
+
+"rocksdb.block.cache.miss COUNT : 9929183\nrocksdb.block.cache.hit COUNT : 25694034\nrocksdb.block.cache.add COUNT : 7415490\nrocksdb.block.cache.add.failures COUNT : 0\nrocksdb.block.cache.index.miss COUNT : 93229\nrocksdb.block.cache.index.hit COUNT : 5911544\nrocksdb.block.cache.index.add COUNT : 93229\nrocksdb.block.cache.index.bytes.insert COUNT : 14603711592\nrocksdb.block.cache.index.bytes.evict COUNT : 14597614000\nrocksdb.block.cache.filter.miss COUNT : 0\nrocksdb.block.cache.filter.hit COUNT : 0\nrocksdb.block.cache.filter.add COUNT : 0\nrocksdb.block.cache.filter.bytes.insert COUNT : 0\nrocksdb.block.cache.filter.bytes.evict COUNT : 0\nrocksdb.block.cache.data.miss COUNT : 9835954\nrocksdb.block.cache.data.hit COUNT : 19782490\nrocksdb.block.cache.data.add COUNT : 7322261\nrocksdb.block.cache.data.bytes.insert COUNT : 138845799832\nrocksdb.block.cache.bytes.read COUNT : 719197280752\nrocksdb.block.cache.bytes.write COUNT : 153449511424\nrocksdb.bloom.filter.useful COUNT : 0\nrocksdb.bloom.filter.full.positive COUNT : 0\nrocksdb.bloom.filter.full.true.positive COUNT : 0\nrocksdb.persistent.cache.hit COUNT : 0\nrocksdb.persistent.cache.miss COUNT : 0\nrocksdb.sim.block.cache.hit COUNT : 0\nrocksdb.sim.block.cache.miss COUNT : 0\nrocksdb.memtable.hit COUNT : 226813\nrocksdb.memtable.miss COUNT : 4275231\nrocksdb.l0.hit COUNT : 944246\nrocksdb.l1.hit COUNT : 0\nrocksdb.l2andup.hit COUNT : 3300454\nrocksdb.compaction.key.drop.new COUNT : 4027228\nrocksdb.compaction.key.drop.obsolete COUNT : 5435320\nrocksdb.compaction.key.drop.range_del COUNT : 0\nrocksdb.compaction.key.drop.user COUNT : 0\nrocksdb.compaction.range_del.drop.obsolete COUNT : 0\nrocksdb.compaction.optimized.del.drop.obsolete COUNT : 21\nrocksdb.compaction.cancelled COUNT : 0\nrocksdb.number.keys.written COUNT : 29378641\nrocksdb.number.keys.read COUNT : 4502044\nrocksdb.number.keys.updated COUNT : 0\nrocksdb.bytes.written COUNT : 12403550462\nrocksdb.bytes.read COUNT : 986810751\nrocksdb.number.db.seek COUNT : 0\nrocksdb.number.db.next COUNT : 0\nrocksdb.number.db.prev COUNT : 0\nrocksdb.number.db.seek.found COUNT : 0\nrocksdb.number.db.next.found COUNT : 0\nrocksdb.number.db.prev.found COUNT : 0\nrocksdb.db.iter.bytes.read COUNT : 0\nrocksdb.no.file.closes COUNT : 0\nrocksdb.no.file.opens COUNT : 2462\nrocksdb.no.file.errors COUNT : 0\nrocksdb.l0.slowdown.micros COUNT : 0\nrocksdb.memtable.compaction.micros COUNT : 0\nrocksdb.l0.num.files.stall.micros COUNT : 0\nrocksdb.stall.micros COUNT : 7555925\nrocksdb.db.mutex.wait.micros COUNT : 0\nrocksdb.rate.limit.delay.millis COUNT : 0\nrocksdb.num.iterators COUNT : 0\nrocksdb.number.multiget.get COUNT : 0\nrocksdb.number.multiget.keys.read COUNT : 0\nrocksdb.number.multiget.bytes.read COUNT : 0\nrocksdb.number.deletes.filtered COUNT : 0\nrocksdb.number.merge.failures COUNT : 0\nrocksdb.bloom.filter.prefix.checked COUNT : 0\nrocksdb.bloom.filter.prefix.useful COUNT : 0\nrocksdb.number.reseeks.iteration COUNT : 0\nrocksdb.getupdatessince.calls COUNT : 0\nrocksdb.block.cachecompressed.miss COUNT : 0\nrocksdb.block.cachecompressed.hit COUNT : 0\nrocksdb.block.cachecompressed.add COUNT : 0\nrocksdb.block.cachecompressed.add.failures COUNT : 0\nrocksdb.wal.synced COUNT : 0\nrocksdb.wal.bytes COUNT : 12403550462\nrocksdb.write.self COUNT : 851\nrocksdb.write.other COUNT : 0\nrocksdb.write.timeout COUNT : 0\nrocksdb.write.wal COUNT : 1702\nrocksdb.compact.read.bytes COUNT : 0\nrocksdb.compact.write.bytes COUNT : 1000\nrocksdb.flush.write.bytes COUNT : 0\nrocksdb.number.direct.load.table.properties COUNT : 84\nrocksdb.number.superversion_acquires COUNT : 3556\nrocksdb.number.superversion_releases COUNT : 508\nrocksdb.number.superversion_cleanups COUNT : 471\nrocksdb.number.block.compressed COUNT : 1340108\nrocksdb.number.block.decompressed COUNT : 1535687\nrocksdb.number.block.not_compressed COUNT : 0\nrocksdb.merge.operation.time.nanos COUNT : 0\nrocksdb.filter.operation.time.nanos COUNT : 0\nrocksdb.row.cache.hit COUNT : 0\nrocksdb.row.cache.miss COUNT : 0\nrocksdb.read.amp.estimate.useful.bytes COUNT : 0\nrocksdb.read.amp.total.read.bytes COUNT : 0\nrocksdb.number.rate_limiter.drains COUNT : 0\nrocksdb.number.iter.skip COUNT : 0\nrocksdb.blobdb.num.put COUNT : 0\nrocksdb.blobdb.num.write COUNT : 0\nrocksdb.blobdb.num.get COUNT : 0\nrocksdb.blobdb.num.multiget COUNT : 0\nrocksdb.blobdb.num.seek COUNT : 0\nrocksdb.blobdb.num.next COUNT : 0\nrocksdb.blobdb.num.prev COUNT : 0\nrocksdb.blobdb.num.keys.written COUNT : 0\nrocksdb.blobdb.num.keys.read COUNT : 0\nrocksdb.blobdb.bytes.written COUNT : 0\nrocksdb.blobdb.bytes.read COUNT : 0\nrocksdb.blobdb.write.inlined COUNT : 0\nrocksdb.blobdb.write.inlined.ttl COUNT : 0\nrocksdb.blobdb.write.blob COUNT : 0\nrocksdb.blobdb.write.blob.ttl COUNT : 0\nrocksdb.blobdb.blob.file.bytes.written COUNT : 0\nrocksdb.blobdb.blob.file.bytes.read COUNT : 0\nrocksdb.blobdb.blob.file.synced COUNT : 0\nrocksdb.blobdb.blob.index.expired.count COUNT : 0\nrocksdb.blobdb.blob.index.expired.size COUNT : 0\nrocksdb.blobdb.blob.index.evicted.count COUNT : 0\nrocksdb.blobdb.blob.index.evicted.size COUNT : 0\nrocksdb.blobdb.gc.num.files COUNT : 0\nrocksdb.blobdb.gc.num.new.files COUNT : 0\nrocksdb.blobdb.gc.failures COUNT : 0\nrocksdb.blobdb.gc.num.keys.overwritten COUNT : 0\nrocksdb.blobdb.gc.num.keys.expired COUNT : 0\nrocksdb.blobdb.gc.num.keys.relocated COUNT : 0\nrocksdb.blobdb.gc.bytes.overwritten COUNT : 0\nrocksdb.blobdb.gc.bytes.expired COUNT : 0\nrocksdb.blobdb.gc.bytes.relocated COUNT : 0\nrocksdb.blobdb.fifo.num.files.evicted COUNT : 0\nrocksdb.blobdb.fifo.num.keys.evicted COUNT : 0\nrocksdb.blobdb.fifo.bytes.evicted COUNT : 0\nrocksdb.txn.overhead.mutex.prepare COUNT : 0\nrocksdb.txn.overhead.mutex.old.commit.map COUNT : 0\nrocksdb.txn.overhead.duplicate.key COUNT : 0\nrocksdb.txn.overhead.mutex.snapshot COUNT : 0\nrocksdb.number.multiget.keys.found COUNT : 0\nrocksdb.db.get.micros statistics Percentiles :=> 50 : 22.834753 95 : 107.908739 99 : 329.726567 100 : 202914.000000\nrocksdb.db.write.micros statistics Percentiles :=> 50 : 67541.580042 95 : 135415.094340 99 : 281850.000000 100 : 1685716.000000\nrocksdb.compaction.times.micros statistics Percentiles :=> 50 : 347500.000000 95 : 7510625.000000 99 : 23347500.000000 100 : 30221067.000000\nrocksdb.subcompaction.setup.times.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.table.sync.micros statistics Percentiles :=> 50 : 6522.123894 95 : 185448.275862 99 : 445550.000000 100 : 615040.000000\nrocksdb.compaction.outfile.sync.micros statistics Percentiles :=> 50 : 84943.181818 95 : 372460.000000 99 : 552957.575758 100 : 1737741.000000\nrocksdb.wal.file.sync.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.manifest.file.sync.micros statistics Percentiles :=> 50 : 1586.541245 95 : 2095.555556 99 : 9768.000000 100 : 172233.000000\nrocksdb.table.open.io.micros statistics Percentiles :=> 50 : 91.583333 95 : 2108.571429 99 : 4341.875000 100 : 135849.000000\nrocksdb.db.multiget.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.read.block.compaction.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.read.block.get.micros statistics Percentiles :=> 50 : 7.767103 95 : 31.530938 99 : 120.109404 100 : 208364.000000\nrocksdb.write.raw.block.micros statistics Percentiles :=> 50 : 12.702934 95 : 22.869994 99 : 756.518788 100 : 136639.000000\nrocksdb.l0.slowdown.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.memtable.compaction.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.num.files.stall.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.hard.rate.limit.delay.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.soft.rate.limit.delay.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.numfiles.in.singlecompaction statistics Percentiles :=> 50 : 2.341270 95 : 9.700000 99 : 16.834000 100 : 22.000000\nrocksdb.db.seek.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.db.write.stall statistics Percentiles :=> 50 : 715000.000000 95 : 1584932.000000 99 : 1584932.000000 100 : 1584932.000000\nrocksdb.sst.read.micros statistics Percentiles :=> 50 : 4.867345 95 : 9.041628 99 : 27.600074 100 : 200114.000000\nrocksdb.num.subcompactions.scheduled statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.bytes.per.read statistics Percentiles :=> 50 : 147.116542 95 : 539.625891 99 : 571.934651 100 : 1141178.000000\nrocksdb.bytes.per.write statistics Percentiles :=> 50 : 16795698.924731 95 : 21501689.708141 99 : 21920000.000000 100 : 29050760.000000\nrocksdb.bytes.per.multiget statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.bytes.compressed statistics Percentiles :=> 50 : 21077.064031 95 : 73809.500968 99 : 102605.602123 100 : 836379.000000\nrocksdb.bytes.decompressed statistics Percentiles :=> 50 : 20934.499622 95 : 103340.739945 99 : 180975.937544 100 : 1066870.000000\nrocksdb.compression.times.nanos statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.decompression.times.nanos statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.read.num.merge_operands statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.key.size statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.value.size statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.write.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.get.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.multiget.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.seek.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.next.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.prev.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.blob.file.write.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.blob.file.read.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.blob.file.sync.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.gc.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.compression.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.decompression.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.db.flush.micros statistics Percentiles :=> 50 : 14804.597701 95 : 330068.181818 99 : 535356.666667 100 : 1867059.000000\n"
+
+
+bash ~/scripts/bash/import.sh theta_secured x transfer 52.53.125.153 5052259 import
+mkdir: cannot create directory ‘results’: File exists
+
+Loading config file from /home/leo/scripts/parity/config.dev-insecure.toml
+
+[1;30m2019-11-12 22:13:50 UTC[0m Configured for [1;37methereum[0m using [1;33mInstantSeal[0m engine
+
+[1;30m2019-11-12 22:13:51 UTC[0m Block import failed for #5052260 (0x8d6f…c728)
+
+Block is ancient (current best block: #5062414).
+
+[1;30m2019-11-12 22:13:51 UTC[0m 
+
+Bad block detected: Msg("Block is ancient")
+
+RLP: f90d8bf9023da0c3de6450ce3db4cca6afed23fc986b030add0ac552557f3f7b8882f31d546cbda01dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347940289b6400c70047460743b2f8ea6ae86376e958fa09c24566f55f9ac2bd30c3c240b2d2040af79b44e18e34417eec848c26584d35ea0bf41840854cd2639b99870bdfa0218b2ab48e005005c897be50748fbd490a1f5a0524550b801fcb5d3082da091b79bb722c0be4250d3e5408178349b6e1d78f3cdb9010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000870a03c289ba79c6834d1764a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff830d096c845db14d6b9fde830206008f5061726974792d457468657265756d86312e33362e30826c69a0d1fe5700000000000000000000000000d1fe5700000000000000000000000001880000000000000002f90b47f90b4480028404bbca708080b90af6608060405234801561001057600080fd5b50600580546001600160a01b03191633908117909155600154662386f26fc10000600255600091825260036020526040909120548082101561004e57fe5b60025491038101908082101561006057fe5b33600090815260036020526040902055600254811461007b57fe5b600155610a698061008d6000396000f3fe608060405234801561001057600080fd5b506004361061010b5760003560e01c806340c10f19116100a257806399d840451161007157806399d840451461030f578063a9059cbb14610335578063cc48191214610361578063dd62ed3e14610387578063f77c4791146103b55761010b565b806340c10f191461028f57806370a08231146102bb5780638ef16d02146102e157806395d89b41146103075761010b565b80633018205f116100de5780633018205f1461021d578063313ce567146102415780633cebb8231461025f5780633eaaf86b146102875761010b565b806306fdde0314610110578063095ea7b31461018d57806318160ddd146101cd57806323b872dd146101e7575b600080fd5b6101186103bd565b6040805160208082528351818301528351919283929083019185019080838360005b8381101561015257818101518382015260200161013a565b50505050905090810190601f16801561017f5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6101b9600480360360408110156101a357600080fd5b506001600160a01b0381351690602001356103e4565b604080519115158252519081900360200190f35b6101d5610489565b60408051918252519081900360200190f35b6101b9600480360360608110156101fd57600080fd5b506001600160a01b0381358116916020810135909116906040013561048f565b6102256104ca565b604080516001600160a01b039092168252519081900360200190f35b6102496104d9565b6040805160ff9092168252519081900360200190f35b6102856004803603602081101561027557600080fd5b50356001600160a01b03166104de565b005b6101d5610517565b6101b9600480360360408110156102a557600080fd5b506001600160a01b03813516906020013561051d565b6101d5600480360360208110156102d157600080fd5b50356001600160a01b03166105f8565b610285600480360360208110156102f757600080fd5b50356001600160a01b0316610613565b61011861064e565b6101b96004803603602081101561032557600080fd5b50356001600160a01b031661066f565b6101b96004803603604081101561034b57600080fd5b506001600160a01b03813516906020013561068d565b6102856004803603602081101561037757600080fd5b50356001600160a01b03166107b7565b6101d56004803603604081101561039d57600080fd5b506001600160a01b03813581169160200135166107ef565b61022561081a565b6040518060400160405280600b81526020016a2a3432ba30902a37b5b2b760a91b81525081565b6000811580159061041757503360009081526004602090815260408083206001600160a01b038716845290915290205415155b1561042157600080fd5b3360008181526004602090815260408083206001600160a01b03881680855290835292819020869055805186815290519293927f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925929181900390910190a35060015b92915050565b60025490565b6000838361049c8261066f565b80156104ac57506104ac8161066f565b6104b557600080fd5b6104c0868686610829565b9695505050505050565b6005546001600160a01b031690565b601281565b6005546001600160a01b031633146104f557600080fd5b600580546001600160a01b0319166001600160a01b0392909216919091179055565b60025481565b6005546000906001600160a01b0316331461053757600080fd5b60015460025461054d908463ffffffff6109e816565b6002556001600160a01b0384166000908152600360205260409020548082101561057357fe5b8082039150610588818563ffffffff6109e816565b9050908101908082101561059857fe5b6001600160a01b03851660008181526003602090815260408083209490945583518781529351929391927fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef9281900390910190a360019081559392505050565b6001600160a01b031660009081526003602052604090205490565b6005546001600160a01b0316331461062a57600080fd5b6001600160a01b03166000908152600660205260409020805460ff19166001179055565b60405180604001604052806005815260200164544845544160d81b81525081565b6001600160a01b031660009081526006602052604090205460ff1690565b6001543360009081526003602052604081205490919083118015906106b25750600083115b6106bb57600080fd5b33600090815260036020526040902054808210156106d557fe5b80820391506106ea818563ffffffff6109fe16565b905090810190808210156106fa57fe5b33600090815260036020526040808220929092556001600160a01b038616815220548082101561072657fe5b808203915061073b818563ffffffff6109e816565b9050908101908082101561074b57fe5b6001600160a01b0385166000818152600360209081526040918290209390935580518681529051919233927fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef9281900390910190a380600254146107ab57fe5b60019081559050610483565b6005546001600160a01b031633146107ce57600080fd5b6001600160a01b03166000908152600660205260409020805460ff19169055565b6001600160a01b03918216600090815260046020908152604080832093909416825291909152205490565b6005546001600160a01b031681565b6001546001600160a01b038416600090815260036020526040812054909190831180159061087a57506001600160a01b03851660009081526004602090815260408083203384529091529020548311155b80156108865750600083115b61088f57600080fd5b6001600160a01b038516600090815260036020526040902054808210156108b257fe5b80820391506108c7818563ffffffff6109fe16565b905090810190808210156108d757fe5b6001600160a01b0380871660009081526003602052604080822093909355908616815220548082101561090657fe5b808203915061091b818563ffffffff6109e816565b9050908101908082101561092b57fe5b6001600160a01b03808616600090815260036020908152604080832094909455918816815260048252828120338252909152205461096f908463ffffffff6109fe16565b6001600160a01b03808716600081815260046020908152604080832033845282529182902094909455805187815290519288169391927fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef929181900390910190a380600254146109db57fe5b6001908155949350505050565b6000828201838110156109f757fe5b9392505050565b600082821115610a0a57fe5b5090039056fea265627a7a7230582074f07a595e2421b016c5c7cd737d0a7567c78f02d81c7b9798deedb0b59d313664736f6c637826302e352e392d646576656c6f702e323031392e382e312b636f6d6d69742e6336386263333465005626a0acc80da68f6098005cb67caf3c21f8051ad6394b9258970cdfd354f750decd979fc6eb1082e491250fd6b7c91554d69137e66c1775ac27deb23f131bb417f235c0
+
+Header: Header { parent_hash: 0xc3de6450ce3db4cca6afed23fc986b030add0ac552557f3f7b8882f31d546cbd, timestamp: 1571900779, number: 5052260, author: 0x0289b6400c70047460743b2f8ea6ae86376e958f, transactions_root: 0xbf41840854cd2639b99870bdfa0218b2ab48e005005c897be50748fbd490a1f5, uncles_hash: 0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347, extra_data: [222, 131, 2, 6, 0, 143, 80, 97, 114, 105, 116, 121, 45, 69, 116, 104, 101, 114, 101, 117, 109, 134, 49, 46, 51, 54, 46, 48, 130, 108, 105], state_root: 0x9c24566f55f9ac2bd30c3c240b2d2040af79b44e18e34417eec848c26584d35e, receipts_root: 0x524550b801fcb5d3082da091b79bb722c0be4250d3e5408178349b6e1d78f3cd, log_bloom: 0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, gas_used: 854380, gas_limit: 115792089237316195423570985008687907853269984665640564039457584007913129639935, difficulty: 2818883836344774, seal: [[160, 209, 254, 87, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 209, 254, 87, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], [136, 0, 0, 0, 0, 0, 0, 0, 2]], hash: Some(0x8d6fa75f743bd3052bff6d768f43dc1d1c4a8a4d1ea450827736f952b6f3c728) }
+
+Uncles: 
+
+Transactions:[Tx 0] UnverifiedTransaction { unsigned: Transaction { nonce: 0, gas_price: 2, gas: 79415920, action: Create, value: 0, data: [96, 128, 96, 64, 82, 52, 128, 21, 97, 0, 16, 87, 96, 0, 128, 253, 91, 80, 96, 5, 128, 84, 96, 1, 96, 1, 96, 160, 27, 3, 25, 22, 51, 144, 129, 23, 144, 145, 85, 96, 1, 84, 102, 35, 134, 242, 111, 193, 0, 0, 96, 2, 85, 96, 0, 145, 130, 82, 96, 3, 96, 32, 82, 96, 64, 144, 145, 32, 84, 128, 130, 16, 21, 97, 0, 78, 87, 254, 91, 96, 2, 84, 145, 3, 129, 1, 144, 128, 130, 16, 21, 97, 0, 96, 87, 254, 91, 51, 96, 0, 144, 129, 82, 96, 3, 96, 32, 82, 96, 64, 144, 32, 85, 96, 2, 84, 129, 20, 97, 0, 123, 87, 254, 91, 96, 1, 85, 97, 10, 105, 128, 97, 0, 141, 96, 0, 57, 96, 0, 243, 254, 96, 128, 96, 64, 82, 52, 128, 21, 97, 0, 16, 87, 96, 0, 128, 253, 91, 80, 96, 4, 54, 16, 97, 1, 11, 87, 96, 0, 53, 96, 224, 28, 128, 99, 64, 193, 15, 25, 17, 97, 0, 162, 87, 128, 99, 153, 216, 64, 69, 17, 97, 0, 113, 87, 128, 99, 153, 216, 64, 69, 20, 97, 3, 15, 87, 128, 99, 169, 5, 156, 187, 20, 97, 3, 53, 87, 128, 99, 204, 72, 25, 18, 20, 97, 3, 97, 87, 128, 99, 221, 98, 237, 62, 20, 97, 3, 135, 87, 128, 99, 247, 124, 71, 145, 20, 97, 3, 181, 87, 97, 1, 11, 86, 91, 128, 99, 64, 193, 15, 25, 20, 97, 2, 143, 87, 128, 99, 112, 160, 130, 49, 20, 97, 2, 187, 87, 128, 99, 142, 241, 109, 2, 20, 97, 2, 225, 87, 128, 99, 149, 216, 155, 65, 20, 97, 3, 7, 87, 97, 1, 11, 86, 91, 128, 99, 48, 24, 32, 95, 17, 97, 0, 222, 87, 128, 99, 48, 24, 32, 95, 20, 97, 2, 29, 87, 128, 99, 49, 60, 229, 103, 20, 97, 2, 65, 87, 128, 99, 60, 235, 184, 35, 20, 97, 2, 95, 87, 128, 99, 62, 170, 248, 107, 20, 97, 2, 135, 87, 97, 1, 11, 86, 91, 128, 99, 6, 253, 222, 3, 20, 97, 1, 16, 87, 128, 99, 9, 94, 167, 179, 20, 97, 1, 141, 87, 128, 99, 24, 22, 13, 221, 20, 97, 1, 205, 87, 128, 99, 35, 184, 114, 221, 20, 97, 1, 231, 87, 91, 96, 0, 128, 253, 91, 97, 1, 24, 97, 3, 189, 86, 91, 96, 64, 128, 81, 96, 32, 128, 130, 82, 131, 81, 129, 131, 1, 82, 131, 81, 145, 146, 131, 146, 144, 131, 1, 145, 133, 1, 144, 128, 131, 131, 96, 0, 91, 131, 129, 16, 21, 97, 1, 82, 87, 129, 129, 1, 81, 131, 130, 1, 82, 96, 32, 1, 97, 1, 58, 86, 91, 80, 80, 80, 80, 144, 80, 144, 129, 1, 144, 96, 31, 22, 128, 21, 97, 1, 127, 87, 128, 130, 3, 128, 81, 96, 1, 131, 96, 32, 3, 97, 1, 0, 10, 3, 25, 22, 129, 82, 96, 32, 1, 145, 80, 91, 80, 146, 80, 80, 80, 96, 64, 81, 128, 145, 3, 144, 243, 91, 97, 1, 185, 96, 4, 128, 54, 3, 96, 64, 129, 16, 21, 97, 1, 163, 87, 96, 0, 128, 253, 91, 80, 96, 1, 96, 1, 96, 160, 27, 3, 129, 53, 22, 144, 96, 32, 1, 53, 97, 3, 228, 86, 91, 96, 64, 128, 81, 145, 21, 21, 130, 82, 81, 144, 129, 144, 3, 96, 32, 1, 144, 243, 91, 97, 1, 213, 97, 4, 137, 86, 91, 96, 64, 128, 81, 145, 130, 82, 81, 144, 129, 144, 3, 96, 32, 1, 144, 243, 91, 97, 1, 185, 96, 4, 128, 54, 3, 96, 96, 129, 16, 21, 97, 1, 253, 87, 96, 0, 128, 253, 91, 80, 96, 1, 96, 1, 96, 160, 27, 3, 129, 53, 129, 22, 145, 96, 32, 129, 1, 53, 144, 145, 22, 144, 96, 64, 1, 53, 97, 4, 143, 86, 91, 97, 2, 37, 97, 4, 202, 86, 91, 96, 64, 128, 81, 96, 1, 96, 1, 96, 160, 27, 3, 144, 146, 22, 130, 82, 81, 144, 129, 144, 3, 96, 32, 1, 144, 243, 91, 97, 2, 73, 97, 4, 217, 86, 91, 96, 64, 128, 81, 96, 255, 144, 146, 22, 130, 82, 81, 144, 129, 144, 3, 96, 32, 1, 144, 243, 91, 97, 2, 133, 96, 4, 128, 54, 3, 96, 32, 129, 16, 21, 97, 2, 117, 87, 96, 0, 128, 253, 91, 80, 53, 96, 1, 96, 1, 96, 160, 27, 3, 22, 97, 4, 222, 86, 91, 0, 91, 97, 1, 213, 97, 5, 23, 86, 91, 97, 1, 185, 96, 4, 128, 54, 3, 96, 64, 129, 16, 21, 97, 2, 165, 87, 96, 0, 128, 253, 91, 80, 96, 1, 96, 1, 96, 160, 27, 3, 129, 53, 22, 144, 96, 32, 1, 53, 97, 5, 29, 86, 91, 97, 1, 213, 96, 4, 128, 54, 3, 96, 32, 129, 16, 21, 97, 2, 209, 87, 96, 0, 128, 253, 91, 80, 53, 96, 1, 96, 1, 96, 160, 27, 3, 22, 97, 5, 248, 86, 91, 97, 2, 133, 96, 4, 128, 54, 3, 96, 32, 129, 16, 21, 97, 2, 247, 87, 96, 0, 128, 253, 91, 80, 53, 96, 1, 96, 1, 96, 160, 27, 3, 22, 97, 6, 19, 86, 91, 97, 1, 24, 97, 6, 78, 86, 91, 97, 1, 185, 96, 4, 128, 54, 3, 96, 32, 129, 16, 21, 97, 3, 37, 87, 96, 0, 128, 253, 91, 80, 53, 96, 1, 96, 1, 96, 160, 27, 3, 22, 97, 6, 111, 86, 91, 97, 1, 185, 96, 4, 128, 54, 3, 96, 64, 129, 16, 21, 97, 3, 75, 87, 96, 0, 128, 253, 91, 80, 96, 1, 96, 1, 96, 160, 27, 3, 129, 53, 22, 144, 96, 32, 1, 53, 97, 6, 141, 86, 91, 97, 2, 133, 96, 4, 128, 54, 3, 96, 32, 129, 16, 21, 97, 3, 119, 87, 96, 0, 128, 253, 91, 80, 53, 96, 1, 96, 1, 96, 160, 27, 3, 22, 97, 7, 183, 86, 91, 97, 1, 213, 96, 4, 128, 54, 3, 96, 64, 129, 16, 21, 97, 3, 157, 87, 96, 0, 128, 253, 91, 80, 96, 1, 96, 1, 96, 160, 27, 3, 129, 53, 129, 22, 145, 96, 32, 1, 53, 22, 97, 7, 239, 86, 91, 97, 2, 37, 97, 8, 26, 86, 91, 96, 64, 81, 128, 96, 64, 1, 96, 64, 82, 128, 96, 11, 129, 82, 96, 32, 1, 106, 42, 52, 50, 186, 48, 144, 42, 55, 181, 178, 183, 96, 169, 27, 129, 82, 80, 129, 86, 91, 96, 0, 129, 21, 128, 21, 144, 97, 4, 23, 87, 80, 51, 96, 0, 144, 129, 82, 96, 4, 96, 32, 144, 129, 82, 96, 64, 128, 131, 32, 96, 1, 96, 1, 96, 160, 27, 3, 135, 22, 132, 82, 144, 145, 82, 144, 32, 84, 21, 21, 91, 21, 97, 4, 33, 87, 96, 0, 128, 253, 91, 51, 96, 0, 129, 129, 82, 96, 4, 96, 32, 144, 129, 82, 96, 64, 128, 131, 32, 96, 1, 96, 1, 96, 160, 27, 3, 136, 22, 128, 133, 82, 144, 131, 82, 146, 129, 144, 32, 134, 144, 85, 128, 81, 134, 129, 82, 144, 81, 146, 147, 146, 127, 140, 91, 225, 229, 235, 236, 125, 91, 209, 79, 113, 66, 125, 30, 132, 243, 221, 3, 20, 192, 247, 178, 41, 30, 91, 32, 10, 200, 199, 195, 185, 37, 146, 145, 129, 144, 3, 144, 145, 1, 144, 163, 80, 96, 1, 91, 146, 145, 80, 80, 86, 91, 96, 2, 84, 144, 86, 91, 96, 0, 131, 131, 97, 4, 156, 130, 97, 6, 111, 86, 91, 128, 21, 97, 4, 172, 87, 80, 97, 4, 172, 129, 97, 6, 111, 86, 91, 97, 4, 181, 87, 96, 0, 128, 253, 91, 97, 4, 192, 134, 134, 134, 97, 8, 41, 86, 91, 150, 149, 80, 80, 80, 80, 80, 80, 86, 91, 96, 5, 84, 96, 1, 96, 1, 96, 160, 27, 3, 22, 144, 86, 91, 96, 18, 129, 86, 91, 96, 5, 84, 96, 1, 96, 1, 96, 160, 27, 3, 22, 51, 20, 97, 4, 245, 87, 96, 0, 128, 253, 91, 96, 5, 128, 84, 96, 1, 96, 1, 96, 160, 27, 3, 25, 22, 96, 1, 96, 1, 96, 160, 27, 3, 146, 144, 146, 22, 145, 144, 145, 23, 144, 85, 86, 91, 96, 2, 84, 129, 86, 91, 96, 5, 84, 96, 0, 144, 96, 1, 96, 1, 96, 160, 27, 3, 22, 51, 20, 97, 5, 55, 87, 96, 0, 128, 253, 91, 96, 1, 84, 96, 2, 84, 97, 5, 77, 144, 132, 99, 255, 255, 255, 255, 97, 9, 232, 22, 86, 91, 96, 2, 85, 96, 1, 96, 1, 96, 160, 27, 3, 132, 22, 96, 0, 144, 129, 82, 96, 3, 96, 32, 82, 96, 64, 144, 32, 84, 128, 130, 16, 21, 97, 5, 115, 87, 254, 91, 128, 130, 3, 145, 80, 97, 5, 136, 129, 133, 99, 255, 255, 255, 255, 97, 9, 232, 22, 86, 91, 144, 80, 144, 129, 1, 144, 128, 130, 16, 21, 97, 5, 152, 87, 254, 91, 96, 1, 96, 1, 96, 160, 27, 3, 133, 22, 96, 0, 129, 129, 82, 96, 3, 96, 32, 144, 129, 82, 96, 64, 128, 131, 32, 148, 144, 148, 85, 131, 81, 135, 129, 82, 147, 81, 146, 147, 145, 146, 127, 221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43, 167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239, 146, 129, 144, 3, 144, 145, 1, 144, 163, 96, 1, 144, 129, 85, 147, 146, 80, 80, 80, 86, 91, 96, 1, 96, 1, 96, 160, 27, 3, 22, 96, 0, 144, 129, 82, 96, 3, 96, 32, 82, 96, 64, 144, 32, 84, 144, 86, 91, 96, 5, 84, 96, 1, 96, 1, 96, 160, 27, 3, 22, 51, 20, 97, 6, 42, 87, 96, 0, 128, 253, 91, 96, 1, 96, 1, 96, 160, 27, 3, 22, 96, 0, 144, 129, 82, 96, 6, 96, 32, 82, 96, 64, 144, 32, 128, 84, 96, 255, 25, 22, 96, 1, 23, 144, 85, 86, 91, 96, 64, 81, 128, 96, 64, 1, 96, 64, 82, 128, 96, 5, 129, 82, 96, 32, 1, 100, 84, 72, 69, 84, 65, 96, 216, 27, 129, 82, 80, 129, 86, 91, 96, 1, 96, 1, 96, 160, 27, 3, 22, 96, 0, 144, 129, 82, 96, 6, 96, 32, 82, 96, 64, 144, 32, 84, 96, 255, 22, 144, 86, 91, 96, 1, 84, 51, 96, 0, 144, 129, 82, 96, 3, 96, 32, 82, 96, 64, 129, 32, 84, 144, 145, 144, 131, 17, 128, 21, 144, 97, 6, 178, 87, 80, 96, 0, 131, 17, 91, 97, 6, 187, 87, 96, 0, 128, 253, 91, 51, 96, 0, 144, 129, 82, 96, 3, 96, 32, 82, 96, 64, 144, 32, 84, 128, 130, 16, 21, 97, 6, 213, 87, 254, 91, 128, 130, 3, 145, 80, 97, 6, 234, 129, 133, 99, 255, 255, 255, 255, 97, 9, 254, 22, 86, 91, 144, 80, 144, 129, 1, 144, 128, 130, 16, 21, 97, 6, 250, 87, 254, 91, 51, 96, 0, 144, 129, 82, 96, 3, 96, 32, 82, 96, 64, 128, 130, 32, 146, 144, 146, 85, 96, 1, 96, 1, 96, 160, 27, 3, 134, 22, 129, 82, 32, 84, 128, 130, 16, 21, 97, 7, 38, 87, 254, 91, 128, 130, 3, 145, 80, 97, 7, 59, 129, 133, 99, 255, 255, 255, 255, 97, 9, 232, 22, 86, 91, 144, 80, 144, 129, 1, 144, 128, 130, 16, 21, 97, 7, 75, 87, 254, 91, 96, 1, 96, 1, 96, 160, 27, 3, 133, 22, 96, 0, 129, 129, 82, 96, 3, 96, 32, 144, 129, 82, 96, 64, 145, 130, 144, 32, 147, 144, 147, 85, 128, 81, 134, 129, 82, 144, 81, 145, 146, 51, 146, 127, 221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43, 167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239, 146, 129, 144, 3, 144, 145, 1, 144, 163, 128, 96, 2, 84, 20, 97, 7, 171, 87, 254, 91, 96, 1, 144, 129, 85, 144, 80, 97, 4, 131, 86, 91, 96, 5, 84, 96, 1, 96, 1, 96, 160, 27, 3, 22, 51, 20, 97, 7, 206, 87, 96, 0, 128, 253, 91, 96, 1, 96, 1, 96, 160, 27, 3, 22, 96, 0, 144, 129, 82, 96, 6, 96, 32, 82, 96, 64, 144, 32, 128, 84, 96, 255, 25, 22, 144, 85, 86, 91, 96, 1, 96, 1, 96, 160, 27, 3, 145, 130, 22, 96, 0, 144, 129, 82, 96, 4, 96, 32, 144, 129, 82, 96, 64, 128, 131, 32, 147, 144, 148, 22, 130, 82, 145, 144, 145, 82, 32, 84, 144, 86, 91, 96, 5, 84, 96, 1, 96, 1, 96, 160, 27, 3, 22, 129, 86, 91, 96, 1, 84, 96, 1, 96, 1, 96, 160, 27, 3, 132, 22, 96, 0, 144, 129, 82, 96, 3, 96, 32, 82, 96, 64, 129, 32, 84, 144, 145, 144, 131, 17, 128, 21, 144, 97, 8, 122, 87, 80, 96, 1, 96, 1, 96, 160, 27, 3, 133, 22, 96, 0, 144, 129, 82, 96, 4, 96, 32, 144, 129, 82, 96, 64, 128, 131, 32, 51, 132, 82, 144, 145, 82, 144, 32, 84, 131, 17, 21, 91, 128, 21, 97, 8, 134, 87, 80, 96, 0, 131, 17, 91, 97, 8, 143, 87, 96, 0, 128, 253, 91, 96, 1, 96, 1, 96, 160, 27, 3, 133, 22, 96, 0, 144, 129, 82, 96, 3, 96, 32, 82, 96, 64, 144, 32, 84, 128, 130, 16, 21, 97, 8, 178, 87, 254, 91, 128, 130, 3, 145, 80, 97, 8, 199, 129, 133, 99, 255, 255, 255, 255, 97, 9, 254, 22, 86, 91, 144, 80, 144, 129, 1, 144, 128, 130, 16, 21, 97, 8, 215, 87, 254, 91, 96, 1, 96, 1, 96, 160, 27, 3, 128, 135, 22, 96, 0, 144, 129, 82, 96, 3, 96, 32, 82, 96, 64, 128, 130, 32, 147, 144, 147, 85, 144, 134, 22, 129, 82, 32, 84, 128, 130, 16, 21, 97, 9, 6, 87, 254, 91, 128, 130, 3, 145, 80, 97, 9, 27, 129, 133, 99, 255, 255, 255, 255, 97, 9, 232, 22, 86, 91, 144, 80, 144, 129, 1, 144, 128, 130, 16, 21, 97, 9, 43, 87, 254, 91, 96, 1, 96, 1, 96, 160, 27, 3, 128, 134, 22, 96, 0, 144, 129, 82, 96, 3, 96, 32, 144, 129, 82, 96, 64, 128, 131, 32, 148, 144, 148, 85, 145, 136, 22, 129, 82, 96, 4, 130, 82, 130, 129, 32, 51, 130, 82, 144, 145, 82, 32, 84, 97, 9, 111, 144, 132, 99, 255, 255, 255, 255, 97, 9, 254, 22, 86, 91, 96, 1, 96, 1, 96, 160, 27, 3, 128, 135, 22, 96, 0, 129, 129, 82, 96, 4, 96, 32, 144, 129, 82, 96, 64, 128, 131, 32, 51, 132, 82, 130, 82, 145, 130, 144, 32, 148, 144, 148, 85, 128, 81, 135, 129, 82, 144, 81, 146, 136, 22, 147, 145, 146, 127, 221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43, 167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239, 146, 145, 129, 144, 3, 144, 145, 1, 144, 163, 128, 96, 2, 84, 20, 97, 9, 219, 87, 254, 91, 96, 1, 144, 129, 85, 148, 147, 80, 80, 80, 80, 86, 91, 96, 0, 130, 130, 1, 131, 129, 16, 21, 97, 9, 247, 87, 254, 91, 147, 146, 80, 80, 80, 86, 91, 96, 0, 130, 130, 17, 21, 97, 10, 10, 87, 254, 91, 80, 144, 3, 144, 86, 254, 162, 101, 98, 122, 122, 114, 48, 88, 32, 116, 240, 122, 89, 94, 36, 33, 176, 22, 197, 199, 205, 115, 125, 10, 117, 103, 199, 143, 2, 216, 28, 123, 151, 152, 222, 237, 176, 181, 157, 49, 54, 100, 115, 111, 108, 99, 120, 38, 48, 46, 53, 46, 57, 45, 100, 101, 118, 101, 108, 111, 112, 46, 50, 48, 49, 57, 46, 56, 46, 49, 43, 99, 111, 109, 109, 105, 116, 46, 99, 54, 56, 98, 99, 51, 52, 101, 0, 86] }, v: 38, r: 78151273582430544765299283851693362262837661704703828910750810351192447569303, s: 351458074361387469495066385455503179506140414043629661346252939216526242357, hash: 0x59da176bb2892c32b81279deae403bf32436bb673f1de22320fe1b9030c0cdce }
+
+
+
+[1;30m2019-11-12 22:13:51 UTC[0m unable to get mut ref for engine for shutdown.
+
+"rocksdb.block.cache.miss COUNT : 12273\nrocksdb.block.cache.hit COUNT : 747316\nrocksdb.block.cache.add COUNT : 6865\nrocksdb.block.cache.add.failures COUNT : 0\nrocksdb.block.cache.index.miss COUNT : 82\nrocksdb.block.cache.index.hit COUNT : 213699\nrocksdb.block.cache.index.add COUNT : 82\nrocksdb.block.cache.index.bytes.insert COUNT : 4786656\nrocksdb.block.cache.index.bytes.evict COUNT : 301272\nrocksdb.block.cache.filter.miss COUNT : 0\nrocksdb.block.cache.filter.hit COUNT : 0\nrocksdb.block.cache.filter.add COUNT : 0\nrocksdb.block.cache.filter.bytes.insert COUNT : 0\nrocksdb.block.cache.filter.bytes.evict COUNT : 0\nrocksdb.block.cache.data.miss COUNT : 12191\nrocksdb.block.cache.data.hit COUNT : 533617\nrocksdb.block.cache.data.add COUNT : 6783\nrocksdb.block.cache.data.bytes.insert COUNT : 794124008\nrocksdb.block.cache.bytes.read COUNT : 8355995664\nrocksdb.block.cache.bytes.write COUNT : 798910664\nrocksdb.bloom.filter.useful COUNT : 0\nrocksdb.bloom.filter.full.positive COUNT : 0\nrocksdb.bloom.filter.full.true.positive COUNT : 0\nrocksdb.persistent.cache.hit COUNT : 0\nrocksdb.persistent.cache.miss COUNT : 0\nrocksdb.sim.block.cache.hit COUNT : 0\nrocksdb.sim.block.cache.miss COUNT : 0\nrocksdb.memtable.hit COUNT : 0\nrocksdb.memtable.miss COUNT : 131588\nrocksdb.l0.hit COUNT : 561\nrocksdb.l1.hit COUNT : 0\nrocksdb.l2andup.hit COUNT : 130883\nrocksdb.compaction.key.drop.new COUNT : 35949\nrocksdb.compaction.key.drop.obsolete COUNT : 0\nrocksdb.compaction.key.drop.range_del COUNT : 0\nrocksdb.compaction.key.drop.user COUNT : 0\nrocksdb.compaction.range_del.drop.obsolete COUNT : 0\nrocksdb.compaction.optimized.del.drop.obsolete COUNT : 0\nrocksdb.compaction.cancelled COUNT : 0\nrocksdb.number.keys.written COUNT : 2\nrocksdb.number.keys.read COUNT : 131588\nrocksdb.number.keys.updated COUNT : 0\nrocksdb.bytes.written COUNT : 100\nrocksdb.bytes.read COUNT : 60997903\nrocksdb.number.db.seek COUNT : 0\nrocksdb.number.db.next COUNT : 0\nrocksdb.number.db.prev COUNT : 0\nrocksdb.number.db.seek.found COUNT : 0\nrocksdb.number.db.next.found COUNT : 0\nrocksdb.number.db.prev.found COUNT : 0\nrocksdb.db.iter.bytes.read COUNT : 0\nrocksdb.no.file.closes COUNT : 0\nrocksdb.no.file.opens COUNT : 74\nrocksdb.no.file.errors COUNT : 0\nrocksdb.l0.slowdown.micros COUNT : 0\nrocksdb.memtable.compaction.micros COUNT : 0\nrocksdb.l0.num.files.stall.micros COUNT : 0\nrocksdb.stall.micros COUNT : 0\nrocksdb.db.mutex.wait.micros COUNT : 0\nrocksdb.rate.limit.delay.millis COUNT : 0\nrocksdb.num.iterators COUNT : 0\nrocksdb.number.multiget.get COUNT : 0\nrocksdb.number.multiget.keys.read COUNT : 0\nrocksdb.number.multiget.bytes.read COUNT : 0\nrocksdb.number.deletes.filtered COUNT : 0\nrocksdb.number.merge.failures COUNT : 0\nrocksdb.bloom.filter.prefix.checked COUNT : 0\nrocksdb.bloom.filter.prefix.useful COUNT : 0\nrocksdb.number.reseeks.iteration COUNT : 0\nrocksdb.getupdatessince.calls COUNT : 0\nrocksdb.block.cachecompressed.miss COUNT : 0\nrocksdb.block.cachecompressed.hit COUNT : 0\nrocksdb.block.cachecompressed.add COUNT : 0\nrocksdb.block.cachecompressed.add.failures COUNT : 0\nrocksdb.wal.synced COUNT : 0\nrocksdb.wal.bytes COUNT : 100\nrocksdb.write.self COUNT : 4\nrocksdb.write.other COUNT : 0\nrocksdb.write.timeout COUNT : 0\nrocksdb.write.wal COUNT : 8\nrocksdb.compact.read.bytes COUNT : 0\nrocksdb.compact.write.bytes COUNT : 19410161\nrocksdb.flush.write.bytes COUNT : 0\nrocksdb.number.direct.load.table.properties COUNT : 88\nrocksdb.number.superversion_acquires COUNT : 7\nrocksdb.number.superversion_releases COUNT : 1\nrocksdb.number.superversion_cleanups COUNT : 1\nrocksdb.number.block.compressed COUNT : 1323\nrocksdb.number.block.decompressed COUNT : 6933\nrocksdb.number.block.not_compressed COUNT : 0\nrocksdb.merge.operation.time.nanos COUNT : 0\nrocksdb.filter.operation.time.nanos COUNT : 0\nrocksdb.row.cache.hit COUNT : 0\nrocksdb.row.cache.miss COUNT : 0\nrocksdb.read.amp.estimate.useful.bytes COUNT : 0\nrocksdb.read.amp.total.read.bytes COUNT : 0\nrocksdb.number.rate_limiter.drains COUNT : 0\nrocksdb.number.iter.skip COUNT : 0\nrocksdb.blobdb.num.put COUNT : 0\nrocksdb.blobdb.num.write COUNT : 0\nrocksdb.blobdb.num.get COUNT : 0\nrocksdb.blobdb.num.multiget COUNT : 0\nrocksdb.blobdb.num.seek COUNT : 0\nrocksdb.blobdb.num.next COUNT : 0\nrocksdb.blobdb.num.prev COUNT : 0\nrocksdb.blobdb.num.keys.written COUNT : 0\nrocksdb.blobdb.num.keys.read COUNT : 0\nrocksdb.blobdb.bytes.written COUNT : 0\nrocksdb.blobdb.bytes.read COUNT : 0\nrocksdb.blobdb.write.inlined COUNT : 0\nrocksdb.blobdb.write.inlined.ttl COUNT : 0\nrocksdb.blobdb.write.blob COUNT : 0\nrocksdb.blobdb.write.blob.ttl COUNT : 0\nrocksdb.blobdb.blob.file.bytes.written COUNT : 0\nrocksdb.blobdb.blob.file.bytes.read COUNT : 0\nrocksdb.blobdb.blob.file.synced COUNT : 0\nrocksdb.blobdb.blob.index.expired.count COUNT : 0\nrocksdb.blobdb.blob.index.expired.size COUNT : 0\nrocksdb.blobdb.blob.index.evicted.count COUNT : 0\nrocksdb.blobdb.blob.index.evicted.size COUNT : 0\nrocksdb.blobdb.gc.num.files COUNT : 0\nrocksdb.blobdb.gc.num.new.files COUNT : 0\nrocksdb.blobdb.gc.failures COUNT : 0\nrocksdb.blobdb.gc.num.keys.overwritten COUNT : 0\nrocksdb.blobdb.gc.num.keys.expired COUNT : 0\nrocksdb.blobdb.gc.num.keys.relocated COUNT : 0\nrocksdb.blobdb.gc.bytes.overwritten COUNT : 0\nrocksdb.blobdb.gc.bytes.expired COUNT : 0\nrocksdb.blobdb.gc.bytes.relocated COUNT : 0\nrocksdb.blobdb.fifo.num.files.evicted COUNT : 0\nrocksdb.blobdb.fifo.num.keys.evicted COUNT : 0\nrocksdb.blobdb.fifo.bytes.evicted COUNT : 0\nrocksdb.txn.overhead.mutex.prepare COUNT : 0\nrocksdb.txn.overhead.mutex.old.commit.map COUNT : 0\nrocksdb.txn.overhead.duplicate.key COUNT : 0\nrocksdb.txn.overhead.mutex.snapshot COUNT : 0\nrocksdb.number.multiget.keys.found COUNT : 0\nrocksdb.db.get.micros statistics Percentiles :=> 50 : 4.584108 95 : 9.735715 99 : 14.754247 100 : 4800.000000\nrocksdb.db.write.micros statistics Percentiles :=> 50 : 15.000000 95 : 25.000000 99 : 25.000000 100 : 25.000000\nrocksdb.compaction.times.micros statistics Percentiles :=> 50 : 56250.000000 95 : 603728.000000 99 : 603728.000000 100 : 603728.000000\nrocksdb.subcompaction.setup.times.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.table.sync.micros statistics Percentiles :=> 50 : 4400.000000 95 : 14386.000000 99 : 14386.000000 100 : 14386.000000\nrocksdb.compaction.outfile.sync.micros statistics Percentiles :=> 50 : 8250.000000 95 : 56394.000000 99 : 56394.000000 100 : 56394.000000\nrocksdb.wal.file.sync.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.manifest.file.sync.micros statistics Percentiles :=> 50 : 1540.000000 95 : 3350.000000 99 : 4190.000000 100 : 4211.000000\nrocksdb.table.open.io.micros statistics Percentiles :=> 50 : 130.000000 95 : 667.000000 99 : 1456.000000 100 : 1899.000000\nrocksdb.db.multiget.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.read.block.compaction.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.read.block.get.micros statistics Percentiles :=> 50 : 15.245933 95 : 97.671522 99 : 979.147403 100 : 4286.000000\nrocksdb.write.raw.block.micros statistics Percentiles :=> 50 : 12.578313 95 : 21.660937 99 : 1504.631579 100 : 1584.000000\nrocksdb.l0.slowdown.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.memtable.compaction.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.num.files.stall.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.hard.rate.limit.delay.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.soft.rate.limit.delay.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.numfiles.in.singlecompaction statistics Percentiles :=> 50 : 3.000000 95 : 8.000000 99 : 8.000000 100 : 8.000000\nrocksdb.db.seek.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.db.write.stall statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.sst.read.micros statistics Percentiles :=> 50 : 0.642115 95 : 80.075000 99 : 173.200000 100 : 4278.000000\nrocksdb.num.subcompactions.scheduled statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.bytes.per.read statistics Percentiles :=> 50 : 8.003387 95 : 9.810474 99 : 9.971104 100 : 940597.000000\nrocksdb.bytes.per.write statistics Percentiles :=> 50 : 13.333333 95 : 64.000000 99 : 64.000000 100 : 64.000000\nrocksdb.bytes.per.multiget statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.bytes.compressed statistics Percentiles :=> 50 : 25709.532374 95 : 69336.472603 99 : 72989.000000 100 : 72989.000000\nrocksdb.bytes.decompressed statistics Percentiles :=> 50 : 14514.711095 95 : 32161.250000 99 : 72160.112360 100 : 198478.000000\nrocksdb.compression.times.nanos statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.decompression.times.nanos statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.read.num.merge_operands statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.key.size statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.value.size statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.write.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.get.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.multiget.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.seek.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.next.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.prev.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.blob.file.write.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.blob.file.read.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.blob.file.sync.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.gc.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.compression.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.decompression.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.db.flush.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\n"
+
+Cannot import block: Import(KnownBad)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+END T3

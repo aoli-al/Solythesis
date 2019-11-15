@@ -1,0 +1,1116 @@
+bash ~/scripts/bash/setup_parity_inst.sh metrics
+Already on 'metrics'
+
+Your branch is up to date with 'origin/metrics'.
+
+remote: Enumerating objects: 1369, done.[K
+
+remote: Counting objects:   0% (1/1369)[Kremote: Counting objects:   1% (14/1369)[Kremote: Counting objects:   2% (28/1369)[Kremote: Counting objects:   3% (42/1369)[Kremote: Counting objects:   4% (55/1369)[Kremote: Counting objects:   5% (69/1369)[Kremote: Counting objects:   6% (83/1369)[Kremote: Counting objects:   7% (96/1369)[Kremote: Counting objects:   8% (110/1369)[Kremote: Counting objects:   9% (124/1369)[Kremote: Counting objects:  10% (137/1369)[Kremote: Counting objects:  11% (151/1369)[Kremote: Counting objects:  12% (165/1369)[Kremote: Counting objects:  13% (178/1369)[Kremote: Counting objects:  14% (192/1369)[Kremote: Counting objects:  15% (206/1369)[Kremote: Counting objects:  16% (220/1369)[Kremote: Counting objects:  17% (233/1369)[Kremote: Counting objects:  18% (247/1369)[Kremote: Counting objects:  19% (261/1369)[Kremote: Counting objects:  20% (274/1369)[Kremote: Counting objects:  21% (288/1369)[Kremote: Counting objects:  22% (302/1369)[Kremote: Counting objects:  23% (315/1369)[Kremote: Counting objects:  24% (329/1369)[Kremote: Counting objects:  25% (343/1369)[Kremote: Counting objects:  26% (356/1369)[Kremote: Counting objects:  27% (370/1369)[Kremote: Counting objects:  28% (384/1369)[Kremote: Counting objects:  29% (398/1369)[Kremote: Counting objects:  30% (411/1369)[Kremote: Counting objects:  31% (425/1369)[Kremote: Counting objects:  32% (439/1369)[Kremote: Counting objects:  33% (452/1369)[Kremote: Counting objects:  34% (466/1369)[Kremote: Counting objects:  35% (480/1369)[Kremote: Counting objects:  36% (493/1369)[Kremote: Counting objects:  37% (507/1369)[Kremote: Counting objects:  38% (521/1369)[Kremote: Counting objects:  39% (534/1369)[Kremote: Counting objects:  40% (548/1369)[Kremote: Counting objects:  41% (562/1369)[Kremote: Counting objects:  42% (575/1369)[Kremote: Counting objects:  43% (589/1369)[Kremote: Counting objects:  44% (603/1369)[Kremote: Counting objects:  45% (617/1369)[Kremote: Counting objects:  46% (630/1369)[Kremote: Counting objects:  47% (644/1369)[Kremote: Counting objects:  48% (658/1369)[Kremote: Counting objects:  49% (671/1369)[Kremote: Counting objects:  50% (685/1369)[Kremote: Counting objects:  51% (699/1369)[Kremote: Counting objects:  52% (712/1369)[Kremote: Counting objects:  53% (726/1369)[Kremote: Counting objects:  54% (740/1369)[Kremote: Counting objects:  55% (753/1369)[Kremote: Counting objects:  56% (767/1369)[Kremote: Counting objects:  57% (781/1369)[Kremote: Counting objects:  58% (795/1369)[Kremote: Counting objects:  59% (808/1369)[Kremote: Counting objects:  60% (822/1369)[Kremote: Counting objects:  61% (836/1369)[Kremote: Counting objects:  62% (849/1369)[Kremote: Counting objects:  63% (863/1369)[Kremote: Counting objects:  64% (877/1369)[Kremote: Counting objects:  65% (890/1369)[Kremote: Counting objects:  66% (904/1369)[Kremote: Counting objects:  67% (918/1369)[Kremote: Counting objects:  68% (931/1369)[Kremote: Counting objects:  69% (945/1369)[Kremote: Counting objects:  70% (959/1369)[Kremote: Counting objects:  71% (972/1369)[Kremote: Counting objects:  72% (986/1369)[Kremote: Counting objects:  73% (1000/1369)[Kremote: Counting objects:  74% (1014/1369)[Kremote: Counting objects:  75% (1027/1369)[Kremote: Counting objects:  76% (1041/1369)[Kremote: Counting objects:  77% (1055/1369)[Kremote: Counting objects:  78% (1068/1369)[Kremote: Counting objects:  79% (1082/1369)[Kremote: Counting objects:  80% (1096/1369)[Kremote: Counting objects:  81% (1109/1369)[Kremote: Counting objects:  82% (1123/1369)[Kremote: Counting objects:  83% (1137/1369)[Kremote: Counting objects:  84% (1150/1369)[Kremote: Counting objects:  85% (1164/1369)[Kremote: Counting objects:  86% (1178/1369)[Kremote: Counting objects:  87% (1192/1369)[Kremote: Counting objects:  88% (1205/1369)[Kremote: Counting objects:  89% (1219/1369)[Kremote: Counting objects:  90% (1233/1369)[Kremote: Counting objects:  91% (1246/1369)[Kremote: Counting objects:  92% (1260/1369)[Kremote: Counting objects:  93% (1274/1369)[Kremote: Counting objects:  94% (1287/1369)[Kremote: Counting objects:  95% (1301/1369)[Kremote: Counting objects:  96% (1315/1369)[Kremote: Counting objects:  97% (1328/1369)[Kremote: Counting objects:  98% (1342/1369)[Kremote: Counting objects:  99% (1356/1369)[Kremote: Counting objects: 100% (1369/1369)[Kremote: Counting objects: 100% (1369/1369), done.[K
+
+remote: Compressing objects:  20% (1/5)[Kremote: Compressing objects:  40% (2/5)[Kremote: Compressing objects:  60% (3/5)[Kremote: Compressing objects:  80% (4/5)[Kremote: Compressing objects: 100% (5/5)[Kremote: Compressing objects: 100% (5/5), done.[K
+
+Receiving objects:   0% (1/2615)   Receiving objects:   1% (27/2615)   Receiving objects:   2% (53/2615)   Receiving objects:   3% (79/2615)   Receiving objects:   4% (105/2615)   Receiving objects:   5% (131/2615)   Receiving objects:   6% (157/2615)   Receiving objects:   7% (184/2615)   Receiving objects:   8% (210/2615)   Receiving objects:   9% (236/2615)   Receiving objects:  10% (262/2615)   Receiving objects:  11% (288/2615)   Receiving objects:  12% (314/2615)   Receiving objects:  13% (340/2615)   Receiving objects:  14% (367/2615)   Receiving objects:  15% (393/2615)   Receiving objects:  16% (419/2615)   Receiving objects:  17% (445/2615)   Receiving objects:  18% (471/2615)   Receiving objects:  19% (497/2615)   Receiving objects:  20% (523/2615)   Receiving objects:  21% (550/2615)   Receiving objects:  22% (576/2615)   Receiving objects:  23% (602/2615)   Receiving objects:  24% (628/2615)   Receiving objects:  25% (654/2615)   Receiving objects:  26% (680/2615)   Receiving objects:  27% (707/2615)   Receiving objects:  28% (733/2615)   Receiving objects:  29% (759/2615)   Receiving objects:  30% (785/2615)   Receiving objects:  31% (811/2615)   Receiving objects:  32% (837/2615)   Receiving objects:  33% (863/2615)   Receiving objects:  34% (890/2615)   Receiving objects:  35% (916/2615)   Receiving objects:  36% (942/2615)   Receiving objects:  37% (968/2615)   Receiving objects:  38% (994/2615)   Receiving objects:  39% (1020/2615)   Receiving objects:  40% (1046/2615)   Receiving objects:  41% (1073/2615)   Receiving objects:  42% (1099/2615)   Receiving objects:  43% (1125/2615)   Receiving objects:  44% (1151/2615)   Receiving objects:  45% (1177/2615)   Receiving objects:  46% (1203/2615)   Receiving objects:  47% (1230/2615)   Receiving objects:  48% (1256/2615)   Receiving objects:  49% (1282/2615)   Receiving objects:  50% (1308/2615)   Receiving objects:  51% (1334/2615)   Receiving objects:  52% (1360/2615)   Receiving objects:  53% (1386/2615)   Receiving objects:  54% (1413/2615)   Receiving objects:  55% (1439/2615)   Receiving objects:  56% (1465/2615)   Receiving objects:  57% (1491/2615)   Receiving objects:  58% (1517/2615)   Receiving objects:  59% (1543/2615)   Receiving objects:  60% (1569/2615)   Receiving objects:  61% (1596/2615)   Receiving objects:  62% (1622/2615)   Receiving objects:  63% (1648/2615)   Receiving objects:  64% (1674/2615)   Receiving objects:  65% (1700/2615)   Receiving objects:  66% (1726/2615)   Receiving objects:  67% (1753/2615)   Receiving objects:  68% (1779/2615)   Receiving objects:  69% (1805/2615)   Receiving objects:  70% (1831/2615)   Receiving objects:  71% (1857/2615)   Receiving objects:  72% (1883/2615)   Receiving objects:  73% (1909/2615)   Receiving objects:  74% (1936/2615)   Receiving objects:  75% (1962/2615)   Receiving objects:  76% (1988/2615)   Receiving objects:  77% (2014/2615)   Receiving objects:  78% (2040/2615)   Receiving objects:  79% (2066/2615)   Receiving objects:  80% (2092/2615)   Receiving objects:  81% (2119/2615)   Receiving objects:  82% (2145/2615)   Receiving objects:  83% (2171/2615)   Receiving objects:  84% (2197/2615)   Receiving objects:  85% (2223/2615)   Receiving objects:  86% (2249/2615)   Receiving objects:  87% (2276/2615)   Receiving objects:  88% (2302/2615)   Receiving objects:  89% (2328/2615)   Receiving objects:  90% (2354/2615)   Receiving objects:  91% (2380/2615)   Receiving objects:  92% (2406/2615)   Receiving objects:  93% (2432/2615)   Receiving objects:  94% (2459/2615)   Receiving objects:  95% (2485/2615)   Receiving objects:  96% (2511/2615)   Receiving objects:  97% (2537/2615)   remote: Total 2615 (delta 1364), reused 1365 (delta 1364), pack-reused 1246[K
+
+Receiving objects:  98% (2563/2615)   Receiving objects:  99% (2589/2615)   Receiving objects: 100% (2615/2615)   Receiving objects: 100% (2615/2615), 1.67 MiB | 17.41 MiB/s, done.
+
+Resolving deltas:   0% (0/1895)   Resolving deltas:   1% (19/1895)   Resolving deltas:   2% (40/1895)   Resolving deltas:   3% (58/1895)   Resolving deltas:   4% (76/1895)   Resolving deltas:   5% (95/1895)   Resolving deltas:   6% (119/1895)   Resolving deltas:   7% (133/1895)   Resolving deltas:   8% (153/1895)   Resolving deltas:   9% (171/1895)   Resolving deltas:  10% (190/1895)   Resolving deltas:  11% (210/1895)   Resolving deltas:  12% (229/1895)   Resolving deltas:  13% (249/1895)   Resolving deltas:  14% (266/1895)   Resolving deltas:  15% (296/1895)   Resolving deltas:  16% (308/1895)   Resolving deltas:  17% (327/1895)   Resolving deltas:  18% (345/1895)   Resolving deltas:  19% (373/1895)   Resolving deltas:  20% (382/1895)   Resolving deltas:  21% (398/1895)   Resolving deltas:  22% (431/1895)   Resolving deltas:  23% (437/1895)   Resolving deltas:  24% (456/1895)   Resolving deltas:  25% (485/1895)   Resolving deltas:  26% (497/1895)   Resolving deltas:  27% (518/1895)   Resolving deltas:  28% (531/1895)   Resolving deltas:  29% (551/1895)   Resolving deltas:  30% (569/1895)   Resolving deltas:  31% (596/1895)   Resolving deltas:  32% (611/1895)   Resolving deltas:  33% (627/1895)   Resolving deltas:  34% (646/1895)   Resolving deltas:  35% (665/1895)   Resolving deltas:  36% (683/1895)   Resolving deltas:  37% (702/1895)   Resolving deltas:  38% (723/1895)   Resolving deltas:  39% (741/1895)   Resolving deltas:  40% (758/1895)   Resolving deltas:  41% (777/1895)   Resolving deltas:  42% (796/1895)   Resolving deltas:  43% (817/1895)   Resolving deltas:  44% (834/1895)   Resolving deltas:  45% (854/1895)   Resolving deltas:  46% (873/1895)   Resolving deltas:  47% (891/1895)   Resolving deltas:  48% (911/1895)   Resolving deltas:  49% (932/1895)   Resolving deltas:  50% (950/1895)   Resolving deltas:  51% (976/1895)   Resolving deltas:  52% (993/1895)   Resolving deltas:  53% (1006/1895)   Resolving deltas:  54% (1025/1895)   Resolving deltas:  55% (1043/1895)   Resolving deltas:  56% (1064/1895)   Resolving deltas:  57% (1081/1895)   Resolving deltas:  58% (1101/1895)   Resolving deltas:  59% (1120/1895)   Resolving deltas:  60% (1137/1895)   Resolving deltas:  61% (1156/1895)   Resolving deltas:  62% (1175/1895)   Resolving deltas:  63% (1194/1895)   Resolving deltas:  64% (1214/1895)   Resolving deltas:  65% (1232/1895)   Resolving deltas:  66% (1251/1895)   Resolving deltas:  67% (1270/1895)   Resolving deltas:  68% (1291/1895)   Resolving deltas:  69% (1308/1895)   Resolving deltas:  70% (1327/1895)   Resolving deltas:  71% (1346/1895)   Resolving deltas:  72% (1370/1895)   Resolving deltas:  73% (1385/1895)   Resolving deltas:  74% (1403/1895)   Resolving deltas:  75% (1424/1895)   Resolving deltas:  76% (1442/1895)   Resolving deltas:  77% (1460/1895)   Resolving deltas:  78% (1479/1895)   Resolving deltas:  79% (1499/1895)   Resolving deltas:  80% (1519/1895)   Resolving deltas:  81% (1540/1895)   Resolving deltas:  82% (1564/1895)   Resolving deltas:  83% (1576/1895)   Resolving deltas:  84% (1593/1895)   Resolving deltas:  85% (1616/1895)   Resolving deltas:  86% (1633/1895)   Resolving deltas:  87% (1650/1895)   Resolving deltas:  88% (1668/1895)   Resolving deltas:  89% (1690/1895)   Resolving deltas:  90% (1711/1895)   Resolving deltas:  91% (1726/1895)   Resolving deltas:  92% (1744/1895)   Resolving deltas:  93% (1764/1895)   Resolving deltas:  94% (1782/1895)   Resolving deltas:  95% (1802/1895)   Resolving deltas:  97% (1841/1895)   Resolving deltas:  98% (1858/1895)   Resolving deltas:  99% (1877/1895)   Resolving deltas: 100% (1895/1895)   Resolving deltas: 100% (1895/1895), completed with 619 local objects.
+
+From https://github.com/Leeleo3x/parity-ethereum
+
+   4253271fb..2ca847a73  metrics            -> origin/metrics
+
+ * [new branch]          count_instructions -> origin/count_instructions
+
+   89987745f..4365eddb5  master             -> origin/master
+
+Updating 4253271fb..2ca847a73
+
+Fast-forward
+
+ ethcore/evm/src/interpreter/mod.rs | 24 [32m++++++++++++++++++++++++[m
+
+ ethcore/src/state/mod.rs           |  4 [32m++[m[31m--[m
+
+ 2 files changed, 26 insertions(+), 2 deletions(-)
+
+[0m[0m[1m[32m   Compiling[0m evm v0.1.0 (/home/leo/parity-ethereum/ethcore/evm)
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445[K[0m[1m[33mwarning[0m[0m[1m: unused import: `std::collections::HashSet`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:29:5[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m29[0m[0m [0m[0m[1m[38;5;12m| [0m[0muse std::collections::HashSet;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m    [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m   [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(unused_imports)] on by default[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused import: `H512`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:32:43[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m32[0m[0m [0m[0m[1m[38;5;12m| [0m[0muse ethereum_types::{U256, H256, Address, H512, U512};[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m                                          [0m[0m[1m[33m^^^^[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused import: `memory_cache::MemoryLruCache`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:51:5[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m51[0m[0m [0m[0m[1m[38;5;12m| [0m[0muse memory_cache::MemoryLruCache;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m    [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445[K[0m[1m[33mwarning[0m[0m[1m: unused variable: `sum`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:254:14[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m254[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                    let mut sum: u32 = 0;[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                            [0m[0m[1m[33m^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_sum`[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m    [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(unused_variables)] on by default[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445[K[0m[1m[33mwarning[0m[0m[1m: unused variable: `instruction`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:508:46[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m508[0m[0m [0m[0m[1m[38;5;12m| [0m[0m    fn verify_instruction(&self, ext: &vm::Ext, instruction: Instruction, info: &InstructionInfo) -> vm::Result<()> {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                                                [0m[0m[1m[33m^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_instruction`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445[K[0m[1m[33mwarning[0m[0m[1m: variable does not need to be mutable[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:254:10[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m254[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                    let mut sum: u32 = 0;[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                        [0m[0m[1m[38;5;12m----[0m[0m[1m[33m^^^[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                        [0m[0m[1m[38;5;12m|[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                        [0m[0m[1m[38;5;12mhelp: remove this `mut`[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m    [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(unused_mut)] on by default[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445[K[0m[1m[33mwarning[0m[0m[1m: variable does not need to be mutable[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:240:13[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m240[0m[0m [0m[0m[1m[38;5;12m| [0m[0m        let mut map = HashMap::new();[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m            [0m[0m[1m[38;5;12m----[0m[0m[1m[33m^^^[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m            [0m[0m[1m[38;5;12m|[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m            [0m[0m[1m[38;5;12mhelp: remove this `mut`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445[K[0m[1m[33mwarning[0m[0m[1m: function is never used: `as_micro`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:77:1[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m77[0m[0m [0m[0m[1m[38;5;12m| [0m[0mfn as_micro(instant: &Instant) -> u64 {[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m   [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(dead_code)] on by default[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445[K[0m[1m[33mwarning[0m[0m[1m: static variable `count_sload` should have an upper case name[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:72:12[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m72[0m[0m [0m[0m[1m[38;5;12m| [0m[0mstatic mut count_sload: u32 = 0;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m           [0m[0m[1m[33m^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: convert the identifier to upper case: `COUNT_SLOAD`[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m   [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(non_upper_case_globals)] on by default[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: static variable `count_sstore` should have an upper case name[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:73:12[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m73[0m[0m [0m[0m[1m[38;5;12m| [0m[0mstatic mut count_sstore: u32 = 0;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m           [0m[0m[1m[33m^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: convert the identifier to upper case: `COUNT_SSTORE`[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: static variable `total_inst` should have an upper case name[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:74:12[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m74[0m[0m [0m[0m[1m[38;5;12m| [0m[0mstatic mut total_inst: u32 = 0;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m           [0m[0m[1m[33m^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: convert the identifier to upper case: `TOTAL_INST`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445[K[0m[1m[33mwarning[0m[0m[1m: static variable `num_exec` should have an upper case name[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:75:12[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m75[0m[0m [0m[0m[1m[38;5;12m| [0m[0mstatic mut num_exec: u32 = 0;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m           [0m[0m[1m[33m^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: convert the identifier to upper case: `NUM_EXEC`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445[K[0m[1m[33mwarning[0m[0m[1m: static variable `sha3_cache_mut` should have an upper case name[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:239:16[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m239[0m[0m [0m[0m[1m[38;5;12m| [0m[0m    static ref sha3_cache_mut: Mutex::<HashMap<U512, H256>> = {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m               [0m[0m[1m[33m^^^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: convert the identifier to upper case: `SHA3_CACHE_MUT`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 431/445[K[0m[0m[1m[32m   Compiling[0m ethcore v1.12.0 (/home/leo/parity-ethereum/ethcore)
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445[K[0m[1m[33mwarning[0m[0m[1m: unused import: `core::borrow::BorrowMut`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/src/engines/instant_seal.rs:21:5[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m21[0m[0m [0m[0m[1m[38;5;12m| [0m[0muse core::borrow::BorrowMut;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m    [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m   [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(unused_imports)] on by default[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445[K[0m[1m[33mwarning[0m[0m[1m: unused import: `itertools::assert_equal`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/src/state/mod.rs:62:5[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m62[0m[0m [0m[0m[1m[38;5;12m| [0m[0muse itertools::assert_equal;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m    [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^^^^^[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445[K[0m[1m[33mwarning[0m[0m[1m: unused variable: `col`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/client/client.rs:590:20[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m590[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                DBOp::Insert { col, key, value } => {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                               [0m[0m[1m[33m^^^[0m[0m [0m[0m[1m[33mhelp: try ignoring the field: `col: _`[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m    [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(unused_variables)] on by default[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused variable: `key`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/client/client.rs:590:25[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m590[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                DBOp::Insert { col, key, value } => {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                                    [0m[0m[1m[33m^^^[0m[0m [0m[0m[1m[33mhelp: try ignoring the field: `key: _`[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused variable: `value`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/client/client.rs:590:30[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m590[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                DBOp::Insert { col, key, value } => {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                                         [0m[0m[1m[33m^^^^^[0m[0m [0m[0m[1m[33mhelp: try ignoring the field: `value: _`[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused variable: `col`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/client/client.rs:593:20[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m593[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                DBOp::Delete { col, key } => {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                               [0m[0m[1m[33m^^^[0m[0m [0m[0m[1m[33mhelp: try ignoring the field: `col: _`[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused variable: `key`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/client/client.rs:593:25[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m593[0m[0m [0m[0m[1m[38;5;12m| [0m[0m                DBOp::Delete { col, key } => {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                                    [0m[0m[1m[33m^^^[0m[0m [0m[0m[1m[33mhelp: try ignoring the field: `key: _`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445[K[0m[1m[33mwarning[0m[0m[1m: unused variable: `no_intermediate_commits`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/state/mod.rs:858:7[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m858[0m[0m [0m[0m[1m[38;5;12m| [0m[0m        let no_intermediate_commits =[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m            [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_no_intermediate_commits`[0m
+
+
+
+[0m[1m[33mwarning[0m[0m[1m: unused variable: `err`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/state/mod.rs:873:18[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m873[0m[0m [0m[0m[1m[38;5;12m| [0m[0m            Some(err) => {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                 [0m[0m[1m[33m^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_err`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445[K[0m[1m[33mwarning[0m[0m[1m: unused variable: `min_gas_limit`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/verification/verification.rs:286:6[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m286[0m[0m [0m[0m[1m[38;5;12m| [0m[0m    let min_gas_limit = engine.params().min_gas_limit;[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m        [0m[0m[1m[33m^^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_min_gas_limit`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445[K[0m[1m[33mwarning[0m[0m[1m: unused variable: `gas_limit_divisor`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/verification/verification.rs:333:6[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m333[0m[0m [0m[0m[1m[38;5;12m| [0m[0m    let gas_limit_divisor = engine.params().gas_limit_bound_divisor;[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m        [0m[0m[1m[33m^^^^^^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_gas_limit_divisor`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445[K[0m[1m[33mwarning[0m[0m[1m: unused variable: `parent_gas_limit`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/verification/verification.rs:351:6[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m351[0m[0m [0m[0m[1m[38;5;12m| [0m[0m    let parent_gas_limit = *parent.gas_limit();[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m        [0m[0m[1m[33m^^^^^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: consider prefixing with an underscore: `_parent_gas_limit`[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445[K[0m[1m[33mwarning[E0382][0m[0m[1m: assign to part of moved value: `engine`[0m
+
+[0m   [0m[0m[1m[38;5;12m--> [0m[0methcore/src/engines/clique/mod.rs:204:4[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m190[0m[0m [0m[0m[1m[38;5;12m| [0m[0m        let mut engine = Clique {[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m            [0m[0m[1m[38;5;12m----------[0m[0m [0m[0m[1m[38;5;12mmove occurs because `engine` has type `engines::clique::Clique`, which does not implement the `Copy` trait[0m
+
+[0m[1m[38;5;12m...[0m
+
+[0m[1m[38;5;12m201[0m[0m [0m[0m[1m[38;5;12m| [0m[0m        let res = Arc::new(engine);[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m                           [0m[0m[1m[38;5;12m------[0m[0m [0m[0m[1m[38;5;12mvalue moved here[0m
+
+[0m[1m[38;5;12m...[0m
+
+[0m[1m[38;5;12m204[0m[0m [0m[0m[1m[38;5;12m| [0m[0m            engine.step_service = Some(StepService::start(Arc::downgrade(&res) as Weak<Engine<_>>));[0m
+
+[0m    [0m[0m[1m[38;5;12m| [0m[0m            [0m[0m[1m[33m^^^^^^^^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mvalue partially assigned here after move[0m
+
+[0m    [0m[0m[1m[38;5;12m|[0m
+
+[0m    [0m[0m[1m[38;5;12m= [0m[0m[1mwarning[0m[0m: this error has been downgraded to a warning for backwards compatibility with previous releases[0m
+
+[0m    [0m[0m[1m[38;5;12m= [0m[0m[1mwarning[0m[0m: this represents potential undefined behavior in your code and this warning will become a hard error in the future[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445[K[0m[1m[33mwarning[0m[0m[1m: field is never used: `counter`[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/src/engines/instant_seal.rs:45:2[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m45[0m[0m [0m[0m[1m[38;5;12m| [0m[0m    counter: u32,[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m    [0m[0m[1m[33m^^^^^^^^^^^^[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m   [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(dead_code)] on by default[0m
+
+
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 432/445[K[0m[0m[1m[32m   Compiling[0m ethcore-light v1.12.0 (/home/leo/parity-ethereum/ethcore/light)
+
+[0m[0m[1m[32m   Compiling[0m ethcore-private-tx v1.0.0 (/home/leo/parity-ethereum/ethcore/private-tx)
+
+[0m[0m[1m[32m   Compiling[0m node-filter v1.12.0 (/home/leo/parity-ethereum/ethcore/node-filter)
+
+[0m[0m[1m[32m   Compiling[0m parity-ipfs-api v1.12.0 (/home/leo/parity-ethereum/ipfs)
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 433/445[0m[0m[1m[36m    Building[0m [====================================================>  ] 434/445[0m[0m[1m[36m    Building[0m [====================================================>  ] 435/445[0m[0m[1m[36m    Building[0m [====================================================>  ] 436/445[K[0m[0m[1m[32m   Compiling[0m ethcore-sync v1.12.0 (/home/leo/parity-ethereum/ethcore/sync)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 437/445[K[0m[0m[1m[32m   Compiling[0m parity-updater v1.12.0 (/home/leo/parity-ethereum/updater)
+
+[0m[0m[1m[32m   Compiling[0m ethcore-service v0.1.0 (/home/leo/parity-ethereum/ethcore/service)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 438/445[0m[0m[1m[36m    Building[0m [=====================================================> ] 439/445[K[0m[0m[1m[32m   Compiling[0m parity-rpc v1.12.0 (/home/leo/parity-ethereum/rpc)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 440/445[K[0m[0m[1m[32m   Compiling[0m parity-rpc-client v1.4.0 (/home/leo/parity-ethereum/cli-signer/rpc-client)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 441/445[K[0m[0m[1m[32m   Compiling[0m cli-signer v1.4.0 (/home/leo/parity-ethereum/cli-signer)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 442/445[K[0m[0m[1m[32m   Compiling[0m parity-ethereum v2.6.0 (/home/leo/parity-ethereum)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 443/445[0m[0m[1m[36m    Building[0m [=====================================================> ] 444/445[K[0m[0m[1m[32m    Finished[0m release [optimized] target(s) in 6m 32s
+
+
+ektx: 13.56.164.254
+bash ~/scripts/bash/import.sh ekt x transfer 13.56.164.254 5052259 import
+Loading config file from /home/leo/scripts/parity/config.dev-insecure.toml
+
+[1;30m2019-11-13 03:22:24 UTC[0m Configured for [1;37methereum[0m using [1;33mInstantSeal[0m engine
+
+INSTRUCTIONS ::  42096 lines 622 store 470 load
+
+INSTRUCTIONS ::  320 lines 2 store 4 load
+
+INSTRUCTIONS ::  320 lines 2 store 4 load
+
+INSTRUCTIONS ::  320 lines 2 store 4 load
+
+INSTRUCTIONS ::  320 lines 2 store 4 load
+
+[1;30m2019-11-13 03:22:30 UTC[0m Syncing [1;37m#5052484[0m [1;37m0x0d9a…4686[0m  [1;33m  45.01[0m blk/s [1;33m2201.4[0m tx/s [1;33m 132.5[0m Mgas/s  [1;32m   35[0m+[1;32m  281[0m Qed     [1;34m1 MiB[0m chain [1;34m10 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:22:35 UTC[0m Syncing [1;37m#5052626[0m [1;37m0x4f6c…18a4[0m  [1;33m  28.40[0m blk/s [1;33m4402.0[0m tx/s [1;33m 222.6[0m Mgas/s  [1;32m   18[0m+[1;32m  290[0m Qed     [1;34m5 MiB[0m chain [1;34m9 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:22:40 UTC[0m Syncing [1;37m#5052754[0m [1;37m0x03be…46f8[0m  [1;33m  25.60[0m blk/s [1;33m3968.0[0m tx/s [1;33m 200.6[0m Mgas/s  [1;32m    0[0m+[1;32m  309[0m Qed     [1;34m5 MiB[0m chain [1;34m9 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:22:45 UTC[0m Syncing [1;37m#5052884[0m [1;37m0x3858…cd31[0m  [1;33m  25.94[0m blk/s [1;33m4020.4[0m tx/s [1;33m 203.4[0m Mgas/s  [1;32m    0[0m+[1;32m  300[0m Qed     [1;34m4 MiB[0m chain [1;34m9 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:22:50 UTC[0m Syncing [1;37m#5053002[0m [1;37m0x019e…351e[0m  [1;33m  23.66[0m blk/s [1;33m3666.8[0m tx/s [1;33m 185.6[0m Mgas/s  [1;32m    0[0m+[1;32m  322[0m Qed     [1;34m4 MiB[0m chain [1;34m9 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:22:55 UTC[0m Syncing [1;37m#5053123[0m [1;37m0xa88e…72d8[0m  [1;33m  24.20[0m blk/s [1;33m3751.0[0m tx/s [1;33m 189.9[0m Mgas/s  [1;32m   15[0m+[1;32m  300[0m Qed     [1;34m4 MiB[0m chain [1;34m10 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:23:00 UTC[0m Syncing [1;37m#5053230[0m [1;37m0xde85…dfab[0m  [1;33m  21.40[0m blk/s [1;33m3316.3[0m tx/s [1;33m 167.9[0m Mgas/s  [1;32m    0[0m+[1;32m  322[0m Qed     [1;34m9 MiB[0m chain [1;34m11 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:23:05 UTC[0m Syncing [1;37m#5053333[0m [1;37m0x93bd…e369[0m  [1;33m  20.60[0m blk/s [1;33m3193.0[0m tx/s [1;33m 161.6[0m Mgas/s  [1;32m    0[0m+[1;32m  298[0m Qed     [1;34m9 MiB[0m chain [1;34m12 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:23:10 UTC[0m Syncing [1;37m#5053436[0m [1;37m0xf21c…5db8[0m  [1;33m  20.60[0m blk/s [1;33m3193.0[0m tx/s [1;33m 161.6[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m9 MiB[0m chain [1;34m12 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:23:15 UTC[0m Syncing [1;37m#5053544[0m [1;37m0x6867…957c[0m  [1;33m  21.40[0m blk/s [1;33m3317.0[0m tx/s [1;33m 167.9[0m Mgas/s  [1;32m    0[0m+[1;32m  309[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:23:20 UTC[0m Syncing [1;37m#5053651[0m [1;37m0x5a58…6676[0m  [1;33m  21.60[0m blk/s [1;33m3348.0[0m tx/s [1;33m 169.5[0m Mgas/s  [1;32m   10[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:23:25 UTC[0m Syncing [1;37m#5053760[0m [1;37m0xcd4d…82ee[0m  [1;33m  21.77[0m blk/s [1;33m3375.0[0m tx/s [1;33m 170.8[0m Mgas/s  [1;32m    0[0m+[1;32m  298[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:23:30 UTC[0m Syncing [1;37m#5053860[0m [1;37m0x0c5c…a472[0m  [1;33m  20.02[0m blk/s [1;33m3103.7[0m tx/s [1;33m 157.1[0m Mgas/s  [1;32m    9[0m+[1;32m  302[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:23:35 UTC[0m Syncing [1;37m#5053970[0m [1;37m0x6a2b…6cb9[0m  [1;33m  22.00[0m blk/s [1;33m3410.0[0m tx/s [1;33m 172.6[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:23:40 UTC[0m Syncing [1;37m#5054079[0m [1;37m0xaa1a…ffe2[0m  [1;33m  21.80[0m blk/s [1;33m3379.0[0m tx/s [1;33m 171.1[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:23:45 UTC[0m Syncing [1;37m#5054186[0m [1;37m0xdc99…3126[0m  [1;33m  21.40[0m blk/s [1;33m3317.0[0m tx/s [1;33m 167.9[0m Mgas/s  [1;32m    0[0m+[1;32m  322[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:23:50 UTC[0m Syncing [1;37m#5054295[0m [1;37m0x0e20…6609[0m  [1;33m  21.60[0m blk/s [1;33m3348.0[0m tx/s [1;33m 169.5[0m Mgas/s  [1;32m    0[0m+[1;32m  295[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:23:55 UTC[0m Syncing [1;37m#5054400[0m [1;37m0x1dfd…a106[0m  [1;33m  21.00[0m blk/s [1;33m3255.0[0m tx/s [1;33m 164.8[0m Mgas/s  [1;32m    0[0m+[1;32m  309[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:24:00 UTC[0m Syncing [1;37m#5054504[0m [1;37m0x646c…685c[0m  [1;33m  20.80[0m blk/s [1;33m3224.0[0m tx/s [1;33m 163.2[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:24:05 UTC[0m Syncing [1;37m#5054596[0m [1;37m0xcbda…04e5[0m  [1;33m  18.60[0m blk/s [1;33m2883.0[0m tx/s [1;33m 145.9[0m Mgas/s  [1;32m    0[0m+[1;32m  321[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:24:10 UTC[0m Syncing [1;37m#5054685[0m [1;37m0x1611…8a48[0m  [1;33m  17.80[0m blk/s [1;33m2759.0[0m tx/s [1;33m 139.7[0m Mgas/s  [1;32m    0[0m+[1;32m  295[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:24:15 UTC[0m Syncing [1;37m#5054766[0m [1;37m0x6f3c…643d[0m  [1;33m  16.20[0m blk/s [1;33m2511.0[0m tx/s [1;33m 127.1[0m Mgas/s  [1;32m    0[0m+[1;32m  322[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:24:20 UTC[0m Syncing [1;37m#5054857[0m [1;37m0x0ac9…c5d1[0m  [1;33m  18.20[0m blk/s [1;33m2821.0[0m tx/s [1;33m 142.8[0m Mgas/s  [1;32m   14[0m+[1;32m  300[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:24:25 UTC[0m Syncing [1;37m#5054956[0m [1;37m0x65e1…81cb[0m  [1;33m  19.80[0m blk/s [1;33m3069.0[0m tx/s [1;33m 155.4[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:24:30 UTC[0m Syncing [1;37m#5055056[0m [1;37m0xcab1…6d1a[0m  [1;33m  20.00[0m blk/s [1;33m3100.0[0m tx/s [1;33m 156.9[0m Mgas/s  [1;32m    0[0m+[1;32m  297[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:24:35 UTC[0m Syncing [1;37m#5055150[0m [1;37m0xe271…2423[0m  [1;33m  18.80[0m blk/s [1;33m2914.0[0m tx/s [1;33m 147.5[0m Mgas/s  [1;32m    0[0m+[1;32m  321[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:24:40 UTC[0m Syncing [1;37m#5055246[0m [1;37m0x647c…129a[0m  [1;33m  19.20[0m blk/s [1;33m2976.0[0m tx/s [1;33m 150.7[0m Mgas/s  [1;32m    8[0m+[1;32m  309[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:24:45 UTC[0m Syncing [1;37m#5055349[0m [1;37m0x677c…05e9[0m  [1;33m  20.60[0m blk/s [1;33m3193.0[0m tx/s [1;33m 161.6[0m Mgas/s  [1;32m    0[0m+[1;32m  309[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:24:50 UTC[0m Syncing [1;37m#5055440[0m [1;37m0x0cd1…3273[0m  [1;33m  18.20[0m blk/s [1;33m2821.0[0m tx/s [1;33m 142.8[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:24:55 UTC[0m Syncing [1;37m#5055524[0m [1;37m0xf33b…6b8b[0m  [1;33m  16.60[0m blk/s [1;33m2573.0[0m tx/s [1;33m 130.3[0m Mgas/s  [1;32m    0[0m+[1;32m  321[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:25:00 UTC[0m Syncing [1;37m#5055600[0m [1;37m0x85d8…79a6[0m  [1;33m  15.40[0m blk/s [1;33m2387.0[0m tx/s [1;33m 120.8[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:25:05 UTC[0m Syncing [1;37m#5055673[0m [1;37m0x4865…1109[0m  [1;33m  14.58[0m blk/s [1;33m2259.8[0m tx/s [1;33m 114.4[0m Mgas/s  [1;32m    0[0m+[1;32m  307[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:25:10 UTC[0m Syncing [1;37m#5055742[0m [1;37m0xae7c…e768[0m  [1;33m  12.77[0m blk/s [1;33m1979.1[0m tx/s [1;33m 100.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:25:15 UTC[0m Syncing [1;37m#5055832[0m [1;37m0x94d8…261f[0m  [1;33m  19.62[0m blk/s [1;33m3040.5[0m tx/s [1;33m 153.9[0m Mgas/s  [1;32m    6[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:25:20 UTC[0m Syncing [1;37m#5055932[0m [1;37m0xc0a6…7630[0m  [1;33m  19.98[0m blk/s [1;33m3096.3[0m tx/s [1;33m 156.7[0m Mgas/s  [1;32m    0[0m+[1;32m  298[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:25:25 UTC[0m Syncing [1;37m#5056025[0m [1;37m0x490a…4ae0[0m  [1;33m  18.60[0m blk/s [1;33m2883.0[0m tx/s [1;33m 145.9[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:25:30 UTC[0m Syncing [1;37m#5056110[0m [1;37m0xb26a…7f0b[0m  [1;33m  17.00[0m blk/s [1;33m2635.0[0m tx/s [1;33m 133.4[0m Mgas/s  [1;32m    0[0m+[1;32m  322[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:25:35 UTC[0m Syncing [1;37m#5056190[0m [1;37m0x69b7…96ed[0m  [1;33m  16.00[0m blk/s [1;33m2480.0[0m tx/s [1;33m 125.5[0m Mgas/s  [1;32m    0[0m+[1;32m  319[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:25:40 UTC[0m Syncing [1;37m#5056264[0m [1;37m0x22c7…1e0b[0m  [1;33m  14.80[0m blk/s [1;33m2294.0[0m tx/s [1;33m 116.1[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:25:45 UTC[0m Syncing [1;37m#5056329[0m [1;37m0x9cde…d300[0m  [1;33m  12.98[0m blk/s [1;33m2012.6[0m tx/s [1;33m 101.9[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:25:50 UTC[0m Syncing [1;37m#5056428[0m [1;37m0x6f45…4442[0m  [1;33m  19.81[0m blk/s [1;33m3070.2[0m tx/s [1;33m 155.4[0m Mgas/s  [1;32m    0[0m+[1;32m  296[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:25:55 UTC[0m Syncing [1;37m#5056516[0m [1;37m0xc89e…f0a3[0m  [1;33m  17.40[0m blk/s [1;33m2697.0[0m tx/s [1;33m 136.5[0m Mgas/s  [1;32m    0[0m+[1;32m  322[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:26:00 UTC[0m Syncing [1;37m#5056616[0m [1;37m0xeee5…3053[0m  [1;33m  20.20[0m blk/s [1;33m3131.0[0m tx/s [1;33m 158.5[0m Mgas/s  [1;32m    7[0m+[1;32m  298[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:26:05 UTC[0m Syncing [1;37m#5056707[0m [1;37m0xc5c3…bf86[0m  [1;33m  18.17[0m blk/s [1;33m2817.1[0m tx/s [1;33m 142.6[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:26:10 UTC[0m Syncing [1;37m#5056788[0m [1;37m0xb4b7…9768[0m  [1;33m  16.20[0m blk/s [1;33m2511.0[0m tx/s [1;33m 127.1[0m Mgas/s  [1;32m    0[0m+[1;32m  317[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:26:15 UTC[0m Syncing [1;37m#5056880[0m [1;37m0x9708…472e[0m  [1;33m  18.38[0m blk/s [1;33m2848.6[0m tx/s [1;33m 144.2[0m Mgas/s  [1;32m    0[0m+[1;32m  298[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:26:20 UTC[0m Syncing [1;37m#5056972[0m [1;37m0xed4f…858d[0m  [1;33m  18.43[0m blk/s [1;33m2856.0[0m tx/s [1;33m 144.6[0m Mgas/s  [1;32m    0[0m+[1;32m  307[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:26:25 UTC[0m Syncing [1;37m#5057067[0m [1;37m0xcd51…1492[0m  [1;33m  19.00[0m blk/s [1;33m2945.0[0m tx/s [1;33m 149.1[0m Mgas/s  [1;32m   12[0m+[1;32m  298[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:26:30 UTC[0m Syncing [1;37m#5057153[0m [1;37m0xceec…d9bd[0m  [1;33m  17.20[0m blk/s [1;33m2666.0[0m tx/s [1;33m 135.0[0m Mgas/s  [1;32m    0[0m+[1;32m  322[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:26:35 UTC[0m Syncing [1;37m#5057247[0m [1;37m0x2afc…3166[0m  [1;33m  18.80[0m blk/s [1;33m2914.0[0m tx/s [1;33m 147.5[0m Mgas/s  [1;32m   11[0m+[1;32m  307[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:26:40 UTC[0m Syncing [1;37m#5057337[0m [1;37m0xfce2…7827[0m  [1;33m  18.00[0m blk/s [1;33m2790.0[0m tx/s [1;33m 141.2[0m Mgas/s  [1;32m    0[0m+[1;32m  295[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:26:45 UTC[0m Syncing [1;37m#5057425[0m [1;37m0x121a…b8f8[0m  [1;33m  17.60[0m blk/s [1;33m2728.0[0m tx/s [1;33m 138.1[0m Mgas/s  [1;32m    9[0m+[1;32m  309[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:26:50 UTC[0m Syncing [1;37m#5057522[0m [1;37m0xaacf…547c[0m  [1;33m  19.40[0m blk/s [1;33m3007.0[0m tx/s [1;33m 152.2[0m Mgas/s  [1;32m    0[0m+[1;32m  295[0m Qed     [1;34m9 MiB[0m chain [1;34m14 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:26:55 UTC[0m Syncing [1;37m#5057612[0m [1;37m0xf65f…6583[0m  [1;33m  17.97[0m blk/s [1;33m2785.5[0m tx/s [1;33m 141.0[0m Mgas/s  [1;32m    0[0m+[1;32m  309[0m Qed     [1;34m4 MiB[0m chain [1;34m15 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:27:00 UTC[0m Syncing [1;37m#5057697[0m [1;37m0x4939…34f2[0m  [1;33m  17.02[0m blk/s [1;33m2638.2[0m tx/s [1;33m 133.6[0m Mgas/s  [1;32m    0[0m+[1;32m  296[0m Qed     [1;34m4 MiB[0m chain [1;34m16 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:27:05 UTC[0m Syncing [1;37m#5057791[0m [1;37m0xdaa1…dae6[0m  [1;33m  18.60[0m blk/s [1;33m2883.0[0m tx/s [1;33m 145.9[0m Mgas/s  [1;32m    0[0m+[1;32m  321[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:27:10 UTC[0m Syncing [1;37m#5057884[0m [1;37m0xb346…8ab5[0m  [1;33m  18.80[0m blk/s [1;33m2914.0[0m tx/s [1;33m 147.5[0m Mgas/s  [1;32m    0[0m+[1;32m  309[0m Qed     [1;34m9 MiB[0m chain [1;34m16 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:27:15 UTC[0m Syncing [1;37m#5057965[0m [1;37m0x7403…e745[0m  [1;33m  16.20[0m blk/s [1;33m2511.0[0m tx/s [1;33m 127.1[0m Mgas/s  [1;32m    0[0m+[1;32m  322[0m Qed     [1;34m4 MiB[0m chain [1;34m16 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:27:20 UTC[0m Syncing [1;37m#5058043[0m [1;37m0xb6e6…9e0b[0m  [1;33m  15.60[0m blk/s [1;33m2418.0[0m tx/s [1;33m 122.4[0m Mgas/s  [1;32m    3[0m+[1;32m  313[0m Qed     [1;34m4 MiB[0m chain [1;34m16 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:27:25 UTC[0m Syncing [1;37m#5058113[0m [1;37m0x2b54…a647[0m  [1;33m  13.80[0m blk/s [1;33m2139.0[0m tx/s [1;33m 108.3[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:27:30 UTC[0m Syncing [1;37m#5058190[0m [1;37m0x14ca…7a63[0m  [1;33m  15.60[0m blk/s [1;33m2418.0[0m tx/s [1;33m 122.4[0m Mgas/s  [1;32m    0[0m+[1;32m  307[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:27:35 UTC[0m Syncing [1;37m#5058282[0m [1;37m0xcc19…13ed[0m  [1;33m  18.40[0m blk/s [1;33m2852.0[0m tx/s [1;33m 144.4[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:27:40 UTC[0m Syncing [1;37m#5058366[0m [1;37m0x0a6a…f92d[0m  [1;33m  16.80[0m blk/s [1;33m2604.0[0m tx/s [1;33m 131.8[0m Mgas/s  [1;32m    0[0m+[1;32m  322[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:27:45 UTC[0m Syncing [1;37m#5058458[0m [1;37m0xf46f…bb7c[0m  [1;33m  18.40[0m blk/s [1;33m2852.0[0m tx/s [1;33m 144.4[0m Mgas/s  [1;32m   19[0m+[1;32m  297[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:27:50 UTC[0m Syncing [1;37m#5058537[0m [1;37m0x4ac3…cf91[0m  [1;33m  15.78[0m blk/s [1;33m2446.1[0m tx/s [1;33m 123.8[0m Mgas/s  [1;32m    0[0m+[1;32m  309[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:27:55 UTC[0m Syncing [1;37m#5058626[0m [1;37m0xba7b…633e[0m  [1;33m  17.80[0m blk/s [1;33m2759.0[0m tx/s [1;33m 139.7[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:28:00 UTC[0m Syncing [1;37m#5058715[0m [1;37m0x9023…fc2d[0m  [1;33m  17.60[0m blk/s [1;33m2728.0[0m tx/s [1;33m 138.1[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:28:05 UTC[0m Syncing [1;37m#5058800[0m [1;37m0xde8f…af5a[0m  [1;33m  17.18[0m blk/s [1;33m2662.8[0m tx/s [1;33m 134.8[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:28:10 UTC[0m Syncing [1;37m#5058886[0m [1;37m0x2cef…37e8[0m  [1;33m  17.22[0m blk/s [1;33m2668.7[0m tx/s [1;33m 135.1[0m Mgas/s  [1;32m   16[0m+[1;32m  301[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:28:15 UTC[0m Syncing [1;37m#5058963[0m [1;37m0xf236…5220[0m  [1;33m  15.40[0m blk/s [1;33m2387.0[0m tx/s [1;33m 120.8[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:28:20 UTC[0m Syncing [1;37m#5059041[0m [1;37m0x6ead…69cd[0m  [1;33m  15.60[0m blk/s [1;33m2418.0[0m tx/s [1;33m 122.4[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:28:25 UTC[0m Syncing [1;37m#5059132[0m [1;37m0xd7da…5901[0m  [1;33m  18.20[0m blk/s [1;33m2821.0[0m tx/s [1;33m 142.8[0m Mgas/s  [1;32m    0[0m+[1;32m  309[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:28:30 UTC[0m Syncing [1;37m#5059210[0m [1;37m0xfed5…b26d[0m  [1;33m  15.60[0m blk/s [1;33m2418.0[0m tx/s [1;33m 122.4[0m Mgas/s  [1;32m    0[0m+[1;32m  322[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:28:35 UTC[0m Syncing [1;37m#5059304[0m [1;37m0xa881…6aab[0m  [1;33m  18.78[0m blk/s [1;33m2910.5[0m tx/s [1;33m 147.3[0m Mgas/s  [1;32m    0[0m+[1;32m  297[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:28:40 UTC[0m Syncing [1;37m#5059392[0m [1;37m0xfce4…de2f[0m  [1;33m  17.62[0m blk/s [1;33m2731.8[0m tx/s [1;33m 138.3[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:28:45 UTC[0m Syncing [1;37m#5059481[0m [1;37m0x69ea…731d[0m  [1;33m  17.80[0m blk/s [1;33m2759.0[0m tx/s [1;33m 139.7[0m Mgas/s  [1;32m    0[0m+[1;32m  318[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:28:50 UTC[0m Syncing [1;37m#5059561[0m [1;37m0xbe9d…75ec[0m  [1;33m  15.99[0m blk/s [1;33m2478.0[0m tx/s [1;33m 125.4[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:28:55 UTC[0m Syncing [1;37m#5059632[0m [1;37m0x518b…985b[0m  [1;33m  14.20[0m blk/s [1;33m2201.0[0m tx/s [1;33m 111.4[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:29:00 UTC[0m Syncing [1;37m#5059716[0m [1;37m0xcb2e…e26a[0m  [1;33m  16.80[0m blk/s [1;33m2604.0[0m tx/s [1;33m 131.8[0m Mgas/s  [1;32m   15[0m+[1;32m  299[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:29:05 UTC[0m Syncing [1;37m#5059806[0m [1;37m0xce36…ef29[0m  [1;33m  18.00[0m blk/s [1;33m2790.0[0m tx/s [1;33m 141.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:29:10 UTC[0m Syncing [1;37m#5059884[0m [1;37m0x0a57…f9af[0m  [1;33m  15.60[0m blk/s [1;33m2418.0[0m tx/s [1;33m 122.4[0m Mgas/s  [1;32m    1[0m+[1;32m  316[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:29:15 UTC[0m Syncing [1;37m#5059955[0m [1;37m0x9457…e9b3[0m  [1;33m  14.20[0m blk/s [1;33m2201.0[0m tx/s [1;33m 111.4[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:29:20 UTC[0m Syncing [1;37m#5060033[0m [1;37m0x5a64…f900[0m  [1;33m  15.60[0m blk/s [1;33m2418.0[0m tx/s [1;33m 122.4[0m Mgas/s  [1;32m    0[0m+[1;32m  322[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:29:25 UTC[0m Syncing [1;37m#5060121[0m [1;37m0xb977…ed53[0m  [1;33m  17.60[0m blk/s [1;33m2728.0[0m tx/s [1;33m 138.1[0m Mgas/s  [1;32m   12[0m+[1;32m  305[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:29:30 UTC[0m Syncing [1;37m#5060206[0m [1;37m0xe6f8…8b7e[0m  [1;33m  17.00[0m blk/s [1;33m2634.5[0m tx/s [1;33m 133.4[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:29:35 UTC[0m Syncing [1;37m#5060288[0m [1;37m0x2cb3…7699[0m  [1;33m  16.38[0m blk/s [1;33m2539.0[0m tx/s [1;33m 128.5[0m Mgas/s  [1;32m    0[0m+[1;32m  307[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:29:40 UTC[0m Syncing [1;37m#5060358[0m [1;37m0x76c6…e1a8[0m  [1;33m  14.28[0m blk/s [1;33m2213.8[0m tx/s [1;33m 112.1[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:29:45 UTC[0m Syncing [1;37m#5060447[0m [1;37m0x8921…49f4[0m  [1;33m  17.80[0m blk/s [1;33m2759.0[0m tx/s [1;33m 139.7[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:29:50 UTC[0m Syncing [1;37m#5060532[0m [1;37m0x74fa…5969[0m  [1;33m  17.00[0m blk/s [1;33m2635.0[0m tx/s [1;33m 133.4[0m Mgas/s  [1;32m    8[0m+[1;32m  300[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:29:55 UTC[0m Syncing [1;37m#5060613[0m [1;37m0x9fba…2350[0m  [1;33m  16.20[0m blk/s [1;33m2511.0[0m tx/s [1;33m 127.1[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:30:00 UTC[0m Syncing [1;37m#5060698[0m [1;37m0xf112…1ef8[0m  [1;33m  16.98[0m blk/s [1;33m2632.4[0m tx/s [1;33m 133.3[0m Mgas/s  [1;32m    0[0m+[1;32m  306[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:30:05 UTC[0m Syncing [1;37m#5060772[0m [1;37m0xb19e…e061[0m  [1;33m  14.80[0m blk/s [1;33m2294.0[0m tx/s [1;33m 116.1[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:30:10 UTC[0m Syncing [1;37m#5060834[0m [1;37m0x51df…58e0[0m  [1;33m  12.40[0m blk/s [1;33m1922.0[0m tx/s [1;33m  97.3[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:30:15 UTC[0m Syncing [1;37m#5060895[0m [1;37m0x6b1a…2fca[0m  [1;33m  12.20[0m blk/s [1;33m1891.0[0m tx/s [1;33m  95.7[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:30:20 UTC[0m Syncing [1;37m#5060948[0m [1;37m0xbbb9…b362[0m  [1;33m  10.60[0m blk/s [1;33m1643.0[0m tx/s [1;33m  83.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:30:25 UTC[0m Syncing [1;37m#5060997[0m [1;37m0xf200…081b[0m  [1;33m   9.80[0m blk/s [1;33m1519.0[0m tx/s [1;33m  76.9[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:30:30 UTC[0m Syncing [1;37m#5061085[0m [1;37m0xe053…0bd6[0m  [1;33m  17.40[0m blk/s [1;33m2697.0[0m tx/s [1;33m 136.5[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:30:35 UTC[0m Syncing [1;37m#5061166[0m [1;37m0x75f1…8648[0m  [1;33m  16.40[0m blk/s [1;33m2542.0[0m tx/s [1;33m 128.7[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:30:40 UTC[0m Syncing [1;37m#5061251[0m [1;37m0x4332…9ed5[0m  [1;33m  17.00[0m blk/s [1;33m2635.0[0m tx/s [1;33m 133.4[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:30:45 UTC[0m Syncing [1;37m#5061330[0m [1;37m0x6642…1c28[0m  [1;33m  15.80[0m blk/s [1;33m2449.0[0m tx/s [1;33m 124.0[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:30:50 UTC[0m Syncing [1;37m#5061410[0m [1;37m0x1647…eff1[0m  [1;33m  16.00[0m blk/s [1;33m2480.0[0m tx/s [1;33m 125.5[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:30:55 UTC[0m Syncing [1;37m#5061493[0m [1;37m0x1c16…82f9[0m  [1;33m  16.60[0m blk/s [1;33m2573.0[0m tx/s [1;33m 130.3[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:31:00 UTC[0m Syncing [1;37m#5061566[0m [1;37m0x7775…62a1[0m  [1;33m  14.40[0m blk/s [1;33m2232.0[0m tx/s [1;33m 113.0[0m Mgas/s  [1;32m    0[0m+[1;32m  321[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:31:05 UTC[0m Syncing [1;37m#5061645[0m [1;37m0xc6b5…978a[0m  [1;33m  15.97[0m blk/s [1;33m2475.0[0m tx/s [1;33m 125.3[0m Mgas/s  [1;32m    0[0m+[1;32m  297[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:31:10 UTC[0m Syncing [1;37m#5061728[0m [1;37m0x70e3…e74d[0m  [1;33m  16.61[0m blk/s [1;33m2574.5[0m tx/s [1;33m 130.3[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:31:15 UTC[0m Syncing [1;37m#5061803[0m [1;37m0xd043…f4ff[0m  [1;33m  14.97[0m blk/s [1;33m2319.9[0m tx/s [1;33m 117.4[0m Mgas/s  [1;32m    0[0m+[1;32m  309[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:31:20 UTC[0m Syncing [1;37m#5061871[0m [1;37m0x554d…2f86[0m  [1;33m  13.61[0m blk/s [1;33m2109.7[0m tx/s [1;33m 106.8[0m Mgas/s  [1;32m    0[0m+[1;32m  321[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:31:25 UTC[0m Syncing [1;37m#5061956[0m [1;37m0x287f…2572[0m  [1;33m  16.97[0m blk/s [1;33m2629.7[0m tx/s [1;33m 133.1[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:31:30 UTC[0m Syncing [1;37m#5062038[0m [1;37m0xa602…127b[0m  [1;33m  16.24[0m blk/s [1;33m2516.5[0m tx/s [1;33m 127.4[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:31:35 UTC[0m Syncing [1;37m#5062123[0m [1;37m0x6656…869c[0m  [1;33m  17.20[0m blk/s [1;33m2666.0[0m tx/s [1;33m 135.0[0m Mgas/s  [1;32m    0[0m+[1;32m  290[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m37 MiB[0m queue  
+
+[1;30m2019-11-13 03:31:40 UTC[0m Syncing [1;37m#5062208[0m [1;37m0x690b…d9b2[0m  [1;33m  16.17[0m blk/s [1;33m2506.2[0m tx/s [1;33m 126.9[0m Mgas/s  [1;32m    0[0m+[1;32m  194[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m25 MiB[0m queue  
+
+[1;30m2019-11-13 03:31:46 UTC[0m Syncing [1;37m#5062305[0m [1;37m0x7acf…fd8a[0m  [1;33m  15.90[0m blk/s [1;33m2464.8[0m tx/s [1;33m 124.8[0m Mgas/s  [1;32m    0[0m+[1;32m   98[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m12 MiB[0m queue  
+
+[1;30m2019-11-13 03:31:52 UTC[0m Import completed in 568 seconds, 10154 blocks, 17 blk/s, 1550000 transactions, 2725 tx/s, 78566 Mgas, 138 Mgas/s
+
+[1;30m2019-11-13 03:31:52 UTC[0m unable to get mut ref for engine for shutdown.
+
+"rocksdb.block.cache.miss COUNT : 9617533\nrocksdb.block.cache.hit COUNT : 25872759\nrocksdb.block.cache.add COUNT : 7182946\nrocksdb.block.cache.add.failures COUNT : 0\nrocksdb.block.cache.index.miss COUNT : 76955\nrocksdb.block.cache.index.hit COUNT : 5679185\nrocksdb.block.cache.index.add COUNT : 76955\nrocksdb.block.cache.index.bytes.insert COUNT : 9925750296\nrocksdb.block.cache.index.bytes.evict COUNT : 9919277296\nrocksdb.block.cache.filter.miss COUNT : 0\nrocksdb.block.cache.filter.hit COUNT : 0\nrocksdb.block.cache.filter.add COUNT : 0\nrocksdb.block.cache.filter.bytes.insert COUNT : 0\nrocksdb.block.cache.filter.bytes.evict COUNT : 0\nrocksdb.block.cache.data.miss COUNT : 9540578\nrocksdb.block.cache.data.hit COUNT : 20193574\nrocksdb.block.cache.data.add COUNT : 7105991\nrocksdb.block.cache.data.bytes.insert COUNT : 135185959640\nrocksdb.block.cache.bytes.read COUNT : 717339367432\nrocksdb.block.cache.bytes.write COUNT : 145111709936\nrocksdb.bloom.filter.useful COUNT : 0\nrocksdb.bloom.filter.full.positive COUNT : 0\nrocksdb.bloom.filter.full.true.positive COUNT : 0\nrocksdb.persistent.cache.hit COUNT : 0\nrocksdb.persistent.cache.miss COUNT : 0\nrocksdb.sim.block.cache.hit COUNT : 0\nrocksdb.sim.block.cache.miss COUNT : 0\nrocksdb.memtable.hit COUNT : 224931\nrocksdb.memtable.miss COUNT : 4281440\nrocksdb.l0.hit COUNT : 970562\nrocksdb.l1.hit COUNT : 0\nrocksdb.l2andup.hit COUNT : 3280347\nrocksdb.compaction.key.drop.new COUNT : 4057568\nrocksdb.compaction.key.drop.obsolete COUNT : 5414811\nrocksdb.compaction.key.drop.range_del COUNT : 0\nrocksdb.compaction.key.drop.user COUNT : 0\nrocksdb.compaction.range_del.drop.obsolete COUNT : 0\nrocksdb.compaction.optimized.del.drop.obsolete COUNT : 27\nrocksdb.compaction.cancelled COUNT : 0\nrocksdb.number.keys.written COUNT : 29450352\nrocksdb.number.keys.read COUNT : 4506371\nrocksdb.number.keys.updated COUNT : 0\nrocksdb.bytes.written COUNT : 12424026030\nrocksdb.bytes.read COUNT : 987082736\nrocksdb.number.db.seek COUNT : 0\nrocksdb.number.db.next COUNT : 0\nrocksdb.number.db.prev COUNT : 0\nrocksdb.number.db.seek.found COUNT : 0\nrocksdb.number.db.next.found COUNT : 0\nrocksdb.number.db.prev.found COUNT : 0\nrocksdb.db.iter.bytes.read COUNT : 0\nrocksdb.no.file.closes COUNT : 0\nrocksdb.no.file.opens COUNT : 2442\nrocksdb.no.file.errors COUNT : 0\nrocksdb.l0.slowdown.micros COUNT : 0\nrocksdb.memtable.compaction.micros COUNT : 0\nrocksdb.l0.num.files.stall.micros COUNT : 0\nrocksdb.stall.micros COUNT : 6788298\nrocksdb.db.mutex.wait.micros COUNT : 0\nrocksdb.rate.limit.delay.millis COUNT : 0\nrocksdb.num.iterators COUNT : 0\nrocksdb.number.multiget.get COUNT : 0\nrocksdb.number.multiget.keys.read COUNT : 0\nrocksdb.number.multiget.bytes.read COUNT : 0\nrocksdb.number.deletes.filtered COUNT : 0\nrocksdb.number.merge.failures COUNT : 0\nrocksdb.bloom.filter.prefix.checked COUNT : 0\nrocksdb.bloom.filter.prefix.useful COUNT : 0\nrocksdb.number.reseeks.iteration COUNT : 0\nrocksdb.getupdatessince.calls COUNT : 0\nrocksdb.block.cachecompressed.miss COUNT : 0\nrocksdb.block.cachecompressed.hit COUNT : 0\nrocksdb.block.cachecompressed.add COUNT : 0\nrocksdb.block.cachecompressed.add.failures COUNT : 0\nrocksdb.wal.synced COUNT : 0\nrocksdb.wal.bytes COUNT : 12424026030\nrocksdb.write.self COUNT : 851\nrocksdb.write.other COUNT : 0\nrocksdb.write.timeout COUNT : 0\nrocksdb.write.wal COUNT : 1702\nrocksdb.compact.read.bytes COUNT : 0\nrocksdb.compact.write.bytes COUNT : 1000\nrocksdb.flush.write.bytes COUNT : 0\nrocksdb.number.direct.load.table.properties COUNT : 84\nrocksdb.number.superversion_acquires COUNT : 3569\nrocksdb.number.superversion_releases COUNT : 533\nrocksdb.number.superversion_cleanups COUNT : 493\nrocksdb.number.block.compressed COUNT : 1272126\nrocksdb.number.block.decompressed COUNT : 1432990\nrocksdb.number.block.not_compressed COUNT : 0\nrocksdb.merge.operation.time.nanos COUNT : 0\nrocksdb.filter.operation.time.nanos COUNT : 0\nrocksdb.row.cache.hit COUNT : 0\nrocksdb.row.cache.miss COUNT : 0\nrocksdb.read.amp.estimate.useful.bytes COUNT : 0\nrocksdb.read.amp.total.read.bytes COUNT : 0\nrocksdb.number.rate_limiter.drains COUNT : 0\nrocksdb.number.iter.skip COUNT : 0\nrocksdb.blobdb.num.put COUNT : 0\nrocksdb.blobdb.num.write COUNT : 0\nrocksdb.blobdb.num.get COUNT : 0\nrocksdb.blobdb.num.multiget COUNT : 0\nrocksdb.blobdb.num.seek COUNT : 0\nrocksdb.blobdb.num.next COUNT : 0\nrocksdb.blobdb.num.prev COUNT : 0\nrocksdb.blobdb.num.keys.written COUNT : 0\nrocksdb.blobdb.num.keys.read COUNT : 0\nrocksdb.blobdb.bytes.written COUNT : 0\nrocksdb.blobdb.bytes.read COUNT : 0\nrocksdb.blobdb.write.inlined COUNT : 0\nrocksdb.blobdb.write.inlined.ttl COUNT : 0\nrocksdb.blobdb.write.blob COUNT : 0\nrocksdb.blobdb.write.blob.ttl COUNT : 0\nrocksdb.blobdb.blob.file.bytes.written COUNT : 0\nrocksdb.blobdb.blob.file.bytes.read COUNT : 0\nrocksdb.blobdb.blob.file.synced COUNT : 0\nrocksdb.blobdb.blob.index.expired.count COUNT : 0\nrocksdb.blobdb.blob.index.expired.size COUNT : 0\nrocksdb.blobdb.blob.index.evicted.count COUNT : 0\nrocksdb.blobdb.blob.index.evicted.size COUNT : 0\nrocksdb.blobdb.gc.num.files COUNT : 0\nrocksdb.blobdb.gc.num.new.files COUNT : 0\nrocksdb.blobdb.gc.failures COUNT : 0\nrocksdb.blobdb.gc.num.keys.overwritten COUNT : 0\nrocksdb.blobdb.gc.num.keys.expired COUNT : 0\nrocksdb.blobdb.gc.num.keys.relocated COUNT : 0\nrocksdb.blobdb.gc.bytes.overwritten COUNT : 0\nrocksdb.blobdb.gc.bytes.expired COUNT : 0\nrocksdb.blobdb.gc.bytes.relocated COUNT : 0\nrocksdb.blobdb.fifo.num.files.evicted COUNT : 0\nrocksdb.blobdb.fifo.num.keys.evicted COUNT : 0\nrocksdb.blobdb.fifo.bytes.evicted COUNT : 0\nrocksdb.txn.overhead.mutex.prepare COUNT : 0\nrocksdb.txn.overhead.mutex.old.commit.map COUNT : 0\nrocksdb.txn.overhead.duplicate.key COUNT : 0\nrocksdb.txn.overhead.mutex.snapshot COUNT : 0\nrocksdb.number.multiget.keys.found COUNT : 0\nrocksdb.db.get.micros statistics Percentiles :=> 50 : 23.137894 95 : 104.881702 99 : 303.960410 100 : 216696.000000\nrocksdb.db.write.micros statistics Percentiles :=> 50 : 67344.377510 95 : 132591.836735 99 : 216533.333333 100 : 1679305.000000\nrocksdb.compaction.times.micros statistics Percentiles :=> 50 : 386333.333333 95 : 8535000.000000 99 : 23952500.000000 100 : 29830757.000000\nrocksdb.subcompaction.setup.times.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.table.sync.micros statistics Percentiles :=> 50 : 7295.177665 95 : 159222.222222 99 : 314923.529412 100 : 472957.000000\nrocksdb.compaction.outfile.sync.micros statistics Percentiles :=> 50 : 93820.754717 95 : 360377.358491 99 : 538608.695652 100 : 1120381.000000\nrocksdb.wal.file.sync.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.manifest.file.sync.micros statistics Percentiles :=> 50 : 1546.987952 95 : 1895.060241 99 : 8462.142857 100 : 122911.000000\nrocksdb.table.open.io.micros statistics Percentiles :=> 50 : 91.228519 95 : 1697.125000 99 : 2754.509804 100 : 23859.000000\nrocksdb.db.multiget.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.read.block.compaction.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.read.block.get.micros statistics Percentiles :=> 50 : 7.786729 95 : 32.285319 99 : 126.624956 100 : 242339.000000\nrocksdb.write.raw.block.micros statistics Percentiles :=> 50 : 12.836769 95 : 25.628281 99 : 762.665386 100 : 148190.000000\nrocksdb.l0.slowdown.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.memtable.compaction.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.num.files.stall.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.hard.rate.limit.delay.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.soft.rate.limit.delay.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.numfiles.in.singlecompaction statistics Percentiles :=> 50 : 2.500000 95 : 10.946429 99 : 17.951667 100 : 21.000000\nrocksdb.db.seek.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.db.write.stall statistics Percentiles :=> 50 : 1030000.000000 95 : 1598262.000000 99 : 1598262.000000 100 : 1598262.000000\nrocksdb.sst.read.micros statistics Percentiles :=> 50 : 4.883612 95 : 8.999653 99 : 26.222526 100 : 215945.000000\nrocksdb.num.subcompactions.scheduled statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.bytes.per.read statistics Percentiles :=> 50 : 146.983105 95 : 539.569340 99 : 571.923345 100 : 1141178.000000\nrocksdb.bytes.per.write statistics Percentiles :=> 50 : 16807339.449541 95 : 21491743.119266 99 : 21908134.556575 100 : 23715908.000000\nrocksdb.bytes.per.multiget statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.bytes.compressed statistics Percentiles :=> 50 : 21720.380856 95 : 74376.371030 99 : 103098.638669 100 : 911326.000000\nrocksdb.bytes.decompressed statistics Percentiles :=> 50 : 21463.901198 95 : 99214.312537 99 : 165268.940585 100 : 1066870.000000\nrocksdb.compression.times.nanos statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.decompression.times.nanos statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.read.num.merge_operands statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.key.size statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.value.size statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.write.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.get.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.multiget.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.seek.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.next.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.prev.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.blob.file.write.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.blob.file.read.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.blob.file.sync.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.gc.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.compression.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.decompression.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.db.flush.micros statistics Percentiles :=> 50 : 15406.060606 95 : 291849.315068 99 : 387307.692308 100 : 563227.000000\n"
+
+
+bash ~/scripts/bash/import.sh ekt_secured x transfer 13.56.164.254 5052259 fullnode_bak
+mkdir: cannot create directory ‘results’: File exists
+
+Loading config file from /home/leo/scripts/parity/config.dev-insecure.toml
+
+[1;30m2019-11-13 03:31:53 UTC[0m Configured for [1;37methereum[0m using [1;33mInstantSeal[0m engine
+
+INSTRUCTIONS ::  49163 lines 783 store 1100 load
+
+INSTRUCTIONS ::  412 lines 8 store 14 load
+
+INSTRUCTIONS ::  412 lines 8 store 14 load
+
+INSTRUCTIONS ::  412 lines 8 store 14 load
+
+INSTRUCTIONS ::  412 lines 8 store 14 load
+
+[1;30m2019-11-13 03:31:59 UTC[0m Syncing [1;37m#5052470[0m [1;37m0x7506…8d31[0m  [1;33m  42.21[0m blk/s [1;33m1767.4[0m tx/s [1;33m 170.0[0m Mgas/s  [1;32m    8[0m+[1;32m  307[0m Qed     [1;34m1 MiB[0m chain [1;34m10 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:32:04 UTC[0m Syncing [1;37m#5052597[0m [1;37m0xea09…1b8c[0m  [1;33m  25.40[0m blk/s [1;33m3937.0[0m tx/s [1;33m 326.0[0m Mgas/s  [1;32m    7[0m+[1;32m  288[0m Qed     [1;34m2 MiB[0m chain [1;34m9 MiB[0m db [1;34m37 MiB[0m queue  
+
+[1;30m2019-11-13 03:32:09 UTC[0m Syncing [1;37m#5052708[0m [1;37m0xedfc…c605[0m  [1;33m  22.20[0m blk/s [1;33m3441.0[0m tx/s [1;33m 285.0[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m5 MiB[0m chain [1;34m9 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:32:14 UTC[0m Syncing [1;37m#5052811[0m [1;37m0x1d92…687f[0m  [1;33m  20.37[0m blk/s [1;33m3157.6[0m tx/s [1;33m 261.5[0m Mgas/s  [1;32m    0[0m+[1;32m  317[0m Qed     [1;34m4 MiB[0m chain [1;34m9 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:32:19 UTC[0m Syncing [1;37m#5052912[0m [1;37m0x114d…523f[0m  [1;33m  20.43[0m blk/s [1;33m3167.1[0m tx/s [1;33m 262.4[0m Mgas/s  [1;32m    0[0m+[1;32m  309[0m Qed     [1;34m4 MiB[0m chain [1;34m9 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:32:24 UTC[0m Syncing [1;37m#5053008[0m [1;37m0xef75…2042[0m  [1;33m  19.20[0m blk/s [1;33m2976.0[0m tx/s [1;33m 246.7[0m Mgas/s  [1;32m   16[0m+[1;32m  301[0m Qed     [1;34m9 MiB[0m chain [1;34m9 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:32:29 UTC[0m Syncing [1;37m#5053100[0m [1;37m0xde9a…7d27[0m  [1;33m  18.40[0m blk/s [1;33m2852.0[0m tx/s [1;33m 236.4[0m Mgas/s  [1;32m    0[0m+[1;32m  309[0m Qed     [1;34m9 MiB[0m chain [1;34m10 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:32:34 UTC[0m Syncing [1;37m#5053185[0m [1;37m0x6e89…d195[0m  [1;33m  17.00[0m blk/s [1;33m2635.0[0m tx/s [1;33m 218.4[0m Mgas/s  [1;32m   10[0m+[1;32m  307[0m Qed     [1;34m4 MiB[0m chain [1;34m11 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:32:39 UTC[0m Syncing [1;37m#5053274[0m [1;37m0xf267…94b4[0m  [1;33m  17.78[0m blk/s [1;33m2755.1[0m tx/s [1;33m 228.3[0m Mgas/s  [1;32m    0[0m+[1;32m  321[0m Qed     [1;34m4 MiB[0m chain [1;34m12 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:32:44 UTC[0m Syncing [1;37m#5053366[0m [1;37m0xfd18…4cd0[0m  [1;33m  18.40[0m blk/s [1;33m2852.0[0m tx/s [1;33m 236.4[0m Mgas/s  [1;32m    0[0m+[1;32m  295[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:32:49 UTC[0m Syncing [1;37m#5053452[0m [1;37m0xff2a…ec6f[0m  [1;33m  17.20[0m blk/s [1;33m2666.0[0m tx/s [1;33m 221.0[0m Mgas/s  [1;32m   16[0m+[1;32m  302[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:32:54 UTC[0m Syncing [1;37m#5053542[0m [1;37m0x1993…a67a[0m  [1;33m  18.00[0m blk/s [1;33m2789.4[0m tx/s [1;33m 231.2[0m Mgas/s  [1;32m    0[0m+[1;32m  321[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:32:59 UTC[0m Syncing [1;37m#5053627[0m [1;37m0x3a94…d4a8[0m  [1;33m  17.00[0m blk/s [1;33m2635.0[0m tx/s [1;33m 218.4[0m Mgas/s  [1;32m    0[0m+[1;32m  319[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:33:04 UTC[0m Syncing [1;37m#5053703[0m [1;37m0x1a5a…d7d7[0m  [1;33m  15.20[0m blk/s [1;33m2356.0[0m tx/s [1;33m 195.3[0m Mgas/s  [1;32m    0[0m+[1;32m  309[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:33:09 UTC[0m Syncing [1;37m#5053769[0m [1;37m0xefeb…9a2f[0m  [1;33m  13.20[0m blk/s [1;33m2046.0[0m tx/s [1;33m 169.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:33:14 UTC[0m Syncing [1;37m#5053828[0m [1;37m0x2a75…9944[0m  [1;33m  11.80[0m blk/s [1;33m1829.0[0m tx/s [1;33m 151.6[0m Mgas/s  [1;32m    0[0m+[1;32m  315[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:33:19 UTC[0m Syncing [1;37m#5053888[0m [1;37m0xf149…88ae[0m  [1;33m  12.00[0m blk/s [1;33m1860.0[0m tx/s [1;33m 154.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:33:24 UTC[0m Syncing [1;37m#5053970[0m [1;37m0xefc0…f7f9[0m  [1;33m  16.40[0m blk/s [1;33m2542.0[0m tx/s [1;33m 210.7[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:33:29 UTC[0m Syncing [1;37m#5054052[0m [1;37m0x3e8c…7b99[0m  [1;33m  16.40[0m blk/s [1;33m2542.0[0m tx/s [1;33m 210.7[0m Mgas/s  [1;32m    3[0m+[1;32m  302[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:33:34 UTC[0m Syncing [1;37m#5054133[0m [1;37m0xcc86…77a4[0m  [1;33m  16.20[0m blk/s [1;33m2511.0[0m tx/s [1;33m 208.1[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:33:39 UTC[0m Syncing [1;37m#5054215[0m [1;37m0x13bc…3071[0m  [1;33m  16.20[0m blk/s [1;33m2511.0[0m tx/s [1;33m 208.1[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:33:44 UTC[0m Syncing [1;37m#5054290[0m [1;37m0xf335…318a[0m  [1;33m  15.20[0m blk/s [1;33m2356.0[0m tx/s [1;33m 195.3[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:33:49 UTC[0m Syncing [1;37m#5054372[0m [1;37m0x4a68…ab97[0m  [1;33m  16.40[0m blk/s [1;33m2542.0[0m tx/s [1;33m 210.7[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:33:54 UTC[0m Syncing [1;37m#5054452[0m [1;37m0xf7a2…369c[0m  [1;33m  16.00[0m blk/s [1;33m2480.0[0m tx/s [1;33m 205.5[0m Mgas/s  [1;32m    0[0m+[1;32m  307[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:33:59 UTC[0m Syncing [1;37m#5054532[0m [1;37m0x1a76…c794[0m  [1;33m  16.00[0m blk/s [1;33m2480.0[0m tx/s [1;33m 205.5[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:34:04 UTC[0m Syncing [1;37m#5054607[0m [1;37m0xd81a…3284[0m  [1;33m  15.00[0m blk/s [1;33m2325.0[0m tx/s [1;33m 192.7[0m Mgas/s  [1;32m    2[0m+[1;32m  314[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:34:09 UTC[0m Syncing [1;37m#5054685[0m [1;37m0xfc27…c313[0m  [1;33m  15.60[0m blk/s [1;33m2417.5[0m tx/s [1;33m 200.4[0m Mgas/s  [1;32m    0[0m+[1;32m  309[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:34:14 UTC[0m Syncing [1;37m#5054749[0m [1;37m0x3239…286d[0m  [1;33m  12.80[0m blk/s [1;33m1984.0[0m tx/s [1;33m 164.4[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:34:19 UTC[0m Syncing [1;37m#5054806[0m [1;37m0x8575…c5a4[0m  [1;33m  11.40[0m blk/s [1;33m1766.6[0m tx/s [1;33m 146.4[0m Mgas/s  [1;32m    0[0m+[1;32m  316[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:34:24 UTC[0m Syncing [1;37m#5054858[0m [1;37m0xe532…e075[0m  [1;33m  10.40[0m blk/s [1;33m1612.0[0m tx/s [1;33m 133.6[0m Mgas/s  [1;32m    0[0m+[1;32m  307[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:34:29 UTC[0m Syncing [1;37m#5054903[0m [1;37m0x8a91…d6d6[0m  [1;33m   9.00[0m blk/s [1;33m1395.0[0m tx/s [1;33m 115.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:34:34 UTC[0m Syncing [1;37m#5054953[0m [1;37m0x6795…b8b8[0m  [1;33m  10.00[0m blk/s [1;33m1550.0[0m tx/s [1;33m 128.5[0m Mgas/s  [1;32m    6[0m+[1;32m  312[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:34:39 UTC[0m Syncing [1;37m#5055034[0m [1;37m0x3b0f…950d[0m  [1;33m  16.20[0m blk/s [1;33m2511.5[0m tx/s [1;33m 208.2[0m Mgas/s  [1;32m    0[0m+[1;32m  296[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:34:44 UTC[0m Syncing [1;37m#5055107[0m [1;37m0x3e95…4dfd[0m  [1;33m  14.60[0m blk/s [1;33m2263.0[0m tx/s [1;33m 187.6[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:34:49 UTC[0m Syncing [1;37m#5055185[0m [1;37m0x9a35…3efb[0m  [1;33m  15.60[0m blk/s [1;33m2418.0[0m tx/s [1;33m 200.4[0m Mgas/s  [1;32m    5[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:34:54 UTC[0m Syncing [1;37m#5055257[0m [1;37m0x7dfa…7405[0m  [1;33m  14.40[0m blk/s [1;33m2232.0[0m tx/s [1;33m 185.0[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:34:59 UTC[0m Syncing [1;37m#5055316[0m [1;37m0xe5c4…a4c4[0m  [1;33m  11.80[0m blk/s [1;33m1829.0[0m tx/s [1;33m 151.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:35:04 UTC[0m Syncing [1;37m#5055367[0m [1;37m0x9246…dc3f[0m  [1;33m  10.20[0m blk/s [1;33m1581.0[0m tx/s [1;33m 131.0[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:35:09 UTC[0m Syncing [1;37m#5055412[0m [1;37m0x2bae…faa0[0m  [1;33m   9.00[0m blk/s [1;33m1395.0[0m tx/s [1;33m 115.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:35:14 UTC[0m Syncing [1;37m#5055456[0m [1;37m0x778b…bab0[0m  [1;33m   8.80[0m blk/s [1;33m1364.0[0m tx/s [1;33m 113.0[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:35:19 UTC[0m Syncing [1;37m#5055502[0m [1;37m0x0bf2…276d[0m  [1;33m   9.20[0m blk/s [1;33m1426.0[0m tx/s [1;33m 118.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:35:24 UTC[0m Syncing [1;37m#5055570[0m [1;37m0x60fb…a3a5[0m  [1;33m  13.60[0m blk/s [1;33m2108.0[0m tx/s [1;33m 174.7[0m Mgas/s  [1;32m    2[0m+[1;32m  314[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:35:29 UTC[0m Syncing [1;37m#5055642[0m [1;37m0x2188…1ac0[0m  [1;33m  14.40[0m blk/s [1;33m2232.0[0m tx/s [1;33m 185.0[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:35:34 UTC[0m Syncing [1;37m#5055705[0m [1;37m0x367d…4355[0m  [1;33m  12.40[0m blk/s [1;33m1922.0[0m tx/s [1;33m 159.3[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:35:39 UTC[0m Syncing [1;37m#5055758[0m [1;37m0x6d53…b413[0m  [1;33m  10.80[0m blk/s [1;33m1673.7[0m tx/s [1;33m 138.7[0m Mgas/s  [1;32m    0[0m+[1;32m  317[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:35:44 UTC[0m Syncing [1;37m#5055806[0m [1;37m0xb91a…c0a2[0m  [1;33m   9.60[0m blk/s [1;33m1487.7[0m tx/s [1;33m 123.3[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:35:49 UTC[0m Syncing [1;37m#5055867[0m [1;37m0xdf62…7a61[0m  [1;33m  12.20[0m blk/s [1;33m1891.0[0m tx/s [1;33m 156.7[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:35:54 UTC[0m Syncing [1;37m#5055926[0m [1;37m0x4a12…1cf4[0m  [1;33m  11.80[0m blk/s [1;33m1829.0[0m tx/s [1;33m 151.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:35:59 UTC[0m Syncing [1;37m#5055992[0m [1;37m0xf51d…418c[0m  [1;33m  13.20[0m blk/s [1;33m2046.0[0m tx/s [1;33m 169.6[0m Mgas/s  [1;32m    4[0m+[1;32m  297[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m38 MiB[0m queue  
+
+[1;30m2019-11-13 03:36:04 UTC[0m Syncing [1;37m#5056048[0m [1;37m0xf06c…4300[0m  [1;33m  11.20[0m blk/s [1;33m1736.0[0m tx/s [1;33m 143.9[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:36:09 UTC[0m Syncing [1;37m#5056112[0m [1;37m0xe8e5…a81d[0m  [1;33m  12.80[0m blk/s [1;33m1984.0[0m tx/s [1;33m 164.4[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:36:14 UTC[0m Syncing [1;37m#5056178[0m [1;37m0x03ac…5462[0m  [1;33m  13.20[0m blk/s [1;33m2046.0[0m tx/s [1;33m 169.6[0m Mgas/s  [1;32m    8[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:36:19 UTC[0m Syncing [1;37m#5056244[0m [1;37m0xedb7…1317[0m  [1;33m  13.19[0m blk/s [1;33m2045.2[0m tx/s [1;33m 169.5[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:36:24 UTC[0m Syncing [1;37m#5056299[0m [1;37m0x35ea…33d8[0m  [1;33m  11.00[0m blk/s [1;33m1705.0[0m tx/s [1;33m 141.3[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:36:29 UTC[0m Syncing [1;37m#5056349[0m [1;37m0xb1d6…ca42[0m  [1;33m  10.00[0m blk/s [1;33m1550.0[0m tx/s [1;33m 128.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:36:34 UTC[0m Syncing [1;37m#5056392[0m [1;37m0xc7e8…01be[0m  [1;33m   8.60[0m blk/s [1;33m1333.0[0m tx/s [1;33m 110.5[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:36:39 UTC[0m Syncing [1;37m#5056445[0m [1;37m0xf839…4c9b[0m  [1;33m  10.60[0m blk/s [1;33m1643.0[0m tx/s [1;33m 136.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:36:44 UTC[0m Syncing [1;37m#5056508[0m [1;37m0x9754…f437[0m  [1;33m  12.59[0m blk/s [1;33m1951.0[0m tx/s [1;33m 161.7[0m Mgas/s  [1;32m   11[0m+[1;32m  306[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:36:49 UTC[0m Syncing [1;37m#5056575[0m [1;37m0x05aa…78bb[0m  [1;33m  13.40[0m blk/s [1;33m2076.6[0m tx/s [1;33m 172.1[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:36:54 UTC[0m Syncing [1;37m#5056640[0m [1;37m0xa8c4…c845[0m  [1;33m  13.00[0m blk/s [1;33m2015.0[0m tx/s [1;33m 167.0[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:36:59 UTC[0m Syncing [1;37m#5056698[0m [1;37m0x70d5…d8ee[0m  [1;33m  11.60[0m blk/s [1;33m1797.6[0m tx/s [1;33m 149.0[0m Mgas/s  [1;32m    6[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:37:04 UTC[0m Syncing [1;37m#5056748[0m [1;37m0x6189…8b17[0m  [1;33m  10.00[0m blk/s [1;33m1550.0[0m tx/s [1;33m 128.5[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:37:09 UTC[0m Syncing [1;37m#5056792[0m [1;37m0xf407…7dea[0m  [1;33m   8.80[0m blk/s [1;33m1364.3[0m tx/s [1;33m 113.1[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:37:14 UTC[0m Syncing [1;37m#5056844[0m [1;37m0x7422…78b3[0m  [1;33m  10.39[0m blk/s [1;33m1610.7[0m tx/s [1;33m 133.5[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:37:19 UTC[0m Syncing [1;37m#5056906[0m [1;37m0x0b3b…71f8[0m  [1;33m  12.41[0m blk/s [1;33m1923.9[0m tx/s [1;33m 159.5[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:37:24 UTC[0m Syncing [1;37m#5056968[0m [1;37m0x7d6d…583e[0m  [1;33m  12.20[0m blk/s [1;33m1890.6[0m tx/s [1;33m 156.7[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m14 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:37:29 UTC[0m Syncing [1;37m#5057023[0m [1;37m0x6810…89e1[0m  [1;33m  11.20[0m blk/s [1;33m1736.0[0m tx/s [1;33m 143.9[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:37:34 UTC[0m Syncing [1;37m#5057070[0m [1;37m0x15b5…950e[0m  [1;33m   9.20[0m blk/s [1;33m1426.0[0m tx/s [1;33m 118.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:37:39 UTC[0m Syncing [1;37m#5057112[0m [1;37m0xb8f6…b1af[0m  [1;33m   8.60[0m blk/s [1;33m1333.0[0m tx/s [1;33m 110.5[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m13 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:37:44 UTC[0m Syncing [1;37m#5057150[0m [1;37m0x3151…341e[0m  [1;33m   7.60[0m blk/s [1;33m1178.0[0m tx/s [1;33m  97.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m14 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:37:49 UTC[0m Syncing [1;37m#5057206[0m [1;37m0x68b7…22d7[0m  [1;33m  11.20[0m blk/s [1;33m1736.0[0m tx/s [1;33m 143.9[0m Mgas/s  [1;32m    0[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m14 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:37:54 UTC[0m Syncing [1;37m#5057264[0m [1;37m0x62ef…949d[0m  [1;33m  11.59[0m blk/s [1;33m1796.2[0m tx/s [1;33m 148.9[0m Mgas/s  [1;32m   10[0m+[1;32m  298[0m Qed     [1;34m4 MiB[0m chain [1;34m15 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:37:59 UTC[0m Syncing [1;37m#5057323[0m [1;37m0x3f87…7c96[0m  [1;33m  11.80[0m blk/s [1;33m1828.6[0m tx/s [1;33m 151.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m15 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:38:04 UTC[0m Syncing [1;37m#5057373[0m [1;37m0x7bd8…98dd[0m  [1;33m  10.00[0m blk/s [1;33m1550.0[0m tx/s [1;33m 128.5[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m15 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:38:09 UTC[0m Syncing [1;37m#5057421[0m [1;37m0xdc66…e307[0m  [1;33m   9.60[0m blk/s [1;33m1488.0[0m tx/s [1;33m 123.3[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m16 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:38:14 UTC[0m Syncing [1;37m#5057480[0m [1;37m0x7fb7…f80c[0m  [1;33m  11.80[0m blk/s [1;33m1829.0[0m tx/s [1;33m 151.6[0m Mgas/s  [1;32m   22[0m+[1;32m  296[0m Qed     [1;34m4 MiB[0m chain [1;34m15 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:38:19 UTC[0m Syncing [1;37m#5057539[0m [1;37m0x279d…6bcb[0m  [1;33m  11.80[0m blk/s [1;33m1828.6[0m tx/s [1;33m 151.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m16 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:38:24 UTC[0m Syncing [1;37m#5057593[0m [1;37m0x81c2…3d66[0m  [1;33m  10.80[0m blk/s [1;33m1674.0[0m tx/s [1;33m 138.7[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m16 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:38:29 UTC[0m Syncing [1;37m#5057639[0m [1;37m0x1971…6536[0m  [1;33m   9.20[0m blk/s [1;33m1425.7[0m tx/s [1;33m 118.2[0m Mgas/s  [1;32m    1[0m+[1;32m  314[0m Qed     [1;34m4 MiB[0m chain [1;34m16 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:38:34 UTC[0m Syncing [1;37m#5057682[0m [1;37m0x2cfd…6682[0m  [1;33m   8.60[0m blk/s [1;33m1332.7[0m tx/s [1;33m 110.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m16 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:38:39 UTC[0m Syncing [1;37m#5057736[0m [1;37m0xbe0c…2b60[0m  [1;33m  10.80[0m blk/s [1;33m1674.0[0m tx/s [1;33m 138.7[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m16 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:38:44 UTC[0m Syncing [1;37m#5057793[0m [1;37m0xac8d…7258[0m  [1;33m  11.40[0m blk/s [1;33m1767.0[0m tx/s [1;33m 146.5[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:38:49 UTC[0m Syncing [1;37m#5057843[0m [1;37m0xd4c1…8792[0m  [1;33m  10.00[0m blk/s [1;33m1550.0[0m tx/s [1;33m 128.5[0m Mgas/s  [1;32m    0[0m+[1;32m  306[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:38:54 UTC[0m Syncing [1;37m#5057885[0m [1;37m0xcff8…0eb5[0m  [1;33m   8.40[0m blk/s [1;33m1302.0[0m tx/s [1;33m 107.9[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m16 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:38:59 UTC[0m Syncing [1;37m#5057922[0m [1;37m0x63ca…1883[0m  [1;33m   7.20[0m blk/s [1;33m1116.0[0m tx/s [1;33m  92.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:39:04 UTC[0m Syncing [1;37m#5057971[0m [1;37m0xe55e…b64e[0m  [1;33m  10.00[0m blk/s [1;33m1550.0[0m tx/s [1;33m 128.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:39:09 UTC[0m Syncing [1;37m#5058024[0m [1;37m0xa105…ce5d[0m  [1;33m  10.60[0m blk/s [1;33m1643.0[0m tx/s [1;33m 136.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:39:14 UTC[0m Syncing [1;37m#5058070[0m [1;37m0x0548…f879[0m  [1;33m   9.20[0m blk/s [1;33m1426.0[0m tx/s [1;33m 118.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:39:19 UTC[0m Syncing [1;37m#5058110[0m [1;37m0xeada…e7be[0m  [1;33m   8.00[0m blk/s [1;33m1240.0[0m tx/s [1;33m 102.8[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:39:24 UTC[0m Syncing [1;37m#5058145[0m [1;37m0xc6ee…44f5[0m  [1;33m   7.00[0m blk/s [1;33m1085.0[0m tx/s [1;33m  89.9[0m Mgas/s  [1;32m    0[0m+[1;32m  316[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:39:29 UTC[0m Syncing [1;37m#5058197[0m [1;37m0x3d72…a2cb[0m  [1;33m  10.40[0m blk/s [1;33m1611.7[0m tx/s [1;33m 133.6[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:39:34 UTC[0m Syncing [1;37m#5058250[0m [1;37m0x359a…c926[0m  [1;33m  10.40[0m blk/s [1;33m1612.0[0m tx/s [1;33m 133.6[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:39:39 UTC[0m Syncing [1;37m#5058297[0m [1;37m0xc91f…f77d[0m  [1;33m   9.60[0m blk/s [1;33m1488.0[0m tx/s [1;33m 123.3[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:39:44 UTC[0m Syncing [1;37m#5058342[0m [1;37m0xd494…326c[0m  [1;33m   9.00[0m blk/s [1;33m1395.0[0m tx/s [1;33m 115.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:39:49 UTC[0m Syncing [1;37m#5058387[0m [1;37m0x2de2…9d99[0m  [1;33m   9.00[0m blk/s [1;33m1395.0[0m tx/s [1;33m 115.6[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:39:54 UTC[0m Syncing [1;37m#5058433[0m [1;37m0x6420…e11d[0m  [1;33m   9.20[0m blk/s [1;33m1426.0[0m tx/s [1;33m 118.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:39:59 UTC[0m Syncing [1;37m#5058473[0m [1;37m0xf40a…84d8[0m  [1;33m   8.00[0m blk/s [1;33m1240.0[0m tx/s [1;33m 102.8[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:40:04 UTC[0m Syncing [1;37m#5058509[0m [1;37m0x2e78…bc54[0m  [1;33m   7.20[0m blk/s [1;33m1116.0[0m tx/s [1;33m  92.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:40:09 UTC[0m Syncing [1;37m#5058540[0m [1;37m0x5483…7b1c[0m  [1;33m   6.20[0m blk/s [1;33m 961.0[0m tx/s [1;33m  79.6[0m Mgas/s  [1;32m    0[0m+[1;32m  307[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:40:14 UTC[0m Syncing [1;37m#5058570[0m [1;37m0x8516…7443[0m  [1;33m   6.00[0m blk/s [1;33m 930.0[0m tx/s [1;33m  77.1[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:40:19 UTC[0m Syncing [1;37m#5058616[0m [1;37m0x7f6a…260d[0m  [1;33m   9.20[0m blk/s [1;33m1426.0[0m tx/s [1;33m 118.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:40:24 UTC[0m Syncing [1;37m#5058666[0m [1;37m0xd097…94d7[0m  [1;33m  10.00[0m blk/s [1;33m1550.0[0m tx/s [1;33m 128.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:40:29 UTC[0m Syncing [1;37m#5058708[0m [1;37m0x716a…9c80[0m  [1;33m   8.40[0m blk/s [1;33m1302.0[0m tx/s [1;33m 107.9[0m Mgas/s  [1;32m    6[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:40:34 UTC[0m Syncing [1;37m#5058746[0m [1;37m0x0872…2419[0m  [1;33m   7.60[0m blk/s [1;33m1178.0[0m tx/s [1;33m  97.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:40:39 UTC[0m Syncing [1;37m#5058781[0m [1;37m0xc3c9…636e[0m  [1;33m   7.00[0m blk/s [1;33m1085.0[0m tx/s [1;33m  89.9[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:40:44 UTC[0m Syncing [1;37m#5058813[0m [1;37m0x3383…2c04[0m  [1;33m   6.40[0m blk/s [1;33m 992.0[0m tx/s [1;33m  82.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:40:49 UTC[0m Syncing [1;37m#5058849[0m [1;37m0x72e0…ac86[0m  [1;33m   7.20[0m blk/s [1;33m1116.0[0m tx/s [1;33m  92.5[0m Mgas/s  [1;32m    5[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:40:54 UTC[0m Syncing [1;37m#5058896[0m [1;37m0x001c…6e30[0m  [1;33m   9.39[0m blk/s [1;33m1455.3[0m tx/s [1;33m 120.6[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:40:59 UTC[0m Syncing [1;37m#5058944[0m [1;37m0x0fd5…79c1[0m  [1;33m   9.61[0m blk/s [1;33m1489.2[0m tx/s [1;33m 123.4[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:41:04 UTC[0m Syncing [1;37m#5058990[0m [1;37m0x832f…e2b7[0m  [1;33m   9.20[0m blk/s [1;33m1426.0[0m tx/s [1;33m 118.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:41:09 UTC[0m Syncing [1;37m#5059030[0m [1;37m0xdca1…d7cf[0m  [1;33m   8.00[0m blk/s [1;33m1240.0[0m tx/s [1;33m 102.8[0m Mgas/s  [1;32m    6[0m+[1;32m  309[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:41:14 UTC[0m Syncing [1;37m#5059066[0m [1;37m0xaaa0…9198[0m  [1;33m   7.20[0m blk/s [1;33m1116.0[0m tx/s [1;33m  92.5[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:41:19 UTC[0m Syncing [1;37m#5059107[0m [1;37m0x3363…e0ff[0m  [1;33m   8.20[0m blk/s [1;33m1271.0[0m tx/s [1;33m 105.3[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:41:24 UTC[0m Syncing [1;37m#5059152[0m [1;37m0x1ff2…bf98[0m  [1;33m   8.99[0m blk/s [1;33m1393.6[0m tx/s [1;33m 115.5[0m Mgas/s  [1;32m    0[0m+[1;32m  318[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:41:29 UTC[0m Syncing [1;37m#5059195[0m [1;37m0xe1cb…e046[0m  [1;33m   8.61[0m blk/s [1;33m1334.6[0m tx/s [1;33m 110.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:41:34 UTC[0m Syncing [1;37m#5059233[0m [1;37m0x1361…9184[0m  [1;33m   7.60[0m blk/s [1;33m1178.0[0m tx/s [1;33m  97.6[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:41:39 UTC[0m Syncing [1;37m#5059266[0m [1;37m0x2ef2…e595[0m  [1;33m   6.60[0m blk/s [1;33m1023.0[0m tx/s [1;33m  84.8[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:41:44 UTC[0m Syncing [1;37m#5059309[0m [1;37m0x15d7…c611[0m  [1;33m   8.60[0m blk/s [1;33m1333.0[0m tx/s [1;33m 110.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:41:49 UTC[0m Syncing [1;37m#5059354[0m [1;37m0x7643…340d[0m  [1;33m   9.00[0m blk/s [1;33m1395.0[0m tx/s [1;33m 115.6[0m Mgas/s  [1;32m    2[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:41:54 UTC[0m Syncing [1;37m#5059393[0m [1;37m0xa413…996b[0m  [1;33m   7.80[0m blk/s [1;33m1209.0[0m tx/s [1;33m 100.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:41:59 UTC[0m Syncing [1;37m#5059433[0m [1;37m0xe2f9…db96[0m  [1;33m   8.00[0m blk/s [1;33m1240.0[0m tx/s [1;33m 102.8[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:42:04 UTC[0m Syncing [1;37m#5059473[0m [1;37m0x3190…d2fa[0m  [1;33m   8.00[0m blk/s [1;33m1240.0[0m tx/s [1;33m 102.8[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:42:09 UTC[0m Syncing [1;37m#5059516[0m [1;37m0x2586…1c9d[0m  [1;33m   8.60[0m blk/s [1;33m1333.0[0m tx/s [1;33m 110.5[0m Mgas/s  [1;32m    0[0m+[1;32m  316[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:42:14 UTC[0m Syncing [1;37m#5059562[0m [1;37m0x6d2b…82da[0m  [1;33m   9.20[0m blk/s [1;33m1426.0[0m tx/s [1;33m 118.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:42:19 UTC[0m Syncing [1;37m#5059601[0m [1;37m0xa13b…386e[0m  [1;33m   7.80[0m blk/s [1;33m1209.0[0m tx/s [1;33m 100.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:42:24 UTC[0m Syncing [1;37m#5059636[0m [1;37m0x217d…33c2[0m  [1;33m   7.00[0m blk/s [1;33m1085.0[0m tx/s [1;33m  89.9[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:42:29 UTC[0m Syncing [1;37m#5059667[0m [1;37m0x4e14…3b42[0m  [1;33m   6.20[0m blk/s [1;33m 961.0[0m tx/s [1;33m  79.6[0m Mgas/s  [1;32m    2[0m+[1;32m  314[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:42:34 UTC[0m Syncing [1;37m#5059704[0m [1;37m0x8bbf…7e4a[0m  [1;33m   7.40[0m blk/s [1;33m1147.0[0m tx/s [1;33m  95.1[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:42:39 UTC[0m Syncing [1;37m#5059744[0m [1;37m0xdac5…6d1b[0m  [1;33m   7.80[0m blk/s [1;33m1209.0[0m tx/s [1;33m 100.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:42:44 UTC[0m Syncing [1;37m#5059781[0m [1;37m0xdfb7…493c[0m  [1;33m   7.60[0m blk/s [1;33m1178.0[0m tx/s [1;33m  97.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:42:49 UTC[0m Syncing [1;37m#5059813[0m [1;37m0x4a46…3793[0m  [1;33m   6.40[0m blk/s [1;33m 992.0[0m tx/s [1;33m  82.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:42:54 UTC[0m Syncing [1;37m#5059842[0m [1;37m0x15a1…dee2[0m  [1;33m   5.80[0m blk/s [1;33m 899.0[0m tx/s [1;33m  74.5[0m Mgas/s  [1;32m    0[0m+[1;32m  317[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:42:59 UTC[0m Syncing [1;37m#5059878[0m [1;37m0x32f6…731b[0m  [1;33m   7.20[0m blk/s [1;33m1116.0[0m tx/s [1;33m  92.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:43:04 UTC[0m Syncing [1;37m#5059916[0m [1;37m0x38db…b5f9[0m  [1;33m   7.60[0m blk/s [1;33m1178.0[0m tx/s [1;33m  97.6[0m Mgas/s  [1;32m    0[0m+[1;32m  307[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:43:09 UTC[0m Syncing [1;37m#5059956[0m [1;37m0xe96f…9196[0m  [1;33m   7.80[0m blk/s [1;33m1209.2[0m tx/s [1;33m 100.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:43:14 UTC[0m Syncing [1;37m#5059992[0m [1;37m0xd8bb…f408[0m  [1;33m   7.40[0m blk/s [1;33m1147.0[0m tx/s [1;33m  95.1[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:43:19 UTC[0m Syncing [1;37m#5060024[0m [1;37m0x0861…9d14[0m  [1;33m   6.40[0m blk/s [1;33m 992.0[0m tx/s [1;33m  82.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:43:24 UTC[0m Syncing [1;37m#5060054[0m [1;37m0x4d33…596c[0m  [1;33m   5.99[0m blk/s [1;33m 929.1[0m tx/s [1;33m  77.0[0m Mgas/s  [1;32m    5[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:43:29 UTC[0m Syncing [1;37m#5060087[0m [1;37m0xd629…479f[0m  [1;33m   6.61[0m blk/s [1;33m1024.2[0m tx/s [1;33m  84.9[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:43:34 UTC[0m Syncing [1;37m#5060129[0m [1;37m0x0305…a498[0m  [1;33m   8.40[0m blk/s [1;33m1302.0[0m tx/s [1;33m 107.9[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:43:39 UTC[0m Syncing [1;37m#5060174[0m [1;37m0xb175…6f9a[0m  [1;33m   9.00[0m blk/s [1;33m1395.0[0m tx/s [1;33m 115.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:43:44 UTC[0m Syncing [1;37m#5060220[0m [1;37m0xe4c6…d389[0m  [1;33m   9.20[0m blk/s [1;33m1426.0[0m tx/s [1;33m 118.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:43:49 UTC[0m Syncing [1;37m#5060266[0m [1;37m0x745f…5892[0m  [1;33m   9.20[0m blk/s [1;33m1426.0[0m tx/s [1;33m 118.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:43:54 UTC[0m Syncing [1;37m#5060309[0m [1;37m0x5a6f…686a[0m  [1;33m   8.60[0m blk/s [1;33m1333.0[0m tx/s [1;33m 110.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:43:59 UTC[0m Syncing [1;37m#5060345[0m [1;37m0x4545…fb24[0m  [1;33m   7.20[0m blk/s [1;33m1116.0[0m tx/s [1;33m  92.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:44:04 UTC[0m Syncing [1;37m#5060378[0m [1;37m0xe8b0…e9a6[0m  [1;33m   6.60[0m blk/s [1;33m1023.0[0m tx/s [1;33m  84.8[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:44:09 UTC[0m Syncing [1;37m#5060409[0m [1;37m0xa71a…9da3[0m  [1;33m   6.20[0m blk/s [1;33m 961.0[0m tx/s [1;33m  79.6[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:44:14 UTC[0m Syncing [1;37m#5060450[0m [1;37m0x3c7a…50d2[0m  [1;33m   8.20[0m blk/s [1;33m1271.0[0m tx/s [1;33m 105.3[0m Mgas/s  [1;32m    1[0m+[1;32m  311[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:44:19 UTC[0m Syncing [1;37m#5060494[0m [1;37m0xaa4f…7622[0m  [1;33m   8.80[0m blk/s [1;33m1364.0[0m tx/s [1;33m 113.0[0m Mgas/s  [1;32m    0[0m+[1;32m  307[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:44:24 UTC[0m Syncing [1;37m#5060538[0m [1;37m0x37a6…52cc[0m  [1;33m   8.80[0m blk/s [1;33m1364.0[0m tx/s [1;33m 113.0[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:44:29 UTC[0m Syncing [1;37m#5060583[0m [1;37m0xb09c…3377[0m  [1;33m   9.00[0m blk/s [1;33m1395.0[0m tx/s [1;33m 115.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:44:34 UTC[0m Syncing [1;37m#5060628[0m [1;37m0xaad7…e00a[0m  [1;33m   9.00[0m blk/s [1;33m1395.0[0m tx/s [1;33m 115.6[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:44:39 UTC[0m Syncing [1;37m#5060673[0m [1;37m0xe60e…c39b[0m  [1;33m   9.00[0m blk/s [1;33m1395.0[0m tx/s [1;33m 115.6[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:44:44 UTC[0m Syncing [1;37m#5060720[0m [1;37m0xdad7…4f17[0m  [1;33m   9.40[0m blk/s [1;33m1457.0[0m tx/s [1;33m 120.8[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:44:49 UTC[0m Syncing [1;37m#5060766[0m [1;37m0xe390…2974[0m  [1;33m   9.20[0m blk/s [1;33m1426.0[0m tx/s [1;33m 118.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:44:54 UTC[0m Syncing [1;37m#5060806[0m [1;37m0x5e03…b062[0m  [1;33m   8.00[0m blk/s [1;33m1240.0[0m tx/s [1;33m 102.8[0m Mgas/s  [1;32m    6[0m+[1;32m  309[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:44:59 UTC[0m Syncing [1;37m#5060842[0m [1;37m0xe551…e48b[0m  [1;33m   7.19[0m blk/s [1;33m1114.7[0m tx/s [1;33m  92.4[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:45:04 UTC[0m Syncing [1;37m#5060874[0m [1;37m0x303f…f1ba[0m  [1;33m   6.40[0m blk/s [1;33m 992.0[0m tx/s [1;33m  82.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:45:09 UTC[0m Syncing [1;37m#5060905[0m [1;37m0xf79b…f5dd[0m  [1;33m   6.20[0m blk/s [1;33m 961.0[0m tx/s [1;33m  79.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:45:14 UTC[0m Syncing [1;37m#5060947[0m [1;37m0xdbb7…87b0[0m  [1;33m   8.40[0m blk/s [1;33m1302.0[0m tx/s [1;33m 107.9[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:45:19 UTC[0m Syncing [1;37m#5060989[0m [1;37m0x5d0b…0eef[0m  [1;33m   8.40[0m blk/s [1;33m1302.0[0m tx/s [1;33m 107.9[0m Mgas/s  [1;32m    0[0m+[1;32m  315[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:45:24 UTC[0m Syncing [1;37m#5061032[0m [1;37m0x9b03…e1a8[0m  [1;33m   8.60[0m blk/s [1;33m1333.0[0m tx/s [1;33m 110.5[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:45:29 UTC[0m Syncing [1;37m#5061075[0m [1;37m0x4a63…2925[0m  [1;33m   8.60[0m blk/s [1;33m1333.0[0m tx/s [1;33m 110.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:45:34 UTC[0m Syncing [1;37m#5061117[0m [1;37m0x5bf3…2266[0m  [1;33m   8.40[0m blk/s [1;33m1302.0[0m tx/s [1;33m 107.9[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:45:39 UTC[0m Syncing [1;37m#5061153[0m [1;37m0xd736…ef59[0m  [1;33m   7.20[0m blk/s [1;33m1116.0[0m tx/s [1;33m  92.5[0m Mgas/s  [1;32m    7[0m+[1;32m  309[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:45:44 UTC[0m Syncing [1;37m#5061185[0m [1;37m0x0c45…c3ab[0m  [1;33m   6.40[0m blk/s [1;33m 992.0[0m tx/s [1;33m  82.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:45:49 UTC[0m Syncing [1;37m#5061215[0m [1;37m0x69ef…03f9[0m  [1;33m   6.00[0m blk/s [1;33m 930.0[0m tx/s [1;33m  77.1[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:45:54 UTC[0m Syncing [1;37m#5061253[0m [1;37m0x958b…ef04[0m  [1;33m   7.60[0m blk/s [1;33m1178.0[0m tx/s [1;33m  97.6[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:45:59 UTC[0m Syncing [1;37m#5061295[0m [1;37m0xa2bb…8c9c[0m  [1;33m   8.40[0m blk/s [1;33m1302.0[0m tx/s [1;33m 107.9[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:46:04 UTC[0m Syncing [1;37m#5061332[0m [1;37m0x906e…0ef4[0m  [1;33m   7.40[0m blk/s [1;33m1147.0[0m tx/s [1;33m  95.1[0m Mgas/s  [1;32m    6[0m+[1;32m  310[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m40 MiB[0m queue  
+
+[1;30m2019-11-13 03:46:09 UTC[0m Syncing [1;37m#5061366[0m [1;37m0xa25d…d857[0m  [1;33m   6.79[0m blk/s [1;33m1053.2[0m tx/s [1;33m  87.3[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:46:14 UTC[0m Syncing [1;37m#5061399[0m [1;37m0x5d2e…2046[0m  [1;33m   6.60[0m blk/s [1;33m1023.0[0m tx/s [1;33m  84.8[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:46:19 UTC[0m Syncing [1;37m#5061433[0m [1;37m0x0e88…0976[0m  [1;33m   6.80[0m blk/s [1;33m1054.0[0m tx/s [1;33m  87.4[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:46:24 UTC[0m Syncing [1;37m#5061465[0m [1;37m0xe067…de71[0m  [1;33m   6.20[0m blk/s [1;33m 961.0[0m tx/s [1;33m  79.6[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:46:29 UTC[0m Syncing [1;37m#5061493[0m [1;37m0x62f8…4939[0m  [1;33m   5.80[0m blk/s [1;33m 899.0[0m tx/s [1;33m  74.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:46:34 UTC[0m Syncing [1;37m#5061520[0m [1;37m0x8a4d…d2e1[0m  [1;33m   5.40[0m blk/s [1;33m 837.0[0m tx/s [1;33m  69.4[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:46:39 UTC[0m Syncing [1;37m#5061545[0m [1;37m0x70df…d47a[0m  [1;33m   5.00[0m blk/s [1;33m 775.0[0m tx/s [1;33m  64.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:46:44 UTC[0m Syncing [1;37m#5061567[0m [1;37m0x3346…7499[0m  [1;33m   4.40[0m blk/s [1;33m 682.0[0m tx/s [1;33m  56.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:46:49 UTC[0m Syncing [1;37m#5061603[0m [1;37m0xa96d…df17[0m  [1;33m   7.20[0m blk/s [1;33m1116.0[0m tx/s [1;33m  92.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:46:54 UTC[0m Syncing [1;37m#5061644[0m [1;37m0xe7b6…4926[0m  [1;33m   8.19[0m blk/s [1;33m1269.5[0m tx/s [1;33m 105.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:46:59 UTC[0m Syncing [1;37m#5061681[0m [1;37m0x5709…a0e7[0m  [1;33m   7.41[0m blk/s [1;33m1148.1[0m tx/s [1;33m  95.2[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:47:04 UTC[0m Syncing [1;37m#5061715[0m [1;37m0xac37…e346[0m  [1;33m   6.80[0m blk/s [1;33m1054.0[0m tx/s [1;33m  87.4[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:47:09 UTC[0m Syncing [1;37m#5061746[0m [1;37m0xd21a…c66e[0m  [1;33m   6.20[0m blk/s [1;33m 961.0[0m tx/s [1;33m  79.6[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:47:14 UTC[0m Syncing [1;37m#5061774[0m [1;37m0x62cf…0e0b[0m  [1;33m   5.60[0m blk/s [1;33m 868.0[0m tx/s [1;33m  71.9[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:47:19 UTC[0m Syncing [1;37m#5061810[0m [1;37m0xa259…4713[0m  [1;33m   7.20[0m blk/s [1;33m1116.0[0m tx/s [1;33m  92.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:47:24 UTC[0m Syncing [1;37m#5061850[0m [1;37m0xe7fb…3ae3[0m  [1;33m   8.00[0m blk/s [1;33m1240.0[0m tx/s [1;33m 102.8[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:47:29 UTC[0m Syncing [1;37m#5061886[0m [1;37m0x62a5…54f7[0m  [1;33m   7.20[0m blk/s [1;33m1116.0[0m tx/s [1;33m  92.5[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:47:34 UTC[0m Syncing [1;37m#5061918[0m [1;37m0x3652…7a7d[0m  [1;33m   6.40[0m blk/s [1;33m 992.0[0m tx/s [1;33m  82.2[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:47:39 UTC[0m Syncing [1;37m#5061947[0m [1;37m0xe688…3fe1[0m  [1;33m   5.80[0m blk/s [1;33m 899.0[0m tx/s [1;33m  74.5[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:47:44 UTC[0m Syncing [1;37m#5061988[0m [1;37m0x4aa0…e3af[0m  [1;33m   8.20[0m blk/s [1;33m1271.0[0m tx/s [1;33m 105.3[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:47:49 UTC[0m Syncing [1;37m#5062030[0m [1;37m0xd02c…3369[0m  [1;33m   8.40[0m blk/s [1;33m1302.0[0m tx/s [1;33m 107.9[0m Mgas/s  [1;32m    0[0m+[1;32m  308[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m39 MiB[0m queue  
+
+[1;30m2019-11-13 03:47:54 UTC[0m Syncing [1;37m#5062072[0m [1;37m0x984b…2ba7[0m  [1;33m   8.40[0m blk/s [1;33m1302.0[0m tx/s [1;33m 107.9[0m Mgas/s  [1;32m    0[0m+[1;32m  320[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m41 MiB[0m queue  
+
+[1;30m2019-11-13 03:47:59 UTC[0m Syncing [1;37m#5062113[0m [1;37m0xefc6…b149[0m  [1;33m   8.20[0m blk/s [1;33m1271.0[0m tx/s [1;33m 105.3[0m Mgas/s  [1;32m    0[0m+[1;32m  290[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m37 MiB[0m queue  
+
+[1;30m2019-11-13 03:48:04 UTC[0m Syncing [1;37m#5062149[0m [1;37m0xab4d…bf99[0m  [1;33m   7.19[0m blk/s [1;33m1114.4[0m tx/s [1;33m  92.4[0m Mgas/s  [1;32m    0[0m+[1;32m  254[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m32 MiB[0m queue  
+
+[1;30m2019-11-13 03:48:10 UTC[0m Syncing [1;37m#5062184[0m [1;37m0x97aa…cde6[0m  [1;33m   6.63[0m blk/s [1;33m1027.3[0m tx/s [1;33m  85.1[0m Mgas/s  [1;32m    0[0m+[1;32m  218[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m28 MiB[0m queue  
+
+[1;30m2019-11-13 03:48:15 UTC[0m Syncing [1;37m#5062220[0m [1;37m0x8b6e…74e0[0m  [1;33m   6.71[0m blk/s [1;33m1039.5[0m tx/s [1;33m  86.2[0m Mgas/s  [1;32m    0[0m+[1;32m  182[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m23 MiB[0m queue  
+
+[1;30m2019-11-13 03:48:22 UTC[0m Syncing [1;37m#5062280[0m [1;37m0x1c02…3bc7[0m  [1;33m   8.93[0m blk/s [1;33m1383.9[0m tx/s [1;33m 114.7[0m Mgas/s  [1;32m    0[0m+[1;32m  122[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m16 MiB[0m queue  
+
+[1;30m2019-11-13 03:48:27 UTC[0m Syncing [1;37m#5062328[0m [1;37m0xc74c…db32[0m  [1;33m   8.33[0m blk/s [1;33m1291.4[0m tx/s [1;33m 107.0[0m Mgas/s  [1;32m    0[0m+[1;32m   74[0m Qed     [1;34m4 MiB[0m chain [1;34m17 MiB[0m db [1;34m9 MiB[0m queue  
+
+[1;30m2019-11-13 03:48:34 UTC[0m Syncing [1;37m#5062388[0m [1;37m0x1c73…9ab4[0m  [1;33m   8.72[0m blk/s [1;33m1351.7[0m tx/s [1;33m 112.0[0m Mgas/s  [1;32m    0[0m+[1;32m   14[0m Qed     [1;34m9 MiB[0m chain [1;34m17 MiB[0m db [1;34m2 MiB[0m queue  
+
+[1;30m2019-11-13 03:48:37 UTC[0m Import completed in 1004 seconds, 10153 blocks, 10 blk/s, 1549845 transactions, 1543 tx/s, 128565 Mgas, 128 Mgas/s
+
+[1;30m2019-11-13 03:48:37 UTC[0m unable to get mut ref for engine for shutdown.
+
+"rocksdb.block.cache.miss COUNT : 22971523\nrocksdb.block.cache.hit COUNT : 62129836\nrocksdb.block.cache.add COUNT : 17883115\nrocksdb.block.cache.add.failures COUNT : 0\nrocksdb.block.cache.index.miss COUNT : 880467\nrocksdb.block.cache.index.hit COUNT : 22821288\nrocksdb.block.cache.index.add COUNT : 880467\nrocksdb.block.cache.index.bytes.insert COUNT : 152028938200\nrocksdb.block.cache.index.bytes.evict COUNT : 152013155656\nrocksdb.block.cache.filter.miss COUNT : 0\nrocksdb.block.cache.filter.hit COUNT : 0\nrocksdb.block.cache.filter.add COUNT : 0\nrocksdb.block.cache.filter.bytes.insert COUNT : 0\nrocksdb.block.cache.filter.bytes.evict COUNT : 0\nrocksdb.block.cache.data.miss COUNT : 22091056\nrocksdb.block.cache.data.hit COUNT : 39308548\nrocksdb.block.cache.data.add COUNT : 17002648\nrocksdb.block.cache.data.bytes.insert COUNT : 297500471936\nrocksdb.block.cache.bytes.read COUNT : 1823105974112\nrocksdb.block.cache.bytes.write COUNT : 449529410136\nrocksdb.bloom.filter.useful COUNT : 0\nrocksdb.bloom.filter.full.positive COUNT : 0\nrocksdb.bloom.filter.full.true.positive COUNT : 0\nrocksdb.persistent.cache.hit COUNT : 0\nrocksdb.persistent.cache.miss COUNT : 0\nrocksdb.sim.block.cache.hit COUNT : 0\nrocksdb.sim.block.cache.miss COUNT : 0\nrocksdb.memtable.hit COUNT : 529545\nrocksdb.memtable.miss COUNT : 12498170\nrocksdb.l0.hit COUNT : 1357021\nrocksdb.l1.hit COUNT : 0\nrocksdb.l2andup.hit COUNT : 11110618\nrocksdb.compaction.key.drop.new COUNT : 4603335\nrocksdb.compaction.key.drop.obsolete COUNT : 19804769\nrocksdb.compaction.key.drop.range_del COUNT : 0\nrocksdb.compaction.key.drop.user COUNT : 0\nrocksdb.compaction.range_del.drop.obsolete COUNT : 0\nrocksdb.compaction.optimized.del.drop.obsolete COUNT : 31\nrocksdb.compaction.cancelled COUNT : 0\nrocksdb.number.keys.written COUNT : 29492552\nrocksdb.number.keys.read COUNT : 13027715\nrocksdb.number.keys.updated COUNT : 0\nrocksdb.bytes.written COUNT : 12436302414\nrocksdb.bytes.read COUNT : 2593799716\nrocksdb.number.db.seek COUNT : 0\nrocksdb.number.db.next COUNT : 0\nrocksdb.number.db.prev COUNT : 0\nrocksdb.number.db.seek.found COUNT : 0\nrocksdb.number.db.next.found COUNT : 0\nrocksdb.number.db.prev.found COUNT : 0\nrocksdb.db.iter.bytes.read COUNT : 0\nrocksdb.no.file.closes COUNT : 0\nrocksdb.no.file.opens COUNT : 3331\nrocksdb.no.file.errors COUNT : 0\nrocksdb.l0.slowdown.micros COUNT : 0\nrocksdb.memtable.compaction.micros COUNT : 0\nrocksdb.l0.num.files.stall.micros COUNT : 0\nrocksdb.stall.micros COUNT : 0\nrocksdb.db.mutex.wait.micros COUNT : 0\nrocksdb.rate.limit.delay.millis COUNT : 0\nrocksdb.num.iterators COUNT : 0\nrocksdb.number.multiget.get COUNT : 0\nrocksdb.number.multiget.keys.read COUNT : 0\nrocksdb.number.multiget.bytes.read COUNT : 0\nrocksdb.number.deletes.filtered COUNT : 0\nrocksdb.number.merge.failures COUNT : 0\nrocksdb.bloom.filter.prefix.checked COUNT : 0\nrocksdb.bloom.filter.prefix.useful COUNT : 0\nrocksdb.number.reseeks.iteration COUNT : 0\nrocksdb.getupdatessince.calls COUNT : 0\nrocksdb.block.cachecompressed.miss COUNT : 0\nrocksdb.block.cachecompressed.hit COUNT : 0\nrocksdb.block.cachecompressed.add COUNT : 0\nrocksdb.block.cachecompressed.add.failures COUNT : 0\nrocksdb.wal.synced COUNT : 0\nrocksdb.wal.bytes COUNT : 12436302414\nrocksdb.write.self COUNT : 851\nrocksdb.write.other COUNT : 0\nrocksdb.write.timeout COUNT : 0\nrocksdb.write.wal COUNT : 1702\nrocksdb.compact.read.bytes COUNT : 0\nrocksdb.compact.write.bytes COUNT : 1000\nrocksdb.flush.write.bytes COUNT : 0\nrocksdb.number.direct.load.table.properties COUNT : 90\nrocksdb.number.superversion_acquires COUNT : 3776\nrocksdb.number.superversion_releases COUNT : 872\nrocksdb.number.superversion_cleanups COUNT : 833\nrocksdb.number.block.compressed COUNT : 3754998\nrocksdb.number.block.decompressed COUNT : 6577109\nrocksdb.number.block.not_compressed COUNT : 0\nrocksdb.merge.operation.time.nanos COUNT : 0\nrocksdb.filter.operation.time.nanos COUNT : 0\nrocksdb.row.cache.hit COUNT : 0\nrocksdb.row.cache.miss COUNT : 0\nrocksdb.read.amp.estimate.useful.bytes COUNT : 0\nrocksdb.read.amp.total.read.bytes COUNT : 0\nrocksdb.number.rate_limiter.drains COUNT : 0\nrocksdb.number.iter.skip COUNT : 0\nrocksdb.blobdb.num.put COUNT : 0\nrocksdb.blobdb.num.write COUNT : 0\nrocksdb.blobdb.num.get COUNT : 0\nrocksdb.blobdb.num.multiget COUNT : 0\nrocksdb.blobdb.num.seek COUNT : 0\nrocksdb.blobdb.num.next COUNT : 0\nrocksdb.blobdb.num.prev COUNT : 0\nrocksdb.blobdb.num.keys.written COUNT : 0\nrocksdb.blobdb.num.keys.read COUNT : 0\nrocksdb.blobdb.bytes.written COUNT : 0\nrocksdb.blobdb.bytes.read COUNT : 0\nrocksdb.blobdb.write.inlined COUNT : 0\nrocksdb.blobdb.write.inlined.ttl COUNT : 0\nrocksdb.blobdb.write.blob COUNT : 0\nrocksdb.blobdb.write.blob.ttl COUNT : 0\nrocksdb.blobdb.blob.file.bytes.written COUNT : 0\nrocksdb.blobdb.blob.file.bytes.read COUNT : 0\nrocksdb.blobdb.blob.file.synced COUNT : 0\nrocksdb.blobdb.blob.index.expired.count COUNT : 0\nrocksdb.blobdb.blob.index.expired.size COUNT : 0\nrocksdb.blobdb.blob.index.evicted.count COUNT : 0\nrocksdb.blobdb.blob.index.evicted.size COUNT : 0\nrocksdb.blobdb.gc.num.files COUNT : 0\nrocksdb.blobdb.gc.num.new.files COUNT : 0\nrocksdb.blobdb.gc.failures COUNT : 0\nrocksdb.blobdb.gc.num.keys.overwritten COUNT : 0\nrocksdb.blobdb.gc.num.keys.expired COUNT : 0\nrocksdb.blobdb.gc.num.keys.relocated COUNT : 0\nrocksdb.blobdb.gc.bytes.overwritten COUNT : 0\nrocksdb.blobdb.gc.bytes.expired COUNT : 0\nrocksdb.blobdb.gc.bytes.relocated COUNT : 0\nrocksdb.blobdb.fifo.num.files.evicted COUNT : 0\nrocksdb.blobdb.fifo.num.keys.evicted COUNT : 0\nrocksdb.blobdb.fifo.bytes.evicted COUNT : 0\nrocksdb.txn.overhead.mutex.prepare COUNT : 0\nrocksdb.txn.overhead.mutex.old.commit.map COUNT : 0\nrocksdb.txn.overhead.duplicate.key COUNT : 0\nrocksdb.txn.overhead.mutex.snapshot COUNT : 0\nrocksdb.number.multiget.keys.found COUNT : 0\nrocksdb.db.get.micros statistics Percentiles :=> 50 : 19.070966 95 : 205.710950 99 : 379.622639 100 : 208734.000000\nrocksdb.db.write.micros statistics Percentiles :=> 50 : 66216.814159 95 : 107440.954774 99 : 154976.923077 100 : 200105.000000\nrocksdb.compaction.times.micros statistics Percentiles :=> 50 : 331250.000000 95 : 7710000.000000 99 : 25052500.000000 100 : 30212504.000000\nrocksdb.subcompaction.setup.times.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.table.sync.micros statistics Percentiles :=> 50 : 5932.142857 95 : 159764.705882 99 : 333447.619048 100 : 645779.000000\nrocksdb.compaction.outfile.sync.micros statistics Percentiles :=> 50 : 72799.295775 95 : 342046.979866 99 : 504500.000000 100 : 717731.000000\nrocksdb.wal.file.sync.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.manifest.file.sync.micros statistics Percentiles :=> 50 : 1535.611757 95 : 1892.351333 99 : 5207.400000 100 : 39676.000000\nrocksdb.table.open.io.micros statistics Percentiles :=> 50 : 97.964387 95 : 1611.896552 99 : 2620.144928 100 : 21504.000000\nrocksdb.db.multiget.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.read.block.compaction.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.read.block.get.micros statistics Percentiles :=> 50 : 8.122183 95 : 21.943203 99 : 54.289588 100 : 457824.000000\nrocksdb.write.raw.block.micros statistics Percentiles :=> 50 : 12.210001 95 : 20.449169 99 : 690.850699 100 : 33304.000000\nrocksdb.l0.slowdown.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.memtable.compaction.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.num.files.stall.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.hard.rate.limit.delay.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.soft.rate.limit.delay.count statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.numfiles.in.singlecompaction statistics Percentiles :=> 50 : 1.125000 95 : 5.726786 99 : 9.351304 100 : 15.000000\nrocksdb.db.seek.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.db.write.stall statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.sst.read.micros statistics Percentiles :=> 50 : 4.794450 95 : 9.840994 99 : 37.422182 100 : 457795.000000\nrocksdb.num.subcompactions.scheduled statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.bytes.per.read statistics Percentiles :=> 50 : 127.571909 95 : 534.445519 99 : 570.892797 100 : 1141178.000000\nrocksdb.bytes.per.write statistics Percentiles :=> 50 : 16245377.000000 95 : 16245377.000000 99 : 16245377.000000 100 : 16245377.000000\nrocksdb.bytes.per.multiget statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.bytes.compressed statistics Percentiles :=> 50 : 18792.035985 95 : 58966.295240 99 : 89746.238698 100 : 984651.000000\nrocksdb.bytes.decompressed statistics Percentiles :=> 50 : 19141.583171 95 : 156098.652135 99 : 376864.133190 100 : 1066870.000000\nrocksdb.compression.times.nanos statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.decompression.times.nanos statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.read.num.merge_operands statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.key.size statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.value.size statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.write.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.get.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.multiget.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.seek.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.next.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.prev.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.blob.file.write.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.blob.file.read.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.blob.file.sync.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.gc.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.compression.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.blobdb.decompression.micros statistics Percentiles :=> 50 : 0.000000 95 : 0.000000 99 : 0.000000 100 : 0.000000\nrocksdb.db.flush.micros statistics Percentiles :=> 50 : 14482.758621 95 : 268228.260870 99 : 484900.000000 100 : 842699.000000\n"
+
+
+END T3

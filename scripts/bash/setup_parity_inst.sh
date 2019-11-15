@@ -9,8 +9,8 @@ sudo sh -c 'echo 0 >/proc/sys/kernel/kptr_restrict'
 #git clone https://github.com/Leeleo3x/parity-ethereum
 #curl https://sh.rustup.rs -sSf | sh -s -- -y
 cd parity-ethereum
-# git checkout metrics
-# git pull origin
+git checkout metrics
+git pull origin
 # ~/.cargo/bin/cargo build --release
 ~/.cargo/bin/cargo build --release
 # pip3 install psrecord

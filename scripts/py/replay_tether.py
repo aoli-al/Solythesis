@@ -20,15 +20,15 @@ if 'transfer' in args.csv:
 else:
     NUM_OF_CONTRACT = 115
 
-bench = Bench(args.endpoint, args.path, 'InsightChainToken', args.pow)
+bench = Bench(args.endpoint, args.path, 'TetherToken', args.pow)
 a = [bench.import_account(args.key1), bench.import_account(args.key2)]
 
-bec_addr = [bench.call_contract_function(a[0][0], 'constructor', [], private_key=a[0][1], wait=True)
+bec_addr = [bench.call_contract_function(a[0][0], 'constructor', [100000000000000000, 'Tether', 'USDT', 18], private_key=a[0][1], wait=True)
             for i in range(NUM_OF_CONTRACT)]
 bec_addr = [bench.wait_for_result(x, gen_pow=False).contractAddress for x in bec_addr]
 
 count = 0
-ITER = 10000
+ITER = 500
 
 addr = 0
 def next_address():

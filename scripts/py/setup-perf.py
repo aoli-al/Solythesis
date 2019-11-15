@@ -124,7 +124,6 @@ def setup_receiver(instance):
 
 def create_receiver_singleton(image_id="ami-04a4f29a9644e4693"):
     instance = create_new_instance(1, security_group='Monitor', image_id=image_id)[0]
-    print("started instance")
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     privkey = paramiko.RSAKey.from_private_key_file('../keys/Leo-remote.pem')
@@ -153,7 +152,7 @@ def setup_sender(instance):
         move_files(ssh, "../../scripts", "scripts")
         move_files(ssh, "../../tests", "tests")
         execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh metrics")
-        execute_remote_command(ssh, "bash ~/scripts/bash/setup_bench.sh")
+        # execute_remote_command(ssh, "bash ~/scripts/bash/setup_bench.sh")
     except Exception as e:
         print(e)
         instance.terminate()
@@ -162,17 +161,13 @@ def setup_sender(instance):
 
 
 def test(args):
-    instances = create_new_instance(2, image_id="ami-0e05c3ca6e6db9733")
-    try: 
-        [contract, script_path, csv, skip] = args
-        [receiver, receiver_client] = setup_receiver(instances[0])
-        [sender, sender_client] = setup_sender(instances[1])
-        print(contract+csv + ": " + receiver.public_ip_address)
-        print(contract+csv + ": " + sender.public_ip_address)
-        result = True
-    except Exception as e:
-        print(e)
-        result = False
+    instances = create_new_instance(2, image_id="ami-07695e0338baae1ea")
+    [contract, script_path, csv] = args
+    [receiver, receiver_client] = setup_receiver(instances[0])
+    [sender, sender_client] = setup_sender(instances[1])
+    print(contract+csv + ": " + receiver.public_ip_address)
+    print(contract+csv + ": " + sender.public_ip_address)
+    result = True
     try:
         execute_remote_command(sender_client,
                                "bash ~/scripts/bash/test_sync.sh {} {} {} {}"
@@ -183,7 +178,7 @@ def test(args):
         execute_remote_command(sender_client,
                                "bash ~/scripts/bash/finish_sync.sh {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address))
-        fetch_files(sender_client, "/home/leo/results", "/u/choi/data_perf/rep-{}-{}".format(contract, csv))
+        fetch_files(sender_client, "/home/leo/results", "~/data/rep-{}-{}".format(contract, csv))
     except Exception as e:
         print(e)
         result = False
@@ -192,9 +187,7 @@ def test(args):
     clean_up(sender)
     clean_up(receiver)
     if not result:
-        print("Failed test")
-        # test(args)
-    print("END T1")
+        test(args)
 
 
 def test_2(args):
@@ -207,14 +200,9 @@ def test_2(args):
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    try: 
-        fetch_files(receiver_client, "/home/leo/results", "/u/choi/data/base/test_run2_{}_{}".format(contract, csv))
-    except Exception as e:
-        print(e)
-        print(contract+csv + ": " + receiver.public_ip_address)
+    fetch_files(receiver_client, "/home/leo/results", "/u/leo/data_1000/{}-{}".format(contract, csv))
     receiver_client.close()
     clean_up(receiver)
-    print("END T2")
 
 
 def test_3(args):
@@ -224,36 +212,56 @@ def test_3(args):
     try:
         move_files(receiver_client, "/u/choi/data/test_run2_{0}_transfer/{0}-transfer-mainchain.bin".format(contract), "/home/leo")
         move_files(receiver_client, "/u/choi/data/test_run2_{0}_secured_transfer/{0}_secured-transfer-mainchain.bin".format(contract), "/home/leo")
-        #move_files(receiver_client, "/u/choi/data/test_run2_{0}_noopt_transfer/{0}_noopt-transfer-mainchain.bin".format(contract), "/home/leo")
-        
-        execute_remote_command(receiver_client,
+        move_files(receiver_client, "/u/choi/data/test_run2_{0}_noopt_transfer/{0}_noopt-transfer-mainchain.bin".format(contract), "/home/leo")
+        '''execute_remote_command(receiver_client,
                                "bash ~/scripts/bash/import.sh {} {} {} {} {} {}"
                                .format("{0}".format(contract), script_path, "transfer", receiver.public_ip_address, skip+5052259, "import"))
         execute_remote_command(receiver_client,
                                "bash ~/scripts/bash/import.sh {} {} {} {} {} {}"
                                .format("{0}_secured".format(contract), script_path, "transfer", receiver.public_ip_address, skip+5052259, "import"))
-        # execute_remote_command(receiver_client,
-        #                        "bash ~/scripts/bash/import.sh {} {} {} {} {} {}"
-        #                        .format("{0}_noopt".format(contract), script_path, "transfer", receiver.public_ip_address, skip+5052259, "fullnode_bak"))
+        execute_remote_command(receiver_client,
+                               "bash ~/scripts/bash/import.sh {} {} {} {} {} {}"
+                               .format("{0}_noopt".format(contract), script_path, "transfer", receiver.public_ip_address, skip+5052259, "fullnode_bak"))'''
     except Exception as e:
         print(e)
     #  fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet10000-dwarf-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
     #  fetch_files(receiver_client, "/home/leo/storage.log", "/data/mainnet-{}-{}/sha3.log".format(contract, csv))
-    try:
-        fetch_files(receiver_client, "/home/leo/{0}-transfer.log".format(contract), "/u/choi/data/test3_/{0}-transfer.log".format(contract, csv, IOPS, INSTANCE))
-        fetch_files(receiver_client, "/home/leo/{0}_secured-transfer.log".format(contract), "/u/choi/data/test3_/{0}_secured-transfer.log".format(contract, csv, IOPS, INSTANCE))
-        # fetch_files(receiver_client, "/home/leo/{0}_noopt-transfer.log".format(contract), "/u/choi/data/test3/{0}_noopt-transfer.log".format(contract, csv, IOPS, INSTANCE))
-    except Exception as e:
-        print(e)
-        print(contract+csv + ": " + receiver.public_ip_address)
-        exit(0)
-    receiver_client.close()
-    clean_up(receiver)
-    print("END T3")
+    '''fetch_files(receiver_client, "/home/leo/{0}-transfer.log".format(contract), "/u/choi/data/test3_perf/{0}-transfer.log".format(contract, csv, IOPS, INSTANCE))
+    fetch_files(receiver_client, "/home/leo/{0}_secured-transfer.log".format(contract), "/u/choi/data/test3_perf/{0}_secured-transfer.log".format(contract, csv, IOPS, INSTANCE))
+    '''
+    #fetch_files(receiver_client, "/home/leo/{0}_noopt-transfer.log".format(contract), "/u/choi/data/test3/{0}_noopt-transfer.log".format(contract, csv, IOPS, INSTANCE))
+    print(contract+csv + ": " + receiver.public_ip_address)
+    #receiver_client.close()
+    #clean_up(receiver)
+    print("T3")
 
-# with Pool(3) as p:
-#     p.map(test_2, generate_tests(*[int(x) for x in sys.argv[1:]]))
-with Pool(10) as p:
-    print(p.map(test, generate_tests()))
-# with Pool(2) as p:
-#     print(p.map(test, generate_tests()))
+def variables(args):
+    [contract, script_path, csv, skip] = args
+    print((contract), script_path, "transfer", "ip", skip+5052259, "import")
+
+def perf():
+    comm_default = "~/parity-ethereum/target/release/parity import ~/$1-$3-mainchain.bin \
+--config ~/scripts/parity/config.dev-insecure.toml --chain ~/scripts/parity/foundation.json \
+--base-path=/home/leo/$6 --log-file=/home/leo/$1-$3.log --logging=info"
+
+
+    comm1 = "~/parity-ethereum/target/release/parity import ~/data/test_run2_theta_transfer/theta-transfer-mainchain.bin \
+--config ~/Solythesis/scripts/parity/config.dev-insecure.toml --chain ~/Solythesis/scripts/parity/foundation.json \
+--base-path=/u/choi/data/import"
+
+    comm2 = "~/parity-ethereum/target/release/parity import ~/theta_secured-transfer-mainchain.bin \
+--config ~/scripts/parity/config.dev-insecure.toml --chain ~/scripts/parity/foundation.json \
+--base-path=/home/leo/import_theta --log-file=/home/leo/theta_secured-transfer.log --logging=info"
+
+    comm3 = "~/parity-ethereum/target/release/parity import ~/theta_noopt-transfer-mainchain.bin \
+--config ~/scripts/parity/config.dev-insecure.toml --chain ~/scripts/parity/foundation.json \
+--base-path=/home/leo/fullnode_bak_theta --log-file=/home/leo/theta_noopt-transfer.log --logging=info"
+
+    comm4 = "~/parity-ethereum/target/release/parity import ~/data/test_run2_dai_transfer/dai-transfer-mainchain.bin \
+--config ~/Solythesis/scripts/parity/config.dev-insecure.toml --chain ~/Solythesis/scripts/parity/foundation.json \
+--base-path=/u/choi/data/import"
+
+
+
+variables(["dai", "x", "x", 0])
+#test_3(["dai", "x", "x", 0]) 

@@ -27,7 +27,7 @@ def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0cc
                 'Tags': [
                     {
                         'Key': 'Name',
-                        'Value': 'Leo_bench'
+                        'Value': 'andrew_base'
                         },
                     ]
                 },
@@ -200,9 +200,14 @@ def test_2(args):
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    fetch_files(receiver_client, "/home/leo/results", "/u/choi/data/test_run2_{}_{}".format(contract, csv))
+    try: 
+        fetch_files(receiver_client, "/home/leo/results", "/u/choi/data/base/test_run2_{}_{}".format(contract, csv))
+    except Exception as e:
+        print(e)
+        print(contract+csv + ": " + receiver.public_ip_address)
     receiver_client.close()
     clean_up(receiver)
+    print("END T2")
 
 
 def test_3(args):
@@ -222,7 +227,7 @@ def test_3(args):
     receiver_client.close()
     clean_up(receiver)
 
-with Pool(1) as p:
+with Pool(5) as p:
     p.map(test_2, generate_tests(*[int(x) for x in sys.argv[1:]]))
 
 # with Pool(2) as p:

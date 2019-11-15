@@ -1,0 +1,4775 @@
+bash ~/scripts/bash/setup_parity.sh metrics
+Switched to branch 'master'
+
+Your branch is up to date with 'origin/master'.
+
+remote: Enumerating objects: 1368, done.[K
+
+remote: Counting objects:   0% (1/1368)[Kremote: Counting objects:   1% (14/1368)[Kremote: Counting objects:   2% (28/1368)[Kremote: Counting objects:   3% (42/1368)[Kremote: Counting objects:   4% (55/1368)[Kremote: Counting objects:   5% (69/1368)[Kremote: Counting objects:   6% (83/1368)[Kremote: Counting objects:   7% (96/1368)[Kremote: Counting objects:   8% (110/1368)[Kremote: Counting objects:   9% (124/1368)[Kremote: Counting objects:  10% (137/1368)[Kremote: Counting objects:  11% (151/1368)[Kremote: Counting objects:  12% (165/1368)[Kremote: Counting objects:  13% (178/1368)[Kremote: Counting objects:  14% (192/1368)[Kremote: Counting objects:  15% (206/1368)[Kremote: Counting objects:  16% (219/1368)[Kremote: Counting objects:  17% (233/1368)[Kremote: Counting objects:  18% (247/1368)[Kremote: Counting objects:  19% (260/1368)[Kremote: Counting objects:  20% (274/1368)[Kremote: Counting objects:  21% (288/1368)[Kremote: Counting objects:  22% (301/1368)[Kremote: Counting objects:  23% (315/1368)[Kremote: Counting objects:  24% (329/1368)[Kremote: Counting objects:  25% (342/1368)[Kremote: Counting objects:  26% (356/1368)[Kremote: Counting objects:  27% (370/1368)[Kremote: Counting objects:  28% (384/1368)[Kremote: Counting objects:  29% (397/1368)[Kremote: Counting objects:  30% (411/1368)[Kremote: Counting objects:  31% (425/1368)[Kremote: Counting objects:  32% (438/1368)[Kremote: Counting objects:  33% (452/1368)[Kremote: Counting objects:  34% (466/1368)[Kremote: Counting objects:  35% (479/1368)[Kremote: Counting objects:  36% (493/1368)[Kremote: Counting objects:  37% (507/1368)[Kremote: Counting objects:  38% (520/1368)[Kremote: Counting objects:  39% (534/1368)[Kremote: Counting objects:  40% (548/1368)[Kremote: Counting objects:  41% (561/1368)[Kremote: Counting objects:  42% (575/1368)[Kremote: Counting objects:  43% (589/1368)[Kremote: Counting objects:  44% (602/1368)[Kremote: Counting objects:  45% (616/1368)[Kremote: Counting objects:  46% (630/1368)[Kremote: Counting objects:  47% (643/1368)[Kremote: Counting objects:  48% (657/1368)[Kremote: Counting objects:  49% (671/1368)[Kremote: Counting objects:  50% (684/1368)[Kremote: Counting objects:  51% (698/1368)[Kremote: Counting objects:  52% (712/1368)[Kremote: Counting objects:  53% (726/1368)[Kremote: Counting objects:  54% (739/1368)[Kremote: Counting objects:  55% (753/1368)[Kremote: Counting objects:  56% (767/1368)[Kremote: Counting objects:  57% (780/1368)[Kremote: Counting objects:  58% (794/1368)[Kremote: Counting objects:  59% (808/1368)[Kremote: Counting objects:  60% (821/1368)[Kremote: Counting objects:  61% (835/1368)[Kremote: Counting objects:  62% (849/1368)[Kremote: Counting objects:  63% (862/1368)[Kremote: Counting objects:  64% (876/1368)[Kremote: Counting objects:  65% (890/1368)[Kremote: Counting objects:  66% (903/1368)[Kremote: Counting objects:  67% (917/1368)[Kremote: Counting objects:  68% (931/1368)[Kremote: Counting objects:  69% (944/1368)[Kremote: Counting objects:  70% (958/1368)[Kremote: Counting objects:  71% (972/1368)[Kremote: Counting objects:  72% (985/1368)[Kremote: Counting objects:  73% (999/1368)[Kremote: Counting objects:  74% (1013/1368)[Kremote: Counting objects:  75% (1026/1368)[Kremote: Counting objects:  76% (1040/1368)[Kremote: Counting objects:  77% (1054/1368)[Kremote: Counting objects:  78% (1068/1368)[Kremote: Counting objects:  79% (1081/1368)[Kremote: Counting objects:  80% (1095/1368)[Kremote: Counting objects:  81% (1109/1368)[Kremote: Counting objects:  82% (1122/1368)[Kremote: Counting objects:  83% (1136/1368)[Kremote: Counting objects:  84% (1150/1368)[Kremote: Counting objects:  85% (1163/1368)[Kremote: Counting objects:  86% (1177/1368)[Kremote: Counting objects:  87% (1191/1368)[Kremote: Counting objects:  88% (1204/1368)[Kremote: Counting objects:  89% (1218/1368)[Kremote: Counting objects:  90% (1232/1368)[Kremote: Counting objects:  91% (1245/1368)[Kremote: Counting objects:  92% (1259/1368)[Kremote: Counting objects:  93% (1273/1368)[Kremote: Counting objects:  94% (1286/1368)[Kremote: Counting objects:  95% (1300/1368)[Kremote: Counting objects:  96% (1314/1368)[Kremote: Counting objects:  97% (1327/1368)[Kremote: Counting objects:  98% (1341/1368)[Kremote: Counting objects:  99% (1355/1368)[Kremote: Counting objects: 100% (1368/1368)[Kremote: Counting objects: 100% (1368/1368), done.[K
+
+remote: Compressing objects:  12% (1/8)[Kremote: Compressing objects:  25% (2/8)[Kremote: Compressing objects:  37% (3/8)[Kremote: Compressing objects:  50% (4/8)[Kremote: Compressing objects:  62% (5/8)[Kremote: Compressing objects:  75% (6/8)[Kremote: Compressing objects:  87% (7/8)[Kremote: Compressing objects: 100% (8/8)[Kremote: Compressing objects: 100% (8/8), done.[K
+
+Receiving objects:   0% (1/2586)   Receiving objects:   1% (26/2586)   Receiving objects:   2% (52/2586)   Receiving objects:   3% (78/2586)   Receiving objects:   4% (104/2586)   Receiving objects:   5% (130/2586)   Receiving objects:   6% (156/2586)   Receiving objects:   7% (182/2586)   Receiving objects:   8% (207/2586)   Receiving objects:   9% (233/2586)   Receiving objects:  10% (259/2586)   Receiving objects:  11% (285/2586)   Receiving objects:  12% (311/2586)   Receiving objects:  13% (337/2586)   Receiving objects:  14% (363/2586)   Receiving objects:  15% (388/2586)   Receiving objects:  16% (414/2586)   Receiving objects:  17% (440/2586)   Receiving objects:  18% (466/2586)   Receiving objects:  19% (492/2586)   Receiving objects:  20% (518/2586)   Receiving objects:  21% (544/2586)   Receiving objects:  22% (569/2586)   Receiving objects:  23% (595/2586)   Receiving objects:  24% (621/2586)   Receiving objects:  25% (647/2586)   Receiving objects:  26% (673/2586)   Receiving objects:  27% (699/2586)   Receiving objects:  28% (725/2586)   Receiving objects:  29% (750/2586)   Receiving objects:  30% (776/2586)   Receiving objects:  31% (802/2586)   Receiving objects:  32% (828/2586)   Receiving objects:  33% (854/2586)   Receiving objects:  34% (880/2586)   Receiving objects:  35% (906/2586)   Receiving objects:  36% (931/2586)   Receiving objects:  37% (957/2586)   Receiving objects:  38% (983/2586)   Receiving objects:  39% (1009/2586)   Receiving objects:  40% (1035/2586)   Receiving objects:  41% (1061/2586)   Receiving objects:  42% (1087/2586)   Receiving objects:  43% (1112/2586)   Receiving objects:  44% (1138/2586)   Receiving objects:  45% (1164/2586)   Receiving objects:  46% (1190/2586)   Receiving objects:  47% (1216/2586)   Receiving objects:  48% (1242/2586)   Receiving objects:  49% (1268/2586)   Receiving objects:  50% (1293/2586)   Receiving objects:  51% (1319/2586)   Receiving objects:  52% (1345/2586)   Receiving objects:  53% (1371/2586)   Receiving objects:  54% (1397/2586)   Receiving objects:  55% (1423/2586)   Receiving objects:  56% (1449/2586)   Receiving objects:  57% (1475/2586)   Receiving objects:  58% (1500/2586)   Receiving objects:  59% (1526/2586)   Receiving objects:  60% (1552/2586)   Receiving objects:  61% (1578/2586)   Receiving objects:  62% (1604/2586)   Receiving objects:  63% (1630/2586)   Receiving objects:  64% (1656/2586)   Receiving objects:  65% (1681/2586)   Receiving objects:  66% (1707/2586)   Receiving objects:  67% (1733/2586)   Receiving objects:  68% (1759/2586)   Receiving objects:  69% (1785/2586)   Receiving objects:  70% (1811/2586)   Receiving objects:  71% (1837/2586)   Receiving objects:  72% (1862/2586)   Receiving objects:  73% (1888/2586)   Receiving objects:  74% (1914/2586)   Receiving objects:  75% (1940/2586)   Receiving objects:  76% (1966/2586)   Receiving objects:  77% (1992/2586)   Receiving objects:  78% (2018/2586)   Receiving objects:  79% (2043/2586)   Receiving objects:  80% (2069/2586)   Receiving objects:  81% (2095/2586)   Receiving objects:  82% (2121/2586)   Receiving objects:  83% (2147/2586)   Receiving objects:  84% (2173/2586)   Receiving objects:  85% (2199/2586)   Receiving objects:  86% (2224/2586)   Receiving objects:  87% (2250/2586)   Receiving objects:  88% (2276/2586)   Receiving objects:  89% (2302/2586)   Receiving objects:  90% (2328/2586)   Receiving objects:  91% (2354/2586)   Receiving objects:  92% (2380/2586)   Receiving objects:  93% (2405/2586)   Receiving objects:  94% (2431/2586)   Receiving objects:  95% (2457/2586)   Receiving objects:  96% (2483/2586)   Receiving objects:  97% (2509/2586)   Receiving objects:  98% (2535/2586)   remote: Total 2586 (delta 1360), reused 1368 (delta 1360), pack-reused 1218[K
+
+Receiving objects:  99% (2561/2586)   Receiving objects: 100% (2586/2586)   Receiving objects: 100% (2586/2586), 1.67 MiB | 7.92 MiB/s, done.
+
+Resolving deltas:   0% (0/1871)   Resolving deltas:   1% (19/1871)   Resolving deltas:   2% (42/1871)   Resolving deltas:   3% (58/1871)   Resolving deltas:   4% (76/1871)   Resolving deltas:   5% (94/1871)   Resolving deltas:   6% (127/1871)   Resolving deltas:   7% (131/1871)   Resolving deltas:   8% (154/1871)   Resolving deltas:   9% (173/1871)   Resolving deltas:  10% (193/1871)   Resolving deltas:  11% (206/1871)   Resolving deltas:  12% (225/1871)   Resolving deltas:  13% (248/1871)   Resolving deltas:  14% (264/1871)   Resolving deltas:  15% (286/1871)   Resolving deltas:  16% (302/1871)   Resolving deltas:  17% (321/1871)   Resolving deltas:  18% (341/1871)   Resolving deltas:  19% (373/1871)   Resolving deltas:  20% (376/1871)   Resolving deltas:  21% (393/1871)   Resolving deltas:  22% (417/1871)   Resolving deltas:  23% (431/1871)   Resolving deltas:  24% (453/1871)   Resolving deltas:  25% (468/1871)   Resolving deltas:  26% (489/1871)   Resolving deltas:  27% (506/1871)   Resolving deltas:  28% (527/1871)   Resolving deltas:  29% (543/1871)   Resolving deltas:  30% (573/1871)   Resolving deltas:  31% (583/1871)   Resolving deltas:  32% (600/1871)   Resolving deltas:  33% (618/1871)   Resolving deltas:  34% (637/1871)   Resolving deltas:  35% (656/1871)   Resolving deltas:  36% (674/1871)   Resolving deltas:  37% (694/1871)   Resolving deltas:  38% (711/1871)   Resolving deltas:  39% (731/1871)   Resolving deltas:  40% (749/1871)   Resolving deltas:  41% (769/1871)   Resolving deltas:  42% (786/1871)   Resolving deltas:  43% (806/1871)   Resolving deltas:  44% (824/1871)   Resolving deltas:  45% (842/1871)   Resolving deltas:  46% (861/1871)   Resolving deltas:  47% (883/1871)   Resolving deltas:  48% (899/1871)   Resolving deltas:  49% (929/1871)   Resolving deltas:  50% (942/1871)   Resolving deltas:  51% (958/1871)   Resolving deltas:  52% (979/1871)   Resolving deltas:  53% (992/1871)   Resolving deltas:  54% (1018/1871)   Resolving deltas:  55% (1030/1871)   Resolving deltas:  56% (1051/1871)   Resolving deltas:  57% (1068/1871)   Resolving deltas:  58% (1092/1871)   Resolving deltas:  59% (1104/1871)   Resolving deltas:  60% (1125/1871)   Resolving deltas:  61% (1146/1871)   Resolving deltas:  62% (1162/1871)   Resolving deltas:  63% (1179/1871)   Resolving deltas:  64% (1200/1871)   Resolving deltas:  65% (1217/1871)   Resolving deltas:  66% (1236/1871)   Resolving deltas:  67% (1254/1871)   Resolving deltas:  68% (1274/1871)   Resolving deltas:  69% (1291/1871)   Resolving deltas:  70% (1310/1871)   Resolving deltas:  71% (1329/1871)   Resolving deltas:  72% (1348/1871)   Resolving deltas:  73% (1366/1871)   Resolving deltas:  74% (1385/1871)   Resolving deltas:  75% (1404/1871)   Resolving deltas:  76% (1422/1871)   Resolving deltas:  77% (1441/1871)   Resolving deltas:  78% (1460/1871)   Resolving deltas:  79% (1480/1871)   Resolving deltas:  80% (1497/1871)   Resolving deltas:  81% (1518/1871)   Resolving deltas:  82% (1538/1871)   Resolving deltas:  83% (1555/1871)   Resolving deltas:  84% (1573/1871)   Resolving deltas:  85% (1592/1871)   Resolving deltas:  86% (1611/1871)   Resolving deltas:  87% (1628/1871)   Resolving deltas:  88% (1648/1871)   Resolving deltas:  89% (1666/1871)   Resolving deltas:  90% (1685/1871)   Resolving deltas:  91% (1703/1871)   Resolving deltas:  92% (1722/1871)   Resolving deltas:  93% (1743/1871)   Resolving deltas:  94% (1759/1871)   Resolving deltas:  95% (1778/1871)   Resolving deltas:  97% (1817/1871)   Resolving deltas:  98% (1834/1871)   Resolving deltas:  99% (1853/1871)   Resolving deltas: 100% (1871/1871)   Resolving deltas: 100% (1871/1871), completed with 618 local objects.
+
+From https://github.com/Leeleo3x/parity-ethereum
+
+   89987745f..4365eddb5  master     -> origin/master
+
+   4253271fb..478f6afec  metrics    -> origin/metrics
+
+Updating 89987745f..4365eddb5
+
+Fast-forward
+
+ .cargo/config                                      |   26 [32m+[m[31m-[m
+
+ .github/CONTRIBUTING.md                            |   37 [32m+[m[31m-[m
+
+ .gitlab-ci.yml                                     |   89 [32m+[m[31m-[m
+
+ CHANGELOG.md                                       |  280 [32m+[m[31m-[m
+
+ Cargo.lock                                         | 2040 [32m+++++++++[m[31m------[m
+
+ Cargo.toml                                         |   27 [32m+[m[31m-[m
+
+ README.md                                          |  269 [32m+[m[31m-[m
+
+ accounts/Cargo.toml                                |    6 [32m+[m[31m-[m
+
+ accounts/ethkey/Cargo.toml                         |   12 [32m+[m[31m-[m
+
+ accounts/ethkey/README.md                          |    4 [32m+[m[31m-[m
+
+ accounts/ethkey/cli/Cargo.toml                     |    1 [32m+[m
+
+ accounts/ethkey/src/brain_prefix.rs                |    4 [32m+[m[31m-[m
+
+ accounts/ethkey/src/crypto.rs                      |   10 [32m+[m[31m-[m
+
+ accounts/ethkey/src/extended.rs                    |   98 [32m+[m[31m-[m
+
+ accounts/ethkey/src/keypair.rs                     |   17 [32m+[m[31m-[m
+
+ accounts/ethkey/src/lib.rs                         |    3 [32m+[m[31m-[m
+
+ accounts/ethkey/src/math.rs                        |    6 [32m+[m[31m-[m
+
+ accounts/ethkey/src/prefix.rs                      |    4 [32m+[m[31m-[m
+
+ accounts/ethkey/src/random.rs                      |    2 [32m+[m[31m-[m
+
+ accounts/ethkey/src/secret.rs                      |   22 [32m+[m[31m-[m
+
+ accounts/ethkey/src/signature.rs                   |   40 [32m+[m[31m-[m
+
+ accounts/ethstore/Cargo.toml                       |   10 [32m+[m[31m-[m
+
+ accounts/ethstore/README.md                        |    2 [32m+[m[31m-[m
+
+ accounts/ethstore/cli/Cargo.toml                   |    5 [32m+[m[31m-[m
+
+ accounts/ethstore/src/account/crypto.rs            |   23 [32m+[m[31m-[m
+
+ accounts/ethstore/src/account/kdf.rs               |    3 [32m+[m[31m-[m
+
+ accounts/ethstore/src/account/safe_account.rs      |   21 [32m+[m[31m-[m
+
+ accounts/ethstore/src/accounts_dir/disk.rs         |   20 [32m+[m[31m-[m
+
+ accounts/ethstore/src/accounts_dir/memory.rs       |    2 [32m+[m[31m-[m
+
+ accounts/ethstore/src/accounts_dir/mod.rs          |    5 [32m+[m[31m-[m
+
+ accounts/ethstore/src/accounts_dir/vault.rs        |   18 [32m+[m[31m-[m
+
+ accounts/ethstore/src/ethstore.rs                  |   20 [32m+[m[31m-[m
+
+ accounts/ethstore/src/json/crypto.rs               |    2 [32m+[m[31m-[m
+
+ accounts/ethstore/src/json/kdf.rs                  |    3 [32m+[m[31m-[m
+
+ accounts/ethstore/src/json/vault_file.rs           |    9 [32m+[m[31m-[m
+
+ accounts/ethstore/src/json/vault_key_file.rs       |    9 [32m+[m[31m-[m
+
+ accounts/ethstore/src/lib.rs                       |    2 [31m-[m
+
+ accounts/ethstore/src/presale.rs                   |    4 [32m+[m[31m-[m
+
+ accounts/ethstore/src/random.rs                    |    4 [32m+[m[31m-[m
+
+ accounts/ethstore/tests/api.rs                     |   17 [32m+[m[31m-[m
+
+ accounts/ethstore/tests/util/transient_dir.rs      |    2 [32m+[m[31m-[m
+
+ accounts/src/lib.rs                                |    8 [32m+[m[31m-[m
+
+ accounts/src/stores.rs                             |   30 [32m+[m[31m-[m
+
+ chainspec/Cargo.toml                               |    1 [32m+[m
+
+ cli-signer/Cargo.toml                              |    6 [32m+[m[31m-[m
+
+ cli-signer/rpc-client/Cargo.toml                   |   14 [32m+[m[31m-[m
+
+ docs/CHANGELOG-2.4.md                              |  128 [32m+[m
+
+ docs/CHANGELOG-2.5.md                              |   75 [32m+[m
+
+ ethash/Cargo.toml                                  |    8 [32m+[m[31m-[m
+
+ ethash/benches/basic.rs                            |   63 [32m+[m[31m-[m
+
+ ethash/src/compute.rs                              |   49 [32m+[m[31m-[m
+
+ ethash/src/lib.rs                                  |   35 [32m+[m[31m-[m
+
+ ethash/src/shared.rs                               |   29 [32m+[m[31m-[m
+
+ ethcore/Cargo.toml                                 |   54 [32m+[m[31m-[m
+
+ ethcore/account-db/Cargo.toml                      |   15 [32m+[m
+
+ .../{src/account_db.rs => account-db/src/lib.rs}   |  141 [32m+[m[31m-[m
+
+ ethcore/account-state/Cargo.toml                   |   36 [32m+[m
+
+ .../{src/state => account-state/src}/account.rs    |  182 [32m+[m[31m-[m
+
+ .../{src/state => account-state/src}/backend.rs    |   89 [32m+[m[31m-[m
+
+ .../src/error.rs => account-state/src/lib.rs}      |   28 [32m+[m[31m-[m
+
+ ethcore/account-state/src/state.rs                 | 1163 [32m++++++++[m
+
+ ethcore/benches/builtin.rs                         |   15 [32m+[m[31m-[m
+
+ ethcore/blockchain/Cargo.toml                      |   16 [32m+[m[31m-[m
+
+ ethcore/blockchain/src/best_block.rs               |    5 [32m+[m[31m-[m
+
+ ethcore/blockchain/src/blockchain.rs               |  212 [32m+[m[31m-[m
+
+ ethcore/blockchain/src/generator.rs                |   33 [32m+[m[31m-[m
+
+ ethcore/blockchain/src/import_route.rs             |   22 [32m+[m[31m-[m
+
+ ethcore/blockchain/src/lib.rs                      |   16 [32m+[m[31m-[m
+
+ ethcore/builtin/Cargo.toml                         |   21 [32m+[m
+
+ ethcore/{src/builtin.rs => builtin/src/lib.rs}     |  178 [32m+[m[31m-[m
+
+ ethcore/call-contract/Cargo.toml                   |    3 [32m+[m[31m-[m
+
+ ethcore/db/Cargo.toml                              |    8 [32m+[m[31m-[m
+
+ ethcore/db/src/db.rs                               |   50 [32m+[m[31m-[m
+
+ ethcore/db/src/keys.rs                             |   48 [32m+[m[31m-[m
+
+ ethcore/db/src/lib.rs                              |    3 [32m+[m
+
+ ethcore/evm/Cargo.toml                             |   10 [32m+[m[31m-[m
+
+ ethcore/evm/benches/basic.rs                       |  210 [32m+[m[31m-[m
+
+ ethcore/evm/src/factory.rs                         |    2 [32m+[m[31m-[m
+
+ ethcore/evm/src/interpreter/gasometer.rs           |   14 [32m+[m[31m-[m
+
+ ethcore/evm/src/interpreter/memory.rs              |    6 [32m+[m[31m-[m
+
+ ethcore/evm/src/interpreter/mod.rs                 |  182 [32m+[m[31m-[m
+
+ ethcore/evm/src/interpreter/shared_cache.rs        |    9 [32m+[m[31m-[m
+
+ ethcore/evm/src/lib.rs                             |    3 [32m+[m[31m-[m
+
+ ethcore/evm/src/tests.rs                           |   82 [32m+[m[31m-[m
+
+ ethcore/light/Cargo.toml                           |   23 [32m+[m[31m-[m
+
+ ethcore/light/src/cache.rs                         |   12 [32m+[m[31m-[m
+
+ ethcore/light/src/cht.rs                           |    9 [32m+[m[31m-[m
+
+ ethcore/light/src/client/fetch.rs                  |   11 [32m+[m[31m-[m
+
+ ethcore/light/src/client/header_chain.rs           |   73 [32m+[m[31m-[m
+
+ ethcore/light/src/client/mod.rs                    |   63 [32m+[m[31m-[m
+
+ ethcore/light/src/client/service.rs                |   11 [32m+[m[31m-[m
+
+ ethcore/light/src/lib.rs                           |    7 [32m+[m[31m-[m
+
+ ethcore/light/src/net/context.rs                   |    8 [32m+[m[31m-[m
+
+ ethcore/light/src/net/load_timer.rs                |   12 [32m+[m[31m-[m
+
+ ethcore/light/src/net/mod.rs                       |   74 [32m+[m[31m-[m
+
+ ethcore/light/src/net/status.rs                    |    8 [32m+[m[31m-[m
+
+ ethcore/light/src/net/tests/mod.rs                 |   32 [32m+[m[31m-[m
+
+ ethcore/light/src/on_demand/mod.rs                 |   67 [32m+[m[31m-[m
+
+ ethcore/light/src/on_demand/request.rs             |   37 [32m+[m[31m-[m
+
+ ethcore/light/src/on_demand/tests.rs               |   12 [32m+[m[31m-[m
+
+ ethcore/light/src/transaction_queue.rs             |   53 [32m+[m[31m-[m
+
+ ethcore/light/src/types/request/batch.rs           |    8 [32m+[m[31m-[m
+
+ ethcore/light/src/types/request/mod.rs             |    6 [32m+[m[31m-[m
+
+ ethcore/node-filter/Cargo.toml                     |   12 [32m+[m[31m-[m
+
+ ethcore/node-filter/src/lib.rs                     |   14 [32m+[m[31m-[m
+
+ ethcore/pod/Cargo.toml                             |   28 [32m+[m
+
+ ethcore/{src/pod_account.rs => pod/src/account.rs} |  123 [32m+[m[31m-[m
+
+ .../client/private_notify.rs => pod/src/lib.rs}    |   12 [32m+[m[31m-[m
+
+ ethcore/{src/pod_state.rs => pod/src/state.rs}     |   85 [32m+[m[31m-[m
+
+ ethcore/private-tx/Cargo.toml                      |   24 [32m+[m[31m-[m
+
+ ethcore/private-tx/src/encryptor.rs                |   12 [32m+[m[31m-[m
+
+ ethcore/private-tx/src/error.rs                    |    6 [32m+[m[31m-[m
+
+ ethcore/private-tx/src/key_server_keys.rs          |   10 [32m+[m[31m-[m
+
+ ethcore/private-tx/src/lib.rs                      |   41 [32m+[m[31m-[m
+
+ ethcore/private-tx/src/log.rs                      |   29 [32m+[m[31m-[m
+
+ ethcore/private-tx/src/messages.rs                 |   12 [32m+[m[31m-[m
+
+ ethcore/private-tx/src/private_transactions.rs     |    4 [32m+[m[31m-[m
+
+ ethcore/private-tx/tests/private_contract.rs       |    4 [32m+[m[31m-[m
+
+ ethcore/res/ethereum/classic.json                  |  124 [32m+[m[31m-[m
+
+ ethcore/res/ethereum/kotti.json                    |   57 [32m+[m[31m-[m
+
+ ethcore/res/ethereum/morden.json                   |   74 [32m+[m[31m-[m
+
+ ethcore/res/ethereum/ropsten.json                  |    2 [32m+[m[31m-[m
+
+ ethcore/res/instant_seal.json                      |    3 [32m+[m
+
+ ethcore/service/Cargo.toml                         |    7 [32m+[m[31m-[m
+
+ ethcore/service/src/lib.rs                         |    6 [32m+[m[31m-[m
+
+ ethcore/service/src/service.rs                     |   30 [32m+[m[31m-[m
+
+ ethcore/service/src/stop_guard.rs                  |   40 [31m-[m
+
+ ethcore/src/block.rs                               |  104 [32m+[m[31m-[m
+
+ ethcore/src/client/ancient_import.rs               |   18 [32m+[m[31m-[m
+
+ ethcore/src/client/client.rs                       |  389 [32m+[m[31m--[m
+
+ ethcore/src/client/evm_test_client.rs              |   74 [32m+[m[31m-[m
+
+ ethcore/src/client/io_message.rs                   |    2 [32m+[m[31m-[m
+
+ ethcore/src/client/mod.rs                          |    7 [32m+[m[31m-[m
+
+ ethcore/src/client/test_client.rs                  |   67 [32m+[m[31m-[m
+
+ ethcore/src/client/trace.rs                        |   40 [31m-[m
+
+ ethcore/src/client/traits.rs                       |   65 [32m+[m[31m-[m
+
+ ethcore/src/engines/authority_round/finality.rs    |   10 [32m+[m[31m-[m
+
+ ethcore/src/engines/authority_round/mod.rs         |  396 [32m+[m[31m--[m
+
+ ethcore/src/engines/basic_authority.rs             |   72 [32m+[m[31m-[m
+
+ ethcore/src/engines/block_reward.rs                |   73 [32m+[m[31m-[m
+
+ ethcore/src/engines/clique/block_state.rs          |   23 [32m+[m[31m-[m
+
+ ethcore/src/engines/clique/mod.rs                  |  162 [32m+[m[31m-[m
+
+ ethcore/src/engines/clique/step_service.rs         |   77 [31m-[m
+
+ ethcore/src/engines/clique/tests.rs                |   11 [32m+[m[31m-[m
+
+ ethcore/src/engines/clique/util.rs                 |   11 [32m+[m[31m-[m
+
+ ethcore/src/{ethereum => engines}/ethash.rs        |   81 [32m+[m[31m-[m
+
+ ethcore/src/engines/instant_seal.rs                |   37 [32m+[m[31m-[m
+
+ ethcore/src/engines/mod.rs                         |  272 [32m+[m[31m-[m
+
+ ethcore/src/engines/null_engine.rs                 |   48 [32m+[m[31m-[m
+
+ ethcore/src/engines/signer.rs                      |    2 [32m+[m[31m-[m
+
+ ethcore/src/engines/validator_set/contract.rs      |   29 [32m+[m[31m-[m
+
+ ethcore/src/engines/validator_set/mod.rs           |   24 [32m+[m[31m-[m
+
+ ethcore/src/engines/validator_set/multi.rs         |   35 [32m+[m[31m-[m
+
+ ethcore/src/engines/validator_set/safe_contract.rs |   88 [32m+[m[31m-[m
+
+ ethcore/src/engines/validator_set/simple_list.rs   |   40 [32m+[m[31m-[m
+
+ ethcore/src/engines/validator_set/test.rs          |   38 [32m+[m[31m-[m
+
+ ethcore/src/{ethereum/mod.rs => ethereum.rs}       |  126 [32m+[m[31m-[m
+
+ ethcore/src/executed.rs                            |  139 [32m+[m[31m-[m
+
+ ethcore/src/executive.rs                           |  224 [32m+[m[31m-[m
+
+ ethcore/src/executive_state.rs                     | 1697 [32m++++++++++++[m
+
+ ethcore/src/externalities.rs                       |   64 [32m+[m[31m-[m
+
+ ethcore/src/json_tests/chain.rs                    |    1 [31m-[m
+
+ ethcore/src/json_tests/executive.rs                |   13 [32m+[m[31m-[m
+
+ ethcore/src/json_tests/state.rs                    |    2 [32m+[m[31m-[m
+
+ ethcore/src/json_tests/test_common.rs              |    1 [32m+[m
+
+ ethcore/src/json_tests/transaction.rs              |   11 [32m+[m[31m-[m
+
+ ethcore/src/json_tests/trie.rs                     |    2 [32m+[m[31m-[m
+
+ ethcore/src/lib.rs                                 |   49 [32m+[m[31m-[m
+
+ ethcore/src/{machine/impls.rs => machine.rs}       |  144 [32m+[m[31m-[m
+
+ ethcore/src/machine/mod.rs                         |    7 [31m-[m
+
+ ethcore/src/machine/traits.rs                      |   37 [31m-[m
+
+ ethcore/src/miner/filter_options.rs                |  869 [32m++++++[m
+
+ ethcore/src/miner/miner.rs                         |  398 [32m++[m[31m-[m
+
+ ethcore/src/miner/mod.rs                           |   25 [32m+[m[31m-[m
+
+ ethcore/src/miner/pool_client.rs                   |   15 [32m+[m[31m-[m
+
+ ethcore/src/miner/stratum.rs                       |   12 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/account.rs                    |  132 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/block.rs                      |   10 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/consensus/authority.rs        |   73 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/consensus/mod.rs              |   19 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/consensus/work.rs             |   62 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/io.rs                         |   12 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/mod.rs                        |  131 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/service.rs                    |  164 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/tests/helpers.rs              |   22 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/tests/proof_of_authority.rs   |    2 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/tests/proof_of_work.rs        |    8 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/tests/service.rs              |   12 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/tests/state.rs                |   43 [32m+[m[31m-[m
+
+ ethcore/src/snapshot/traits.rs                     |    3 [32m+[m
+
+ ethcore/src/snapshot/watcher.rs                    |    8 [32m+[m[31m-[m
+
+ ethcore/src/spec/mod.rs                            |    2 [32m+[m[31m-[m
+
+ ethcore/src/spec/spec.rs                           |  673 [32m++[m[31m---[m
+
+ ethcore/src/state/mod.rs                           | 2767 [31m--------------------[m
+
+ ethcore/src/{state => }/substate.rs                |   24 [32m+[m[31m-[m
+
+ ethcore/src/test_helpers.rs                        |   27 [32m+[m[31m-[m
+
+ ethcore/src/tests/client.rs                        |   32 [32m+[m[31m-[m
+
+ ethcore/src/tests/evm.rs                           |   20 [32m+[m[31m-[m
+
+ ethcore/src/tests/trace.rs                         |    8 [32m+[m[31m-[m
+
+ ethcore/src/tx_filter.rs                           |   29 [32m+[m[31m-[m
+
+ ethcore/src/verification/canon_verifier.rs         |   14 [32m+[m[31m-[m
+
+ ethcore/src/verification/mod.rs                    |    4 [32m+[m[31m-[m
+
+ ethcore/src/verification/noop_verifier.rs          |   12 [32m+[m[31m-[m
+
+ ethcore/src/verification/queue/kind.rs             |   61 [32m+[m[31m-[m
+
+ ethcore/src/verification/queue/mod.rs              |   41 [32m+[m[31m-[m
+
+ ethcore/src/verification/verification.rs           |   91 [32m+[m[31m-[m
+
+ ethcore/src/verification/verifier.rs               |   14 [32m+[m[31m-[m
+
+ ethcore/state-db/Cargo.toml                        |   28 [32m+[m
+
+ ethcore/{src/state_db.rs => state-db/src/lib.rs}   |   98 [32m+[m[31m-[m
+
+ ethcore/sync/Cargo.toml                            |   17 [32m+[m[31m-[m
+
+ ethcore/sync/src/api.rs                            |   93 [32m+[m[31m-[m
+
+ ethcore/sync/src/block_sync.rs                     |   44 [32m+[m[31m-[m
+
+ ethcore/sync/src/blocks.rs                         |   59 [32m+[m[31m-[m
+
+ ethcore/sync/src/chain/handler.rs                  |   50 [32m+[m[31m-[m
+
+ ethcore/sync/src/chain/mod.rs                      |  112 [32m+[m[31m-[m
+
+ ethcore/sync/src/chain/propagator.rs               |   24 [32m+[m[31m-[m
+
+ ethcore/sync/src/chain/requester.rs                |   18 [32m+[m[31m-[m
+
+ ethcore/sync/src/chain/supplier.rs                 |   41 [32m+[m[31m-[m
+
+ ethcore/sync/src/lib.rs                            |    7 [32m+[m[31m-[m
+
+ ethcore/sync/src/light_sync/mod.rs                 |   22 [32m+[m[31m-[m
+
+ ethcore/sync/src/private_tx.rs                     |    8 [32m+[m[31m-[m
+
+ ethcore/sync/src/snapshot.rs                       |   13 [32m+[m[31m-[m
+
+ ethcore/sync/src/sync_io.rs                        |   20 [32m+[m[31m-[m
+
+ ethcore/sync/src/tests/consensus.rs                |   10 [32m+[m[31m-[m
+
+ ethcore/sync/src/tests/helpers.rs                  |    4 [32m+[m[31m-[m
+
+ ethcore/sync/src/tests/private.rs                  |   10 [32m+[m[31m-[m
+
+ ethcore/sync/src/tests/snapshot.rs                 |   10 [32m+[m[31m-[m
+
+ ethcore/sync/src/transactions_stats.rs             |   16 [32m+[m[31m-[m
+
+ ethcore/trace/Cargo.toml                           |   25 [32m+[m
+
+ ethcore/{src/trace => trace/src}/config.rs         |    2 [32m+[m[31m-[m
+
+ ethcore/{src/trace => trace/src}/db.rs             |  157 [32m+[m[31m-[m
+
+ .../{src/trace => trace/src}/executive_tracer.rs   |    9 [32m+[m[31m-[m
+
+ ethcore/{src/trace => trace/src}/import.rs         |    3 [32m+[m[31m-[m
+
+ ethcore/{src/trace/mod.rs => trace/src/lib.rs}     |   52 [32m+[m[31m-[m
+
+ ethcore/{src/trace => trace/src}/noop_tracer.rs    |    6 [32m+[m[31m-[m
+
+ ethcore/{src/trace => trace/src}/types/error.rs    |    2 [32m+[m[31m-[m
+
+ ethcore/{src/trace => trace/src}/types/filter.rs   |  188 [32m+[m[31m-[m
+
+ ethcore/{src/trace => trace/src}/types/flat.rs     |   40 [32m+[m[31m-[m
+
+ .../{src/trace => trace/src}/types/localized.rs    |    6 [32m+[m[31m-[m
+
+ ethcore/{src/trace => trace/src}/types/mod.rs      |    0
+
+ ethcore/{src/trace => trace/src}/types/trace.rs    |   24 [32m+[m[31m-[m
+
+ ethcore/trie-vm-factories/Cargo.toml               |   15 [32m+[m
+
+ .../factory.rs => trie-vm-factories/src/lib.rs}    |   23 [32m+[m[31m-[m
+
+ ethcore/types/Cargo.toml                           |   16 [32m+[m[31m-[m
+
+ ethcore/types/src/account_diff.rs                  |   98 [32m+[m[31m-[m
+
+ ethcore/types/src/basic_account.rs                 |   46 [32m+[m[31m-[m
+
+ ethcore/types/src/block.rs                         |   29 [32m+[m[31m-[m
+
+ ethcore/types/src/blockchain_info.rs               |    2 [32m+[m[31m-[m
+
+ ethcore/types/src/encoded.rs                       |   20 [32m+[m[31m-[m
+
+ ethcore/types/src/engines/epoch.rs                 |    2 [31m-[m
+
+ ethcore/types/src/engines/machine.rs               |   46 [32m+[m
+
+ ethcore/types/src/engines/mod.rs                   |   75 [32m+[m
+
+ ethcore/types/src/engines/params.rs                |  310 [32m+++[m
+
+ .../error.rs => types/src/errors/block_error.rs}   |  166 [32m+[m[31m-[m
+
+ ethcore/types/src/errors/engine_error.rs           |  109 [32m+[m
+
+ ethcore/types/src/errors/ethcore_error.rs          |  205 [32m++[m
+
+ .../denominations.rs => types/src/errors/mod.rs}   |   34 [32m+[m[31m-[m
+
+ .../src/errors/snapshot_error.rs}                  |   83 [32m+[m[31m-[m
+
+ ethcore/types/src/filter.rs                        |   63 [32m+[m[31m-[m
+
+ ethcore/types/src/header.rs                        |   14 [32m+[m[31m-[m
+
+ ethcore/types/src/lib.rs                           |   15 [32m+[m[31m-[m
+
+ ethcore/types/src/log_entry.rs                     |   14 [32m+[m[31m-[m
+
+ ethcore/types/src/receipt.rs                       |   23 [32m+[m[31m-[m
+
+ ethcore/types/src/restoration_status.rs            |    8 [32m+[m[31m-[m
+
+ ethcore/types/src/state_diff.rs                    |   28 [32m+[m[31m-[m
+
+ ethcore/types/src/transaction/error.rs             |   41 [32m+[m[31m-[m
+
+ ethcore/types/src/transaction/mod.rs               |    2 [32m+[m[31m-[m
+
+ ethcore/types/src/transaction/transaction.rs       |   73 [32m+[m[31m-[m
+
+ ethcore/types/src/verification_queue_info.rs       |    3 [31m-[m
+
+ ethcore/types/src/views/block.rs                   |    5 [32m+[m[31m-[m
+
+ ethcore/types/src/views/header.rs                  |   17 [32m+[m[31m-[m
+
+ ethcore/vm/Cargo.toml                              |   10 [32m+[m[31m-[m
+
+ ethcore/vm/src/action_params.rs                    |   14 [32m+[m[31m-[m
+
+ ethcore/vm/src/env_info.rs                         |    2 [32m+[m[31m-[m
+
+ ethcore/vm/src/error.rs                            |    4 [32m+[m[31m-[m
+
+ ethcore/vm/src/ext.rs                              |    1 [32m+[m
+
+ ethcore/vm/src/lib.rs                              |    9 [32m+[m[31m-[m
+
+ ethcore/vm/src/schedule.rs                         |   15 [32m+[m
+
+ ethcore/vm/src/tests.rs                            |    7 [32m+[m[31m-[m
+
+ ethcore/wasm/Cargo.toml                            |    3 [32m+[m[31m-[m
+
+ ethcore/wasm/run/Cargo.toml                        |    3 [32m+[m[31m-[m
+
+ ethcore/wasm/run/src/runner.rs                     |   14 [32m+[m[31m-[m
+
+ ethcore/wasm/src/lib.rs                            |    5 [32m+[m[31m-[m
+
+ ethcore/wasm/src/runtime.rs                        |   29 [32m+[m[31m-[m
+
+ ethcore/wasm/src/tests.rs                          |   88 [32m+[m[31m-[m
+
+ evmbin/Cargo.toml                                  |    9 [32m+[m[31m-[m
+
+ evmbin/README.md                                   |    2 [32m+[m[31m-[m
+
+ evmbin/src/display/json.rs                         |  108 [32m+[m[31m-[m
+
+ evmbin/src/display/simple.rs                       |    2 [32m+[m[31m-[m
+
+ evmbin/src/display/std_json.rs                     |  211 [32m+[m[31m-[m
+
+ evmbin/src/info.rs                                 |   47 [32m+[m[31m-[m
+
+ evmbin/src/main.rs                                 |   16 [32m+[m[31m-[m
+
+ ipfs/Cargo.toml                                    |   10 [32m+[m[31m-[m
+
+ ipfs/src/route.rs                                  |    2 [32m+[m[31m-[m
+
+ json/Cargo.toml                                    |    4 [32m+[m[31m-[m
+
+ json/src/blockchain/account.rs                     |    3 [32m+[m
+
+ json/src/bytes.rs                                  |   12 [32m+[m[31m-[m
+
+ json/src/hash.rs                                   |   14 [32m+[m[31m-[m
+
+ json/src/spec/account.rs                           |    2 [32m+[m
+
+ json/src/spec/authority_round.rs                   |    6 [32m+[m[31m-[m
+
+ json/src/spec/basic_authority.rs                   |    3 [32m+[m[31m-[m
+
+ json/src/spec/clique.rs                            |    2 [31m-[m
+
+ json/src/spec/ethash.rs                            |   43 [32m+[m[31m-[m
+
+ json/src/spec/genesis.rs                           |   12 [32m+[m[31m-[m
+
+ json/src/spec/hardcoded_sync.rs                    |   12 [32m+[m[31m-[m
+
+ json/src/spec/params.rs                            |    4 [32m+[m[31m-[m
+
+ json/src/spec/seal.rs                              |   11 [32m+[m[31m-[m
+
+ json/src/spec/validator_set.rs                     |    7 [32m+[m[31m-[m
+
+ json/src/state/test.rs                             |  108 [32m+[m[31m-[m
+
+ json/src/uint.rs                                   |   15 [32m+[m[31m-[m
+
+ json/src/vm/transaction.rs                         |    3 [32m+[m
+
+ miner/Cargo.toml                                   |   20 [32m+[m[31m-[m
+
+ miner/local-store/Cargo.toml                       |    3 [32m+[m[31m-[m
+
+ miner/local-store/src/lib.rs                       |   81 [32m+[m[31m-[m
+
+ miner/price-info/Cargo.toml                        |    4 [32m+[m[31m-[m
+
+ miner/price-info/src/lib.rs                        |   69 [32m+[m[31m-[m
+
+ miner/src/external.rs                              |    8 [32m+[m[31m-[m
+
+ miner/src/lib.rs                                   |    5 [32m+[m[31m-[m
+
+ miner/src/pool/listener.rs                         |  103 [32m+[m[31m-[m
+
+ miner/src/pool/mod.rs                              |    4 [32m+[m[31m-[m
+
+ miner/src/pool/queue.rs                            |   20 [32m+[m[31m-[m
+
+ miner/src/pool/scoring.rs                          |    2 [32m+[m[31m-[m
+
+ miner/src/pool/verifier.rs                         |   22 [32m+[m[31m-[m
+
+ miner/stratum/Cargo.toml                           |   10 [32m+[m[31m-[m
+
+ miner/using-queue/src/lib.rs                       |    6 [32m+[m[31m-[m
+
+ parity/account.rs                                  |    5 [32m+[m[31m-[m
+
+ parity/account_utils.rs                            |    5 [32m+[m[31m-[m
+
+ parity/blockchain.rs                               |    3 [32m+[m[31m-[m
+
+ parity/cli/mod.rs                                  |   20 [32m+[m[31m-[m
+
+ parity/configuration.rs                            |  108 [32m+[m[31m-[m
+
+ parity/db/rocksdb/blooms.rs                        |    2 [32m+[m[31m-[m
+
+ parity/db/rocksdb/migration.rs                     |    4 [32m+[m[31m-[m
+
+ parity/deprecated.rs                               |   14 [32m+[m
+
+ parity/export_hardcoded_sync.rs                    |    2 [32m+[m[31m-[m
+
+ parity/helpers.rs                                  |   15 [32m+[m[31m-[m
+
+ parity/informant.rs                                |   11 [32m+[m[31m-[m
+
+ parity/lib.rs                                      |    7 [31m-[m
+
+ parity/light_helpers/epoch_fetch.rs                |    5 [32m+[m[31m-[m
+
+ parity/logger/Cargo.toml                           |    6 [32m+[m[31m-[m
+
+ parity/modules.rs                                  |    4 [32m+[m[31m-[m
+
+ parity/params.rs                                   |    5 [32m+[m[31m-[m
+
+ parity/presale.rs                                  |    3 [32m+[m[31m-[m
+
+ parity/rpc.rs                                      |    6 [32m+[m[31m-[m
+
+ parity/rpc_apis.rs                                 |   95 [32m+[m[31m-[m
+
+ parity/run.rs                                      |   78 [32m+[m[31m-[m
+
+ parity/snapshot.rs                                 |    3 [32m+[m[31m-[m
+
+ parity/whisper.rs                                  |  114 [31m-[m
+
+ rpc/Cargo.toml                                     |   31 [32m+[m[31m-[m
+
+ rpc/src/authcodes.rs                               |    5 [32m+[m[31m-[m
+
+ rpc/src/lib.rs                                     |    7 [32m+[m[31m-[m
+
+ rpc/src/v1/extractors.rs                           |    6 [32m+[m[31m-[m
+
+ rpc/src/v1/helpers/engine_signer.rs                |    5 [32m+[m[31m-[m
+
+ rpc/src/v1/helpers/errors.rs                       |   24 [32m+[m[31m-[m
+
+ .../v1/helpers/external_signer/signing_queue.rs    |   11 [32m+[m[31m-[m
+
+ rpc/src/v1/helpers/light_fetch.rs                  |   16 [32m+[m[31m-[m
+
+ rpc/src/v1/helpers/secretstore.rs                  |   11 [32m+[m[31m-[m
+
+ rpc/src/v1/helpers/subscribers.rs                  |   39 [32m+[m[31m-[m
+
+ rpc/src/v1/helpers/subscription_manager.rs         |    4 [32m+[m[31m-[m
+
+ rpc/src/v1/impls/eth.rs                            |   10 [32m+[m[31m-[m
+
+ rpc/src/v1/impls/eth_pubsub.rs                     |   62 [32m+[m[31m-[m
+
+ rpc/src/v1/impls/light/parity.rs                   |   10 [32m+[m[31m-[m
+
+ rpc/src/v1/impls/parity.rs                         |   19 [32m+[m[31m-[m
+
+ rpc/src/v1/impls/personal.rs                       |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/impls/signer.rs                         |    6 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/eth.rs                            |    3 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/helpers/miner_service.rs          |   34 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/helpers/snapshot_service.rs       |    1 [32m+[m
+
+ rpc/src/v1/tests/helpers/sync_provider.rs          |   14 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/helpers/update_service.rs         |    7 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/mocked/eth.rs                     |   74 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/mocked/eth_pubsub.rs              |   53 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/mocked/parity.rs                  |   24 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/mocked/parity_accounts.rs         |    7 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/mocked/parity_set.rs              |    5 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/mocked/personal.rs                |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/mocked/pubsub.rs                  |    8 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/mocked/signer.rs                  |   14 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/mocked/signing.rs                 |   10 [32m+[m[31m-[m
+
+ rpc/src/v1/tests/mocked/traces.rs                  |   16 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/debug.rs                         |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/eth.rs                           |    4 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/eth_pubsub.rs                    |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/eth_signing.rs                   |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/net.rs                           |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/parity.rs                        |    5 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/parity_accounts.rs               |    4 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/parity_set.rs                    |    4 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/parity_signing.rs                |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/personal.rs                      |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/private.rs                       |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/pubsub.rs                        |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/rpc.rs                           |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/secretstore.rs                   |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/signer.rs                        |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/traces.rs                        |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/transactions_pool.rs             |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/traits/web3.rs                          |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/types/block.rs                          |   44 [32m+[m[31m-[m
+
+ rpc/src/v1/types/call_request.rs                   |    6 [32m+[m[31m-[m
+
+ rpc/src/v1/types/confirmations.rs                  |   16 [32m+[m[31m-[m
+
+ rpc/src/v1/types/eth_types.rs                      |   14 [32m+[m[31m-[m
+
+ rpc/src/v1/types/filter.rs                         |    4 [32m+[m[31m-[m
+
+ rpc/src/v1/types/log.rs                            |    2 [32m+[m[31m-[m
+
+ rpc/src/v1/types/provenance.rs                     |    7 [32m+[m[31m-[m
+
+ rpc/src/v1/types/receipt.rs                        |    9 [32m+[m[31m-[m
+
+ rpc/src/v1/types/secretstore.rs                    |   10 [32m+[m[31m-[m
+
+ rpc/src/v1/types/sync.rs                           |    4 [32m+[m[31m-[m
+
+ rpc/src/v1/types/trace.rs                          |   55 [32m+[m[31m-[m
+
+ rpc/src/v1/types/trace_filter.rs                   |    4 [32m+[m[31m-[m
+
+ rpc/src/v1/types/transaction.rs                    |    4 [32m+[m[31m-[m
+
+ rpc/src/v1/types/transaction_request.rs            |    6 [32m+[m[31m-[m
+
+ scripts/docker/hub/Dockerfile                      |   43 [32m+[m[31m-[m
+
+ scripts/docker/hub/publish-docker.sh               |   67 [32m+[m
+
+ scripts/gitlab/build-linux.sh                      |   11 [32m+[m[31m-[m
+
+ scripts/gitlab/build-windows.sh                    |    7 [32m+[m[31m-[m
+
+ scripts/gitlab/publish-av-whitelists.sh            |   25 [32m+[m
+
+ scripts/gitlab/publish-docker.sh                   |   22 [31m-[m
+
+ scripts/gitlab/publish-docs.sh                     |    4 [32m+[m[31m-[m
+
+ scripts/gitlab/publish-onchain.sh                  |    9 [32m+[m[31m-[m
+
+ scripts/gitlab/publish-snap.sh                     |   16 [32m+[m[31m-[m
+
+ scripts/gitlab/test-linux.sh                       |    3 [32m+[m[31m-[m
+
+ scripts/snap/snapcraft.template.yaml               |    4 [31m-[m
+
+ secret-store/Cargo.toml                            |   18 [32m+[m[31m-[m
+
+ secret-store/src/key_server.rs                     |  392 [32m++[m[31m-[m
+
+ .../key_version_negotiation_session.rs             |  213 [32m+[m[31m-[m
+
+ .../admin_sessions/servers_set_change_session.rs   |   48 [32m+[m[31m-[m
+
+ .../admin_sessions/share_add_session.rs            |   45 [32m+[m[31m-[m
+
+ .../admin_sessions/share_change_session.rs         |    2 [32m+[m[31m-[m
+
+ .../client_sessions/decryption_session.rs          |   85 [32m+[m[31m-[m
+
+ .../client_sessions/encryption_session.rs          |   39 [32m+[m[31m-[m
+
+ .../client_sessions/generation_session.rs          |   50 [32m+[m[31m-[m
+
+ .../client_sessions/signing_session_ecdsa.rs       |   36 [32m+[m[31m-[m
+
+ .../client_sessions/signing_session_schnorr.rs     |   56 [32m+[m[31m-[m
+
+ secret-store/src/key_server_cluster/cluster.rs     |  274 [32m+[m[31m-[m
+
+ .../cluster_message_processor.rs                   |   24 [32m+[m[31m-[m
+
+ .../src/key_server_cluster/cluster_sessions.rs     |  118 [32m+[m[31m-[m
+
+ .../key_server_cluster/cluster_sessions_creator.rs |  145 [32m+[m[31m-[m
+
+ .../connection_trigger_with_migration.rs           |  168 [32m+[m[31m-[m
+
+ secret-store/src/key_server_cluster/io/message.rs  |    8 [32m+[m[31m-[m
+
+ .../key_server_cluster/jobs/consensus_session.rs   |  148 [32m+[m[31m-[m
+
+ .../src/key_server_cluster/jobs/decryption_job.rs  |    2 [32m+[m[31m-[m
+
+ .../src/key_server_cluster/jobs/job_session.rs     |  100 [32m+[m[31m-[m
+
+ .../jobs/servers_set_change_access_job.rs          |    2 [32m+[m[31m-[m
+
+ secret-store/src/key_server_cluster/math.rs        |   20 [32m+[m[31m-[m
+
+ secret-store/src/key_server_cluster/message.rs     |   23 [32m+[m[31m-[m
+
+ secret-store/src/key_server_cluster/mod.rs         |    2 [32m+[m[31m-[m
+
+ secret-store/src/key_server_set.rs                 |   82 [32m+[m[31m-[m
+
+ secret-store/src/key_storage.rs                    |  309 [32m+[m[31m--[m
+
+ secret-store/src/listener/http_listener.rs         |  258 [32m+[m[31m-[m
+
+ secret-store/src/listener/mod.rs                   |   64 [32m+[m[31m-[m
+
+ secret-store/src/listener/service_contract.rs      |   22 [32m+[m[31m-[m
+
+ .../src/listener/service_contract_listener.rs      |   15 [32m+[m[31m-[m
+
+ secret-store/src/serialization.rs                  |  106 [32m+[m[31m-[m
+
+ secret-store/src/traits.rs                         |   64 [32m+[m[31m-[m
+
+ .../src/key_server_cluster/cluster_connections.rs  |  176 [31m--[m
+
+ .../key_server_cluster/cluster_connections_net.rs  |  539 [31m----[m
+
+ .../cluster_message_processor.rs                   |  357 [31m---[m
+
+ updater/Cargo.toml                                 |   14 [32m+[m[31m-[m
+
+ updater/hash-fetch/Cargo.toml                      |   14 [32m+[m[31m-[m
+
+ updater/hash-fetch/src/client.rs                   |   21 [32m+[m[31m-[m
+
+ updater/hash-fetch/src/urlhint.rs                  |   16 [32m+[m[31m-[m
+
+ updater/src/updater.rs                             |   30 [32m+[m[31m-[m
+
+ util/EIP-712/Cargo.toml                            |    6 [32m+[m[31m-[m
+
+ util/EIP-712/src/encode.rs                         |   15 [32m+[m[31m-[m
+
+ util/bloom/Cargo.toml                              |    3 [32m+[m[31m-[m
+
+ util/bloom/src/lib.rs                              |    6 [32m+[m[31m-[m
+
+ util/blooms-db/Cargo.toml                          |    7 [32m+[m[31m-[m
+
+ util/blooms-db/src/db.rs                           |   55 [32m+[m[31m-[m
+
+ util/blooms-db/src/file.rs                         |   11 [32m+[m[31m-[m
+
+ util/blooms-db/src/lib.rs                          |    9 [32m+[m[31m-[m
+
+ util/dir/Cargo.toml                                |    2 [32m+[m[31m-[m
+
+ util/dir/src/lib.rs                                |   10 [32m+[m[31m-[m
+
+ util/fastmap/Cargo.toml                            |    2 [32m+[m[31m-[m
+
+ util/fastmap/src/lib.rs                            |    2 [32m+[m[31m-[m
+
+ util/io/Cargo.toml                                 |    2 [32m+[m[31m-[m
+
+ util/journaldb/Cargo.toml                          |   14 [32m+[m[31m-[m
+
+ util/journaldb/src/archivedb.rs                    |  202 [32m+[m[31m-[m
+
+ util/journaldb/src/as_hash_db_impls.rs             |   30 [32m+[m[31m-[m
+
+ util/journaldb/src/earlymergedb.rs                 |  335 [32m++[m[31m-[m
+
+ util/journaldb/src/lib.rs                          |   18 [32m+[m[31m-[m
+
+ util/journaldb/src/overlaydb.rs                    |  133 [32m+[m[31m-[m
+
+ util/journaldb/src/overlayrecentdb.rs              |  350 [32m++[m[31m-[m
+
+ util/journaldb/src/refcounteddb.rs                 |  134 [32m+[m[31m-[m
+
+ util/journaldb/src/traits.rs                       |   12 [32m+[m[31m-[m
+
+ util/keccak-hasher/Cargo.toml                      |    4 [32m+[m[31m-[m
+
+ util/len-caching-lock/Cargo.toml                   |    2 [32m+[m[31m-[m
+
+ util/macros/Cargo.toml                             |    1 [32m+[m
+
+ util/macros/src/lib.rs                             |   24 [31m-[m
+
+ util/memory-cache/Cargo.toml                       |    2 [32m+[m[31m-[m
+
+ util/memory-cache/src/lib.rs                       |   12 [32m+[m[31m-[m
+
+ util/memzero/Cargo.toml                            |   10 [31m-[m
+
+ util/memzero/src/lib.rs                            |   54 [31m-[m
+
+ util/network-devp2p/Cargo.toml                     |   23 [32m+[m[31m-[m
+
+ util/network-devp2p/src/connection.rs              |  235 [32m+[m[31m-[m
+
+ util/network-devp2p/src/discovery.rs               |   87 [32m+[m[31m-[m
+
+ util/network-devp2p/src/handshake.rs               |   94 [32m+[m[31m-[m
+
+ util/network-devp2p/src/host.rs                    |   93 [32m+[m[31m-[m
+
+ util/network-devp2p/src/ip_utils.rs                |   25 [32m+[m[31m-[m
+
+ util/network-devp2p/src/lib.rs                     |   51 [32m+[m[31m-[m
+
+ util/network-devp2p/src/node_table.rs              |   69 [32m+[m[31m-[m
+
+ util/network-devp2p/src/service.rs                 |   28 [32m+[m[31m-[m
+
+ util/network-devp2p/src/session.rs                 |   49 [32m+[m[31m-[m
+
+ util/network-devp2p/tests/tests.rs                 |   38 [32m+[m[31m-[m
+
+ util/network/Cargo.toml                            |    8 [32m+[m[31m-[m
+
+ util/network/src/error.rs                          |  191 [32m+[m[31m-[m
+
+ util/network/src/lib.rs                            |    6 [32m+[m[31m-[m
+
+ util/patricia-trie-ethereum/Cargo.toml             |   12 [32m+[m[31m-[m
+
+ util/patricia-trie-ethereum/src/lib.rs             |    4 [32m+[m[31m-[m
+
+ util/registrar/Cargo.toml                          |    8 [32m+[m[31m-[m
+
+ util/rlp-compress/Cargo.toml                       |    2 [32m+[m[31m-[m
+
+ util/rlp-derive/Cargo.toml                         |    2 [32m+[m[31m-[m
+
+ util/triehash-ethereum/Cargo.toml                  |    4 [32m+[m[31m-[m
+
+ util/triehash-ethereum/src/lib.rs                  |    5 [32m+[m[31m-[m
+
+ util/version/Cargo.toml                            |    4 [32m+[m[31m-[m
+
+ whisper/Cargo.toml                                 |   31 [31m-[m
+
+ whisper/README.md                                  |   33 [31m-[m
+
+ whisper/cli/Cargo.toml                             |   26 [31m-[m
+
+ whisper/cli/src/main.rs                            |  343 [31m---[m
+
+ whisper/src/aes_gcm/mod.rs                         |  113 [31m-[m
+
+ whisper/src/lib.rs                                 |   64 [31m-[m
+
+ whisper/src/message.rs                             |  538 [31m----[m
+
+ whisper/src/net/mod.rs                             |  731 [31m------[m
+
+ whisper/src/net/tests.rs                           |  192 [31m--[m
+
+ whisper/src/rpc/crypto.rs                          |  270 [31m--[m
+
+ whisper/src/rpc/filter.rs                          |  438 [31m----[m
+
+ whisper/src/rpc/key_store.rs                       |  195 [31m--[m
+
+ whisper/src/rpc/mod.rs                             |  389 [31m---[m
+
+ whisper/src/rpc/payload.rs                         |  356 [31m---[m
+
+ whisper/src/rpc/types.rs                           |  297 [31m---[m
+
+ 529 files changed, 16488 insertions(+), 18082 deletions(-)
+
+ create mode 100644 docs/CHANGELOG-2.4.md
+
+ create mode 100644 docs/CHANGELOG-2.5.md
+
+ create mode 100644 ethcore/account-db/Cargo.toml
+
+ rename ethcore/{src/account_db.rs => account-db/src/lib.rs} (53%)
+
+ create mode 100644 ethcore/account-state/Cargo.toml
+
+ rename ethcore/{src/state => account-state/src}/account.rs (79%)
+
+ rename ethcore/{src/state => account-state/src}/backend.rs (74%)
+
+ rename ethcore/{service/src/error.rs => account-state/src/lib.rs} (54%)
+
+ create mode 100644 ethcore/account-state/src/state.rs
+
+ create mode 100644 ethcore/builtin/Cargo.toml
+
+ rename ethcore/{src/builtin.rs => builtin/src/lib.rs} (91%)
+
+ create mode 100644 ethcore/pod/Cargo.toml
+
+ rename ethcore/{src/pod_account.rs => pod/src/account.rs} (64%)
+
+ rename ethcore/{src/client/private_notify.rs => pod/src/lib.rs} (72%)
+
+ rename ethcore/{src/pod_state.rs => pod/src/state.rs} (71%)
+
+ delete mode 100644 ethcore/service/src/stop_guard.rs
+
+ delete mode 100644 ethcore/src/client/trace.rs
+
+ delete mode 100644 ethcore/src/engines/clique/step_service.rs
+
+ rename ethcore/src/{ethereum => engines}/ethash.rs (93%)
+
+ rename ethcore/src/{ethereum/mod.rs => ethereum.rs} (65%)
+
+ create mode 100644 ethcore/src/executive_state.rs
+
+ rename ethcore/src/{machine/impls.rs => machine.rs} (79%)
+
+ delete mode 100644 ethcore/src/machine/mod.rs
+
+ delete mode 100644 ethcore/src/machine/traits.rs
+
+ create mode 100644 ethcore/src/miner/filter_options.rs
+
+ delete mode 100644 ethcore/src/state/mod.rs
+
+ rename ethcore/src/{state => }/substate.rs (79%)
+
+ create mode 100644 ethcore/state-db/Cargo.toml
+
+ rename ethcore/{src/state_db.rs => state-db/src/lib.rs} (90%)
+
+ create mode 100644 ethcore/trace/Cargo.toml
+
+ rename ethcore/{src/trace => trace/src}/config.rs (97%)
+
+ rename ethcore/{src/trace => trace/src}/db.rs (84%)
+
+ rename ethcore/{src/trace => trace/src}/executive_tracer.rs (97%)
+
+ rename ethcore/{src/trace => trace/src}/import.rs (95%)
+
+ rename ethcore/{src/trace/mod.rs => trace/src/lib.rs} (78%)
+
+ rename ethcore/{src/trace => trace/src}/noop_tracer.rs (95%)
+
+ rename ethcore/{src/trace => trace/src}/types/error.rs (99%)
+
+ rename ethcore/{src/trace => trace/src}/types/filter.rs (61%)
+
+ rename ethcore/{src/trace => trace/src}/types/flat.rs (89%)
+
+ rename ethcore/{src/trace => trace/src}/types/localized.rs (96%)
+
+ rename ethcore/{src/trace => trace/src}/types/mod.rs (100%)
+
+ rename ethcore/{src/trace => trace/src}/types/trace.rs (95%)
+
+ create mode 100644 ethcore/trie-vm-factories/Cargo.toml
+
+ rename ethcore/{src/factory.rs => trie-vm-factories/src/lib.rs} (71%)
+
+ create mode 100644 ethcore/types/src/engines/machine.rs
+
+ create mode 100644 ethcore/types/src/engines/params.rs
+
+ rename ethcore/{src/error.rs => types/src/errors/block_error.rs} (58%)
+
+ create mode 100644 ethcore/types/src/errors/engine_error.rs
+
+ create mode 100644 ethcore/types/src/errors/ethcore_error.rs
+
+ rename ethcore/{src/ethereum/denominations.rs => types/src/errors/mod.rs} (65%)
+
+ rename ethcore/{src/snapshot/error.rs => types/src/errors/snapshot_error.rs} (50%)
+
+ delete mode 100644 parity/whisper.rs
+
+ create mode 100755 scripts/docker/hub/publish-docker.sh
+
+ create mode 100755 scripts/gitlab/publish-av-whitelists.sh
+
+ delete mode 100755 scripts/gitlab/publish-docker.sh
+
+ delete mode 100644 secret_store/src/key_server_cluster/cluster_connections.rs
+
+ delete mode 100644 secret_store/src/key_server_cluster/cluster_connections_net.rs
+
+ delete mode 100644 secret_store/src/key_server_cluster/cluster_message_processor.rs
+
+ delete mode 100644 util/memzero/Cargo.toml
+
+ delete mode 100644 util/memzero/src/lib.rs
+
+ delete mode 100644 whisper/Cargo.toml
+
+ delete mode 100644 whisper/README.md
+
+ delete mode 100644 whisper/cli/Cargo.toml
+
+ delete mode 100644 whisper/cli/src/main.rs
+
+ delete mode 100644 whisper/src/aes_gcm/mod.rs
+
+ delete mode 100644 whisper/src/lib.rs
+
+ delete mode 100644 whisper/src/message.rs
+
+ delete mode 100644 whisper/src/net/mod.rs
+
+ delete mode 100644 whisper/src/net/tests.rs
+
+ delete mode 100644 whisper/src/rpc/crypto.rs
+
+ delete mode 100644 whisper/src/rpc/filter.rs
+
+ delete mode 100644 whisper/src/rpc/key_store.rs
+
+ delete mode 100644 whisper/src/rpc/mod.rs
+
+ delete mode 100644 whisper/src/rpc/payload.rs
+
+ delete mode 100644 whisper/src/rpc/types.rs
+
+[0m[0m[1m[36m Downloading[0m 1 crate                                                          [0m[0m[1m[36m Downloading[0m 2 crates                                                         [0m[0m[1m[36m Downloading[0m 3 crates                                                         [0m[0m[1m[36m Downloading[0m 4 crates                                                         [0m[0m[1m[36m Downloading[0m 5 crates                                                         [0m[0m[1m[36m Downloading[0m 6 crates                                                         [0m[0m[1m[36m Downloading[0m 7 crates                                                         [0m[0m[1m[36m Downloading[0m 8 crates                                                         [0m[0m[1m[36m Downloading[0m 9 crates                                                         [0m[0m[1m[36m Downloading[0m 10 crates                                                        [0m[0m[1m[36m Downloading[0m 11 crates                                                        [0m[0m[1m[36m Downloading[0m 12 crates                                                        [0m[0m[1m[36m Downloading[0m 13 crates                                                        [0m[0m[1m[36m Downloading[0m 14 crates                                                        [0m[0m[1m[36m Downloading[0m 15 crates                                                        [0m[0m[1m[36m Downloading[0m 16 crates                                                        [0m[0m[1m[36m Downloading[0m 17 crates                                                        [0m[0m[1m[36m Downloading[0m 18 crates                                                        [0m[0m[1m[36m Downloading[0m 19 crates                                                        [0m[0m[1m[36m Downloading[0m 20 crates                                                        [0m[0m[1m[36m Downloading[0m 21 crates                                                        [0m[0m[1m[36m Downloading[0m 22 crates                                                        [0m[0m[1m[36m Downloading[0m 23 crates                                                        [0m[0m[1m[36m Downloading[0m 24 crates                                                        [0m[0m[1m[36m Downloading[0m 25 crates                                                        [0m[0m[1m[36m Downloading[0m 26 crates                                                        [0m[0m[1m[36m Downloading[0m 27 crates                                                        [0m[0m[1m[36m Downloading[0m 28 crates                                                        [0m[0m[1m[36m Downloading[0m 29 crates                                                        [0m[0m[1m[36m Downloading[0m 30 crates                                                        [0m[0m[1m[36m Downloading[0m 31 crates                                                        [0m[0m[1m[36m Downloading[0m 32 crates                                                        [0m[0m[1m[36m Downloading[0m 33 crates                                                        [0m[0m[1m[36m Downloading[0m 34 crates                                                        [0m[0m[1m[36m Downloading[0m 35 crates                                                        [0m[0m[1m[36m Downloading[0m 36 crates                                                        [0m[0m[1m[36m Downloading[0m 37 crates                                                        [0m[0m[1m[36m Downloading[0m 38 crates                                                        [0m[0m[1m[36m Downloading[0m 39 crates                                                        [0m[0m[1m[36m Downloading[0m 40 crates                                                        [0m[0m[1m[36m Downloading[0m 41 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m ethereum-types v0.6.0
+
+[0m[0m[1m[36m Downloading[0m 40 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m jsonrpc-core v12.0.0
+
+[0m[0m[1m[36m Downloading[0m 39 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m parking_lot v0.8.0
+
+[0m[0m[1m[36m Downloading[0m 38 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m jsonrpc-pubsub v12.0.0
+
+[0m[0m[1m[36m Downloading[0m 37 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m derive_more v0.15.0
+
+[0m[0m[1m[36m Downloading[0m 36 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m keccak-hash v0.2.0
+
+[0m[0m[1m[36m Downloading[0m 35 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m bytes v0.4.12
+
+[0m[0m[1m[36m Downloading[0m 34 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m crossbeam-deque v0.6.3
+
+[0m[0m[1m[36m Downloading[0m 33 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m triehash v0.6.0
+
+[0m[0m[1m[36m Downloading[0m 32 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m byteorder v1.3.2
+
+[0m[0m[1m[36m Downloading[0m 31 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m siphasher v0.3.0
+
+[0m[0m[1m[36m Downloading[0m 30 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m jsonrpc-tcp-server v12.0.0
+
+[0m[0m[1m[36m Downloading[0m 29 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m rlp v0.4.0
+
+[0m[0m[1m[36m Downloading[0m 28 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m jsonrpc-derive v12.0.0
+
+[0m[0m[1m[36m Downloading[0m 27 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m hash-db v0.12.4
+
+[0m[0m[1m[36m Downloading[0m 26 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m trie-db v0.12.4
+
+[0m[0m[1m[36m Downloading[0m 25 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m ethabi v8.0.0
+
+[0m[0m[1m[36m Downloading[0m 24 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m itertools v0.8.0
+
+[0m[0m[1m[36m Downloading[0m 23 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m parity-rocksdb v0.5.1
+
+[0m[0m[1m[36m Downloading[0m 22 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m igd v0.9.0
+
+[0m[0m[1m[36m Downloading[0m 21 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m jsonrpc-ws-server v12.0.0
+
+[0m[0m[1m[36m Downloading[0m 20 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m rand_xorshift v0.1.1
+
+[0m[0m[1m[36m Downloading[0m 19 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m static_assertions v0.3.3
+
+[0m[0m[1m[36m Downloading[0m 18 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m elastic-array v0.10.2
+
+[0m[0m[1m[36m Downloading[0m 17 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m ethbloom v0.6.4
+
+[0m[0m[1m[36m Downloading[0m 16 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m num_cpus v1.10.1
+
+[0m[0m[1m[36m Downloading[0m 15 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m smallvec v0.6.10
+
+[0m[0m[1m[36m Downloading[0m 14 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m zeroize v0.9.1
+
+[0m[0m[1m[36m Downloading[0m 13 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m bincode v1.1.4
+
+[0m[0m[1m[36m Downloading[0m 12 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m parity-util-mem v0.1.0
+
+[0m[0m[1m[36m Downloading[0m 11 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m jsonrpc-http-server v12.0.0
+
+[0m[0m[1m[36m Downloading[0m 10 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m rayon v1.1.0
+
+[0m[0m[1m[36m Downloading[0m 9 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m memory-db v0.12.4
+
+[0m[0m[1m[36m Downloading[0m 8 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m crossbeam-utils v0.6.5
+
+[0m[0m[1m[36m Downloading[0m 7 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m cfg-if v0.1.9
+
+[0m[0m[1m[36m Downloading[0m 6 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m ethabi-derive v8.0.0
+
+[0m[0m[1m[36m Downloading[0m 5 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m parity-wordlist v1.3.0
+
+[0m[0m[1m[36m Downloading[0m 4 crates                                                         [0m[0m[1m[36m Downloading[0m 5 crates                                                         [0m[0m[1m[36m Downloading[0m 6 crates                                                         [0m[0m[1m[36m Downloading[0m 7 crates                                                         [0m[0m[1m[36m Downloading[0m 8 crates                                                         [0m[0m[1m[36m Downloading[0m 9 crates                                                         [0m[0m[1m[36m Downloading[0m 10 crates                                                        [0m[0m[1m[36m Downloading[0m 11 crates                                                        [0m[0m[1m[36m Downloading[0m 12 crates                                                        [0m[0m[1m[36m Downloading[0m 13 crates                                                        [0m[0m[1m[36m Downloading[0m 14 crates                                                        [0m[0m[1m[36m Downloading[0m 15 crates                                                        [0m[0m[1m[36m Downloading[0m 16 crates                                                        [0m[0m[1m[36m Downloading[0m 17 crates                                                        [0m[0m[1m[36m Downloading[0m 18 crates                                                        [0m[0m[1m[36m Downloading[0m 19 crates                                                        [0m[0m[1m[36m Downloading[0m 20 crates                                                        [0m[0m[1m[36m Downloading[0m 21 crates                                                        [0m[0m[1m[36m Downloading[0m 22 crates                                                        [0m[0m[1m[36m Downloading[0m 23 crates                                                        [0m[0m[1m[36m Downloading[0m 24 crates                                                        [0m[0m[1m[36m Downloading[0m 25 crates                                                        [0m[0m[1m[36m Downloading[0m 26 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m parity-crypto v0.4.0
+
+[0m[0m[1m[36m Downloading[0m 25 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m ethabi-contract v8.0.0
+
+[0m[0m[1m[36m Downloading[0m 24 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m http v0.1.17
+
+[0m[0m[1m[36m Downloading[0m 23 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m fixed-hash v0.3.2
+
+[0m[0m[1m[36m Downloading[0m 22 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m uint v0.7.1
+
+[0m[0m[1m[36m Downloading[0m 21 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m jemallocator v0.1.9
+
+[0m[0m[1m[36m Downloading[0m 20 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m rayon-core v1.5.0
+
+[0m[0m[1m[36m Downloading[0m 19 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m attohttpc v0.4.1
+
+[0m[0m[1m[36m Downloading[0m 18 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m jsonrpc-ipc-server v12.0.0
+
+[0m[0m[1m[36m Downloading[0m 17 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m impl-serde v0.2.0
+
+[0m[0m[1m[36m Downloading[0m 16 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m clear_on_drop v0.2.3
+
+[0m[0m[1m[36m Downloading[0m 15 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m jsonrpc-server-utils v12.0.0
+
+[0m[0m[1m[36m Downloading[0m 14 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m proc-macro-crate v0.1.4
+
+[0m[0m[1m[36m Downloading[0m 13 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m parking_lot_core v0.5.0
+
+[0m[0m[1m[36m Downloading[0m 12 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m malloc_size_of_derive v0.1.0
+
+[0m[0m[1m[36m Downloading[0m 11 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m autocfg v0.1.4
+
+[0m[0m[1m[36m Downloading[0m 10 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m lock_api v0.2.0
+
+[0m[0m[1m[36m Downloading[0m 9 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m heapsize v0.4.2
+
+[0m[0m[1m[36m Downloading[0m 8 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m ws v0.8.1
+
+[0m[0m[1m[36m Downloading[0m 7 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m primitive-types v0.3.0
+
+[0m[0m[1m[36m Downloading[0m 6 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m zeroize_derive v0.9.0
+
+[0m[0m[1m[36m Downloading[0m 5 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m impl-rlp v0.2.0
+
+[0m[0m[1m[36m Downloading[0m 4 crates                                                         [0m[0m[1m[36m Downloading[0m 5 crates                                                         [0m[0m[1m[36m Downloading[0m 6 crates                                                         [0m[0m[1m[36m Downloading[0m 7 crates                                                         [0m[0m[1m[36m Downloading[0m 8 crates                                                         [0m[0m[1m[36m Downloading[0m 9 crates                                                         [0m[0m[1m[36m Downloading[0m 10 crates                                                        [0m[0m[1m[36m Downloading[0m 11 crates                                                        [0m[0m[1m[36m Downloading[0m 12 crates                                                        [0m[0m[1m[36m Downloading[0m 13 crates                                                        [0m[0m[1m[36m Downloading[0m 14 crates                                                        [0m[0m[1m[36m Downloading[0m 15 crates                                                        [0m[0m[1m[36m Downloading[0m 16 crates                                                        [0m[0m[1m[36m Downloading[0m 17 crates                                                        [0m[0m[1m[36m Downloading[0m 18 crates                                                        [0m[0m[1m[36m Downloading[0m 19 crates                                                        [0m[0m[1m[36m Downloading[0m 20 crates                                                        [0m[0m[1m[36m Downloading[0m 21 crates                                                        [0m[0m[1m[36m Downloading[0m 22 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m hashmap_core v0.1.10
+
+[0m[0m[1m[36m Downloading[0m 21 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m static_assertions v0.2.5
+
+[0m[0m[1m[36m Downloading[0m 20 crates, remaining bytes: 4.4 MB                               [K[0m[0m[1m[32m  Downloaded[0m xmltree v0.8.0
+
+[0m[0m[1m[36m Downloading[0m 19 crates, remaining bytes: 4.0 MB                               [K[0m[0m[1m[32m  Downloaded[0m aes-ctr v0.3.0
+
+[0m[0m[1m[36m Downloading[0m 18 crates, remaining bytes: 2.8 MB                               [K[0m[0m[1m[32m  Downloaded[0m memzero v0.1.0
+
+[0m[0m[1m[36m Downloading[0m 17 crates, remaining bytes: 2.8 MB                               [K[0m[0m[1m[32m  Downloaded[0m sha2 v0.8.0
+
+[0m[0m[1m[36m Downloading[0m 16 crates, remaining bytes: 1.7 MB                               [K[0m[0m[1m[32m  Downloaded[0m toml v0.5.1
+
+[0m[0m[1m[36m Downloading[0m 15 crates, remaining bytes: 1.5 MB                               [K[0m[0m[1m[32m  Downloaded[0m impl-codec v0.2.0
+
+[0m[0m[1m[36m Downloading[0m 14 crates, remaining bytes: 85.6 KB                              [K[0m[0m[1m[32m  Downloaded[0m parity-rocksdb-sys v0.5.6
+
+[0m[0m[1m[36m Downloading[0m 13 crates, extracting parity-rocksdb-sys ...                     [0m[0m[1m[36m Downloading[0m 13 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m block-modes v0.3.3
+
+[0m[0m[1m[36m Downloading[0m 12 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m subtle v2.1.0
+
+[0m[0m[1m[36m Downloading[0m 11 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m aes v0.3.2
+
+[0m[0m[1m[36m Downloading[0m 10 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m digest v0.8.0
+
+[0m[0m[1m[36m Downloading[0m 9 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m sha-1 v0.8.1
+
+[0m[0m[1m[36m Downloading[0m 8 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m hmac v0.7.0
+
+[0m[0m[1m[36m Downloading[0m 7 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m scopeguard v1.0.0
+
+[0m[0m[1m[36m Downloading[0m 6 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m ripemd160 v0.8.0
+
+[0m[0m[1m[36m Downloading[0m 5 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m pbkdf2 v0.3.0
+
+[0m[0m[1m[36m Downloading[0m 4 crates                                                         [0m[0m[1m[36m Downloading[0m 5 crates                                                         [0m[0m[1m[36m Downloading[0m 6 crates                                                         [0m[0m[1m[36m Downloading[0m 7 crates                                                         [0m[0m[1m[36m Downloading[0m 8 crates                                                         [0m[0m[1m[36m Downloading[0m 9 crates                                                         [0m[0m[1m[36m Downloading[0m 10 crates                                                        [0m[0m[1m[36m Downloading[0m 11 crates                                                        [0m[0m[1m[36m Downloading[0m 12 crates                                                        [0m[0m[1m[36m Downloading[0m 13 crates                                                        [0m[0m[1m[36m Downloading[0m 14 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m scrypt v0.2.0
+
+[0m[0m[1m[36m Downloading[0m 13 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m crossbeam-queue v0.1.2
+
+[0m[0m[1m[36m Downloading[0m 12 crates, remaining bytes: 472.0 KB                             [K[0m[0m[1m[32m  Downloaded[0m jemalloc-sys v0.1.8
+
+[0m[0m[1m[36m Downloading[0m 11 crates, extracting jemalloc-sys ...                           [K[0m[0m[1m[32m  Downloaded[0m block-cipher-trait v0.6.2
+
+[0m[0m[1m[36m Downloading[0m 10 crates                                                        [K[0m[0m[1m[32m  Downloaded[0m block-padding v0.1.4
+
+[0m[0m[1m[36m Downloading[0m 9 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m crossbeam-epoch v0.7.2
+
+[0m[0m[1m[36m Downloading[0m 8 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m generic-array v0.12.0
+
+[0m[0m[1m[36m Downloading[0m 7 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m parity-codec v3.5.1
+
+[0m[0m[1m[36m Downloading[0m 6 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m crypto-mac v0.7.0
+
+[0m[0m[1m[36m Downloading[0m 5 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m aesni v0.6.0
+
+[0m[0m[1m[36m Downloading[0m 4 crates                                                         [0m[0m[1m[36m Downloading[0m 5 crates                                                         [0m[0m[1m[36m Downloading[0m 6 crates                                                         [0m[0m[1m[36m Downloading[0m 7 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m opaque-debug v0.2.2
+
+[0m[0m[1m[36m Downloading[0m 6 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m stream-cipher v0.3.0
+
+[0m[0m[1m[36m Downloading[0m 5 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m subtle v1.0.0
+
+[0m[0m[1m[36m Downloading[0m 4 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m memoffset v0.5.1
+
+[0m[0m[1m[36m Downloading[0m 3 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m block-buffer v0.7.3
+
+[0m[0m[1m[36m Downloading[0m 2 crates                                                         [K[0m[0m[1m[32m  Downloaded[0m byte-tools v0.3.1
+
+[0m[0m[1m[36m Downloading[0m 1 crate                                                          [K[0m[0m[1m[32m  Downloaded[0m fs_extra v1.1.0
+
+[0m[0m[1m[36m Downloading[0m 0 crates                                                         [K[0m[0m[1m[32m   Compiling[0m proc-macro2 v0.4.20
+
+[0m[0m[1m[32m   Compiling[0m unicode-xid v0.1.0
+
+[0m[0m[1m[32m   Compiling[0m serde v1.0.89
+
+[0m[0m[1m[32m   Compiling[0m semver-parser v0.7.0
+
+[0m[0m[1m[36m    Building[0m [                                                         ] 0/476[K[0m[0m[1m[32m   Compiling[0m typenum v1.10.0
+
+[0m[0m[1m[36m    Building[0m [                                                         ] 1/476[K[0m[0m[1m[32m   Compiling[0m byteorder v1.3.2
+
+[0m[0m[1m[36m    Building[0m [                                                         ] 2/476[K[0m[0m[1m[32m   Compiling[0m libc v0.2.48
+
+[0m[0m[1m[36m    Building[0m [                                                         ] 3/476[K[0m[0m[1m[32m   Compiling[0m crunchy v0.2.1
+
+[0m[0m[1m[32m   Compiling[0m heapsize v0.4.2
+
+[0m[0m[1m[36m    Building[0m [                                                         ] 5/476[K[0m[0m[1m[32m   Compiling[0m nodrop v0.1.12
+
+[0m[0m[1m[36m    Building[0m [                                                         ] 6/476[K[0m[0m[1m[32m   Compiling[0m crunchy v0.1.6
+
+[0m[0m[1m[36m    Building[0m [                                                         ] 7/476[K[0m[0m[1m[32m   Compiling[0m rand_core v0.3.0
+
+[0m[0m[1m[36m    Building[0m [                                                         ] 8/476[K[0m[0m[1m[32m   Compiling[0m stable_deref_trait v1.1.1
+
+[0m[0m[1m[36m    Building[0m [>                                                        ] 9/476[K[0m[0m[1m[32m   Compiling[0m byte-tools v0.3.1
+
+[0m[0m[1m[36m    Building[0m [>                                                       ] 10/476[K[0m[0m[1m[32m   Compiling[0m cfg-if v0.1.9
+
+[0m[0m[1m[36m    Building[0m [>                                                       ] 11/476[K[0m[0m[1m[32m   Compiling[0m lazy_static v1.3.0
+
+[0m[0m[1m[36m    Building[0m [>                                                       ] 12/476[K[0m[0m[1m[32m   Compiling[0m rustc-hex v2.0.1
+
+[0m[0m[1m[36m    Building[0m [>                                                       ] 13/476[K[0m[0m[1m[32m   Compiling[0m static_assertions v0.2.5
+
+[0m[0m[1m[36m    Building[0m [>                                                       ] 14/476[K[0m[0m[1m[32m   Compiling[0m smallvec v0.6.10
+
+[0m[0m[1m[36m    Building[0m [>                                                       ] 15/476[K[0m[0m[1m[32m   Compiling[0m scopeguard v0.3.3
+
+[0m[0m[1m[36m    Building[0m [>                                                       ] 16/476[K[0m[0m[1m[32m   Compiling[0m scopeguard v1.0.0
+
+[0m[0m[1m[36m    Building[0m [=>                                                      ] 17/476[K[0m[0m[1m[32m   Compiling[0m num-traits v0.2.6
+
+[0m[0m[1m[36m    Building[0m [=>                                                      ] 18/476[K[0m[0m[1m[32m   Compiling[0m version_check v0.1.5
+
+[0m[0m[1m[36m    Building[0m [=>                                                      ] 19/476[K[0m[0m[1m[32m   Compiling[0m subtle v1.0.0
+
+[0m[0m[1m[36m    Building[0m [=>                                                      ] 20/476[K[0m[0m[1m[32m   Compiling[0m fake-simd v0.1.2
+
+[0m[0m[1m[36m    Building[0m [=>                                                      ] 21/476[K[0m[0m[1m[32m   Compiling[0m opaque-debug v0.2.2
+
+[0m[0m[1m[36m    Building[0m [=>                                                      ] 22/476[K[0m[0m[1m[32m   Compiling[0m safemem v0.3.0
+
+[0m[0m[1m[36m    Building[0m [=>                                                      ] 23/476[K[0m[0m[1m[32m   Compiling[0m num-integer v0.1.39
+
+[0m[0m[1m[36m    Building[0m [=>                                                      ] 24/476[K[0m[0m[1m[32m   Compiling[0m ryu v0.2.6
+
+[0m[0m[1m[36m    Building[0m [=>                                                      ] 25/476[K[0m[0m[1m[32m   Compiling[0m slab v0.4.1
+
+[0m[0m[1m[36m    Building[0m [==>                                                     ] 26/476[K[0m[0m[1m[32m   Compiling[0m lazycell v1.2.0
+
+[0m[0m[1m[36m    Building[0m [==>                                                     ] 27/476[K[0m[0m[1m[32m   Compiling[0m cc v1.0.28
+
+[0m[0m[1m[36m    Building[0m [==>                                                     ] 28/476[K[0m[0m[1m[32m   Compiling[0m futures v0.1.25
+
+[0m[0m[1m[36m    Building[0m [==>                                                     ] 29/476[K[0m[0m[1m[32m   Compiling[0m fs_extra v1.1.0
+
+[0m[0m[1m[36m    Building[0m [==>                                                     ] 30/476[K[0m[0m[1m[32m   Compiling[0m crossbeam-utils v0.5.0
+
+[0m[0m[1m[36m    Building[0m [==>                                                     ] 31/476[K[0m[0m[1m[32m   Compiling[0m hash-db v0.12.4
+
+[0m[0m[1m[36m    Building[0m [==>                                                     ] 32/476[K[0m[0m[1m[32m   Compiling[0m hashmap_core v0.1.10
+
+[0m[0m[1m[36m    Building[0m [==>                                                     ] 33/476[K[0m[0m[1m[32m   Compiling[0m ucd-util v0.1.1
+
+[0m[0m[1m[36m    Building[0m [===>                                                    ] 34/476[K[0m[0m[1m[32m   Compiling[0m regex v1.1.2
+
+[0m[0m[1m[36m    Building[0m [===>                                                    ] 35/476[K[0m[0m[1m[32m   Compiling[0m unicode-width v0.1.5
+
+[0m[0m[1m[36m    Building[0m [===>                                                    ] 36/476[K[0m[0m[1m[32m   Compiling[0m itoa v0.4.3
+
+[0m[0m[1m[36m    Building[0m [===>                                                    ] 37/476[K[0m[0m[1m[32m   Compiling[0m remove_dir_all v0.5.1
+
+[0m[0m[1m[36m    Building[0m [===>                                                    ] 38/476[K[0m[0m[1m[32m   Compiling[0m untrusted v0.6.2
+
+[0m[0m[1m[36m    Building[0m [===>                                                    ] 39/476[K[0m[0m[1m[32m   Compiling[0m rustc-hex v1.0.0
+
+[0m[0m[1m[36m    Building[0m [===>                                                    ] 40/476[K[0m[0m[1m[32m   Compiling[0m memzero v0.1.0
+
+[0m[0m[1m[36m    Building[0m [===>                                                    ] 41/476[K[0m[0m[1m[32m   Compiling[0m spin v0.5.0
+
+[0m[0m[1m[36m    Building[0m [===>                                                    ] 42/476[K[0m[0m[1m[32m   Compiling[0m subtle v2.1.0
+
+[0m[0m[1m[36m    Building[0m [====>                                                   ] 43/476[K[0m[0m[1m[32m   Compiling[0m parity-bytes v0.1.0
+
+[0m[0m[1m[36m    Building[0m [====>                                                   ] 44/476[K[0m[0m[1m[32m   Compiling[0m utf8-ranges v1.0.1
+
+[0m[0m[1m[36m    Building[0m [====>                                                   ] 45/476[K[0m[0m[1m[32m   Compiling[0m rayon-core v1.5.0
+
+[0m[0m[1m[36m    Building[0m [====>                                                   ] 46/476[K[0m[0m[1m[32m   Compiling[0m fnv v1.0.6
+
+[0m[0m[1m[36m    Building[0m [====>                                                   ] 47/476[K[0m[0m[1m[32m   Compiling[0m httparse v1.3.3
+
+[0m[0m[1m[36m    Building[0m [====>                                                   ] 48/476[K[0m[0m[1m[32m   Compiling[0m edit-distance v2.0.1
+
+[0m[0m[1m[36m    Building[0m [====>                                                   ] 49/476[K[0m[0m[1m[32m   Compiling[0m quick-error v1.2.2
+
+[0m[0m[1m[36m    Building[0m [====>                                                   ] 50/476[K[0m[0m[1m[32m   Compiling[0m matches v0.1.8
+
+[0m[0m[1m[36m    Building[0m [=====>                                                  ] 51/476[K[0m[0m[1m[32m   Compiling[0m string v0.1.1
+
+[0m[0m[1m[36m    Building[0m [=====>                                                  ] 52/476[K[0m[0m[1m[32m   Compiling[0m try-lock v0.2.2
+
+[0m[0m[1m[36m    Building[0m [=====>                                                  ] 53/476[K[0m[0m[1m[32m   Compiling[0m indexmap v1.0.2
+
+[0m[0m[1m[36m    Building[0m [=====>                                                  ] 54/476[K[0m[0m[1m[32m   Compiling[0m linked-hash-map v0.5.1
+
+[0m[0m[1m[36m    Building[0m [=====>                                                  ] 55/476[K[0m[0m[1m[32m   Compiling[0m unexpected v0.1.0 (/home/leo/parity-ethereum/util/unexpected)
+
+[0m[0m[1m[36m    Building[0m [=====>                                                  ] 56/476[K[0m[0m[1m[32m   Compiling[0m nan-preserving-float v0.1.0
+
+[0m[0m[1m[36m    Building[0m [=====>                                                  ] 57/476[K[0m[0m[1m[32m   Compiling[0m memory_units v0.3.0
+
+[0m[0m[1m[36m    Building[0m [=====>                                                  ] 58/476[K[0m[0m[1m[32m   Compiling[0m hamming v0.1.3
+
+[0m[0m[1m[36m    Building[0m [=====>                                                  ] 59/476[K[0m[0m[1m[32m   Compiling[0m bit-vec v0.4.4
+
+[0m[0m[1m[36m    Building[0m [======>                                                 ] 60/476[K[0m[0m[1m[32m   Compiling[0m unicode-normalization v0.1.7
+
+[0m[0m[1m[36m    Building[0m [======>                                                 ] 61/476[K[0m[0m[1m[32m   Compiling[0m either v1.5.0
+
+[0m[0m[1m[36m    Building[0m [======>                                                 ] 62/476[K[0m[0m[1m[32m   Compiling[0m rustc-demangle v0.1.9
+
+[0m[0m[1m[36m    Building[0m [======>                                                 ] 63/476[K[0m[0m[1m[32m   Compiling[0m siphasher v0.2.3
+
+[0m[0m[1m[36m    Building[0m [======>                                                 ] 64/476[K[0m[0m[1m[32m   Compiling[0m primal-estimate v0.2.1
+
+[0m[0m[1m[36m    Building[0m [======>                                                 ] 65/476[K[0m[0m[1m[32m   Compiling[0m ansi_term v0.11.0
+
+[0m[0m[1m[36m    Building[0m [======>                                                 ] 66/476[K[0m[0m[1m[32m   Compiling[0m percent-encoding v1.0.1
+
+[0m[0m[1m[36m    Building[0m [======>                                                 ] 67/476[K[0m[0m[1m[32m   Compiling[0m num-iter v0.1.37
+
+[0m[0m[1m[36m    Building[0m [=======>                                                ] 68/476[K[0m[0m[1m[32m   Compiling[0m regex v0.2.11
+
+[0m[0m[1m[36m    Building[0m [=======>                                                ] 69/476[K[0m[0m[1m[32m   Compiling[0m rustc-serialize v0.3.24
+
+[0m[0m[1m[36m    Building[0m [=======>                                                ] 70/476[K[0m[0m[1m[32m   Compiling[0m unicode-segmentation v1.2.1
+
+[0m[0m[1m[36m    Building[0m [=======>                                                ] 71/476[K[0m[0m[1m[32m   Compiling[0m autocfg v0.1.4
+
+[0m[0m[1m[36m    Building[0m [=======>                                                ] 72/476[K[0m[0m[1m[32m   Compiling[0m siphasher v0.3.0
+
+[0m[0m[1m[36m    Building[0m [=======>                                                ] 73/476[K[0m[0m[1m[32m   Compiling[0m bitflags v1.0.4
+
+[0m[0m[1m[36m    Building[0m [=======>                                                ] 74/476[K[0m[0m[1m[32m   Compiling[0m static_assertions v0.3.3
+
+[0m[0m[1m[36m    Building[0m [=======>                                                ] 75/476[K[0m[0m[1m[32m   Compiling[0m winapi v0.3.6
+
+[0m[0m[1m[36m    Building[0m [=======>                                                ] 76/476[K[0m[0m[1m[32m   Compiling[0m interleaved-ordered v0.1.1
+
+[0m[0m[1m[36m    Building[0m [========>                                               ] 77/476[K[0m[0m[1m[32m   Compiling[0m bitflags v0.7.0
+
+[0m[0m[1m[36m    Building[0m [========>                                               ] 78/476[K[0m[0m[1m[32m   Compiling[0m xdg v2.1.0
+
+[0m[0m[1m[36m    Building[0m [========>                                               ] 79/476[K[0m[0m[1m[32m   Compiling[0m ethabi-contract v8.0.0
+
+[0m[0m[1m[36m    Building[0m [========>                                               ] 80/476[K[0m[0m[1m[32m   Compiling[0m arrayref v0.3.5
+
+[0m[0m[1m[36m    Building[0m [========>                                               ] 81/476[K[0m[0m[1m[32m   Compiling[0m ipnetwork v0.12.8
+
+[0m[0m[1m[36m    Building[0m [========>                                               ] 82/476[K[0m[0m[1m[32m   Compiling[0m failure_derive v0.1.3
+
+[0m[0m[1m[36m    Building[0m [========>                                               ] 83/476[K[0m[0m[1m[32m   Compiling[0m byte-tools v0.2.0
+
+[0m[0m[1m[36m    Building[0m [========>                                               ] 84/476[K[0m[0m[1m[32m   Compiling[0m time-utils v0.1.0 (/home/leo/parity-ethereum/util/time-utils)
+
+[0m[0m[1m[36m    Building[0m [=========>                                              ] 85/476[K[0m[0m[1m[32m   Compiling[0m using_queue v0.1.0 (/home/leo/parity-ethereum/miner/using-queue)
+
+[0m[0m[1m[36m    Building[0m [=========>                                              ] 86/476[K[0m[0m[1m[32m   Compiling[0m home v0.3.3
+
+[0m[0m[1m[36m    Building[0m [=========>                                              ] 87/476[K[0m[0m[1m[32m   Compiling[0m macros v0.1.0 (/home/leo/parity-ethereum/util/macros)
+
+[0m[0m[1m[36m    Building[0m [=========>                                              ] 88/476[K[0m[0m[1m[32m   Compiling[0m mio-named-pipes v0.1.6
+
+[0m[0m[1m[36m    Building[0m [=========>                                              ] 89/476[K[0m[0m[1m[32m   Compiling[0m slab v0.2.0
+
+[0m[0m[1m[36m    Building[0m [=========>                                              ] 90/476[K[0m[0m[1m[32m   Compiling[0m parity-path v0.1.1
+
+[0m[0m[1m[36m    Building[0m [=========>                                              ] 91/476[K[0m[0m[1m[32m   Compiling[0m base-x v0.2.3
+
+[0m[0m[1m[36m    Building[0m [=========>                                              ] 92/476[K[0m[0m[1m[32m   Compiling[0m sha1 v0.5.0
+
+[0m[0m[1m[36m    Building[0m [=========>                                              ] 93/476[K[0m[0m[1m[32m   Compiling[0m if_chain v0.1.3
+
+[0m[0m[1m[36m    Building[0m [==========>                                             ] 94/476[K[0m[0m[1m[32m   Compiling[0m target_info v0.1.0
+
+[0m[0m[1m[36m    Building[0m [==========>                                             ] 95/476[K[0m[0m[1m[32m   Compiling[0m termcolor v1.0.4
+
+[0m[0m[1m[36m    Building[0m [==========>                                             ] 96/476[K[0m[0m[1m[32m   Compiling[0m slab v0.3.0
+
+[0m[0m[1m[36m    Building[0m [==========>                                             ] 97/476[K[0m[0m[1m[32m   Compiling[0m winapi-build v0.1.1
+
+[0m[0m[1m[36m    Building[0m [==========>                                             ] 98/476[K[0m[0m[1m[32m   Compiling[0m integer-encoding v1.0.5
+
+[0m[0m[1m[36m    Building[0m [==========>                                             ] 99/476[K[0m[0m[1m[32m   Compiling[0m order-stat v0.1.3
+
+[0m[0m[1m[36m    Building[0m [==========>                                            ] 100/476[K[0m[0m[1m[32m   Compiling[0m transient-hashmap v0.4.1
+
+[0m[0m[1m[36m    Building[0m [==========>                                            ] 101/476[K[0m[0m[1m[32m   Compiling[0m winapi v0.2.8
+
+[0m[0m[1m[36m    Building[0m [==========>                                            ] 102/476[K[0m[0m[1m[32m   Compiling[0m rprompt v1.0.3
+
+[0m[0m[1m[36m    Building[0m [==========>                                            ] 103/476[K[0m[0m[1m[32m   Compiling[0m strsim v0.7.0
+
+[0m[0m[1m[36m    Building[0m [===========>                                           ] 104/476[K[0m[0m[1m[32m   Compiling[0m vec_map v0.8.1
+
+[0m[0m[1m[36m    Building[0m [===========>                                           ] 105/476[0m[0m[1m[36m    Building[0m [===========>                                           ] 106/476[0m[0m[1m[36m    Building[0m [===========>                                           ] 107/476[0m[0m[1m[36m    Building[0m [===========>                                           ] 108/476[0m[0m[1m[36m    Building[0m [===========>                                           ] 109/476[K[0m[0m[1m[32m   Compiling[0m arrayvec v0.4.7
+
+[0m[0m[1m[36m    Building[0m [===========>                                           ] 110/476[0m[0m[1m[36m    Building[0m [===========>                                           ] 111/476[0m[0m[1m[36m    Building[0m [===========>                                           ] 112/476[K[0m[0m[1m[32m   Compiling[0m owning_ref v0.3.3
+
+[0m[0m[1m[36m    Building[0m [============>                                          ] 113/476[K[0m[0m[1m[32m   Compiling[0m block-padding v0.1.4
+
+[0m[0m[1m[36m    Building[0m [============>                                          ] 114/476[K[0m[0m[1m[32m   Compiling[0m log v0.4.6
+
+[0m[0m[1m[36m    Building[0m [============>                                          ] 115/476[0m[0m[1m[36m    Building[0m [============>                                          ] 116/476[K[0m[0m[1m[32m   Compiling[0m crossbeam-utils v0.6.5
+
+[0m[0m[1m[36m    Building[0m [============>                                          ] 117/476[K[0m[0m[1m[32m   Compiling[0m thread_local v0.3.6
+
+[0m[0m[1m[36m    Building[0m [============>                                          ] 118/476[K[0m[0m[1m[32m   Compiling[0m rand_core v0.2.2
+
+[0m[0m[1m[36m    Building[0m [============>                                          ] 119/476[K[0m[0m[1m[32m   Compiling[0m rand_hc v0.1.0
+
+[0m[0m[1m[36m    Building[0m [============>                                          ] 120/476[K[0m[0m[1m[32m   Compiling[0m rand_isaac v0.1.1
+
+[0m[0m[1m[36m    Building[0m [============>                                          ] 121/476[K[0m[0m[1m[32m   Compiling[0m rand_xorshift v0.1.1
+
+[0m[0m[1m[36m    Building[0m [=============>                                         ] 122/476[0m[0m[1m[36m    Building[0m [=============>                                         ] 123/476[K[0m[0m[1m[32m   Compiling[0m lock_api v0.2.0
+
+[0m[0m[1m[36m    Building[0m [=============>                                         ] 124/476[0m[0m[1m[36m    Building[0m [=============>                                         ] 125/476[0m[0m[1m[36m    Building[0m [=============>                                         ] 126/476[0m[0m[1m[36m    Building[0m [=============>                                         ] 127/476[K[0m[0m[1m[32m   Compiling[0m memchr v2.1.0
+
+[0m[0m[1m[36m    Building[0m [=============>                                         ] 128/476[K[0m[0m[1m[32m   Compiling[0m unicase v1.4.2
+
+[0m[0m[1m[36m    Building[0m [=============>                                         ] 129/476[K[0m[0m[1m[32m   Compiling[0m unicase v2.2.0
+
+[0m[0m[1m[36m    Building[0m [==============>                                        ] 130/476[K[0m[0m[1m[32m   Compiling[0m regex-syntax v0.6.2
+
+[0m[0m[1m[36m    Building[0m [==============>                                        ] 131/476[K[0m[0m[1m[32m   Compiling[0m regex-syntax v0.5.6
+
+[0m[0m[1m[36m    Building[0m [==============>                                        ] 132/476[K[0m[0m[1m[32m   Compiling[0m getopts v0.2.18
+
+[0m[0m[1m[32m   Compiling[0m textwrap v0.10.0
+
+[0m[0m[1m[36m    Building[0m [==============>                                        ] 134/476[K[0m[0m[1m[32m   Compiling[0m textwrap v0.9.0
+
+[0m[0m[1m[36m    Building[0m [==============>                                        ] 135/476[0m[0m[1m[36m    Building[0m [==============>                                        ] 136/476[0m[0m[1m[36m    Building[0m [==============>                                        ] 137/476[K[0m[0m[1m[32m   Compiling[0m humantime v1.1.1
+
+[0m[0m[1m[36m    Building[0m [==============>                                        ] 138/476[K[0m[0m[1m[32m   Compiling[0m unicode-bidi v0.3.4
+
+[0m[0m[1m[36m    Building[0m [===============>                                       ] 139/476[K[0m[0m[1m[32m   Compiling[0m tokio-executor v0.1.5
+
+[0m[0m[1m[36m    Building[0m [===============>                                       ] 140/476[K[0m[0m[1m[32m   Compiling[0m tokio-service v0.1.0
+
+[0m[0m[1m[36m    Building[0m [===============>                                       ] 141/476[K[0m[0m[1m[32m   Compiling[0m lru-cache v0.1.2
+
+[0m[0m[1m[36m    Building[0m [===============>                                       ] 142/476[0m[0m[1m[36m    Building[0m [===============>                                       ] 143/476[K[0m[0m[1m[32m   Compiling[0m bit-set v0.4.0
+
+[0m[0m[1m[36m    Building[0m [===============>                                       ] 144/476[K[0m[0m[1m[32m   Compiling[0m primal-bit v0.2.4
+
+[0m[0m[1m[36m    Building[0m [===============>                                       ] 145/476[K[0m[0m[1m[32m   Compiling[0m itertools v0.5.10
+
+[0m[0m[1m[36m    Building[0m [===============>                                       ] 146/476[K[0m[0m[1m[32m   Compiling[0m itertools v0.8.0
+
+[0m[0m[1m[36m    Building[0m [===============>                                       ] 147/476[K[0m[0m[1m[32m   Compiling[0m itertools v0.7.8
+
+[0m[0m[1m[36m    Building[0m [================>                                      ] 148/476[0m[0m[1m[36m    Building[0m [================>                                      ] 149/476[0m[0m[1m[36m    Building[0m [================>                                      ] 150/476[K[0m[0m[1m[32m   Compiling[0m cmake v0.1.35
+
+[0m[0m[1m[36m    Building[0m [================>                                      ] 151/476[K[0m[0m[1m[32m   Compiling[0m jemalloc-sys v0.1.8
+
+[0m[0m[1m[36m    Building[0m [================>                                      ] 152/476[K[0m[0m[1m[32m   Compiling[0m clear_on_drop v0.2.3
+
+[0m[0m[1m[36m    Building[0m [================>                                      ] 153/476[K[0m[0m[1m[32m   Compiling[0m ring v0.14.6
+
+[0m[0m[1m[36m    Building[0m [================>                                      ] 154/476[K[0m[0m[1m[32m   Compiling[0m eth-secp256k1 v0.5.7 (https://github.com/paritytech/rust-secp256k1#9791e79f)
+
+[0m[0m[1m[36m    Building[0m [================>                                      ] 155/476[K[0m[0m[1m[32m   Compiling[0m backtrace-sys v0.1.24
+
+[0m[0m[1m[36m    Building[0m [=================>                                     ] 156/476[K[0m[0m[1m[32m   Compiling[0m heck v0.3.0
+
+[0m[0m[1m[36m    Building[0m [=================>                                     ] 157/476[K[0m[0m[1m[32m   Compiling[0m ethcore-bloom-journal v0.1.0 (/home/leo/parity-ethereum/util/bloom)
+
+[0m[0m[1m[36m    Building[0m [=================>                                     ] 158/476[K[0m[0m[1m[32m   Compiling[0m xml-rs v0.7.0
+
+[0m[0m[1m[36m    Building[0m [=================>                                     ] 159/476[K[0m[0m[1m[32m   Compiling[0m bincode v1.1.4
+
+[0m[0m[1m[36m    Building[0m [=================>                                     ] 160/476[0m[0m[1m[36m    Building[0m [=================>                                     ] 161/476[K[0m[0m[1m[32m   Compiling[0m app_dirs v1.2.1 (https://github.com/paritytech/app-dirs-rs#0b37f948)
+
+[0m[0m[1m[36m    Building[0m [=================>                                     ] 162/476[0m[0m[1m[36m    Building[0m [=================>                                     ] 163/476[K[0m[0m[1m[32m   Compiling[0m block-buffer v0.3.3
+
+[0m[0m[1m[36m    Building[0m [=================>                                     ] 164/476[K[0m[0m[1m[32m   Compiling[0m multibase v0.6.0
+
+[0m[0m[1m[36m    Building[0m [==================>                                    ] 165/476[K[0m[0m[1m[32m   Compiling[0m tokio-timer v0.1.2
+
+[0m[0m[1m[36m    Building[0m [==================>                                    ] 166/476[K[0m[0m[1m[32m   Compiling[0m kernel32-sys v0.2.2
+
+[0m[0m[1m[36m    Building[0m [==================>                                    ] 167/476[0m[0m[1m[36m    Building[0m [==================>                                    ] 168/476[0m[0m[1m[36m    Building[0m [==================>                                    ] 169/476[0m[0m[1m[36m    Building[0m [==================>                                    ] 170/476[0m[0m[1m[36m    Building[0m [==================>                                    ] 171/476[0m[0m[1m[36m    Building[0m [==================>                                    ] 172/476[K[0m[0m[1m[32m   Compiling[0m lock_api v0.1.4
+
+[0m[0m[1m[36m    Building[0m [==================>                                    ] 173/476[0m[0m[1m[36m    Building[0m [===================>                                   ] 174/476[K[0m[0m[1m[32m   Compiling[0m want v0.0.6
+
+[0m[0m[1m[36m    Building[0m [===================>                                   ] 175/476[K[0m[0m[1m[32m   Compiling[0m trace-time v0.1.1
+
+[0m[0m[1m[36m    Building[0m [===================>                                   ] 176/476[K[0m[0m[1m[32m   Compiling[0m log v0.3.9
+
+[0m[0m[1m[36m    Building[0m [===================>                                   ] 177/476[K[0m[0m[1m[32m   Compiling[0m stats v0.1.0 (/home/leo/parity-ethereum/util/stats)
+
+[0m[0m[1m[36m    Building[0m [===================>                                   ] 178/476[0m[0m[1m[36m    Building[0m [===================>                                   ] 179/476[0m[0m[1m[36m    Building[0m [===================>                                   ] 180/476[0m[0m[1m[36m    Building[0m [===================>                                   ] 181/476[K[0m[0m[1m[32m   Compiling[0m crossbeam-queue v0.1.2
+
+[0m[0m[1m[36m    Building[0m [====================>                                  ] 182/476[0m[0m[1m[36m    Building[0m [====================>                                  ] 183/476[0m[0m[1m[36m    Building[0m [====================>                                  ] 184/476[0m[0m[1m[36m    Building[0m [====================>                                  ] 185/476[K[0m[0m[1m[32m   Compiling[0m pulldown-cmark v0.0.3
+
+[0m[0m[1m[36m    Building[0m [====================>                                  ] 186/476[K[0m[0m[1m[32m   Compiling[0m tokio-timer v0.2.7
+
+[0m[0m[1m[36m    Building[0m [====================>                                  ] 187/476[K[0m[0m[1m[32m   Compiling[0m tokio-current-thread v0.1.3
+
+[0m[0m[1m[36m    Building[0m [====================>                                  ] 188/476[0m[0m[1m[36m    Building[0m [====================>                                  ] 189/476[K[0m[0m[1m[32m   Compiling[0m primal-sieve v0.2.9
+
+[0m[0m[1m[36m    Building[0m [====================>                                  ] 190/476[K[0m[0m[1m[32m   Compiling[0m idna v0.1.5
+
+[0m[0m[1m[36m    Building[0m [=====================>                                 ] 191/476[K[0m[0m[1m[32m   Compiling[0m parity-snappy-sys v0.1.2
+
+[0m[0m[1m[36m    Building[0m [=====================>                                 ] 192/476[K[0m[0m[1m[32m   Compiling[0m parity-rocksdb-sys v0.5.6
+
+[0m[0m[1m[36m    Building[0m [=====================>                                 ] 193/476[0m[0m[1m[36m    Building[0m [=====================>                                 ] 194/476[0m[0m[1m[36m    Building[0m [=====================>                                 ] 195/476[0m[0m[1m[36m    Building[0m [=====================>                                 ] 196/476[0m[0m[1m[36m    Building[0m [=====================>                                 ] 197/476[0m[0m[1m[36m    Building[0m [=====================>                                 ] 198/476[0m[0m[1m[36m    Building[0m [=====================>                                 ] 199/476[0m[0m[1m[36m    Building[0m [======================>                                ] 200/476[0m[0m[1m[36m    Building[0m [======================>                                ] 201/476[K[0m[0m[1m[32m   Compiling[0m rlp v0.4.0
+
+[0m[0m[1m[36m    Building[0m [======================>                                ] 202/476[K[0m[0m[1m[32m   Compiling[0m base64 v0.9.3
+
+[0m[0m[1m[36m    Building[0m [======================>                                ] 203/476[K[0m[0m[1m[32m   Compiling[0m base64 v0.10.1
+
+[0m[0m[1m[36m    Building[0m [======================>                                ] 204/476[K[0m[0m[1m[32m   Compiling[0m parity-wasm v0.31.3
+
+[0m[0m[1m[36m    Building[0m [======================>                                ] 205/476[K[0m[0m[1m[32m   Compiling[0m fxhash v0.2.1
+
+[0m[0m[1m[36m    Building[0m [======================>                                ] 206/476[K[0m[0m[1m[32m   Compiling[0m generic-array v0.12.0
+
+[0m[0m[1m[36m    Building[0m [======================>                                ] 207/476[K[0m[0m[1m[32m   Compiling[0m generic-array v0.9.0
+
+[0m[0m[1m[36m    Building[0m [=======================>                               ] 208/476[K[0m[0m[1m[32m   Compiling[0m uint v0.7.1
+
+[0m[0m[1m[36m    Building[0m [=======================>                               ] 209/476[K[0m[0m[1m[32m   Compiling[0m elastic-array v0.10.2
+
+[0m[0m[1m[36m    Building[0m [=======================>                               ] 210/476[K[0m[0m[1m[32m   Compiling[0m transaction-pool v2.0.0
+
+[0m[0m[1m[36m    Building[0m [=======================>                               ] 211/476[K[0m[0m[1m[32m   Compiling[0m rand v0.5.5
+
+[0m[0m[1m[36m    Building[0m [=======================>                               ] 212/476[K[0m[0m[1m[32m   Compiling[0m iovec v0.1.2
+
+[0m[0m[1m[36m    Building[0m [=======================>                               ] 213/476[K[0m[0m[1m[32m   Compiling[0m net2 v0.2.33
+
+[0m[0m[1m[36m    Building[0m [=======================>                               ] 214/476[K[0m[0m[1m[32m   Compiling[0m num_cpus v1.10.1
+
+[0m[0m[1m[36m    Building[0m [=======================>                               ] 215/476[K[0m[0m[1m[32m   Compiling[0m time v0.1.40
+
+[0m[0m[1m[36m    Building[0m [=======================>                               ] 216/476[K[0m[0m[1m[32m   Compiling[0m rand v0.4.3
+
+[0m[0m[1m[36m    Building[0m [========================>                              ] 217/476[K[0m[0m[1m[32m   Compiling[0m memmap v0.6.2
+
+[0m[0m[1m[36m    Building[0m [========================>                              ] 218/476[K[0m[0m[1m[32m   Compiling[0m fs-swap v0.2.4
+
+[0m[0m[1m[36m    Building[0m [========================>                              ] 219/476[K[0m[0m[1m[32m   Compiling[0m socket2 v0.3.8
+
+[0m[0m[1m[36m    Building[0m [========================>                              ] 220/476[K[0m[0m[1m[32m   Compiling[0m atty v0.2.11
+
+[0m[0m[1m[36m    Building[0m [========================>                              ] 221/476[K[0m[0m[1m[32m   Compiling[0m rpassword v1.0.2
+
+[0m[0m[1m[36m    Building[0m [========================>                              ] 222/476[K[0m[0m[1m[32m   Compiling[0m term_size v0.3.1
+
+[0m[0m[1m[36m    Building[0m [========================>                              ] 223/476[K[0m[0m[1m[32m   Compiling[0m fdlimit v0.1.1
+
+[0m[0m[1m[36m    Building[0m [========================>                              ] 224/476[K[0m[0m[1m[32m   Compiling[0m tiny-keccak v1.4.2
+
+[0m[0m[1m[36m    Building[0m [========================>                              ] 225/476[K[0m[0m[1m[32m   Compiling[0m plain_hasher v0.2.0
+
+[0m[0m[1m[36m    Building[0m [=========================>                             ] 226/476[K[0m[0m[1m[32m   Compiling[0m xmltree v0.8.0
+
+[0m[0m[1m[36m    Building[0m [=========================>                             ] 227/476[0m[0m[1m[36m    Building[0m [=========================>                             ] 228/476[0m[0m[1m[36m    Building[0m [=========================>                             ] 229/476[0m[0m[1m[36m    Building[0m [=========================>                             ] 230/476[K[0m[0m[1m[32m   Compiling[0m quote v0.6.8
+
+[0m[0m[1m[36m    Building[0m [=========================>                             ] 231/476[0m[0m[1m[36m    Building[0m [=========================>                             ] 232/476[K[0m[0m[1m[32m   Compiling[0m num-traits v0.1.43
+
+[0m[0m[1m[36m    Building[0m [=========================>                             ] 233/476[K[0m[0m[1m[32m   Compiling[0m number_prefix v0.2.8
+
+[0m[0m[1m[36m    Building[0m [==========================>                            ] 234/476[0m[0m[1m[36m    Building[0m [==========================>                            ] 235/476[0m[0m[1m[36m    Building[0m [==========================>                            ] 236/476[0m[0m[1m[36m    Building[0m [==========================>                            ] 237/476[0m[0m[1m[36m    Building[0m [==========================>                            ] 238/476[K[0m[0m[1m[32m   Compiling[0m impl-rlp v0.2.0
+
+[0m[0m[1m[36m    Building[0m [==========================>                            ] 239/476[K[0m[0m[1m[32m   Compiling[0m triehash v0.6.0
+
+[0m[0m[1m[36m    Building[0m [==========================>                            ] 240/476[0m[0m[1m[36m    Building[0m [==========================>                            ] 241/476[K[0m[0m[1m[32m   Compiling[0m toolshed v0.4.0
+
+[0m[0m[1m[36m    Building[0m [==========================>                            ] 242/476[K[0m[0m[1m[32m   Compiling[0m crypto-mac v0.7.0
+
+[0m[0m[1m[36m    Building[0m [===========================>                           ] 243/476[K[0m[0m[1m[32m   Compiling[0m digest v0.8.0
+
+[0m[0m[1m[36m    Building[0m [===========================>                           ] 244/476[K[0m[0m[1m[32m   Compiling[0m block-buffer v0.7.3
+
+[0m[0m[1m[36m    Building[0m [===========================>                           ] 245/476[K[0m[0m[1m[32m   Compiling[0m stream-cipher v0.3.0
+
+[0m[0m[1m[36m    Building[0m [===========================>                           ] 246/476[K[0m[0m[1m[32m   Compiling[0m block-cipher-trait v0.6.2
+
+[0m[0m[1m[36m    Building[0m [===========================>                           ] 247/476[K[0m[0m[1m[32m   Compiling[0m digest v0.7.6
+
+[0m[0m[1m[36m    Building[0m [===========================>                           ] 248/476[K[0m[0m[1m[32m   Compiling[0m kvdb v0.1.0
+
+[0m[0m[1m[36m    Building[0m [===========================>                           ] 249/476[K[0m[0m[1m[32m   Compiling[0m rlp_compress v0.1.0 (/home/leo/parity-ethereum/util/rlp-compress)
+
+[0m[0m[1m[36m    Building[0m [===========================>                           ] 250/476[K[0m[0m[1m[32m   Compiling[0m wasmi v0.3.0
+
+[0m[0m[1m[36m    Building[0m [============================>                          ] 251/476[K[0m[0m[1m[32m   Compiling[0m pwasm-utils v0.6.1
+
+[0m[0m[1m[36m    Building[0m [============================>                          ] 252/476[K[0m[0m[1m[32m   Compiling[0m bytes v0.4.12
+
+[0m[0m[1m[36m    Building[0m [============================>                          ] 253/476[K[0m[0m[1m[32m   Compiling[0m fixed-hash v0.3.2
+
+[0m[0m[1m[36m    Building[0m [============================>                          ] 254/476[K[0m[0m[1m[32m   Compiling[0m bn v0.4.4 (https://github.com/paritytech/bn#6beba2ed)
+
+[0m[0m[1m[36m    Building[0m [============================>                          ] 255/476[K[0m[0m[1m[32m   Compiling[0m mio v0.6.16
+
+[0m[0m[1m[36m    Building[0m [============================>                          ] 256/476[K[0m[0m[1m[32m   Compiling[0m futures-cpupool v0.1.8
+
+[0m[0m[1m[36m    Building[0m [============================>                          ] 257/476[K[0m[0m[1m[32m   Compiling[0m vergen v0.1.1
+
+[0m[0m[1m[36m    Building[0m [============================>                          ] 258/476[K[0m[0m[1m[32m   Compiling[0m url v1.7.1
+
+[0m[0m[1m[36m    Building[0m [============================>                          ] 259/476[K[0m[0m[1m[32m   Compiling[0m tempdir v0.3.7
+
+[0m[0m[1m[36m    Building[0m [=============================>                         ] 260/476[K[0m[0m[1m[32m   Compiling[0m rand v0.3.22
+
+[0m[0m[1m[36m    Building[0m [=============================>                         ] 261/476[K[0m[0m[1m[32m   Compiling[0m clap v2.32.0
+
+[0m[0m[1m[36m    Building[0m [=============================>                         ] 262/476[K[0m[0m[1m[32m   Compiling[0m miow v0.3.3
+
+[0m[0m[1m[36m    Building[0m [=============================>                         ] 263/476[K[0m[0m[1m[32m   Compiling[0m phf_shared v0.7.23
+
+[0m[0m[1m[36m    Building[0m [=============================>                         ] 264/476[K[0m[0m[1m[32m   Compiling[0m aho-corasick v0.6.8
+
+[0m[0m[1m[36m    Building[0m [=============================>                         ] 265/476[K[0m[0m[1m[32m   Compiling[0m chrono v0.4.6
+
+[0m[0m[1m[36m    Building[0m [=============================>                         ] 266/476[K[0m[0m[1m[32m   Compiling[0m primal-check v0.2.3
+
+[0m[0m[1m[36m    Building[0m [=============================>                         ] 267/476[K[0m[0m[1m[32m   Compiling[0m num-bigint v0.1.44
+
+[0m[0m[1m[36m    Building[0m [=============================>                         ] 268/476[0m[0m[1m[36m    Building[0m [==============================>                        ] 269/476[K[0m[0m[1m[32m   Compiling[0m enum_primitive v0.1.1
+
+[0m[0m[1m[36m    Building[0m [==============================>                        ] 270/476[K[0m[0m[1m[32m   Compiling[0m mime v0.3.12
+
+[0m[0m[1m[36m    Building[0m [==============================>                        ] 271/476[K[0m[0m[1m[32m   Compiling[0m backtrace v0.3.9
+
+[0m[0m[1m[36m    Building[0m [==============================>                        ] 272/476[K[0m[0m[1m[32m   Compiling[0m syn v0.15.26
+
+[0m[0m[1m[36m    Building[0m [==============================>                        ] 273/476[K[0m[0m[1m[32m   Compiling[0m ctrlc v1.1.1 (https://github.com/paritytech/rust-ctrlc.git#b5230171)
+
+[0m[0m[1m[36m    Building[0m [==============================>                        ] 274/476[K[0m[0m[1m[32m   Compiling[0m lunarity-lexer v0.1.0
+
+[0m[0m[1m[36m    Building[0m [==============================>                        ] 275/476[K[0m[0m[1m[32m   Compiling[0m hmac v0.7.0
+
+[0m[0m[1m[36m    Building[0m [==============================>                        ] 276/476[K[0m[0m[1m[32m   Compiling[0m sha2 v0.8.0
+
+[0m[0m[1m[36m    Building[0m [===============================>                       ] 277/476[K[0m[0m[1m[32m   Compiling[0m ripemd160 v0.8.0
+
+[0m[0m[1m[36m    Building[0m [===============================>                       ] 278/476[K[0m[0m[1m[32m   Compiling[0m sha-1 v0.8.1
+
+[0m[0m[1m[36m    Building[0m [===============================>                       ] 279/476[K[0m[0m[1m[32m   Compiling[0m aesni v0.6.0
+
+[0m[0m[1m[36m    Building[0m [===============================>                       ] 280/476[K[0m[0m[1m[32m   Compiling[0m block-modes v0.3.3
+
+[0m[0m[1m[36m    Building[0m [===============================>                       ] 281/476[K[0m[0m[1m[32m   Compiling[0m sha2 v0.7.1
+
+[0m[0m[1m[36m    Building[0m [===============================>                       ] 282/476[0m[0m[1m[36m    Building[0m [===============================>                       ] 283/476[K[0m[0m[1m[32m   Compiling[0m sct v0.5.0
+
+[0m[0m[1m[36m    Building[0m [===============================>                       ] 284/476[K[0m[0m[1m[32m   Compiling[0m webpki v0.19.1
+
+[0m[0m[1m[36m    Building[0m [===============================>                       ] 285/476[0m[0m[1m[36m    Building[0m [================================>                      ] 286/476[0m[0m[1m[36m    Building[0m [================================>                      ] 287/476[K[0m[0m[1m[32m   Compiling[0m tokio-io v0.1.9
+
+[0m[0m[1m[36m    Building[0m [================================>                      ] 288/476[K[0m[0m[1m[32m   Compiling[0m http v0.1.17
+
+[0m[0m[1m[36m    Building[0m [================================>                      ] 289/476[K[0m[0m[1m[32m   Compiling[0m mio-uds v0.6.7
+
+[0m[0m[1m[36m    Building[0m [================================>                      ] 290/476[K[0m[0m[1m[32m   Compiling[0m mio-extras v2.0.5
+
+[0m[0m[1m[36m    Building[0m [================================>                      ] 291/476[K[0m[0m[1m[32m   Compiling[0m skeptic v0.4.0
+
+[0m[0m[1m[36m    Building[0m [================================>                      ] 292/476[K[0m[0m[1m[32m   Compiling[0m phf_generator v0.7.23
+
+[0m[0m[1m[36m    Building[0m [================================>                      ] 293/476[K[0m[0m[1m[32m   Compiling[0m phf v0.7.23
+
+[0m[0m[1m[36m    Building[0m [================================>                      ] 294/476[0m[0m[1m[36m    Building[0m [=================================>                     ] 295/476[0m[0m[1m[36m    Building[0m [=================================>                     ] 296/476[K[0m[0m[1m[32m   Compiling[0m primal v0.2.3
+
+[0m[0m[1m[36m    Building[0m [=================================>                     ] 297/476[K[0m[0m[1m[32m   Compiling[0m timer v0.2.0
+
+[0m[0m[1m[36m    Building[0m [=================================>                     ] 298/476[K[0m[0m[1m[32m   Compiling[0m error-chain v0.12.0
+
+[0m[0m[1m[36m    Building[0m [=================================>                     ] 299/476[K[0m[0m[1m[32m   Compiling[0m panic_hook v0.1.0 (/home/leo/parity-ethereum/util/panic-hook)
+
+[0m[0m[1m[36m    Building[0m [=================================>                     ] 300/476[K[0m[0m[1m[32m   Compiling[0m num v0.1.42
+
+[0m[0m[1m[36m    Building[0m [=================================>                     ] 301/476[K[0m[0m[1m[32m   Compiling[0m pbkdf2 v0.3.0
+
+[0m[0m[1m[36m    Building[0m [=================================>                     ] 302/476[K[0m[0m[1m[32m   Compiling[0m aes-ctr v0.3.0
+
+[0m[0m[1m[36m    Building[0m [==================================>                    ] 303/476[K[0m[0m[1m[32m   Compiling[0m aes v0.3.2
+
+[0m[0m[1m[36m    Building[0m [==================================>                    ] 304/476[K[0m[0m[1m[32m   Compiling[0m jemallocator v0.1.9
+
+[0m[0m[1m[36m    Building[0m [==================================>                    ] 305/476[K[0m[0m[1m[32m   Compiling[0m ct-logs v0.5.1
+
+[0m[0m[1m[36m    Building[0m [==================================>                    ] 306/476[K[0m[0m[1m[32m   Compiling[0m multihash v0.8.0
+
+[0m[0m[1m[36m    Building[0m [==================================>                    ] 307/476[K[0m[0m[1m[32m   Compiling[0m parity-snappy v0.1.0
+
+[0m[0m[1m[36m    Building[0m [==================================>                    ] 308/476[K[0m[0m[1m[32m   Compiling[0m rustls v0.15.1
+
+[0m[0m[1m[36m    Building[0m [==================================>                    ] 309/476[K[0m[0m[1m[32m   Compiling[0m webpki-roots v0.16.0
+
+[0m[0m[1m[36m    Building[0m [==================================>                    ] 310/476[K[0m[0m[1m[32m   Compiling[0m tokio-codec v0.1.1
+
+[0m[0m[1m[36m    Building[0m [==================================>                    ] 311/476[K[0m[0m[1m[32m   Compiling[0m h2 v0.1.12
+
+[0m[0m[1m[36m    Building[0m [===================================>                   ] 312/476[K[0m[0m[1m[32m   Compiling[0m attohttpc v0.4.1
+
+[0m[0m[1m[36m    Building[0m [===================================>                   ] 313/476[K[0m[0m[1m[32m   Compiling[0m local-encoding v0.2.0
+
+[0m[0m[1m[36m    Building[0m [===================================>                   ] 314/476[K[0m[0m[1m[32m   Compiling[0m phf_codegen v0.7.23
+
+[0m[0m[1m[36m    Building[0m [===================================>                   ] 315/476[K[0m[0m[1m[32m   Compiling[0m globset v0.4.2
+
+[0m[0m[1m[36m    Building[0m [===================================>                   ] 316/476[K[0m[0m[1m[32m   Compiling[0m env_logger v0.5.13
+
+[0m[0m[1m[36m    Building[0m [===================================>                   ] 317/476[K[0m[0m[1m[32m   Compiling[0m cid v0.3.0
+
+[0m[0m[1m[36m    Building[0m [===================================>                   ] 318/476[K[0m[0m[1m[32m   Compiling[0m scrypt v0.2.0
+
+[0m[0m[1m[36m    Building[0m [===================================>                   ] 319/476[K[0m[0m[1m[32m   Compiling[0m serde_derive v1.0.89
+
+[0m[0m[1m[36m    Building[0m [===================================>                   ] 320/476[K[0m[0m[1m[32m   Compiling[0m synstructure v0.10.1
+
+[0m[0m[1m[36m    Building[0m [====================================>                  ] 321/476[K[0m[0m[1m[32m   Compiling[0m rlp_derive v0.1.0 (/home/leo/parity-ethereum/util/rlp-derive)
+
+[0m[0m[1m[36m    Building[0m [====================================>                  ] 322/476[K[0m[0m[1m[32m   Compiling[0m derive_more v0.15.0
+
+[0m[0m[1m[36m    Building[0m [====================================>                  ] 323/476[K[0m[0m[1m[32m   Compiling[0m derive_more v0.14.0
+
+[0m[0m[1m[36m    Building[0m [====================================>                  ] 324/476[0m[0m[1m[36m    Building[0m [====================================>                  ] 325/476[K[0m[0m[1m[32m   Compiling[0m mime_guess v2.0.0-alpha.6
+
+[0m[0m[1m[36m    Building[0m [====================================>                  ] 326/476[K[0m[0m[1m[32m   Compiling[0m igd v0.9.0
+
+[0m[0m[1m[36m    Building[0m [====================================>                  ] 327/476[K[0m[0m[1m[32m   Compiling[0m parity-crypto v0.4.0
+
+[0m[0m[1m[36m    Building[0m [====================================>                  ] 328/476[K[0m[0m[1m[32m   Compiling[0m tokio-rustls v0.9.0
+
+[0m[0m[1m[36m    Building[0m [=====================================>                 ] 329/476[K[0m[0m[1m[32m   Compiling[0m zeroize_derive v0.9.0
+
+[0m[0m[1m[36m    Building[0m [=====================================>                 ] 330/476[K[0m[0m[1m[32m   Compiling[0m malloc_size_of_derive v0.1.0
+
+[0m[0m[1m[36m    Building[0m [=====================================>                 ] 331/476[0m[0m[1m[36m    Building[0m [=====================================>                 ] 332/476[0m[0m[1m[36m    Building[0m [=====================================>                 ] 333/476[0m[0m[1m[36m    Building[0m [=====================================>                 ] 334/476[0m[0m[1m[36m    Building[0m [=====================================>                 ] 335/476[K[0m[0m[1m[32m   Compiling[0m zeroize v0.9.1
+
+[0m[0m[1m[36m    Building[0m [=====================================>                 ] 336/476[K[0m[0m[1m[32m   Compiling[0m failure v0.1.3
+
+[0m[0m[1m[36m    Building[0m [=====================================>                 ] 337/476[0m[0m[1m[36m    Building[0m [======================================>                ] 338/476[K[0m[0m[1m[32m   Compiling[0m parity-daemonize v0.3.0
+
+[0m[0m[1m[36m    Building[0m [======================================>                ] 339/476[0m[0m[1m[36m    Building[0m [======================================>                ] 340/476[0m[0m[1m[36m    Building[0m [======================================>                ] 341/476[K[0m[0m[1m[32m   Compiling[0m semver v0.9.0
+
+[0m[0m[1m[36m    Building[0m [======================================>                ] 342/476[K[0m[0m[1m[32m   Compiling[0m parity-codec v3.5.1
+
+[0m[0m[1m[36m    Building[0m [======================================>                ] 342/476[K[0m[0m[1m[32m   Compiling[0m impl-serde v0.2.0
+
+[0m[0m[1m[36m    Building[0m [======================================>                ] 343/476[K[0m[0m[1m[32m   Compiling[0m serde_json v1.0.39
+
+[0m[0m[1m[36m    Building[0m [======================================>                ] 344/476[K[0m[0m[1m[32m   Compiling[0m toml v0.4.10
+
+[0m[0m[1m[36m    Building[0m [======================================>                ] 345/476[K[0m[0m[1m[32m   Compiling[0m toml v0.5.1
+
+[0m[0m[1m[36m    Building[0m [======================================>                ] 346/476[K[0m[0m[1m[32m   Compiling[0m docopt v1.0.2
+
+[0m[0m[1m[36m    Building[0m [=======================================>               ] 347/476[K[0m[0m[1m[32m   Compiling[0m rustc_version v0.2.3
+
+[0m[0m[1m[36m    Building[0m [=======================================>               ] 348/476[K[0m[0m[1m[32m   Compiling[0m impl-codec v0.2.0
+
+[0m[0m[1m[36m    Building[0m [=======================================>               ] 349/476[K[0m[0m[1m[32m   Compiling[0m ethbloom v0.6.4
+
+[0m[0m[1m[36m    Building[0m [=======================================>               ] 350/476[K[0m[0m[1m[32m   Compiling[0m jsonrpc-core v12.0.0
+
+[0m[0m[1m[36m    Building[0m [=======================================>               ] 351/476[K[0m[0m[1m[32m   Compiling[0m validator v0.8.0
+
+[0m[0m[1m[36m    Building[0m [=======================================>               ] 352/476[K[0m[0m[1m[32m   Compiling[0m memoffset v0.5.1
+
+[0m[0m[1m[36m    Building[0m [=======================================>               ] 353/476[K[0m[0m[1m[32m   Compiling[0m parking_lot_core v0.3.1
+
+[0m[0m[1m[36m    Building[0m [=======================================>               ] 354/476[K[0m[0m[1m[32m   Compiling[0m rand_pcg v0.1.1
+
+[0m[0m[1m[36m    Building[0m [========================================>              ] 355/476[K[0m[0m[1m[32m   Compiling[0m rand_chacha v0.1.0
+
+[0m[0m[1m[36m    Building[0m [========================================>              ] 356/476[K[0m[0m[1m[32m   Compiling[0m rand v0.6.1
+
+[0m[0m[1m[36m    Building[0m [========================================>              ] 357/476[K[0m[0m[1m[32m   Compiling[0m parking_lot_core v0.5.0
+
+[0m[0m[1m[36m    Building[0m [========================================>              ] 358/476[K[0m[0m[1m[32m   Compiling[0m parking_lot v0.8.0
+
+[0m[0m[1m[36m    Building[0m [========================================>              ] 359/476[K[0m[0m[1m[32m   Compiling[0m parity-version v2.7.0 (/home/leo/parity-ethereum/util/version)
+
+[0m[0m[1m[36m    Building[0m [========================================>              ] 360/476[K[0m[0m[1m[32m   Compiling[0m primitive-types v0.3.0
+
+[0m[0m[1m[36m    Building[0m [========================================>              ] 361/476[K[0m[0m[1m[32m   Compiling[0m proc-macro-crate v0.1.4
+
+[0m[0m[1m[36m    Building[0m [========================================>              ] 362/476[0m[0m[1m[36m    Building[0m [========================================>              ] 363/476[0m[0m[1m[36m    Building[0m [=========================================>             ] 364/476[K[0m[0m[1m[32m   Compiling[0m validator_derive v0.8.0
+
+[0m[0m[1m[36m    Building[0m [=========================================>             ] 365/476[0m[0m[1m[36m    Building[0m [=========================================>             ] 366/476[0m[0m[1m[36m    Building[0m [=========================================>             ] 367/476[0m[0m[1m[36m    Building[0m [=========================================>             ] 368/476[0m[0m[1m[36m    Building[0m [=========================================>             ] 369/476[0m[0m[1m[36m    Building[0m [=========================================>             ] 370/476[0m[0m[1m[36m    Building[0m [=========================================>             ] 371/476[0m[0m[1m[36m    Building[0m [=========================================>             ] 372/476[0m[0m[1m[36m    Building[0m [==========================================>            ] 373/476[K[0m[0m[1m[32m   Compiling[0m jsonrpc-derive v12.0.0
+
+[0m[0m[1m[36m    Building[0m [==========================================>            ] 374/476[0m[0m[1m[36m    Building[0m [==========================================>            ] 375/476[0m[0m[1m[36m    Building[0m [==========================================>            ] 376/476[0m[0m[1m[36m    Building[0m [==========================================>            ] 377/476[K[0m[0m[1m[32m   Compiling[0m crossbeam-epoch v0.7.2
+
+[0m[0m[1m[36m    Building[0m [==========================================>            ] 378/476[K[0m[0m[1m[32m   Compiling[0m ethereum-types v0.6.0
+
+[0m[0m[1m[36m    Building[0m [==========================================>            ] 379/476[K[0m[0m[1m[32m   Compiling[0m keccak-hash v0.2.0
+
+[0m[0m[1m[36m    Building[0m [==========================================>            ] 380/476[K[0m[0m[1m[32m   Compiling[0m parking_lot v0.6.4
+
+[0m[0m[1m[36m    Building[0m [===========================================>           ] 381/476[0m[0m[1m[36m    Building[0m [===========================================>           ] 382/476[K[0m[0m[1m[32m   Compiling[0m crossbeam-deque v0.6.3
+
+[0m[0m[1m[36m    Building[0m [===========================================>           ] 383/476[K[0m[0m[1m[32m   Compiling[0m keccak-hasher v0.1.1 (/home/leo/parity-ethereum/util/keccak-hasher)
+
+[0m[0m[1m[36m    Building[0m [===========================================>           ] 384/476[K[0m[0m[1m[32m   Compiling[0m ethjson v0.1.0 (/home/leo/parity-ethereum/json)
+
+[0m[0m[1m[36m    Building[0m [===========================================>           ] 385/476[K[0m[0m[1m[32m   Compiling[0m fastmap v0.1.0 (/home/leo/parity-ethereum/util/fastmap)
+
+[0m[0m[1m[36m    Building[0m [===========================================>           ] 386/476[K[0m[0m[1m[32m   Compiling[0m ethabi v8.0.0
+
+[0m[0m[1m[36m    Building[0m [===========================================>           ] 387/476[K[0m[0m[1m[32m   Compiling[0m tokio-reactor v0.1.6
+
+[0m[0m[1m[36m    Building[0m [===========================================>           ] 388/476[K[0m[0m[1m[32m   Compiling[0m kvdb-memorydb v0.1.0
+
+[0m[0m[1m[36m    Building[0m [===========================================>           ] 389/476[K[0m[0m[1m[32m   Compiling[0m failsafe v0.3.0
+
+[0m[0m[1m[36m    Building[0m [============================================>          ] 390/476[K[0m[0m[1m[32m   Compiling[0m trie-db v0.12.4
+
+[0m[0m[1m[36m    Building[0m [============================================>          ] 391/476[0m[0m[1m[36m    Building[0m [============================================>          ] 392/476[0m[0m[1m[36m    Building[0m [============================================>          ] 393/476[K[0m[0m[1m[32m   Compiling[0m parity-wordlist v1.3.0
+
+[0m[0m[1m[36m    Building[0m [============================================>          ] 394/476[K[0m[0m[1m[32m   Compiling[0m ws v0.8.1
+
+[0m[0m[1m[36m    Building[0m [============================================>          ] 395/476[K[0m[0m[1m[32m   Compiling[0m tokio-threadpool v0.1.7
+
+[0m[0m[1m[36m    Building[0m [============================================>          ] 396/476[0m[0m[1m[36m    Building[0m [============================================>          ] 397/476[K[0m[0m[1m[32m   Compiling[0m triehash-ethereum v0.2.0 (/home/leo/parity-ethereum/util/triehash-ethereum)
+
+[0m[0m[1m[36m    Building[0m [============================================>          ] 398/476[K[0m[0m[1m[32m   Compiling[0m account-db v0.1.0 (/home/leo/parity-ethereum/ethcore/account-db)
+
+[0m[0m[1m[36m    Building[0m [=============================================>         ] 399/476[K[0m[0m[1m[32m   Compiling[0m tokio-udp v0.1.2
+
+[0m[0m[1m[36m    Building[0m [=============================================>         ] 400/476[K[0m[0m[1m[32m   Compiling[0m tokio-tcp v0.1.2
+
+[0m[0m[1m[36m    Building[0m [=============================================>         ] 401/476[K[0m[0m[1m[32m   Compiling[0m tokio-uds v0.2.2
+
+[0m[0m[1m[36m    Building[0m [=============================================>         ] 402/476[K[0m[0m[1m[32m   Compiling[0m ethabi-derive v8.0.0
+
+[0m[0m[1m[36m    Building[0m [=============================================>         ] 403/476[K[0m[0m[1m[32m   Compiling[0m eip-712 v0.1.0 (/home/leo/parity-ethereum/util/EIP-712)
+
+[0m[0m[1m[36m    Building[0m [=============================================>         ] 404/476[0m[0m[1m[36m    Building[0m [=============================================>         ] 405/476[K[0m[0m[1m[32m   Compiling[0m patricia-trie-ethereum v0.1.0 (/home/leo/parity-ethereum/util/patricia-trie-ethereum)
+
+[0m[0m[1m[36m    Building[0m [=============================================>         ] 406/476[K[0m[0m[1m[32m   Compiling[0m ethkey v0.3.0 (/home/leo/parity-ethereum/accounts/ethkey)
+
+[0m[0m[1m[36m    Building[0m [==============================================>        ] 407/476[K[0m[0m[1m[32m   Compiling[0m rayon v1.1.0
+
+[0m[0m[1m[36m    Building[0m [==============================================>        ] 408/476[K[0m[0m[1m[32m   Compiling[0m tokio-fs v0.1.3
+
+[0m[0m[1m[36m    Building[0m [==============================================>        ] 409/476[K[0m[0m[1m[32m   Compiling[0m parity-util-mem v0.1.0
+
+[0m[0m[1m[36m    Building[0m [==============================================>        ] 410/476[K[0m[0m[1m[32m   Compiling[0m blooms-db v0.1.0 (/home/leo/parity-ethereum/util/blooms-db)
+
+[0m[0m[1m[36m    Building[0m [==============================================>        ] 411/476[K[0m[0m[1m[32m   Compiling[0m ethash v1.12.0 (/home/leo/parity-ethereum/ethash)
+
+[0m[0m[1m[36m    Building[0m [==============================================>        ] 412/476[K[0m[0m[1m[32m   Compiling[0m len-caching-lock v0.1.1 (/home/leo/parity-ethereum/util/len-caching-lock)
+
+[0m[0m[1m[36m    Building[0m [==============================================>        ] 413/476[K[0m[0m[1m[32m   Compiling[0m ethcore-logger v1.12.0 (/home/leo/parity-ethereum/parity/logger)
+
+[0m[0m[1m[36m    Building[0m [==============================================>        ] 414/476[K[0m[0m[1m[32m   Compiling[0m jsonrpc-pubsub v12.0.0
+
+[0m[0m[1m[36m    Building[0m [==============================================>        ] 415/476[K[0m[0m[1m[32m   Compiling[0m vm v0.1.0 (/home/leo/parity-ethereum/ethcore/vm)
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 416/476[K[0m[0m[1m[32m   Compiling[0m ethcore-builtin v0.1.0 (/home/leo/parity-ethereum/ethcore/builtin)
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 417/476[K[0m[0m[1m[32m   Compiling[0m registrar v0.0.1 (/home/leo/parity-ethereum/util/registrar)
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 418/476[K[0m[0m[1m[32m   Compiling[0m tokio v0.1.11
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 419/476[K[0m[0m[1m[32m   Compiling[0m memory-cache v0.1.0 (/home/leo/parity-ethereum/util/memory-cache)
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 420/476[K[0m[0m[1m[32m   Compiling[0m memory-db v0.12.4
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 421/476[K[0m[0m[1m[32m   Compiling[0m wasm v0.1.0 (/home/leo/parity-ethereum/ethcore/wasm)
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 422/476[K[0m[0m[1m[32m   Compiling[0m evm v0.1.0 (/home/leo/parity-ethereum/ethcore/evm)
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 423/476[K[0m[1m[33mwarning[0m[0m[1m: static variable `count_sload` should have an upper case name[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:66:12[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m66[0m[0m [0m[0m[1m[38;5;12m| [0m[0mstatic mut count_sload: u32 = 0;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m           [0m[0m[1m[33m^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: convert the identifier to upper case: `COUNT_SLOAD`[0m
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 423/476[K[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 423/476[K[0m   [0m[0m[1m[38;5;12m= [0m[0m[1mnote[0m[0m: #[warn(non_upper_case_globals)] on by default[0m
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 423/476[K
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 423/476[K[0m[1m[33mwarning[0m[0m[1m: static variable `count_sstore` should have an upper case name[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:67:12[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m67[0m[0m [0m[0m[1m[38;5;12m| [0m[0mstatic mut count_sstore: u32 = 0;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m           [0m[0m[1m[33m^^^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: convert the identifier to upper case: `COUNT_SSTORE`[0m
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 423/476[K
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 423/476[K[0m[1m[33mwarning[0m[0m[1m: static variable `total_inst` should have an upper case name[0m
+
+[0m  [0m[0m[1m[38;5;12m--> [0m[0methcore/evm/src/interpreter/mod.rs:68:12[0m
+
+[0m   [0m[0m[1m[38;5;12m|[0m
+
+[0m[1m[38;5;12m68[0m[0m [0m[0m[1m[38;5;12m| [0m[0mstatic mut total_inst: u32 = 0;[0m
+
+[0m   [0m[0m[1m[38;5;12m| [0m[0m           [0m[0m[1m[33m^^^^^^^^^^[0m[0m [0m[0m[1m[33mhelp: convert the identifier to upper case: `TOTAL_INST`[0m
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 423/476[K
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 423/476[K[0m[0m[1m[32m   Compiling[0m journaldb v0.2.0 (/home/leo/parity-ethereum/util/journaldb)
+
+[0m[0m[1m[36m    Building[0m [===============================================>       ] 424/476[K[0m[0m[1m[32m   Compiling[0m ethcore-io v1.12.0 (/home/leo/parity-ethereum/util/io)
+
+[0m[0m[1m[36m    Building[0m [================================================>      ] 425/476[K[0m[0m[1m[32m   Compiling[0m hyper v0.12.19
+
+[0m[0m[1m[36m    Building[0m [================================================>      ] 426/476[K[0m[0m[1m[32m   Compiling[0m jsonrpc-server-utils v12.0.0
+
+[0m[0m[1m[36m    Building[0m [================================================>      ] 427/476[K[0m[0m[1m[32m   Compiling[0m parity-runtime v0.1.0 (/home/leo/parity-ethereum/util/runtime)
+
+[0m[0m[1m[36m    Building[0m [================================================>      ] 428/476[K[0m[0m[1m[32m   Compiling[0m tokio-named-pipes v0.1.0
+
+[0m[0m[1m[36m    Building[0m [================================================>      ] 429/476[K[0m[0m[1m[32m   Compiling[0m common-types v0.1.0 (/home/leo/parity-ethereum/ethcore/types)
+
+[0m[0m[1m[36m    Building[0m [================================================>      ] 430/476[K[0m[0m[1m[32m   Compiling[0m ethcore-network v1.12.0 (/home/leo/parity-ethereum/util/network)
+
+[0m[0m[1m[36m    Building[0m [================================================>      ] 431/476[K[0m[0m[1m[32m   Compiling[0m dir v0.1.2 (/home/leo/parity-ethereum/util/dir)
+
+[0m[0m[1m[36m    Building[0m [================================================>      ] 432/476[K[0m[0m[1m[32m   Compiling[0m trie-vm-factories v0.1.0 (/home/leo/parity-ethereum/ethcore/trie-vm-factories)
+
+[0m[0m[1m[36m    Building[0m [=================================================>     ] 433/476[K[0m[0m[1m[32m   Compiling[0m parity-tokio-ipc v0.1.0
+
+[0m[0m[1m[36m    Building[0m [=================================================>     ] 434/476[K[0m[0m[1m[32m   Compiling[0m jsonrpc-tcp-server v12.0.0
+
+[0m[0m[1m[36m    Building[0m [=================================================>     ] 435/476[K[0m[0m[1m[32m   Compiling[0m jsonrpc-ws-server v12.0.0
+
+[0m[0m[1m[36m    Building[0m [=================================================>     ] 436/476[K[0m[0m[1m[32m   Compiling[0m hyper-rustls v0.16.0
+
+[0m[0m[1m[36m    Building[0m [=================================================>     ] 437/476[K[0m[0m[1m[32m   Compiling[0m jsonrpc-http-server v12.0.0
+
+[0m[0m[1m[36m    Building[0m [=================================================>     ] 438/476[K[0m[0m[1m[32m   Compiling[0m ethstore v0.2.1 (/home/leo/parity-ethereum/accounts/ethstore)
+
+[0m[0m[1m[36m    Building[0m [=================================================>     ] 439/476[K[0m[0m[1m[32m   Compiling[0m ethcore-network-devp2p v1.12.0 (/home/leo/parity-ethereum/util/network-devp2p)
+
+[0m[0m[1m[36m    Building[0m [=================================================>     ] 440/476[K[0m[0m[1m[32m   Compiling[0m jsonrpc-ipc-server v12.0.0
+
+[0m[0m[1m[36m    Building[0m [=================================================>     ] 441/476[K[0m[0m[1m[32m   Compiling[0m ethcore-db v0.1.0 (/home/leo/parity-ethereum/ethcore/db)
+
+[0m[0m[1m[36m    Building[0m [==================================================>    ] 442/476[K[0m[0m[1m[32m   Compiling[0m pod v0.1.0 (/home/leo/parity-ethereum/ethcore/pod)
+
+[0m[0m[1m[36m    Building[0m [==================================================>    ] 443/476[K[0m[0m[1m[32m   Compiling[0m ethcore-call-contract v0.1.0 (/home/leo/parity-ethereum/ethcore/call-contract)
+
+[0m[0m[1m[36m    Building[0m [==================================================>    ] 444/476[K[0m[0m[1m[32m   Compiling[0m parity-local-store v0.1.0 (/home/leo/parity-ethereum/miner/local-store)
+
+[0m[0m[1m[36m    Building[0m [==================================================>    ] 445/476[K[0m[0m[1m[32m   Compiling[0m ethcore-stratum v1.12.0 (/home/leo/parity-ethereum/miner/stratum)
+
+[0m[0m[1m[36m    Building[0m [==================================================>    ] 446/476[K[0m[0m[1m[32m   Compiling[0m fetch v0.1.0 (/home/leo/parity-ethereum/util/fetch)
+
+[0m[0m[1m[36m    Building[0m [==================================================>    ] 447/476[K[0m[0m[1m[32m   Compiling[0m ethcore-blockchain v0.1.0 (/home/leo/parity-ethereum/ethcore/blockchain)
+
+[0m[0m[1m[36m    Building[0m [==================================================>    ] 448/476[K[0m[0m[1m[32m   Compiling[0m ethcore-accounts v0.1.0 (/home/leo/parity-ethereum/accounts)
+
+[0m[0m[1m[36m    Building[0m [==================================================>    ] 449/476[0m[0m[1m[36m    Building[0m [==================================================>    ] 450/476[K[0m[0m[1m[32m   Compiling[0m trace v0.1.0 (/home/leo/parity-ethereum/ethcore/trace)
+
+[0m[0m[1m[36m    Building[0m [===================================================>   ] 451/476[K[0m[0m[1m[32m   Compiling[0m account-state v0.1.0 (/home/leo/parity-ethereum/ethcore/account-state)
+
+[0m[0m[1m[36m    Building[0m [===================================================>   ] 452/476[K[0m[0m[1m[32m   Compiling[0m state-db v0.1.0 (/home/leo/parity-ethereum/ethcore/state-db)
+
+[0m[0m[1m[36m    Building[0m [===================================================>   ] 453/476[K[0m[0m[1m[32m   Compiling[0m price-info v1.12.0 (/home/leo/parity-ethereum/miner/price-info)
+
+[0m[0m[1m[36m    Building[0m [===================================================>   ] 454/476[K[0m[0m[1m[32m   Compiling[0m parity-hash-fetch v1.12.0 (/home/leo/parity-ethereum/updater/hash-fetch)
+
+[0m[0m[1m[36m    Building[0m [===================================================>   ] 455/476[K[0m[0m[1m[32m   Compiling[0m ethcore-miner v1.12.0 (/home/leo/parity-ethereum/miner)
+
+[0m[0m[1m[36m    Building[0m [===================================================>   ] 456/476[0m[0m[1m[36m    Building[0m [===================================================>   ] 457/476[0m[0m[1m[36m    Building[0m [===================================================>   ] 458/476[0m[0m[1m[36m    Building[0m [====================================================>  ] 459/476[K[0m[0m[1m[32m   Compiling[0m parity-rocksdb v0.5.1
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 460/476[K[0m[0m[1m[32m   Compiling[0m kvdb-rocksdb v0.1.4
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 461/476[K[0m[0m[1m[32m   Compiling[0m ethcore v1.12.0 (/home/leo/parity-ethereum/ethcore)
+
+[0m[0m[1m[32m   Compiling[0m migration-rocksdb v0.1.0 (/home/leo/parity-ethereum/util/migration-rocksdb)
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 462/476[0m[0m[1m[36m    Building[0m [====================================================>  ] 463/476[K[0m[0m[1m[32m   Compiling[0m ethcore-light v1.12.0 (/home/leo/parity-ethereum/ethcore/light)
+
+[0m[0m[1m[32m   Compiling[0m ethcore-private-tx v1.0.0 (/home/leo/parity-ethereum/ethcore/private-tx)
+
+[0m[0m[1m[32m   Compiling[0m node-filter v1.12.0 (/home/leo/parity-ethereum/ethcore/node-filter)
+
+[0m[0m[1m[32m   Compiling[0m parity-ipfs-api v1.12.0 (/home/leo/parity-ethereum/ipfs)
+
+[0m[0m[1m[36m    Building[0m [====================================================>  ] 464/476[0m[0m[1m[36m    Building[0m [====================================================>  ] 465/476[0m[0m[1m[36m    Building[0m [====================================================>  ] 466/476[0m[0m[1m[36m    Building[0m [====================================================>  ] 467/476[K[0m[0m[1m[32m   Compiling[0m ethcore-sync v1.12.0 (/home/leo/parity-ethereum/ethcore/sync)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 468/476[K[0m[0m[1m[32m   Compiling[0m parity-updater v1.12.0 (/home/leo/parity-ethereum/updater)
+
+[0m[0m[1m[32m   Compiling[0m ethcore-service v0.1.0 (/home/leo/parity-ethereum/ethcore/service)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 469/476[0m[0m[1m[36m    Building[0m [=====================================================> ] 470/476[K[0m[0m[1m[32m   Compiling[0m parity-rpc v1.12.0 (/home/leo/parity-ethereum/rpc)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 471/476[K[0m[0m[1m[32m   Compiling[0m parity-rpc-client v1.4.0 (/home/leo/parity-ethereum/cli-signer/rpc-client)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 472/476[K[0m[0m[1m[32m   Compiling[0m cli-signer v1.4.0 (/home/leo/parity-ethereum/cli-signer)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 473/476[K[0m[0m[1m[32m   Compiling[0m parity-ethereum v2.7.0 (/home/leo/parity-ethereum)
+
+[0m[0m[1m[36m    Building[0m [=====================================================> ] 474/476[0m[0m[1m[36m    Building[0m [=====================================================> ] 475/476[K[0m[0m[1m[32m    Finished[0m release [optimized] target(s) in 22m 20s
+
+
+daix: 184.169.161.154
+bash ~/scripts/bash/import.sh dai x transfer 184.169.161.154 5052259 import
+Loading config file from /home/leo/scripts/parity/config.dev-insecure.toml
+
+[1;30m2019-11-12 07:42:14 UTC[0m Configured for [1;37methereum[0m using [1;33mInstantSeal[0m engine
+
+Cannot import block: Block(UnknownParent(0x9d3f240c26e35229ca68d6f6ddc784d90f369f0aa6e52f7138664e4dbc958640))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+daix: 184.169.161.154
+END T3

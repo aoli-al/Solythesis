@@ -27,7 +27,7 @@ def create_new_instance(count, security_group='all-open', image_id="ami-0e65a0cc
                 'Tags': [
                     {
                         'Key': 'Name',
-                        'Value': 'andrew_perf'
+                        'Value': 'andrew_inst'
                         },
                     ]
                 },
@@ -124,7 +124,6 @@ def setup_receiver(instance):
 
 def create_receiver_singleton(image_id="ami-04a4f29a9644e4693"):
     instance = create_new_instance(1, security_group='Monitor', image_id=image_id)[0]
-    print("started instance")
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     privkey = paramiko.RSAKey.from_private_key_file('../keys/Leo-remote.pem')
@@ -134,7 +133,7 @@ def create_receiver_singleton(image_id="ami-04a4f29a9644e4693"):
     try:
         move_files(ssh, "../../scripts", "scripts")
         move_files(ssh, "../../tests", "tests")
-        execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh metrics")
+        execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity_inst.sh metrics")
     except Exception as e:
         print(e)
         instance.terminate()
@@ -153,7 +152,7 @@ def setup_sender(instance):
         move_files(ssh, "../../scripts", "scripts")
         move_files(ssh, "../../tests", "tests")
         execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh metrics")
-        execute_remote_command(ssh, "bash ~/scripts/bash/setup_bench.sh")
+        # execute_remote_command(ssh, "bash ~/scripts/bash/setup_bench.sh")
     except Exception as e:
         print(e)
         instance.terminate()
@@ -162,17 +161,13 @@ def setup_sender(instance):
 
 
 def test(args):
-    instances = create_new_instance(2, image_id="ami-0e05c3ca6e6db9733")
-    try: 
-        [contract, script_path, csv, skip] = args
-        [receiver, receiver_client] = setup_receiver(instances[0])
-        [sender, sender_client] = setup_sender(instances[1])
-        print(contract+csv + ": " + receiver.public_ip_address)
-        print(contract+csv + ": " + sender.public_ip_address)
-        result = True
-    except Exception as e:
-        print(e)
-        result = False
+    instances = create_new_instance(2, image_id="ami-07695e0338baae1ea")
+    [contract, script_path, csv] = args
+    [receiver, receiver_client] = setup_receiver(instances[0])
+    [sender, sender_client] = setup_sender(instances[1])
+    print(contract+csv + ": " + receiver.public_ip_address)
+    print(contract+csv + ": " + sender.public_ip_address)
+    result = True
     try:
         execute_remote_command(sender_client,
                                "bash ~/scripts/bash/test_sync.sh {} {} {} {}"
@@ -183,7 +178,7 @@ def test(args):
         execute_remote_command(sender_client,
                                "bash ~/scripts/bash/finish_sync.sh {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address))
-        fetch_files(sender_client, "/home/leo/results", "/u/choi/data_perf/rep-{}-{}".format(contract, csv))
+        fetch_files(sender_client, "/home/leo/results", "~/data/rep-{}-{}".format(contract, csv))
     except Exception as e:
         print(e)
         result = False
@@ -192,9 +187,7 @@ def test(args):
     clean_up(sender)
     clean_up(receiver)
     if not result:
-        print("Failed test")
-        # test(args)
-    print("END T1")
+        test(args)
 
 
 def test_2(args):
@@ -207,14 +200,9 @@ def test_2(args):
                                .format(contract, script_path, csv, receiver.public_ip_address))
     except Exception as e:
         print(e)
-    try: 
-        fetch_files(receiver_client, "/home/leo/results", "/u/choi/data/base/test_run2_{}_{}".format(contract, csv))
-    except Exception as e:
-        print(e)
-        print(contract+csv + ": " + receiver.public_ip_address)
+    fetch_files(receiver_client, "/home/leo/results", "/u/leo/data_1000/{}-{}".format(contract, csv))
     receiver_client.close()
     clean_up(receiver)
-    print("END T2")
 
 
 def test_3(args):
@@ -231,7 +219,7 @@ def test_3(args):
                                .format("{0}".format(contract), script_path, "transfer", receiver.public_ip_address, skip+5052259, "import"))
         execute_remote_command(receiver_client,
                                "bash ~/scripts/bash/import.sh {} {} {} {} {} {}"
-                               .format("{0}_secured".format(contract), script_path, "transfer", receiver.public_ip_address, skip+5052259, "import"))
+                               .format("{0}_secured".format(contract), script_path, "transfer", receiver.public_ip_address, skip+5052259, "fullnode_bak"))
         # execute_remote_command(receiver_client,
         #                        "bash ~/scripts/bash/import.sh {} {} {} {} {} {}"
         #                        .format("{0}_noopt".format(contract), script_path, "transfer", receiver.public_ip_address, skip+5052259, "fullnode_bak"))
@@ -240,20 +228,26 @@ def test_3(args):
     #  fetch_files(receiver_client, "/home/leo/header.txt", "/data/vis/mainnet10000-dwarf-{}-{}-{}-{}.txt".format(contract, csv, IOPS, INSTANCE))
     #  fetch_files(receiver_client, "/home/leo/storage.log", "/data/mainnet-{}-{}/sha3.log".format(contract, csv))
     try:
-        fetch_files(receiver_client, "/home/leo/{0}-transfer.log".format(contract), "/u/choi/data/test3_/{0}-transfer.log".format(contract, csv, IOPS, INSTANCE))
+        # fetch_files(receiver_client, "/home/leo/{0}-transfer.log".format(contract), "/u/choi/data/test3_/{0}-transfer.log".format(contract, csv, IOPS, INSTANCE))
         fetch_files(receiver_client, "/home/leo/{0}_secured-transfer.log".format(contract), "/u/choi/data/test3_/{0}_secured-transfer.log".format(contract, csv, IOPS, INSTANCE))
-        # fetch_files(receiver_client, "/home/leo/{0}_noopt-transfer.log".format(contract), "/u/choi/data/test3/{0}_noopt-transfer.log".format(contract, csv, IOPS, INSTANCE))
+        #fetch_files(receiver_client, "/home/leo/{0}_noopt-transfer.log".format(contract), "/u/choi/data/test3/{0}_noopt-transfer.log".format(contract, csv, IOPS, INSTANCE))
     except Exception as e:
         print(e)
-        print(contract+csv + ": " + receiver.public_ip_address)
-        exit(0)
+    #exit(0)
     receiver_client.close()
     clean_up(receiver)
     print("END T3")
 
-# with Pool(3) as p:
-#     p.map(test_2, generate_tests(*[int(x) for x in sys.argv[1:]]))
-with Pool(10) as p:
-    print(p.map(test, generate_tests()))
+#  with Pool(6) as p:
+    #  p.map(test_3, generate_tests(*[int(x) for x in sys.argv[1:]]))
+
 # with Pool(2) as p:
 #     print(p.map(test, generate_tests()))
+
+
+
+#test_3(["dai", "x", "x", 0])
+#test_3(["theta", "x", "x", 0])
+# test_3(["theta", "x", "x", 0])
+# test_3(["hedg", "x", "x", 0])
+#test_3(["hot", "x", "x", 0])

@@ -20,7 +20,7 @@ if 'transfer' in args.csv:
 else:
     NUM_OF_CONTRACT = 115
 
-bench = Bench(args.endpoint, args.path, 'ThetaToken', args.pow)
+bench = Bench(args.endpoint, args.path, 'HedgeTrade', args.pow)
 a = [bench.import_account(args.key1), bench.import_account(args.key2)]
 
 bec_addr = [bench.call_contract_function(a[0][0], 'constructor', [], private_key=a[0][1], wait=True)
@@ -28,7 +28,7 @@ bec_addr = [bench.call_contract_function(a[0][0], 'constructor', [], private_key
 bec_addr = [bench.wait_for_result(x, gen_pow=False).contractAddress for x in bec_addr]
 
 count = 0
-ITER = 10000
+ITER = 500
 
 addr = 0
 def next_address():
@@ -39,8 +39,8 @@ def next_address():
 
 def generate(idx, k):
     if 'transfer' in sys.argv[2]:
-        return bench.call_contract_function(a[0][0], 'transfer',
-                                            [next(next_address()), 1],
+        return bench.call_contract_function(a[0][0], 'transferFrom',
+                                            [a[0][0], next(next_address()), 1],
                                             bec_addr[k], a[0][1])
     else:
         return bench.call_contract_function(a[0][0], 'batchTransfer',

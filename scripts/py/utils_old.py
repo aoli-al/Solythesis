@@ -16,7 +16,7 @@ benchmarks = [
     #("xin", "~/scripts/py/replay_xin.py", "transfer", 155),
     #("hot", "~/scripts/py/replay_hot.py", "transfer", 155),
     #("swipe", "~/scripts/py/replay_swipe.py", "transfer", 155),
-    #("mchh", "~/scripts/py/replay_mchh.py", "tran", 33),
+    ("mchh", "~/scripts/py/replay_mchh.py", "tran", 33),
     #("cc", "~/scripts/py/replay_cc.py", "tran", 33),
     #("clv", "~/scripts/py/replay_clv.py", "tran", 33),
     #("land", "~/scripts/py/replay_land.py", "tran", 33),
@@ -27,9 +27,11 @@ benchmarks = [
     #("trinket", "~/scripts/py/replay_trinket.py", "tran", 33),
     #("bkc", "~/scripts/py/replay_bkc.py", "tran", 33),
     #("packs", "~/scripts/py/replay_packs.py", "tran", 33),
-    ("egg", "~/scripts/py/replay_egg.py", "tran", 33),
+    # ("egg", "~/scripts/py/replay_egg.py", "tran", 33),
     ]
-tests = ["", "_secured", "_noopt"]
+    
+tests = [""]
+# tests = ["", "_secured", "_noopt"]
 #tests = ["_base_new"]
 
 
