@@ -1,4 +1,0 @@
-standard EKT {
-  sum_balance = map () sum _balances[a] over (a) where true;
-  constraint totalSupply == sum_balance;
-}

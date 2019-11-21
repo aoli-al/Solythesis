@@ -1,6 +1,0 @@
-standard ERC721 {
-  sum_tokenCount =  map () sum ownerToNFTokenCount[a] over (a) where a != 0x0000000000000000000000000000000000000000;
-  constraint sum_tokenCount == tokens.length;
-  sum_ownersToken = map (b) sum 1 over (a) where idToOwner[a]==b && idToOwner[a] != 0x0000000000000000000000000000000000000000;
-  constraint forall (a) assert ownerToNFTokenCount[a] == sum_ownersToken[a];
-}

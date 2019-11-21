@@ -1,6 +1,0 @@
-standard ERC721BasicToken {
-  sum_tokenCount =  map () sum ownedTokensCount[a] over (a) where a != 0x0000000000000000000000000000000000000000;
-  constraint sum_tokenCount == allTokens.length;
-  sum_ownersToken = map (b) sum 1 over (a) where tokenOwner[a]==b && tokenOwner[a] != 0x0000000000000000000000000000000000000000;
-  constraint forall (a) assert ownedTokensCount[a] == sum_ownersToken[a];
-}

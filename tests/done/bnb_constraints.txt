@@ -1,4 +1,0 @@
-standard BNB {
-  sum_balanceOf = map () sum balanceOf[a] over (a) where true;
-  constraint totalSupply == sum_balanceOf;
-}
