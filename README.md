@@ -24,6 +24,7 @@ $ npm run antlr4ts
 $ npm run postinstall
 ```
 
+## Running Solythesis
 ### Using VS Code
 For VS Code, the repo has a `launch.json` that you can use to build the project and generate instrumented code. You can specify the file you want to instrument and the set of constraints in the `args:` parameter. For instance, to instrument the BEC contract:
 ```
