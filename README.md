@@ -33,7 +33,7 @@ For VS Code, the repo has a `launch.json` that you can use to build the project 
 
 You can go to the `Debug` tab on the left side of VS Code and launch the program. 
 
-The instrumented contracts (naive instrumented: `Solythesis_baseline`, instrumented with no-optimizations: `Solythesis_no_optimization`, and instrumented with optimizations `Solythesis`) will be generated in the same directory as the original contract. 
+The instrumented contracts (naive instrumented: `Solythesis_baseline`, instrumented with no-optimizations: `Solythesis_no_optimization`, and instrumented with optimizations `Solythesis`) will be generated in the same directory as the original contract. For example, the path of instrumented BEC contracts will be: `/tests/ERC20_BEC_Solythesis.sol`. 
 
 ### On the terminal
 
