@@ -66,7 +66,7 @@ weights[issueId][voter] = opt_48;
 }
 
 issueDescriptions[issueId] = issueDesc_;
-{
+for (uint256 index_52 = 0; index_52 < index_51; index_52 += 1) {
 assert(y_50[index_52] == 0 || sum_votes[x_49[index_52]][y_50[index_52]] == weightedVoteCounts[x_49[index_52]][y_50[index_52]]);
 }
 
@@ -119,14 +119,14 @@ ballots[issueId][msg.sender] = opt_56;
 
 emit OnVote(issueId, msg.sender, option);
 {
-{
+for (uint256 index_59 = 0; index_59 < index_55; index_59 += 1) {
 assert(y_54[index_59] == 0 || sum_votes[x_53[index_59]][y_54[index_59]] == weightedVoteCounts[x_53[index_59]][y_54[index_59]]);
 }
 
 return true;
 }
 
-{
+for (uint256 index_60 = 0; index_60 < index_55; index_60 += 1) {
 assert(y_54[index_60] == 0 || sum_votes[x_53[index_60]][y_54[index_60]] == weightedVoteCounts[x_53[index_60]][y_54[index_60]]);
 }
 

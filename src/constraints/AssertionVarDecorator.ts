@@ -300,6 +300,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
         setToZero.unshift(forLoop)
         return createBlock(setToZero)
       }
+      return forLoop
     }
     return firstFor ? firstFor : lastBlock
   }
