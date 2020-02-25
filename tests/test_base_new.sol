@@ -61,20 +61,32 @@ a_checker_1[_to] = true;
 
 emit Transfer(msg.sender, _to, _value);
 {
+{
+{
+sum_balance = 0;
+}
+
 for (uint256 index_2 = 0; index_2 < a_store_2.length; index_2 += 1) {
-if (index_2 == 0) sum_balance = 0;
 sum_balance += balances[a_store_2[index_2]];
 assert(sum_balance >= balances[a_store_2[index_2]]);
+}
+
 }
 
 assert(totalSupply == sum_balance);
 return true;
 }
 
+{
+{
+sum_balance = 0;
+}
+
 for (uint256 index_3 = 0; index_3 < a_store_2.length; index_3 += 1) {
-if (index_3 == 0) sum_balance = 0;
 sum_balance += balances[a_store_2[index_3]];
 assert(sum_balance >= balances[a_store_2[index_3]]);
+}
+
 }
 
 assert(totalSupply == sum_balance);
@@ -110,20 +122,32 @@ a_checker_1[_to] = true;
 allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
 emit Transfer(_from, _to, _value);
 {
+{
+{
+sum_balance = 0;
+}
+
 for (uint256 index_4 = 0; index_4 < a_store_2.length; index_4 += 1) {
-if (index_4 == 0) sum_balance = 0;
 sum_balance += balances[a_store_2[index_4]];
 assert(sum_balance >= balances[a_store_2[index_4]]);
+}
+
 }
 
 assert(totalSupply == sum_balance);
 return true;
 }
 
+{
+{
+sum_balance = 0;
+}
+
 for (uint256 index_5 = 0; index_5 < a_store_2.length; index_5 += 1) {
-if (index_5 == 0) sum_balance = 0;
 sum_balance += balances[a_store_2[index_5]];
 assert(sum_balance >= balances[a_store_2[index_5]]);
+}
+
 }
 
 assert(totalSupply == sum_balance);
@@ -229,20 +253,32 @@ emit Transfer(msg.sender, _receivers[i], _value);
 }
 
 {
+{
+{
+sum_balance = 0;
+}
+
 for (uint256 index_6 = 0; index_6 < a_store_2.length; index_6 += 1) {
-if (index_6 == 0) sum_balance = 0;
 sum_balance += balances[a_store_2[index_6]];
 assert(sum_balance >= balances[a_store_2[index_6]]);
+}
+
 }
 
 assert(totalSupply == sum_balance);
 return true;
 }
 
+{
+{
+sum_balance = 0;
+}
+
 for (uint256 index_7 = 0; index_7 < a_store_2.length; index_7 += 1) {
-if (index_7 == 0) sum_balance = 0;
 sum_balance += balances[a_store_2[index_7]];
 assert(sum_balance >= balances[a_store_2[index_7]]);
+}
+
 }
 
 assert(totalSupply == sum_balance);
