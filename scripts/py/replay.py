@@ -4,7 +4,7 @@ import progressbar
 import argparse
 from bench import Bench
 
-ITER = 1000
+ITER = 100
 
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('endpoint')
@@ -39,7 +39,7 @@ bench.address_mapping(origin_creator, contract_creator[0])
 print('creator: ' + contract_creator[0])
 
 idx = 0
-for idx in range(10000):
+for idx in range(ITER):
     transaction = transactions[idx]
     if int(transaction['status']) == 0:
         continue

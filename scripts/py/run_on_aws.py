@@ -113,8 +113,9 @@ def setup_receiver(instance):
                              auth_timeout=30000)
     try:
         move_files(ssh, "../../scripts", "scripts")
-        move_files(ssh, "../../tests", "tests")
+        move_files(ssh, "../contracts", "tests")
         execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh metrics", block=False)
+        execute_remote_command(ssh, "bash ~/scripts/bash/setup_bench.sh")
     except Exception as e:
         print(e)
         instance.terminate()
@@ -150,9 +151,9 @@ def setup_sender(instance):
                                  username='leo', pkey=privkey, timeout=30000, banner_timeout=30000,
                                  auth_timeout=30000)
         move_files(ssh, "../../scripts", "scripts")
-        move_files(ssh, "../../tests", "tests")
+        move_files(ssh, "../contracts", "tests")
         execute_remote_command(ssh, "bash ~/scripts/bash/setup_parity.sh metrics")
-        # execute_remote_command(ssh, "bash ~/scripts/bash/setup_bench.sh")
+        execute_remote_command(ssh, "bash ~/scripts/bash/setup_bench.sh")
     except Exception as e:
         print(e)
         instance.terminate()
@@ -161,7 +162,7 @@ def setup_sender(instance):
 
 
 def test(args):
-    instances = create_new_instance(2, image_id="ami-07695e0338baae1ea")
+    instances = create_new_instance(2, image_id="ami-0e05c3ca6e6db9733")
     [contract, script_path, csv] = args
     [receiver, receiver_client] = setup_receiver(instances[0])
     [sender, sender_client] = setup_sender(instances[1])
@@ -178,7 +179,7 @@ def test(args):
         execute_remote_command(sender_client,
                                "bash ~/scripts/bash/finish_sync.sh {} {} {} {}"
                                .format(contract, script_path, csv, receiver.public_ip_address))
-        fetch_files(sender_client, "/home/leo/results", "~/data/rep-{}-{}".format(contract, csv))
+        fetch_files(sender_client, "/home/leo/results", "/u/leo/data/rep-{}-{}".format(contract, csv))
     except Exception as e:
         print(e)
         result = False
@@ -186,8 +187,8 @@ def test(args):
     receiver_client.close()
     clean_up(sender)
     clean_up(receiver)
-    if not result:
-        test(args)
+    #  if not result:
+        #  test(args)
 
 
 def test_2(args):
@@ -227,12 +228,14 @@ def test_3(args):
     receiver_client.close()
     clean_up(receiver)
 
+
+test(["ERC20_BEC_baseline", "~/scripts/py/replay.py", "erc20"])
 #  with Pool(6) as p:
-    #  p.map(test_3, generate_tests(*[int(x) for x in sys.argv[1:]]))
+    #  p.map(test, generate_tests(*[int(x) for x in sys.argv[1:]]))
 
 # with Pool(2) as p:
 #     print(p.map(test, generate_tests()))
 
 
 
-test_3(["ekt", "x", "x", 0])
+#  test_3(["ekt", "x", "x", 0])

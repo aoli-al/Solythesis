@@ -28,7 +28,7 @@ bec_addr = [bench.call_contract_function(a[0][0], 'constructor', [], private_key
 bec_addr = [bench.wait_for_result(x, gen_pow=False).contractAddress for x in bec_addr]
 
 count = 0
-ITER = 1000
+ITER = 500
 
 addr = 0
 def next_address():
