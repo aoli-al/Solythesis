@@ -17,7 +17,7 @@ sleep 5
 
 ~/parity-ethereum/target/release/parity export blocks \
   --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/foundation.json \
- --base-path=/home/leo/fullnode ~/results/$1-$3-mainchain.bin  --from 5052259
+ --base-path=/home/leo/fullnode_bak ~/results/$1-$3-mainchain.bin  --from 5052259
 
 ~/parity-ethereum/target/release/parity import ~/results/$1-$3-mainchain.bin\
   --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/foundation.json \

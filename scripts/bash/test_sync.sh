@@ -7,7 +7,7 @@ mkdir ~/results
 # sudo rm $2-$4.blktrace.*
 nohup ~/parity-ethereum/target/release/parity --accounts-refresh=0 --fast-unlock --no-warp \
   --config ~/scripts/parity/config.dev-insecure.toml  --chain ~/scripts/parity/foundation.json\
-  --base-path=/home/leo/fullnode --no-discovery  \
+  --base-path=/home/leo/fullnode_bak --unsafe-expose --logging=info \
   --bootnodes=enode://9198e9a929c82722a00db6259e3601b6a17d5a62dd4d4b3dfd5388657cbefade31cde4ae2e9ef12cad672de063ca9756b7bca0d9196b6eb6aff33fab367baae4@$4:30303  &
 parity_pid=$!
 ~/.local/bin/psrecord $parity_pid --interval 0.1 --log ~/results/$1-$3.txt

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 rm -rf /data/parity
 ~/repos/parity-ethereum/target/release/parity import \
-  --config ~/Solythesis/scripts/parity/config.dev-insecure.toml  --chain ~/Solythesis/scripts/parity/config.json\
+  --config ~/Solythesis/scripts/parity/config.dev-insecure.toml  --chain ~/Solythesis/scripts/parity/foundation.json\
   --base-path=/data/parity --logging=info /data/$1/$1.bin > /data/$1/$1.stat
 # python3 ~/scripts/py/visual.py /data/$1/$1.txt
 mv /data/parity/chains/DevelopmentChain/db/5121426b82ed1df6/overlayrecent/db/LOG /data/$1/$1.log
