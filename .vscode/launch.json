@@ -10,7 +10,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "args": ["./tests/vote.sol", "./tests/constraints2.txt"],
+      "args": ["./tests/ERC20_SWIPE.sol", "./tests/ERC20_SWIPE_Solythesis_constraints.txt"],
       "program": "${workspaceFolder}/src/main.ts",
       "preLaunchTask": "tsc: build - tsconfig.json",
       "outFiles": [

@@ -30,6 +30,7 @@ import { SubstutionAnalyzer } from "../analyzer/SubstitutionAnalyzer"
 
 export const updateOps = ["=", "-=", "+=", "*=", "/="]
 const depthTracker = generateNewVarName("depth")
+const memoryStart = generateNewVarName("memoryStart")
 
 export class AssertionDectorator extends ContractVisitor implements Visitor  {
   public constraints: Node[]
@@ -37,6 +38,8 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
   public checkConstraints: Set<Node> = new Set()
   public stateVarCache: Map<string, string> = new Map()
   public stateVarCacheReverse: Map<string, string> = new Map()
+  public totalMemorySize: number
+  public allocatedMemorySize: number = 0
   public canAddAssertions = false
   public contractVars: Map<string, TypeName>
   public functionDecorators: PendingStatements = new PendingStatements()
@@ -47,13 +50,13 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
   private contractName: string = ""
   private forallOptimization: boolean
   private depthRequired: boolean = false
-  private virtualRun: boolean = false
   private baselineImplementation: boolean = false
   private functionConstraints: Map<string, Map<string, Set<Node>>>
   constructor(constraints: Node[], functionConstraints: Map<string, Map<string, Set<Node>>>,
               variables: Map<string, StateVariableDeclaration[]>,
               contractVars: Map<string, TypeName>, optimize: boolean,
-              forallOptimization: boolean = true, baselineImplementation: boolean = false) {
+              forallOptimization: boolean = true, baselineImplementation: boolean = false,
+              totalMemorySize: number = 0) {
     super()
     this.constraints = constraints
     this.variables = variables
@@ -62,6 +65,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     this.functionConstraints = functionConstraints
     this.forallOptimization = forallOptimization
     this.baselineImplementation = baselineImplementation
+    this.totalMemorySize = totalMemorySize
   }
   public ContractDefinition = (node: ContractDefinition) => {
     this.contractName = node.name
@@ -78,15 +82,17 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     this.stateVarCacheReverse = new Map()
     this.functionDecorators = new PendingStatements()
     this.forAllCacheMap = new Map()
-    this.canAddAssertions = node.visibility === "public"
+    this.canAddAssertions = node.visibility === "public" &&
+      (!node.stateMutability || !["pure", "view", "constant"].includes(node.stateMutability))
     this.pendingReturns = []
     const name = (() => {
       if (node.isConstructor || !node.name) { return "<Constructor>" }
       if (node.name.length === 0) { return  "<Fallback>" }
       return node.name
     })()
-    this.depthRequired = getCallers(this.contractName, name).length > 0 ||
-      getSubFunctions(this.contractName, name).length > 0
+    this.depthRequired = (getCallers(this.contractName, name).length > 0 ||
+      getSubFunctions(this.contractName, name).length > 0) &&
+      (!node.stateMutability || !["pure", "view", "constant"].includes(node.stateMutability))
     this.checkConstraints = [...getSubFunctions(this.contractName, name), [this.contractName, name]].map((it) => {
       if (!this.functionConstraints.has(it[0]) ||
         !this.functionConstraints.get(it[0])!.has(it[1])) { return new Set() as Set<Node>  }
@@ -100,6 +106,8 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
         node.body.statements.unshift(...this.functionDecorators.pre)
         if (this.depthRequired) {
           const depth = createIdentifier(depthTracker)
+          const declare = createVariableDeclarationStmt(
+            [createVariableDeclaration(depthTracker, createElementaryTypeName("uint256"), false)])
           const one = createNumberLiteral("1")
           const increaseOne = createBinaryOperation(depth, one, "+=")
           node.body.statements.unshift(createExpressionStmt(increaseOne))
