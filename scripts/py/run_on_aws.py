@@ -229,7 +229,7 @@ def test_3(args):
     clean_up(receiver)
 
 
-test(["ERC20_BEC", "~/scripts/py/replay_bec.py", "transfer"])
+#  test(["ERC20_BEC", "~/scripts/py/replay_bec.py", "transfer"])
 #  with Pool(6) as p:
     #  p.map(test, generate_tests(*[int(x) for x in sys.argv[1:]]))
 
@@ -238,4 +238,4 @@ test(["ERC20_BEC", "~/scripts/py/replay_bec.py", "transfer"])
 
 
 
-#  test_3(["ekt", "x", "x", 0])
+test_3(["ekt", "x", "x", 0])
