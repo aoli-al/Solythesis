@@ -2,7 +2,7 @@ import {
   ArrayTypeName, ASTNode, BinaryOperation, Block, BooleanLiteral, ContractDefinition, ElementaryTypeName,
   Expression, ExpressionStatement, ForStatement, FunctionCall, FunctionDefinition, Identifier, IfStatement,
   IndexAccess, Mapping, MemberAccess, NumberLiteral, SourceUnit, StateVariableDeclaration, VariableDeclaration,
-  VariableDeclarationStatement, visit, Visitor, InlineAssemblyStatement, AssemblyBlock, AssemblyAssignment, AssemblyCall, HexNumber, DecimalNumber, UnaryOp, UnaryOperation,
+  VariableDeclarationStatement, visit, Visitor, InlineAssemblyStatement, AssemblyBlock, AssemblyAssignment, AssemblyCall, HexNumber, DecimalNumber, UnaryOp, UnaryOperation, AssemblyLocalDefinition,
 } from "solidity-parser-antlr"
 
 export class Printer implements Visitor {
@@ -142,6 +142,19 @@ export class Printer implements Visitor {
     return false
   }
 
+  public AssemblyLocalDefinition = (node: AssemblyLocalDefinition) => {
+    this.source += "let "
+    node.names.forEach((it, index) => {
+      this.visitOrPrint(it)
+      if (index !== node.names.length -1) {
+        this.source += ", "
+      }
+    })
+    this.source += " := "
+    this.visitOrPrint(node.expression)
+    return false
+  }
+
   public AssemblyAssignment = (node: AssemblyAssignment) => {
     this.source += node.names.map((it) => it.name).join(",") + " := "
     this.visitOrPrint(node.expression)
@@ -155,7 +168,7 @@ export class Printer implements Visitor {
       node.arguments.forEach((it, index) => {
         this.visitOrPrint(it)
         if (index !== node.arguments.length - 1) {
-          this.source += ","
+          this.source += ", "
         }
       })
       this.source += ")"

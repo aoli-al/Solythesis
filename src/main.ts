@@ -6,7 +6,7 @@ import { SolidityParser } from "./antlr/SolidityParser"
 import { ConstraintBuilder } from "./constraints/ConstraintBuilder"
 import { QuantityExp } from "./constraints/nodes/Node"
 import { AssertionDectorator } from "./constraints/AssertionVarDecorator"
-import { GenStateVariables as StateVariableGenerator } from "./constraints/StateVariableGenerator"
+import { GenStateVariables as StateVariableGenerator, arraySize } from "./constraints/StateVariableGenerator"
 import { Printer } from "./printer/Printer"
 import { VariableCollector } from "./visitors/VariableCollector"
 import { ConstraintsCollector } from "./constraints/ConstraintsCollector"
@@ -64,7 +64,7 @@ function generate(contractPath: string, constraintPath: string,
   const newAst = parser.parse(contract.toString("utf-8"), { range: true })
   const decoratorRound2 =
     new AssertionDectorator(constraints, constraintsCollector.functionConstraints,
-      stateVars, semanticAnalyzer.contractVars, stateVarOpt, forallOpt, baseline)
+      stateVars, semanticAnalyzer.contractVars, stateVarOpt, forallOpt, baseline, stateVarGen.dynamicArrays * arraySize)
   decoratorRound2.visit(newAst)
 
   const printer = new Printer(contract.toString("utf-8"))

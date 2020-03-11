@@ -7,6 +7,8 @@ import {
   createStateVariableDeclaration, createVariableDeclaration,
 } from "./utilities"
 
+export const arraySize = 19
+
 let counter = 0
 export function generateNewVarName(base: string) {
   return base + "_" + (counter++).toString()
@@ -54,14 +56,15 @@ export class GenStateVariables {
       if (this.forallOptimization) {
         this.createStateVariable(name, createElementaryTypeName("uint256"))
         node.memoryLocation.set(it.name, this.dynamicArrays)
-        this.dynamicArrays += 1
+        // this.dynamicArrays += 1
       } else {
         this.createStateVariable(it.name, createArray(node.muWithTypes.get(it.name)!))
       }
-      node.muStateVars.set(it.name, name)
+      node.muStateVars.set(it.name, (this.dynamicArrays * (arraySize + 1) * 32))
+      this.dynamicArrays += 1
     })
-    if (node.mu.length !== node.unboundedMu.size) {
-      this.createStateVariable(node.index, createElementaryTypeName("uint256"))
-    }
+    // if (node.mu.length !== node.unboundedMu.size) {
+    //   this.createStateVariable(node.index, createElementaryTypeName("uint256"))
+    // }
   }
 }

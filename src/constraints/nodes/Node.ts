@@ -56,7 +56,7 @@ export interface ForAllExpression extends BaseNode {
   type: "ForAllExpression"
   memoryLocation: Map<string, number>
   index: string
-  muStateVars: Map<string, string>
+  muStateVars: Map<string, number>
   mu: Identifier[]
   universe: Map<string, [string, string]>
   muWithTypes: Map<string, TypeName>

@@ -11,7 +11,7 @@ import {
   Node,
   SyntaxKind,
 } from "./nodes/Node"
-import { generateNewVarName } from "./StateVariableGenerator"
+import { generateNewVarName, arraySize } from "./StateVariableGenerator"
 
 function Node(this: Node, kind: SyntaxKind) {
   this.children = []
@@ -377,7 +377,28 @@ function getInlineAssembly(assembly: string) {
   return ((ast.children[0] as ContractDefinition).subNodes[0] as FunctionDefinition).body!.statements[0]
 }
 
-export function createGlobalArray(localName: string, globalName: string) {
+export function allocateMemory(localName: string, globalName: string, storeSize: number) {
+  let str = ""
+  for (let i = 0; i < storeSize; i += arraySize + 1) {
+    str += `mstore(add(${localName}, ${i * 32}), 0)\n`
+  }
+
+  const template = `
+  contract C {
+    function check() public  {
+      assembly {
+        ${localName} := mload(0x40)
+        mstore(0x40, add(${localName}, ${storeSize * 32}))
+        sstore(${globalName}_slot, ${localName})
+        ${str}
+      }
+    }
+  }
+  `
+  return getInlineAssembly(template)
+}
+
+export function createGlobalArray(localName: string, globalName: string, storeSize: number) {
   const template = `
   contract C {
     function check() public  {
@@ -406,12 +427,14 @@ export function loadGlobalArray(localName: string, globalName: string) {
   return getInlineAssembly(template)
 }
 
-export function storeArrayValue(array: string, index: string, value: string) {
+export function storeArrayValue(array: string, value: string) {
   const template = `
   contract C {
     function check() public  {
       assembly {
-        mstore(add(${array}, mul(sload(${index}_slot), 32)), ${value})
+        let tmp := add(mload(${array}), 1)
+        mstore(${array}, tmp)
+        mstore(add(${array}, mul(tmp, 32)), ${value})
       }
     }
   }
@@ -424,7 +447,46 @@ export function loadArrayValue(array: string, index: string, variable: string) {
   contract C {
     function check() public  {
       assembly {
-        ${variable} := mload(add(${array}, mul(${index}, 32)))
+        ${variable} := mload(add(${array}, mul(add(${index}, 1), 32)))
+      }
+    }
+  }
+  `
+  return getInlineAssembly(template)
+}
+
+export function loadMemoryAddress(memoryStart: string, offset: number, variable: string) {
+  const template = `
+  contract C {
+    function check() public  {
+      assembly {
+        ${variable} := add(sload(${memoryStart}_slot), ${offset})
+      }
+    }
+  }
+  `
+  return getInlineAssembly(template)
+}
+
+export function loadMemoryValue(memoryStart: string, offset: number, variable: string) {
+  const template = `
+  contract C {
+    function check() public  {
+      assembly {
+        ${variable} := mload(add(sload(${memoryStart}_slot), ${offset}))
+      }
+    }
+  }
+  `
+  return getInlineAssembly(template)
+}
+
+export function storeMemoryValue(memoryStart: string, offset: number, value: string) {
+  const template = `
+  contract C {
+    function check() public  {
+      assembly {
+        mstore(add(sload(${memoryStart}_slot), ${offset}), ${value})
       }
     }
   }

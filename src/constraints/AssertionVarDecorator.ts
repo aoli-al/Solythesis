@@ -25,12 +25,18 @@ import {
   createForloop,
   createUnaryOperation,
   createIndexAccessRecursive,
+  loadMemoryValue,
+  loadMemoryAddress,
+  storeMemoryValue,
+  allocateMemory,
 } from "./utilities"
 import { SubstutionAnalyzer } from "../analyzer/SubstitutionAnalyzer"
 
 export const updateOps = ["=", "-=", "+=", "*=", "/="]
-const depthTracker = generateNewVarName("depth")
 const memoryStart = generateNewVarName("memoryStart")
+const entry = generateNewVarName("entry")
+const one = createNumberLiteral("1")
+const zero = createNumberLiteral("0")
 
 export class AssertionDectorator extends ContractVisitor implements Visitor  {
   public constraints: Node[]
@@ -46,7 +52,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
   public enableMappingOptimization: boolean
   public canOptimize: boolean = false
   public pendingReturns: Block[] = []
-  public forAllCacheMap: Map<ForAllExpression, [Map<string, string>, Identifier]> = new Map()
+  public forAllCacheMap: Map<ForAllExpression, [Map<string, string>, Expression]> = new Map()
   private contractName: string = ""
   private forallOptimization: boolean
   private depthRequired: boolean = false
@@ -72,7 +78,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     node.subNodes = this.visit(node.subNodes)
     if (this.variables.has(node.name)) {
       node.subNodes = [...this.variables.get(node.name)!, ...node.subNodes]
-      const varDecl = createVariableDeclaration(depthTracker, createElementaryTypeName("uint256"), true)
+      const varDecl = createVariableDeclaration(memoryStart, createElementaryTypeName("uint256"), true)
       node.subNodes.unshift(createStateVariableDeclaration([varDecl]))
     }
     return node
@@ -98,20 +104,26 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
         !this.functionConstraints.get(it[0])!.has(it[1])) { return new Set() as Set<Node>  }
       return this.functionConstraints.get(it[0])!.get(it[1])!
     }).reduce((left, right) => new Set([...left, ...right]), new Set())
-    this.canOptimize = canOptimize(this.contractName, name)
+    this.canOptimize = canOptimize(this.contractName, name) && this.canAddAssertions
     node.body = this.visit(node.body)
     if (node.body) {
       if (this.canAddAssertions && this.checkConstraints.size !== 0) {
         node.body.statements.push(...this.generateAssertions())
         node.body.statements.unshift(...this.functionDecorators.pre)
-        if (this.depthRequired) {
-          const depth = createIdentifier(depthTracker)
-          const declare = createVariableDeclarationStmt(
-            [createVariableDeclaration(depthTracker, createElementaryTypeName("uint256"), false)])
-          const one = createNumberLiteral("1")
-          const increaseOne = createBinaryOperation(depth, one, "+=")
-          node.body.statements.unshift(createExpressionStmt(increaseOne))
-        }
+        const tmp = generateNewVarName("tmp")
+        const entryVar = createIdentifier(entry)
+        const tmpDecl =
+          createVariableDeclarationStmt([createVariableDeclaration(tmp, createElementaryTypeName("uint256"), false)])
+        const entryDecl =
+          createVariableDeclarationStmt([createVariableDeclaration(entry, createElementaryTypeName("uint256"), false)],
+          zero)
+        const ifStmt = createIfStatment(createBinaryOperation(createIdentifier(memoryStart), zero, "=="),
+          createBlock([
+            createExpressionStmt(createBinaryOperation(entryVar, one, "=")),
+            allocateMemory(tmp, memoryStart, this.totalMemorySize)]))
+        node.body.statements.unshift(ifStmt)
+        node.body.statements.unshift(tmpDecl)
+        node.body.statements.unshift(entryDecl)
       } else {
         node.body.statements.unshift(...this.functionDecorators.pre)
       }
@@ -192,8 +204,6 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     return stmts
   }
   private generateAssertions(): Statement[] {
-    const depth = createIdentifier(depthTracker)
-    const decreaseOne = createExpressionStmt(createBinaryOperation(depth, createNumberLiteral("1"), "-="))
     const generate = (node: Node): Array<(ForStatement | ExpressionStatement | Block)> => {
       switch (node.type) {
         case "ForAllExpression": {
@@ -220,8 +230,10 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
 
     if (this.depthRequired) {
       const ifStatment = createIfStatment(
-        createBinaryOperation(depth, createNumberLiteral("0"), "=="), createBlock(assertions))
-      return [decreaseOne, ifStatment]
+        createBinaryOperation(createIdentifier(entry),
+          createNumberLiteral("1"), "=="), createBlock(assertions.concat(
+            [createExpressionStmt(createBinaryOperation(createIdentifier(memoryStart), zero, "="))])))
+      return [ifStatment]
     } else {
       return assertions
     }
@@ -302,12 +314,12 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
         })
         setToZero.unshift(forLoop)
         return createBlock(setToZero)
-      } else if (!this.canOptimize) {
-        const setToZero: Statement[] = [createExpressionStmt(
-          createBinaryOperation(createIdentifier(node.index), createNumberLiteral("0"), "="))]
-        setToZero.unshift(forLoop)
-        return createBlock(setToZero)
       }
+      //   // const setToZero: Statement[] = [createExpressionStmt(
+      //   //   createBinaryOperation(createIdentifier(node.index), createNumberLiteral("0"), "="))]
+      //   // setToZero.unshift(forLoop)
+      //   return forLoop
+      // }
       return forLoop
     }
     return firstFor ? firstFor : lastBlock
@@ -319,7 +331,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       .forEach((it) => node.unboundedMu.add(it.name))
     block.statements = []
     const forallCache = this.generateOrCreateForAllCache(node)
-    const index = forallCache[1] as Identifier
+    const index = forallCache[1]
     forallCache[0].forEach((localArray, muName) => {
       const value = muBindings.get(muName)!
       if (!this.forallOptimization) {
@@ -334,11 +346,11 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
           const tmpVar = generateNewVarName("tmp")
           const varDecl = createVariableDeclaration(tmpVar, node.muWithTypes.get(muName)!, false)
           block.statements.push(createVariableDeclarationStmt([varDecl], muBindings.get(muName)!))
-          block.statements.push(storeArrayValue(localArray, index.name, tmpVar))
+          block.statements.push(storeArrayValue(localArray, tmpVar))
         }
       }
     })
-    if (this.forallOptimization && node.mu.length !== node.unboundedMu.size) {
+    if (this.forallOptimization && node.mu.length !== node.unboundedMu.size && index.type === "Identifier") {
       block.statements.push(createExpressionStmt(createBinaryOperation(index, createNumberLiteral("1"), "+=")))
     }
     return new PendingStatements([block])
@@ -363,7 +375,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     }
   }
 
-  private generateOrCreateForAllCache(node: ForAllExpression): [Map<string, string>, Identifier] {
+  private generateOrCreateForAllCache(node: ForAllExpression): [Map<string, string>, Expression] {
     const globalArray = !this.canOptimize
     if (!this.forAllCacheMap.has(node)) {
       const names: Map<string, string> = new Map()
@@ -384,26 +396,30 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
         const decl = createVariableDeclaration(arr, arrayType, false, "memory")
         this.functionDecorators.pre.push(createVariableDeclarationStmt([decl]))
         if (globalArray) {
-          const initAssembly = createGlobalArray(arr, node.muStateVars.get(it.name)!)
-          const loadAssembly = loadGlobalArray(arr, node.muStateVars.get(it.name)!)
-          if (!this.canAddAssertions) {
-            this.functionDecorators.pre.push(loadAssembly)
-          } else if (this.depthRequired) {
-            const ifStmt = createIfStatment(
-              createBinaryOperation(createIdentifier(depthTracker), createNumberLiteral("1"), "<="),
-              initAssembly, loadAssembly)
-            this.functionDecorators.pre.push(ifStmt)
-          } else if (this.canAddAssertions) {
-            this.functionDecorators.pre.push(initAssembly)
-          }
+          // const initAssembly = createGlobalArray(arr, node.muStateVars.get(it.name)!)
+          const loadAssembly = loadMemoryAddress(memoryStart, node.muStateVars.get(it.name)!, arr)
+          // const loadAssembly = loadGlobalArray(arr, node.muStateVars.get(it.name)!)
+          this.functionDecorators.pre.push(loadAssembly)
+          // if (!this.canAddAssertions) {
+          //   this.functionDecorators.pre.push(loadAssembly)
+          // } else if (this.depthRequired) {
+          //   const ifStmt = createIfStatment(
+          //     createBinaryOperation(createIdentifier(depthTracker),
+          //       createNumberLiteral("1"), "<="),
+          //     initAssembly, loadAssembly)
+          //   this.functionDecorators.pre.push(ifStmt)
+          // } else if (this.canAddAssertions) {
+          //   this.functionDecorators.pre.push(initAssembly)
+          // }
         }
       })
-      const index = globalArray ? node.index : generateNewVarName("index")
+      const index = globalArray ? names.values().next().value as string : generateNewVarName("index")
+      const indexVar = createIdentifier(index)
       if (!globalArray && this.forallOptimization) {
         const varDecl = createVariableDeclaration(index, createElementaryTypeName("uint256"), false)
         this.functionDecorators.pre.push(createVariableDeclarationStmt([varDecl], createNumberLiteral("0")))
       }
-      this.forAllCacheMap.set(node, [names, createIdentifier(index)])
+      this.forAllCacheMap.set(node, [names, globalArray ? createMemberAccess(indexVar, "length") : indexVar])
     }
     return this.forAllCacheMap.get(node)!
   }
