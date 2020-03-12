@@ -64,7 +64,8 @@ function generate(contractPath: string, constraintPath: string,
   const newAst = parser.parse(contract.toString("utf-8"), { range: true })
   const decoratorRound2 =
     new AssertionDectorator(constraints, constraintsCollector.functionConstraints,
-      stateVars, semanticAnalyzer.contractVars, stateVarOpt, forallOpt, baseline, stateVarGen.dynamicArrays * arraySize)
+      stateVars, semanticAnalyzer.contractVars, stateVarOpt,
+      forallOpt, baseline, stateVarGen.dynamicArrays * (arraySize + 1))
   decoratorRound2.visit(newAst)
 
   const printer = new Printer(contract.toString("utf-8"))

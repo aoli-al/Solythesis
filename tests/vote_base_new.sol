@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 contract AdvancedTokenVote1202 {
-uint256 depth_0;
+uint256 memoryStart_0;
 mapping (address=>bool) b_checker_6;
 address[] b_store_7;
 mapping (uint=>bool) a_checker_2;
@@ -28,6 +28,18 @@ optionDescMap[1][2] = "Yes";
 }
 
 function createIssue (uint issueId, address _tokenAddr, uint[] memory options_, address[] memory qualifiedVoters_, string memory issueDesc_) public {
+uint256 entry_1 = 0;
+uint256 tmp_12;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_12 := mload(0x40)
+mstore(0x40, add(tmp_12, 0))
+sstore(memoryStart_0_slot, tmp_12)
+}
+
+}
+
 require(options_.length >= 2);
 require(options[issueId].length == 0);
 options[issueId] = options_;
@@ -51,17 +63,17 @@ c_checker_4[ballots[issueId][voter]] = true;
 
 issueDescriptions[issueId] = issueDesc_;
 {
-for (uint256 index_2 = 0; index_2 < a_store_3.length; index_2 += 1) {
-for (uint256 index_3 = 0; index_3 < c_store_5.length; index_3 += 1) {
-sum_votes[a_store_3[index_2]][c_store_5[index_3]] = 0;
+for (uint256 index_3 = 0; index_3 < a_store_3.length; index_3 += 1) {
+for (uint256 index_4 = 0; index_4 < c_store_5.length; index_4 += 1) {
+sum_votes[a_store_3[index_3]][c_store_5[index_4]] = 0;
 }
 
 }
 
-for (uint256 index_4 = 0; index_4 < b_store_7.length; index_4 += 1) {
-for (uint256 index_5 = 0; index_5 < a_store_3.length; index_5 += 1) {
-sum_votes[a_store_3[index_5]][ballots[a_store_3[index_5]][b_store_7[index_4]]] += weights[a_store_3[index_5]][b_store_7[index_4]];
-assert(sum_votes[a_store_3[index_5]][ballots[a_store_3[index_5]][b_store_7[index_4]]] >= weights[a_store_3[index_5]][b_store_7[index_4]]);
+for (uint256 index_5 = 0; index_5 < b_store_7.length; index_5 += 1) {
+for (uint256 index_6 = 0; index_6 < a_store_3.length; index_6 += 1) {
+sum_votes[a_store_3[index_6]][ballots[a_store_3[index_6]][b_store_7[index_5]]] += weights[a_store_3[index_6]][b_store_7[index_5]];
+assert(sum_votes[a_store_3[index_6]][ballots[a_store_3[index_6]][b_store_7[index_5]]] >= weights[a_store_3[index_6]][b_store_7[index_5]]);
 }
 
 }
@@ -78,6 +90,18 @@ assert(y_store_11[index_11] == 0 || sum_votes[x_store_9[index_10]][y_store_11[in
 }
 
 function vote (uint issueId, uint option) public returns (bool success) {
+uint256 entry_1 = 0;
+uint256 tmp_29;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_29 := mload(0x40)
+mstore(0x40, add(tmp_29, 0))
+sstore(memoryStart_0_slot, tmp_29)
+}
+
+}
+
 require(isOpen[issueId]);
 uint256 weight = weights[issueId][msg.sender];
 weightedVoteCounts[issueId][option] += weight;if (! y_checker_10[option]) {
@@ -105,17 +129,17 @@ c_checker_4[ballots[issueId][msg.sender]] = true;
 emit OnVote(issueId, msg.sender, option);
 {
 {
-for (uint256 index_12 = 0; index_12 < a_store_3.length; index_12 += 1) {
-for (uint256 index_13 = 0; index_13 < c_store_5.length; index_13 += 1) {
-sum_votes[a_store_3[index_12]][c_store_5[index_13]] = 0;
+for (uint256 index_13 = 0; index_13 < a_store_3.length; index_13 += 1) {
+for (uint256 index_14 = 0; index_14 < c_store_5.length; index_14 += 1) {
+sum_votes[a_store_3[index_13]][c_store_5[index_14]] = 0;
 }
 
 }
 
-for (uint256 index_14 = 0; index_14 < b_store_7.length; index_14 += 1) {
-for (uint256 index_15 = 0; index_15 < a_store_3.length; index_15 += 1) {
-sum_votes[a_store_3[index_15]][ballots[a_store_3[index_15]][b_store_7[index_14]]] += weights[a_store_3[index_15]][b_store_7[index_14]];
-assert(sum_votes[a_store_3[index_15]][ballots[a_store_3[index_15]][b_store_7[index_14]]] >= weights[a_store_3[index_15]][b_store_7[index_14]]);
+for (uint256 index_15 = 0; index_15 < b_store_7.length; index_15 += 1) {
+for (uint256 index_16 = 0; index_16 < a_store_3.length; index_16 += 1) {
+sum_votes[a_store_3[index_16]][ballots[a_store_3[index_16]][b_store_7[index_15]]] += weights[a_store_3[index_16]][b_store_7[index_15]];
+assert(sum_votes[a_store_3[index_16]][ballots[a_store_3[index_16]][b_store_7[index_15]]] >= weights[a_store_3[index_16]][b_store_7[index_15]]);
 }
 
 }

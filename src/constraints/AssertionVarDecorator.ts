@@ -105,25 +105,29 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       return this.functionConstraints.get(it[0])!.get(it[1])!
     }).reduce((left, right) => new Set([...left, ...right]), new Set())
     this.canOptimize = canOptimize(this.contractName, name) && this.canAddAssertions
+    this.canOptimize = false
     node.body = this.visit(node.body)
     if (node.body) {
       if (this.canAddAssertions && this.checkConstraints.size !== 0) {
         node.body.statements.push(...this.generateAssertions())
         node.body.statements.unshift(...this.functionDecorators.pre)
-        const tmp = generateNewVarName("tmp")
-        const entryVar = createIdentifier(entry)
-        const tmpDecl =
-          createVariableDeclarationStmt([createVariableDeclaration(tmp, createElementaryTypeName("uint256"), false)])
-        const entryDecl =
-          createVariableDeclarationStmt([createVariableDeclaration(entry, createElementaryTypeName("uint256"), false)],
-          zero)
-        const ifStmt = createIfStatment(createBinaryOperation(createIdentifier(memoryStart), zero, "=="),
-          createBlock([
-            createExpressionStmt(createBinaryOperation(entryVar, one, "=")),
-            allocateMemory(tmp, memoryStart, this.totalMemorySize)]))
-        node.body.statements.unshift(ifStmt)
-        node.body.statements.unshift(tmpDecl)
-        node.body.statements.unshift(entryDecl)
+        if (!this.canOptimize) {
+          const tmp = generateNewVarName("tmp")
+          const entryVar = createIdentifier(entry)
+          const tmpDecl =
+            createVariableDeclarationStmt([createVariableDeclaration(tmp, createElementaryTypeName("uint256"), false)])
+          const entryDecl =
+            createVariableDeclarationStmt(
+              [createVariableDeclaration(entry, createElementaryTypeName("uint256"), false)],
+            zero)
+          const ifStmt = createIfStatment(createBinaryOperation(createIdentifier(memoryStart), zero, "=="),
+            createBlock([
+              createExpressionStmt(createBinaryOperation(entryVar, one, "=")),
+              allocateMemory(tmp, memoryStart, this.totalMemorySize)]))
+          node.body.statements.unshift(ifStmt)
+          node.body.statements.unshift(tmpDecl)
+          node.body.statements.unshift(entryDecl)
+        }
       } else {
         node.body.statements.unshift(...this.functionDecorators.pre)
       }
