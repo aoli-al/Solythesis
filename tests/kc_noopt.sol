@@ -178,14 +178,14 @@ return _operatorApprovals[owner][operator];
 
 function transferFrom (address from, address to, uint256 tokenId) public {
 uint256 entry_1 = 0;
-uint256 tmp_222;
+uint256 tmp_230;
 if (memoryStart_0 == 0) {
 entry_1 = 1;
 assembly {
-tmp_222 := mload(0x40)
-mstore(0x40, add(tmp_222, 640))
-sstore(memoryStart_0_slot, tmp_222)
-mstore(add(tmp_222, 0), 0)
+tmp_230 := mload(0x40)
+mstore(0x40, add(tmp_230, 640))
+sstore(memoryStart_0_slot, tmp_230)
+mstore(add(tmp_230, 0), 0)
 }
 
 }
@@ -195,8 +195,8 @@ _transferFrom(from, to, tokenId);
 if (entry_1 == 1) {
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_221 = 0; index_221 < a.length; index_221 += 1) {
-assert(_ownedTokensCount[a[index_221]] == sum_ownersToken[a[index_221]]);
+for (uint256 index_229 = 0; index_229 < a.length; index_229 += 1) {
+assert(_ownedTokensCount[a[index_229]] == sum_ownersToken[a[index_229]]);
 }
 
 a.length = 0;
@@ -209,14 +209,14 @@ memoryStart_0 = 0;
 
 function safeTransferFrom (address from, address to, uint256 tokenId) public {
 uint256 entry_1 = 0;
-uint256 tmp_225;
+uint256 tmp_233;
 if (memoryStart_0 == 0) {
 entry_1 = 1;
 assembly {
-tmp_225 := mload(0x40)
-mstore(0x40, add(tmp_225, 640))
-sstore(memoryStart_0_slot, tmp_225)
-mstore(add(tmp_225, 0), 0)
+tmp_233 := mload(0x40)
+mstore(0x40, add(tmp_233, 640))
+sstore(memoryStart_0_slot, tmp_233)
+mstore(add(tmp_233, 0), 0)
 }
 
 }
@@ -225,8 +225,8 @@ safeTransferFrom(from, to, tokenId, "");
 if (entry_1 == 1) {
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_224 = 0; index_224 < a.length; index_224 += 1) {
-assert(_ownedTokensCount[a[index_224]] == sum_ownersToken[a[index_224]]);
+for (uint256 index_232 = 0; index_232 < a.length; index_232 += 1) {
+assert(_ownedTokensCount[a[index_232]] == sum_ownersToken[a[index_232]]);
 }
 
 a.length = 0;
@@ -239,14 +239,14 @@ memoryStart_0 = 0;
 
 function safeTransferFrom (address from, address to, uint256 tokenId, bytes memory _data) public {
 uint256 entry_1 = 0;
-uint256 tmp_228;
+uint256 tmp_236;
 if (memoryStart_0 == 0) {
 entry_1 = 1;
 assembly {
-tmp_228 := mload(0x40)
-mstore(0x40, add(tmp_228, 640))
-sstore(memoryStart_0_slot, tmp_228)
-mstore(add(tmp_228, 0), 0)
+tmp_236 := mload(0x40)
+mstore(0x40, add(tmp_236, 640))
+sstore(memoryStart_0_slot, tmp_236)
+mstore(add(tmp_236, 0), 0)
 }
 
 }
@@ -256,8 +256,8 @@ require(_checkOnERC721Received(from, to, tokenId, _data));
 if (entry_1 == 1) {
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_227 = 0; index_227 < a.length; index_227 += 1) {
-assert(_ownedTokensCount[a[index_227]] == sum_ownersToken[a[index_227]]);
+for (uint256 index_235 = 0; index_235 < a.length; index_235 += 1) {
+assert(_ownedTokensCount[a[index_235]] == sum_ownersToken[a[index_235]]);
 }
 
 a.length = 0;
@@ -693,25 +693,26 @@ pragma solidity ^0.5.0;
 contract ERC721Mintable is ERC721, MinterRole {
 function mint (address to, uint256 tokenId) onlyMinter public returns (bool) {
 uint256 entry_1 = 0;
-uint256 tmp_235;
+uint256 tmp_244;
 if (memoryStart_0 == 0) {
 entry_1 = 1;
 assembly {
-tmp_235 := mload(0x40)
-mstore(0x40, add(tmp_235, 640))
-sstore(memoryStart_0_slot, tmp_235)
-mstore(add(tmp_235, 0), 0)
+tmp_244 := mload(0x40)
+mstore(0x40, add(tmp_244, 640))
+sstore(memoryStart_0_slot, tmp_244)
+mstore(add(tmp_244, 0), 0)
 }
 
 }
 
 _mint(to, tokenId);
 {
+bool tmp_240 = true;
 if (entry_1 == 1) {
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_233 = 0; index_233 < a.length; index_233 += 1) {
-assert(_ownedTokensCount[a[index_233]] == sum_ownersToken[a[index_233]]);
+for (uint256 index_242 = 0; index_242 < a.length; index_242 += 1) {
+assert(_ownedTokensCount[a[index_242]] == sum_ownersToken[a[index_242]]);
 }
 
 a.length = 0;
@@ -720,14 +721,14 @@ a.length = 0;
 memoryStart_0 = 0;
 }
 
-return true;
+return (tmp_240);
 }
 
 if (entry_1 == 1) {
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_234 = 0; index_234 < a.length; index_234 += 1) {
-assert(_ownedTokensCount[a[index_234]] == sum_ownersToken[a[index_234]]);
+for (uint256 index_243 = 0; index_243 < a.length; index_243 += 1) {
+assert(_ownedTokensCount[a[index_243]] == sum_ownersToken[a[index_243]]);
 }
 
 a.length = 0;
@@ -743,14 +744,14 @@ pragma solidity ^0.5.0;
 contract ERC721MetadataMintable is ERC721, ERC721Metadata, MinterRole {
 function mintWithTokenURI (address to, uint256 tokenId, string memory tokenURI) onlyMinter public returns (bool) {
 uint256 entry_1 = 0;
-uint256 tmp_239;
+uint256 tmp_249;
 if (memoryStart_0 == 0) {
 entry_1 = 1;
 assembly {
-tmp_239 := mload(0x40)
-mstore(0x40, add(tmp_239, 640))
-sstore(memoryStart_0_slot, tmp_239)
-mstore(add(tmp_239, 0), 0)
+tmp_249 := mload(0x40)
+mstore(0x40, add(tmp_249, 640))
+sstore(memoryStart_0_slot, tmp_249)
+mstore(add(tmp_249, 0), 0)
 }
 
 }
@@ -758,11 +759,12 @@ mstore(add(tmp_239, 0), 0)
 _mint(to, tokenId);
 _setTokenURI(tokenId, tokenURI);
 {
+bool tmp_245 = true;
 if (entry_1 == 1) {
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_237 = 0; index_237 < a.length; index_237 += 1) {
-assert(_ownedTokensCount[a[index_237]] == sum_ownersToken[a[index_237]]);
+for (uint256 index_247 = 0; index_247 < a.length; index_247 += 1) {
+assert(_ownedTokensCount[a[index_247]] == sum_ownersToken[a[index_247]]);
 }
 
 a.length = 0;
@@ -771,14 +773,14 @@ a.length = 0;
 memoryStart_0 = 0;
 }
 
-return true;
+return (tmp_245);
 }
 
 if (entry_1 == 1) {
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_238 = 0; index_238 < a.length; index_238 += 1) {
-assert(_ownedTokensCount[a[index_238]] == sum_ownersToken[a[index_238]]);
+for (uint256 index_248 = 0; index_248 < a.length; index_248 += 1) {
+assert(_ownedTokensCount[a[index_248]] == sum_ownersToken[a[index_248]]);
 }
 
 a.length = 0;
@@ -849,14 +851,14 @@ constructor (string memory _name, string memory _symbol) ERC721Mintable() ERC721
 
 function mintUniqueTokenTo (address _to, uint256 _tokenId, string memory _tokenURI) onlyOwner public {
 uint256 entry_1 = 0;
-uint256 tmp_242;
+uint256 tmp_252;
 if (memoryStart_0 == 0) {
 entry_1 = 1;
 assembly {
-tmp_242 := mload(0x40)
-mstore(0x40, add(tmp_242, 640))
-sstore(memoryStart_0_slot, tmp_242)
-mstore(add(tmp_242, 0), 0)
+tmp_252 := mload(0x40)
+mstore(0x40, add(tmp_252, 640))
+sstore(memoryStart_0_slot, tmp_252)
+mstore(add(tmp_252, 0), 0)
 }
 
 }
@@ -866,8 +868,8 @@ _setTokenURI(_tokenId, _tokenURI);
 if (entry_1 == 1) {
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_241 = 0; index_241 < a.length; index_241 += 1) {
-assert(_ownedTokensCount[a[index_241]] == sum_ownersToken[a[index_241]]);
+for (uint256 index_251 = 0; index_251 < a.length; index_251 += 1) {
+assert(_ownedTokensCount[a[index_251]] == sum_ownersToken[a[index_251]]);
 }
 
 a.length = 0;
@@ -880,14 +882,14 @@ memoryStart_0 = 0;
 
 function transfer (address _to, uint256 _tokenId) public {
 uint256 entry_1 = 0;
-uint256 tmp_245;
+uint256 tmp_255;
 if (memoryStart_0 == 0) {
 entry_1 = 1;
 assembly {
-tmp_245 := mload(0x40)
-mstore(0x40, add(tmp_245, 640))
-sstore(memoryStart_0_slot, tmp_245)
-mstore(add(tmp_245, 0), 0)
+tmp_255 := mload(0x40)
+mstore(0x40, add(tmp_255, 640))
+sstore(memoryStart_0_slot, tmp_255)
+mstore(add(tmp_255, 0), 0)
 }
 
 }
@@ -896,8 +898,8 @@ safeTransferFrom(msg.sender, _to, _tokenId);
 if (entry_1 == 1) {
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_244 = 0; index_244 < a.length; index_244 += 1) {
-assert(_ownedTokensCount[a[index_244]] == sum_ownersToken[a[index_244]]);
+for (uint256 index_254 = 0; index_254 < a.length; index_254 += 1) {
+assert(_ownedTokensCount[a[index_254]] == sum_ownersToken[a[index_254]]);
 }
 
 a.length = 0;
@@ -910,14 +912,14 @@ memoryStart_0 = 0;
 
 function transferAll (address _to, uint256[] memory _tokenId) public {
 uint256 entry_1 = 0;
-uint256 tmp_248;
+uint256 tmp_258;
 if (memoryStart_0 == 0) {
 entry_1 = 1;
 assembly {
-tmp_248 := mload(0x40)
-mstore(0x40, add(tmp_248, 640))
-sstore(memoryStart_0_slot, tmp_248)
-mstore(add(tmp_248, 0), 0)
+tmp_258 := mload(0x40)
+mstore(0x40, add(tmp_258, 640))
+sstore(memoryStart_0_slot, tmp_258)
+mstore(add(tmp_258, 0), 0)
 }
 
 }
@@ -929,8 +931,8 @@ safeTransferFrom(msg.sender, _to, _tokenId[i]);
 if (entry_1 == 1) {
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_247 = 0; index_247 < a.length; index_247 += 1) {
-assert(_ownedTokensCount[a[index_247]] == sum_ownersToken[a[index_247]]);
+for (uint256 index_257 = 0; index_257 < a.length; index_257 += 1) {
+assert(_ownedTokensCount[a[index_257]] == sum_ownersToken[a[index_257]]);
 }
 
 a.length = 0;

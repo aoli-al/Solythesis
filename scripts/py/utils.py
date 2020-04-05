@@ -6,7 +6,7 @@ benchmarks = [
     ("test", "~/scripts/py/replay_bec.py", "batchTransfer", 115),
     ("vote", "~/scripts/py/replay_vote.py", "v", 151)
     ]
-tests = ["_secured", "_noopt"]
+tests = ["_secured", ""]
 #  tests = ["_base_new"]
 
 

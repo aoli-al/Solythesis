@@ -685,53 +685,54 @@ pragma solidity ^0.5.0;
 contract ERC721Mintable is ERC721, MinterRole {
 function mint (address to, uint256 tokenId) onlyMinter public returns (bool) {
 uint256 entry_1 = 0;
-uint256 tmp_35;
+uint256 tmp_36;
 if (memoryStart_0 == 0) {
 entry_1 = 1;
 assembly {
-tmp_35 := mload(0x40)
-mstore(0x40, add(tmp_35, 0))
-sstore(memoryStart_0_slot, tmp_35)
+tmp_36 := mload(0x40)
+mstore(0x40, add(tmp_36, 0))
+sstore(memoryStart_0_slot, tmp_36)
 }
 
 }
 
 _mint(to, tokenId);
 {
+bool tmp_24 = true;
 if (entry_1 == 1) {
 {
 {
 sum_tokenCount = 0;
 }
 
-for (uint256 index_24 = 0; index_24 < a_store_4.length; index_24 += 1) {
-sum_tokenCount += _ownedTokensCount[a_store_4[index_24]];
-assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_24]]);
+for (uint256 index_25 = 0; index_25 < a_store_4.length; index_25 += 1) {
+sum_tokenCount += _ownedTokensCount[a_store_4[index_25]];
+assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_25]]);
 }
 
 }
 
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_25 = 0; index_25 < b_store_6.length; index_25 += 1) {
-sum_ownersToken[b_store_6[index_25]] = 0;
+for (uint256 index_26 = 0; index_26 < b_store_6.length; index_26 += 1) {
+sum_ownersToken[b_store_6[index_26]] = 0;
 }
 
-for (uint256 index_26 = 0; index_26 < a_store_8.length; index_26 += 1) {
-sum_ownersToken[_tokenOwner[a_store_8[index_26]]] += 1;
-assert(sum_ownersToken[_tokenOwner[a_store_8[index_26]]] >= 1);
+for (uint256 index_27 = 0; index_27 < a_store_8.length; index_27 += 1) {
+sum_ownersToken[_tokenOwner[a_store_8[index_27]]] += 1;
+assert(sum_ownersToken[_tokenOwner[a_store_8[index_27]]] >= 1);
 }
 
 }
 
-for (uint256 index_29 = 0; index_29 < a_store_10.length; index_29 += 1) {
-assert(_ownedTokensCount[a_store_10[index_29]] == sum_ownersToken[a_store_10[index_29]]);
+for (uint256 index_30 = 0; index_30 < a_store_10.length; index_30 += 1) {
+assert(_ownedTokensCount[a_store_10[index_30]] == sum_ownersToken[a_store_10[index_30]]);
 }
 
 memoryStart_0 = 0;
 }
 
-return true;
+return (tmp_24);
 }
 
 if (entry_1 == 1) {
@@ -740,28 +741,28 @@ if (entry_1 == 1) {
 sum_tokenCount = 0;
 }
 
-for (uint256 index_30 = 0; index_30 < a_store_4.length; index_30 += 1) {
-sum_tokenCount += _ownedTokensCount[a_store_4[index_30]];
-assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_30]]);
+for (uint256 index_31 = 0; index_31 < a_store_4.length; index_31 += 1) {
+sum_tokenCount += _ownedTokensCount[a_store_4[index_31]];
+assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_31]]);
 }
 
 }
 
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_31 = 0; index_31 < b_store_6.length; index_31 += 1) {
-sum_ownersToken[b_store_6[index_31]] = 0;
+for (uint256 index_32 = 0; index_32 < b_store_6.length; index_32 += 1) {
+sum_ownersToken[b_store_6[index_32]] = 0;
 }
 
-for (uint256 index_32 = 0; index_32 < a_store_8.length; index_32 += 1) {
-sum_ownersToken[_tokenOwner[a_store_8[index_32]]] += 1;
-assert(sum_ownersToken[_tokenOwner[a_store_8[index_32]]] >= 1);
+for (uint256 index_33 = 0; index_33 < a_store_8.length; index_33 += 1) {
+sum_ownersToken[_tokenOwner[a_store_8[index_33]]] += 1;
+assert(sum_ownersToken[_tokenOwner[a_store_8[index_33]]] >= 1);
 }
 
 }
 
-for (uint256 index_34 = 0; index_34 < a_store_10.length; index_34 += 1) {
-assert(_ownedTokensCount[a_store_10[index_34]] == sum_ownersToken[a_store_10[index_34]]);
+for (uint256 index_35 = 0; index_35 < a_store_10.length; index_35 += 1) {
+assert(_ownedTokensCount[a_store_10[index_35]] == sum_ownersToken[a_store_10[index_35]]);
 }
 
 memoryStart_0 = 0;
@@ -774,13 +775,13 @@ pragma solidity ^0.5.0;
 contract ERC721MetadataMintable is ERC721, ERC721Metadata, MinterRole {
 function mintWithTokenURI (address to, uint256 tokenId, string memory tokenURI) onlyMinter public returns (bool) {
 uint256 entry_1 = 0;
-uint256 tmp_47;
+uint256 tmp_49;
 if (memoryStart_0 == 0) {
 entry_1 = 1;
 assembly {
-tmp_47 := mload(0x40)
-mstore(0x40, add(tmp_47, 0))
-sstore(memoryStart_0_slot, tmp_47)
+tmp_49 := mload(0x40)
+mstore(0x40, add(tmp_49, 0))
+sstore(memoryStart_0_slot, tmp_49)
 }
 
 }
@@ -788,40 +789,41 @@ sstore(memoryStart_0_slot, tmp_47)
 _mint(to, tokenId);
 _setTokenURI(tokenId, tokenURI);
 {
+bool tmp_37 = true;
 if (entry_1 == 1) {
 {
 {
 sum_tokenCount = 0;
 }
 
-for (uint256 index_36 = 0; index_36 < a_store_4.length; index_36 += 1) {
-sum_tokenCount += _ownedTokensCount[a_store_4[index_36]];
-assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_36]]);
+for (uint256 index_38 = 0; index_38 < a_store_4.length; index_38 += 1) {
+sum_tokenCount += _ownedTokensCount[a_store_4[index_38]];
+assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_38]]);
 }
 
 }
 
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_37 = 0; index_37 < b_store_6.length; index_37 += 1) {
-sum_ownersToken[b_store_6[index_37]] = 0;
+for (uint256 index_39 = 0; index_39 < b_store_6.length; index_39 += 1) {
+sum_ownersToken[b_store_6[index_39]] = 0;
 }
 
-for (uint256 index_38 = 0; index_38 < a_store_8.length; index_38 += 1) {
-sum_ownersToken[_tokenOwner[a_store_8[index_38]]] += 1;
-assert(sum_ownersToken[_tokenOwner[a_store_8[index_38]]] >= 1);
+for (uint256 index_40 = 0; index_40 < a_store_8.length; index_40 += 1) {
+sum_ownersToken[_tokenOwner[a_store_8[index_40]]] += 1;
+assert(sum_ownersToken[_tokenOwner[a_store_8[index_40]]] >= 1);
 }
 
 }
 
-for (uint256 index_41 = 0; index_41 < a_store_10.length; index_41 += 1) {
-assert(_ownedTokensCount[a_store_10[index_41]] == sum_ownersToken[a_store_10[index_41]]);
+for (uint256 index_43 = 0; index_43 < a_store_10.length; index_43 += 1) {
+assert(_ownedTokensCount[a_store_10[index_43]] == sum_ownersToken[a_store_10[index_43]]);
 }
 
 memoryStart_0 = 0;
 }
 
-return true;
+return (tmp_37);
 }
 
 if (entry_1 == 1) {
@@ -830,28 +832,28 @@ if (entry_1 == 1) {
 sum_tokenCount = 0;
 }
 
-for (uint256 index_42 = 0; index_42 < a_store_4.length; index_42 += 1) {
-sum_tokenCount += _ownedTokensCount[a_store_4[index_42]];
-assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_42]]);
+for (uint256 index_44 = 0; index_44 < a_store_4.length; index_44 += 1) {
+sum_tokenCount += _ownedTokensCount[a_store_4[index_44]];
+assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_44]]);
 }
 
 }
 
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_43 = 0; index_43 < b_store_6.length; index_43 += 1) {
-sum_ownersToken[b_store_6[index_43]] = 0;
+for (uint256 index_45 = 0; index_45 < b_store_6.length; index_45 += 1) {
+sum_ownersToken[b_store_6[index_45]] = 0;
 }
 
-for (uint256 index_44 = 0; index_44 < a_store_8.length; index_44 += 1) {
-sum_ownersToken[_tokenOwner[a_store_8[index_44]]] += 1;
-assert(sum_ownersToken[_tokenOwner[a_store_8[index_44]]] >= 1);
+for (uint256 index_46 = 0; index_46 < a_store_8.length; index_46 += 1) {
+sum_ownersToken[_tokenOwner[a_store_8[index_46]]] += 1;
+assert(sum_ownersToken[_tokenOwner[a_store_8[index_46]]] >= 1);
 }
 
 }
 
-for (uint256 index_46 = 0; index_46 < a_store_10.length; index_46 += 1) {
-assert(_ownedTokensCount[a_store_10[index_46]] == sum_ownersToken[a_store_10[index_46]]);
+for (uint256 index_48 = 0; index_48 < a_store_10.length; index_48 += 1) {
+assert(_ownedTokensCount[a_store_10[index_48]] == sum_ownersToken[a_store_10[index_48]]);
 }
 
 memoryStart_0 = 0;
@@ -919,13 +921,13 @@ constructor (string memory _name, string memory _symbol) ERC721Mintable() ERC721
 
 function mintUniqueTokenTo (address _to, uint256 _tokenId, string memory _tokenURI) onlyOwner public {
 uint256 entry_1 = 0;
-uint256 tmp_54;
+uint256 tmp_56;
 if (memoryStart_0 == 0) {
 entry_1 = 1;
 assembly {
-tmp_54 := mload(0x40)
-mstore(0x40, add(tmp_54, 0))
-sstore(memoryStart_0_slot, tmp_54)
+tmp_56 := mload(0x40)
+mstore(0x40, add(tmp_56, 0))
+sstore(memoryStart_0_slot, tmp_56)
 }
 
 }
@@ -938,28 +940,28 @@ if (entry_1 == 1) {
 sum_tokenCount = 0;
 }
 
-for (uint256 index_48 = 0; index_48 < a_store_4.length; index_48 += 1) {
-sum_tokenCount += _ownedTokensCount[a_store_4[index_48]];
-assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_48]]);
+for (uint256 index_50 = 0; index_50 < a_store_4.length; index_50 += 1) {
+sum_tokenCount += _ownedTokensCount[a_store_4[index_50]];
+assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_50]]);
 }
 
 }
 
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_49 = 0; index_49 < b_store_6.length; index_49 += 1) {
-sum_ownersToken[b_store_6[index_49]] = 0;
+for (uint256 index_51 = 0; index_51 < b_store_6.length; index_51 += 1) {
+sum_ownersToken[b_store_6[index_51]] = 0;
 }
 
-for (uint256 index_50 = 0; index_50 < a_store_8.length; index_50 += 1) {
-sum_ownersToken[_tokenOwner[a_store_8[index_50]]] += 1;
-assert(sum_ownersToken[_tokenOwner[a_store_8[index_50]]] >= 1);
+for (uint256 index_52 = 0; index_52 < a_store_8.length; index_52 += 1) {
+sum_ownersToken[_tokenOwner[a_store_8[index_52]]] += 1;
+assert(sum_ownersToken[_tokenOwner[a_store_8[index_52]]] >= 1);
 }
 
 }
 
-for (uint256 index_53 = 0; index_53 < a_store_10.length; index_53 += 1) {
-assert(_ownedTokensCount[a_store_10[index_53]] == sum_ownersToken[a_store_10[index_53]]);
+for (uint256 index_55 = 0; index_55 < a_store_10.length; index_55 += 1) {
+assert(_ownedTokensCount[a_store_10[index_55]] == sum_ownersToken[a_store_10[index_55]]);
 }
 
 memoryStart_0 = 0;
@@ -969,13 +971,13 @@ memoryStart_0 = 0;
 
 function transfer (address _to, uint256 _tokenId) public {
 uint256 entry_1 = 0;
-uint256 tmp_61;
+uint256 tmp_63;
 if (memoryStart_0 == 0) {
 entry_1 = 1;
 assembly {
-tmp_61 := mload(0x40)
-mstore(0x40, add(tmp_61, 0))
-sstore(memoryStart_0_slot, tmp_61)
+tmp_63 := mload(0x40)
+mstore(0x40, add(tmp_63, 0))
+sstore(memoryStart_0_slot, tmp_63)
 }
 
 }
@@ -987,28 +989,28 @@ if (entry_1 == 1) {
 sum_tokenCount = 0;
 }
 
-for (uint256 index_55 = 0; index_55 < a_store_4.length; index_55 += 1) {
-sum_tokenCount += _ownedTokensCount[a_store_4[index_55]];
-assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_55]]);
+for (uint256 index_57 = 0; index_57 < a_store_4.length; index_57 += 1) {
+sum_tokenCount += _ownedTokensCount[a_store_4[index_57]];
+assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_57]]);
 }
 
 }
 
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_56 = 0; index_56 < b_store_6.length; index_56 += 1) {
-sum_ownersToken[b_store_6[index_56]] = 0;
+for (uint256 index_58 = 0; index_58 < b_store_6.length; index_58 += 1) {
+sum_ownersToken[b_store_6[index_58]] = 0;
 }
 
-for (uint256 index_57 = 0; index_57 < a_store_8.length; index_57 += 1) {
-sum_ownersToken[_tokenOwner[a_store_8[index_57]]] += 1;
-assert(sum_ownersToken[_tokenOwner[a_store_8[index_57]]] >= 1);
+for (uint256 index_59 = 0; index_59 < a_store_8.length; index_59 += 1) {
+sum_ownersToken[_tokenOwner[a_store_8[index_59]]] += 1;
+assert(sum_ownersToken[_tokenOwner[a_store_8[index_59]]] >= 1);
 }
 
 }
 
-for (uint256 index_60 = 0; index_60 < a_store_10.length; index_60 += 1) {
-assert(_ownedTokensCount[a_store_10[index_60]] == sum_ownersToken[a_store_10[index_60]]);
+for (uint256 index_62 = 0; index_62 < a_store_10.length; index_62 += 1) {
+assert(_ownedTokensCount[a_store_10[index_62]] == sum_ownersToken[a_store_10[index_62]]);
 }
 
 memoryStart_0 = 0;
@@ -1018,13 +1020,13 @@ memoryStart_0 = 0;
 
 function transferAll (address _to, uint256[] memory _tokenId) public {
 uint256 entry_1 = 0;
-uint256 tmp_68;
+uint256 tmp_70;
 if (memoryStart_0 == 0) {
 entry_1 = 1;
 assembly {
-tmp_68 := mload(0x40)
-mstore(0x40, add(tmp_68, 0))
-sstore(memoryStart_0_slot, tmp_68)
+tmp_70 := mload(0x40)
+mstore(0x40, add(tmp_70, 0))
+sstore(memoryStart_0_slot, tmp_70)
 }
 
 }
@@ -1039,28 +1041,28 @@ if (entry_1 == 1) {
 sum_tokenCount = 0;
 }
 
-for (uint256 index_62 = 0; index_62 < a_store_4.length; index_62 += 1) {
-sum_tokenCount += _ownedTokensCount[a_store_4[index_62]];
-assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_62]]);
+for (uint256 index_64 = 0; index_64 < a_store_4.length; index_64 += 1) {
+sum_tokenCount += _ownedTokensCount[a_store_4[index_64]];
+assert(sum_tokenCount >= _ownedTokensCount[a_store_4[index_64]]);
 }
 
 }
 
 assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_63 = 0; index_63 < b_store_6.length; index_63 += 1) {
-sum_ownersToken[b_store_6[index_63]] = 0;
+for (uint256 index_65 = 0; index_65 < b_store_6.length; index_65 += 1) {
+sum_ownersToken[b_store_6[index_65]] = 0;
 }
 
-for (uint256 index_64 = 0; index_64 < a_store_8.length; index_64 += 1) {
-sum_ownersToken[_tokenOwner[a_store_8[index_64]]] += 1;
-assert(sum_ownersToken[_tokenOwner[a_store_8[index_64]]] >= 1);
+for (uint256 index_66 = 0; index_66 < a_store_8.length; index_66 += 1) {
+sum_ownersToken[_tokenOwner[a_store_8[index_66]]] += 1;
+assert(sum_ownersToken[_tokenOwner[a_store_8[index_66]]] >= 1);
 }
 
 }
 
-for (uint256 index_67 = 0; index_67 < a_store_10.length; index_67 += 1) {
-assert(_ownedTokensCount[a_store_10[index_67]] == sum_ownersToken[a_store_10[index_67]]);
+for (uint256 index_69 = 0; index_69 < a_store_10.length; index_69 += 1) {
+assert(_ownedTokensCount[a_store_10[index_69]] == sum_ownersToken[a_store_10[index_69]]);
 }
 
 memoryStart_0 = 0;

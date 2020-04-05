@@ -193,7 +193,7 @@ def test(args):
 
 def test_2(args):
     [contract, script_path, csv, skip] = args
-    [receiver, receiver_client] = create_receiver_singleton("ami-0e05c3ca6e6db9733")
+    [receiver, receiver_client] = create_receiver_singleton("ami-09ee0d630ab37985d")
     print(contract+csv + ": " + receiver.public_ip_address)
     try:
         execute_remote_command(receiver_client,
@@ -230,12 +230,12 @@ def test_3(args):
 
 
 #  test(["ERC20_BEC", "~/scripts/py/replay_bec.py", "transfer"])
-#  with Pool(6) as p:
-    #  p.map(test, generate_tests(*[int(x) for x in sys.argv[1:]]))
+with Pool(1) as p:
+    p.map(test_2, generate_tests(*[int(x) for x in sys.argv[1:]]))
 
 # with Pool(2) as p:
 #     print(p.map(test, generate_tests()))
 
 
 
-test_3(["ekt", "x", "x", 0])
+#  test_3(["ekt", "x", "x", 0])
