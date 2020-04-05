@@ -80,8 +80,8 @@ function generate(contractPath: string, constraintPath: string,
 
 }
 
-generate(process.argv[2], process.argv[3], "base_new", false, false, true)
-generate(process.argv[2], process.argv[3], "secured_new", true, true)
-generate(process.argv[2], process.argv[3], "noopt_new", false, false)
+generate(process.argv[2], process.argv[3], "base", false, false, true)
+generate(process.argv[2], process.argv[3], "secured", true, true)
+generate(process.argv[2], process.argv[3], "noopt", false, false)
 
 console.log("finished")

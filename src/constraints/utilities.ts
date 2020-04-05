@@ -1,6 +1,6 @@
 import * as dot from "graphlib-dot"
 import parser, { SourceUnit, ContractDefinition, FunctionDefinition,
-  SimpleStatement, ForStatement, UnaryOperation, UnaryOp } from "solidity-parser-antlr"
+  SimpleStatement, ForStatement, UnaryOperation, UnaryOp, TupleExpression } from "solidity-parser-antlr"
 import {
   ArrayTypeName, ASTNode, ASTNodeTypeString, BaseASTNode, BinaryOperation, BinOp, Block, ElementaryTypeName,
   Expression, ExpressionStatement, FunctionCall, Identifier, IfStatement, IndexAccess, Mapping, MemberAccess,
@@ -46,6 +46,13 @@ export function createForloop(body: Statement,
   forLoop.loopExpression = loopExpression
   forLoop.body = body
   return forLoop
+}
+
+export function createTupleExpression(components: Expression[], isArray: boolean) {
+  const node = createBaseASTNode("TupleExpression") as TupleExpression
+  node.components = components
+  node.isArray = isArray
+  return node
 }
 
 export function createBlock(statements: Statement[]) {

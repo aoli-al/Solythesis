@@ -1,7 +1,7 @@
 import * as _ from "lodash"
 import {
   BinOp, Block, ContractDefinition, Expression, ExpressionStatement, ForStatement, FunctionDefinition,
-  Identifier, ReturnStatement, Statement, StateVariableDeclaration, TypeName, Visitor,
+  Identifier, ReturnStatement, Statement, StateVariableDeclaration, TypeName, Visitor, Parameter
 } from "solidity-parser-antlr"
 import { optimizeStorageAccess } from "../optimizer/StorageAccessOptimizer"
 import { ContractVisitor } from "../visitors/ContractVisitor"
@@ -29,6 +29,7 @@ import {
   loadMemoryAddress,
   storeMemoryValue,
   allocateMemory,
+  createTupleExpression,
 } from "./utilities"
 import { SubstutionAnalyzer } from "../analyzer/SubstitutionAnalyzer"
 
@@ -56,6 +57,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
   private contractName: string = ""
   private forallOptimization: boolean
   private depthRequired: boolean = false
+  private returnParameters: Parameter[] = []
   private baselineImplementation: boolean = false
   private functionConstraints: Map<string, Map<string, Set<Node>>>
   constructor(constraints: Node[], functionConstraints: Map<string, Map<string, Set<Node>>>,
@@ -96,6 +98,11 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
       if (node.name.length === 0) { return  "<Fallback>" }
       return node.name
     })()
+    if (node.returnParameters) {
+      this.returnParameters = node.returnParameters.parameters
+    } else {
+      this.returnParameters = []
+    }
     this.depthRequired = (getCallers(this.contractName, name).length > 0 ||
       getSubFunctions(this.contractName, name).length > 0) &&
       (!node.stateMutability || !["pure", "view", "constant"].includes(node.stateMutability))
@@ -139,6 +146,20 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     const block = createBaseASTNode("Block") as Block
     block.statements = []
     if (this.canAddAssertions && this.checkConstraints.size !== 0) {
+      if (node.expression) {
+        if (this.returnParameters.length > 0) {
+          const variables: string[] = []
+          block.statements.push(createVariableDeclarationStmt(
+            this.returnParameters.map((it) => {
+              variables.push(generateNewVarName("tmp"))
+              return createVariableDeclaration(variables[variables.length - 1], it.typeName, false, it.storageLocation)
+            }), node.expression))
+          node.expression = createTupleExpression(variables.map((it) => createIdentifier(it)), false)
+        } else {
+          block.statements.push(createExpressionStmt(node.expression))
+          node.expression = null
+        }
+      }
       block.statements.push(...this.generateAssertions())
     } else {
       this.pendingReturns.push(block)
@@ -232,7 +253,7 @@ export class AssertionDectorator extends ContractVisitor implements Visitor  {
     const assertions = array
       .map((it) => generate(it)).reduce((pre, cur) => [...pre, ...cur], [])
 
-    if (this.depthRequired) {
+    if (!this.canOptimize) {
       const ifStatment = createIfStatment(
         createBinaryOperation(createIdentifier(entry),
           createNumberLiteral("1"), "=="), createBlock(assertions.concat(

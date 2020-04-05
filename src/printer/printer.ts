@@ -2,7 +2,7 @@ import {
   ArrayTypeName, ASTNode, BinaryOperation, Block, BooleanLiteral, ContractDefinition, ElementaryTypeName,
   Expression, ExpressionStatement, ForStatement, FunctionCall, FunctionDefinition, Identifier, IfStatement,
   IndexAccess, Mapping, MemberAccess, NumberLiteral, SourceUnit, StateVariableDeclaration, VariableDeclaration,
-  VariableDeclarationStatement, visit, Visitor, InlineAssemblyStatement, AssemblyBlock, AssemblyAssignment, AssemblyCall, HexNumber, DecimalNumber, UnaryOp, UnaryOperation, AssemblyLocalDefinition,
+  VariableDeclarationStatement, visit, Visitor, InlineAssemblyStatement, AssemblyBlock, AssemblyAssignment, AssemblyCall, HexNumber, DecimalNumber, UnaryOp, UnaryOperation, AssemblyLocalDefinition, TupleExpression, ReturnStatement,
 } from "solidity-parser-antlr"
 
 export class Printer implements Visitor {
@@ -146,12 +146,33 @@ export class Printer implements Visitor {
     this.source += "let "
     node.names.forEach((it, index) => {
       this.visitOrPrint(it)
-      if (index !== node.names.length -1) {
+      if (index !== node.names.length - 1) {
         this.source += ", "
       }
     })
     this.source += " := "
     this.visitOrPrint(node.expression)
+    return false
+  }
+
+  public TupleExpression = (node: TupleExpression) => {
+    this.source += "("
+    node.components.forEach((it, index) => {
+      this.visitOrPrint(it)
+      if (index !== node.components.length - 1) {
+        this.source += ", "
+      }
+    })
+    this.source += ")"
+    return false
+  }
+
+  public ReturnStatement = (node: ReturnStatement) => {
+    this.source += "return "
+    if (node.expression) {
+      this.visitOrPrint(node.expression)
+    }
+    this.source += ";"
     return false
   }
 

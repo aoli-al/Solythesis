@@ -114,11 +114,10 @@ _supportedInterfaces[interfaceId] = true;
 }
 pragma solidity ^0.5.0;
 contract ERC721 is ERC165, IERC721 {
-uint256 depth_0;
+uint256 memoryStart_0;
 uint256 sum_tokenCount;
 mapping (address=>uint256) sum_ownersToken;
 address[] a;
-uint256 index_55;
 using SafeMath for uint256;
 using Address for address;
 bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
@@ -178,57 +177,93 @@ return _operatorApprovals[owner][operator];
 }
 
 function transferFrom (address from, address to, uint256 tokenId) public {
-depth_0 += 1;
+uint256 entry_1 = 0;
+uint256 tmp_222;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_222 := mload(0x40)
+mstore(0x40, add(tmp_222, 640))
+sstore(memoryStart_0_slot, tmp_222)
+mstore(add(tmp_222, 0), 0)
+}
+
+}
+
 require(_isApprovedOrOwner(msg.sender, tokenId));
 _transferFrom(from, to, tokenId);
-depth_0 -= 1;
-if (depth_0 == 0) {
+if (entry_1 == 1) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_57 = 0; index_57 < a.length; index_57 += 1) {
-assert(_ownedTokensCount[a[index_57]] == sum_ownersToken[a[index_57]]);
+for (uint256 index_221 = 0; index_221 < a.length; index_221 += 1) {
+assert(_ownedTokensCount[a[index_221]] == sum_ownersToken[a[index_221]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
+memoryStart_0 = 0;
 }
 
 }
 
 function safeTransferFrom (address from, address to, uint256 tokenId) public {
-depth_0 += 1;
+uint256 entry_1 = 0;
+uint256 tmp_225;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_225 := mload(0x40)
+mstore(0x40, add(tmp_225, 640))
+sstore(memoryStart_0_slot, tmp_225)
+mstore(add(tmp_225, 0), 0)
+}
+
+}
+
 safeTransferFrom(from, to, tokenId, "");
-depth_0 -= 1;
-if (depth_0 == 0) {
+if (entry_1 == 1) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_59 = 0; index_59 < a.length; index_59 += 1) {
-assert(_ownedTokensCount[a[index_59]] == sum_ownersToken[a[index_59]]);
+for (uint256 index_224 = 0; index_224 < a.length; index_224 += 1) {
+assert(_ownedTokensCount[a[index_224]] == sum_ownersToken[a[index_224]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
+memoryStart_0 = 0;
 }
 
 }
 
 function safeTransferFrom (address from, address to, uint256 tokenId, bytes memory _data) public {
-depth_0 += 1;
+uint256 entry_1 = 0;
+uint256 tmp_228;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_228 := mload(0x40)
+mstore(0x40, add(tmp_228, 640))
+sstore(memoryStart_0_slot, tmp_228)
+mstore(add(tmp_228, 0), 0)
+}
+
+}
+
 transferFrom(from, to, tokenId);
 require(_checkOnERC721Received(from, to, tokenId, _data));
-depth_0 -= 1;
-if (depth_0 == 0) {
+if (entry_1 == 1) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_61 = 0; index_61 < a.length; index_61 += 1) {
-assert(_ownedTokensCount[a[index_61]] == sum_ownersToken[a[index_61]]);
+for (uint256 index_227 = 0; index_227 < a.length; index_227 += 1) {
+assert(_ownedTokensCount[a[index_227]] == sum_ownersToken[a[index_227]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
+memoryStart_0 = 0;
 }
 
 }
@@ -250,17 +285,20 @@ return (spender == owner || getApproved(tokenId) == spender || isApprovedForAll(
 }
 
 function _mint (address to, uint256 tokenId) internal {
-uint256 tmp_sum_tokenCount_65 = sum_tokenCount;
 require(to != address(0));
-require(!_exists(tokenId));
-if (_tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
+require(! _exists(tokenId));
+{
+if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
 assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
 {
 a.push(_tokenOwner[tokenId]);
 }
 sum_ownersToken[_tokenOwner[tokenId]] -= 1;
 }
-_tokenOwner[tokenId] = to;if (_tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
+
+}
+_tokenOwner[tokenId] = to;{
+if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
 {
 a.push(_tokenOwner[tokenId]);
 }
@@ -268,50 +306,69 @@ sum_ownersToken[_tokenOwner[tokenId]] += 1;
 assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
 }
 
+}
+
+{
 if (to != 0x0000000000000000000000000000000000000000) {
-assert(tmp_sum_tokenCount_65 >= _ownedTokensCount[to]);
-tmp_sum_tokenCount_65 -= _ownedTokensCount[to];
+assert(sum_tokenCount >= _ownedTokensCount[to]);
+sum_tokenCount -= _ownedTokensCount[to];
+}
+
 }
 {
 a.push(to);
 }
-_ownedTokensCount[to] = _ownedTokensCount[to].add(1);if (to != 0x0000000000000000000000000000000000000000) {
-tmp_sum_tokenCount_65 += _ownedTokensCount[to];
-assert(tmp_sum_tokenCount_65 >= _ownedTokensCount[to]);
+_ownedTokensCount[to] = _ownedTokensCount[to].add(1);{
+if (to != 0x0000000000000000000000000000000000000000) {
+sum_tokenCount += _ownedTokensCount[to];
+assert(sum_tokenCount >= _ownedTokensCount[to]);
+}
+
 }
 
 emit Transfer(address(0), to, tokenId);
-sum_tokenCount = tmp_sum_tokenCount_65;
 }
 
 function _burn (address owner, uint256 tokenId) internal {
 require(ownerOf(tokenId) == owner);
 _clearApproval(tokenId);
+{
 if (owner != 0x0000000000000000000000000000000000000000) {
 assert(sum_tokenCount >= _ownedTokensCount[owner]);
 sum_tokenCount -= _ownedTokensCount[owner];
 }
+
+}
 {
 a.push(owner);
 }
-_ownedTokensCount[owner] = _ownedTokensCount[owner].sub(1);if (owner != 0x0000000000000000000000000000000000000000) {
+_ownedTokensCount[owner] = _ownedTokensCount[owner].sub(1);{
+if (owner != 0x0000000000000000000000000000000000000000) {
 sum_tokenCount += _ownedTokensCount[owner];
 assert(sum_tokenCount >= _ownedTokensCount[owner]);
 }
 
-if (_tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
+}
+
+{
+if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
 assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
 {
 a.push(_tokenOwner[tokenId]);
 }
 sum_ownersToken[_tokenOwner[tokenId]] -= 1;
 }
-_tokenOwner[tokenId] = address(0);if (_tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
+
+}
+_tokenOwner[tokenId] = address(0);{
+if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
 {
 a.push(_tokenOwner[tokenId]);
 }
 sum_ownersToken[_tokenOwner[tokenId]] += 1;
 assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
+}
+
 }
 
 emit Transfer(owner, address(0), tokenId);
@@ -325,38 +382,54 @@ function _transferFrom (address from, address to, uint256 tokenId) internal {
 require(ownerOf(tokenId) == from);
 require(to != address(0));
 _clearApproval(tokenId);
+{
 if (from != 0x0000000000000000000000000000000000000000) {
 assert(sum_tokenCount >= _ownedTokensCount[from]);
 sum_tokenCount -= _ownedTokensCount[from];
 }
+
+}
 {
 a.push(from);
 }
-_ownedTokensCount[from] = _ownedTokensCount[from].sub(1);if (from != 0x0000000000000000000000000000000000000000) {
+_ownedTokensCount[from] = _ownedTokensCount[from].sub(1);{
+if (from != 0x0000000000000000000000000000000000000000) {
 sum_tokenCount += _ownedTokensCount[from];
 assert(sum_tokenCount >= _ownedTokensCount[from]);
 }
 
+}
+
+{
 if (to != 0x0000000000000000000000000000000000000000) {
 assert(sum_tokenCount >= _ownedTokensCount[to]);
 sum_tokenCount -= _ownedTokensCount[to];
 }
+
+}
 {
 a.push(to);
 }
-_ownedTokensCount[to] = _ownedTokensCount[to].add(1);if (to != 0x0000000000000000000000000000000000000000) {
+_ownedTokensCount[to] = _ownedTokensCount[to].add(1);{
+if (to != 0x0000000000000000000000000000000000000000) {
 sum_tokenCount += _ownedTokensCount[to];
 assert(sum_tokenCount >= _ownedTokensCount[to]);
 }
 
-if (_tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
+}
+
+{
+if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
 assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
 {
 a.push(_tokenOwner[tokenId]);
 }
 sum_ownersToken[_tokenOwner[tokenId]] -= 1;
 }
-_tokenOwner[tokenId] = to;if (_tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
+
+}
+_tokenOwner[tokenId] = to;{
+if (_tokenOwner[tokenId] == _tokenOwner[tokenId] && _tokenOwner[tokenId] != 0x0000000000000000000000000000000000000000) {
 {
 a.push(_tokenOwner[tokenId]);
 }
@@ -364,11 +437,13 @@ sum_ownersToken[_tokenOwner[tokenId]] += 1;
 assert(sum_ownersToken[_tokenOwner[tokenId]] >= 1);
 }
 
+}
+
 emit Transfer(from, to, tokenId);
 }
 
 function _checkOnERC721Received (address from, address to, uint256 tokenId, bytes memory _data) internal returns (bool) {
-if (!to.isContract()) {
+if (! to.isContract()) {
 {
 return true;
 }
@@ -474,7 +549,7 @@ _ownedTokens[from][tokenIndex] = lastTokenId;
 _ownedTokensIndex[lastTokenId] = tokenIndex;
 }
 
-_ownedTokens[from].length--;
+_ownedTokens[from].length --;
 }
 
 function _removeTokenFromAllTokensEnumeration (uint256 tokenId) private {
@@ -483,7 +558,7 @@ uint256 tokenIndex = _allTokensIndex[tokenId];
 uint256 lastTokenId = _allTokens[lastTokenIndex];
 _allTokens[tokenIndex] = lastTokenId;
 _allTokensIndex[lastTokenId] = tokenIndex;
-_allTokens.length--;
+_allTokens.length --;
 _allTokensIndex[tokenId] = 0;
 }
 
@@ -555,7 +630,7 @@ struct Role {
     }
 function add (Role storage role, address account) internal {
 require(account != address(0));
-require(!has(role, account));
+require(! has(role, account));
 role.bearer[account] = true;
 }
 
@@ -617,36 +692,48 @@ emit MinterRemoved(account);
 pragma solidity ^0.5.0;
 contract ERC721Mintable is ERC721, MinterRole {
 function mint (address to, uint256 tokenId) onlyMinter public returns (bool) {
-depth_0 += 1;
+uint256 entry_1 = 0;
+uint256 tmp_235;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_235 := mload(0x40)
+mstore(0x40, add(tmp_235, 640))
+sstore(memoryStart_0_slot, tmp_235)
+mstore(add(tmp_235, 0), 0)
+}
+
+}
+
 _mint(to, tokenId);
 {
-depth_0 -= 1;
-if (depth_0 == 0) {
+if (entry_1 == 1) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_68 = 0; index_68 < a.length; index_68 += 1) {
-assert(_ownedTokensCount[a[index_68]] == sum_ownersToken[a[index_68]]);
+for (uint256 index_233 = 0; index_233 < a.length; index_233 += 1) {
+assert(_ownedTokensCount[a[index_233]] == sum_ownersToken[a[index_233]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
+memoryStart_0 = 0;
 }
 
 return true;
 }
 
-depth_0 -= 1;
-if (depth_0 == 0) {
+if (entry_1 == 1) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_70 = 0; index_70 < a.length; index_70 += 1) {
-assert(_ownedTokensCount[a[index_70]] == sum_ownersToken[a[index_70]]);
+for (uint256 index_234 = 0; index_234 < a.length; index_234 += 1) {
+assert(_ownedTokensCount[a[index_234]] == sum_ownersToken[a[index_234]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
+memoryStart_0 = 0;
 }
 
 }
@@ -655,37 +742,49 @@ assert(sum_tokenCount == _allTokens.length);
 pragma solidity ^0.5.0;
 contract ERC721MetadataMintable is ERC721, ERC721Metadata, MinterRole {
 function mintWithTokenURI (address to, uint256 tokenId, string memory tokenURI) onlyMinter public returns (bool) {
-depth_0 += 1;
+uint256 entry_1 = 0;
+uint256 tmp_239;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_239 := mload(0x40)
+mstore(0x40, add(tmp_239, 640))
+sstore(memoryStart_0_slot, tmp_239)
+mstore(add(tmp_239, 0), 0)
+}
+
+}
+
 _mint(to, tokenId);
 _setTokenURI(tokenId, tokenURI);
 {
-depth_0 -= 1;
-if (depth_0 == 0) {
+if (entry_1 == 1) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_71 = 0; index_71 < a.length; index_71 += 1) {
-assert(_ownedTokensCount[a[index_71]] == sum_ownersToken[a[index_71]]);
+for (uint256 index_237 = 0; index_237 < a.length; index_237 += 1) {
+assert(_ownedTokensCount[a[index_237]] == sum_ownersToken[a[index_237]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
+memoryStart_0 = 0;
 }
 
 return true;
 }
 
-depth_0 -= 1;
-if (depth_0 == 0) {
+if (entry_1 == 1) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_73 = 0; index_73 < a.length; index_73 += 1) {
-assert(_ownedTokensCount[a[index_73]] == sum_ownersToken[a[index_73]]);
+for (uint256 index_238 = 0; index_238 < a.length; index_238 += 1) {
+assert(_ownedTokensCount[a[index_238]] == sum_ownersToken[a[index_238]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
+memoryStart_0 = 0;
 }
 
 }
@@ -749,59 +848,95 @@ constructor (string memory _name, string memory _symbol) ERC721Mintable() ERC721
 }
 
 function mintUniqueTokenTo (address _to, uint256 _tokenId, string memory _tokenURI) onlyOwner public {
-depth_0 += 1;
+uint256 entry_1 = 0;
+uint256 tmp_242;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_242 := mload(0x40)
+mstore(0x40, add(tmp_242, 640))
+sstore(memoryStart_0_slot, tmp_242)
+mstore(add(tmp_242, 0), 0)
+}
+
+}
+
 _mint(_to, _tokenId);
 _setTokenURI(_tokenId, _tokenURI);
-depth_0 -= 1;
-if (depth_0 == 0) {
+if (entry_1 == 1) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_74 = 0; index_74 < a.length; index_74 += 1) {
-assert(_ownedTokensCount[a[index_74]] == sum_ownersToken[a[index_74]]);
+for (uint256 index_241 = 0; index_241 < a.length; index_241 += 1) {
+assert(_ownedTokensCount[a[index_241]] == sum_ownersToken[a[index_241]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
+memoryStart_0 = 0;
 }
 
 }
 
 function transfer (address _to, uint256 _tokenId) public {
-depth_0 += 1;
+uint256 entry_1 = 0;
+uint256 tmp_245;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_245 := mload(0x40)
+mstore(0x40, add(tmp_245, 640))
+sstore(memoryStart_0_slot, tmp_245)
+mstore(add(tmp_245, 0), 0)
+}
+
+}
+
 safeTransferFrom(msg.sender, _to, _tokenId);
-depth_0 -= 1;
-if (depth_0 == 0) {
+if (entry_1 == 1) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_76 = 0; index_76 < a.length; index_76 += 1) {
-assert(_ownedTokensCount[a[index_76]] == sum_ownersToken[a[index_76]]);
+for (uint256 index_244 = 0; index_244 < a.length; index_244 += 1) {
+assert(_ownedTokensCount[a[index_244]] == sum_ownersToken[a[index_244]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
+memoryStart_0 = 0;
 }
 
 }
 
 function transferAll (address _to, uint256[] memory _tokenId) public {
-depth_0 += 1;
-for (uint i = 0; i < _tokenId.length; i++) {
+uint256 entry_1 = 0;
+uint256 tmp_248;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_248 := mload(0x40)
+mstore(0x40, add(tmp_248, 640))
+sstore(memoryStart_0_slot, tmp_248)
+mstore(add(tmp_248, 0), 0)
+}
+
+}
+
+for (uint i = 0; i < _tokenId.length; i ++) {
 safeTransferFrom(msg.sender, _to, _tokenId[i]);
 }
 
-depth_0 -= 1;
-if (depth_0 == 0) {
+if (entry_1 == 1) {
+assert(sum_tokenCount == _allTokens.length);
 {
-for (uint256 index_78 = 0; index_78 < a.length; index_78 += 1) {
-assert(_ownedTokensCount[a[index_78]] == sum_ownersToken[a[index_78]]);
+for (uint256 index_247 = 0; index_247 < a.length; index_247 += 1) {
+assert(_ownedTokensCount[a[index_247]] == sum_ownersToken[a[index_247]]);
 }
 
 a.length = 0;
 }
 
-assert(sum_tokenCount == _allTokens.length);
+memoryStart_0 = 0;
 }
 
 }
