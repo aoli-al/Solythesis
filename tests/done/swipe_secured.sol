@@ -94,8 +94,6 @@ emit UnlockUser(who);
 }
 contract SwipeToken is ERC20Interface, Tokenlock, UserLock {
 uint256 depth_0;
-mapping (address=>bool) a_checker_1;
-address[] a_store_2;
 uint256 sum_balance;
 using SafeMath for uint;
 string public symbol;
@@ -105,34 +103,43 @@ uint _totalSupply;
 mapping (address=>uint) balances;
 mapping (address=>mapping (address=>uint)) allowed;
 constructor () public {
+uint256 tmp_sum_balance_15 = sum_balance;
 symbol = "SXP";
 name = "Swipe";
 decimals = 18;
 _totalSupply = 300000000 * 10 ** uint(decimals);
-balances[owner] = _totalSupply;if (! a_checker_1[owner]) {
-a_store_2.push(owner);
-a_checker_1[owner] = true;
+{
+uint opt_16 = balances[owner];
+{
+if (true) {
+assert(tmp_sum_balance_15 >= opt_16);
+tmp_sum_balance_15 -= opt_16;
+}
+
+}
+
+opt_16 = _totalSupply;
+{
+if (true) {
+tmp_sum_balance_15 += opt_16;
+assert(tmp_sum_balance_15 >= opt_16);
+}
+
+}
+
+balances[owner] = opt_16;
 }
 
 emit Transfer(address(0), owner, _totalSupply);
+sum_balance = tmp_sum_balance_15;
 }
 
 function totalSupply () public view returns (uint) {
-depth_0 += 1;
-{
-depth_0 -= 1;
-if (depth_0 == 0) {
-assert(_totalSupply == sum_balance);
-}
+    if (depth_0 == 0) {
+        assert(_totalSupply == sum_balance);
+    }
 
-return _totalSupply.sub(balances[address(0)]);
-}
-
-depth_0 -= 1;
-if (depth_0 == 0) {
-assert(_totalSupply == sum_balance);
-}
-
+    return _totalSupply.sub(balances[address(0)]);
 }
 
 function balanceOf (address tokenOwner) public view returns (uint balance) {
@@ -143,47 +150,60 @@ return balances[tokenOwner];
 }
 
 function transfer (address to, uint tokens) validLock permissionCheck public returns (bool success) {
-balances[msg.sender] = balances[msg.sender].sub(tokens);if (! a_checker_1[msg.sender]) {
-a_store_2.push(msg.sender);
-a_checker_1[msg.sender] = true;
+uint256 tmp_sum_balance_17 = sum_balance;
+{
+uint opt_18 = balances[msg.sender];
+{
+if (true) {
+assert(tmp_sum_balance_17 >= opt_18);
+tmp_sum_balance_17 -= opt_18;
 }
 
-balances[to] = balances[to].add(tokens);if (! a_checker_1[to]) {
-a_store_2.push(to);
-a_checker_1[to] = true;
+}
+
+opt_18 = opt_18.sub(tokens);
+{
+if (true) {
+tmp_sum_balance_17 += opt_18;
+assert(tmp_sum_balance_17 >= opt_18);
+}
+
+}
+
+balances[msg.sender] = opt_18;
+}
+
+{
+uint opt_19 = balances[to];
+{
+if (true) {
+assert(tmp_sum_balance_17 >= opt_19);
+tmp_sum_balance_17 -= opt_19;
+}
+
+}
+
+opt_19 = opt_19.add(tokens);
+{
+if (true) {
+tmp_sum_balance_17 += opt_19;
+assert(tmp_sum_balance_17 >= opt_19);
+}
+
+}
+
+balances[to] = opt_19;
 }
 
 emit Transfer(msg.sender, to, tokens);
 {
-{
-{
-sum_balance = 0;
-}
-
-for (uint256 index_2 = 0; index_2 < a_store_2.length; index_2 += 1) {
-sum_balance += balances[a_store_2[index_2]];
-assert(sum_balance >= balances[a_store_2[index_2]]);
-}
-
-}
-
-assert(_totalSupply == sum_balance);
+assert(_totalSupply == tmp_sum_balance_17);
+sum_balance = tmp_sum_balance_17;
 return true;
 }
 
-{
-{
-sum_balance = 0;
-}
-
-for (uint256 index_3 = 0; index_3 < a_store_2.length; index_3 += 1) {
-sum_balance += balances[a_store_2[index_3]];
-assert(sum_balance >= balances[a_store_2[index_3]]);
-}
-
-}
-
-assert(_totalSupply == sum_balance);
+assert(_totalSupply == tmp_sum_balance_17);
+sum_balance = tmp_sum_balance_17;
 }
 
 function approve (address spender, uint tokens) validLock permissionCheck public returns (bool success) {
@@ -196,48 +216,61 @@ return true;
 }
 
 function transferFrom (address from, address to, uint tokens) validLock permissionCheck public returns (bool success) {
-balances[from] = balances[from].sub(tokens);if (! a_checker_1[from]) {
-a_store_2.push(from);
-a_checker_1[from] = true;
+uint256 tmp_sum_balance_20 = sum_balance;
+{
+uint opt_21 = balances[from];
+{
+if (true) {
+assert(tmp_sum_balance_20 >= opt_21);
+tmp_sum_balance_20 -= opt_21;
+}
+
+}
+
+opt_21 = opt_21.sub(tokens);
+{
+if (true) {
+tmp_sum_balance_20 += opt_21;
+assert(tmp_sum_balance_20 >= opt_21);
+}
+
+}
+
+balances[from] = opt_21;
 }
 
 allowed[from][msg.sender] = allowed[from][msg.sender].sub(tokens);
-balances[to] = balances[to].add(tokens);if (! a_checker_1[to]) {
-a_store_2.push(to);
-a_checker_1[to] = true;
+{
+uint opt_22 = balances[to];
+{
+if (true) {
+assert(tmp_sum_balance_20 >= opt_22);
+tmp_sum_balance_20 -= opt_22;
+}
+
+}
+
+opt_22 = opt_22.add(tokens);
+{
+if (true) {
+tmp_sum_balance_20 += opt_22;
+assert(tmp_sum_balance_20 >= opt_22);
+}
+
+}
+
+balances[to] = opt_22;
 }
 
 emit Transfer(from, to, tokens);
 {
-{
-{
-sum_balance = 0;
-}
-
-for (uint256 index_4 = 0; index_4 < a_store_2.length; index_4 += 1) {
-sum_balance += balances[a_store_2[index_4]];
-assert(sum_balance >= balances[a_store_2[index_4]]);
-}
-
-}
-
-assert(_totalSupply == sum_balance);
+assert(_totalSupply == tmp_sum_balance_20);
+sum_balance = tmp_sum_balance_20;
 return true;
 }
 
-{
-{
-sum_balance = 0;
-}
-
-for (uint256 index_5 = 0; index_5 < a_store_2.length; index_5 += 1) {
-sum_balance += balances[a_store_2[index_5]];
-assert(sum_balance >= balances[a_store_2[index_5]]);
-}
-
-}
-
-assert(_totalSupply == sum_balance);
+assert(_totalSupply == tmp_sum_balance_20);
+sum_balance = tmp_sum_balance_20;
 }
 
 function allowance (address tokenOwner, address spender) public view returns (uint remaining) {
@@ -249,52 +282,48 @@ return allowed[tokenOwner][spender];
 
 function burn (uint256 value) validLock permissionCheck public returns (bool success) {
 depth_0 += 1;
+uint256 tmp_sum_balance_23 = sum_balance;
 require(msg.sender != address(0), "ERC20: burn from the zero address");
 _totalSupply = _totalSupply.sub(value);
-balances[msg.sender] = balances[msg.sender].sub(value);if (! a_checker_1[msg.sender]) {
-a_store_2.push(msg.sender);
-a_checker_1[msg.sender] = true;
+{
+uint opt_24 = balances[msg.sender];
+{
+if (true) {
+assert(tmp_sum_balance_23 >= opt_24);
+tmp_sum_balance_23 -= opt_24;
+}
+
+}
+
+opt_24 = opt_24.sub(value);
+{
+if (true) {
+tmp_sum_balance_23 += opt_24;
+assert(tmp_sum_balance_23 >= opt_24);
+}
+
+}
+
+balances[msg.sender] = opt_24;
 }
 
 emit Transfer(msg.sender, address(0), value);
 {
 depth_0 -= 1;
 if (depth_0 == 0) {
-{
-{
-sum_balance = 0;
+assert(_totalSupply == tmp_sum_balance_23);
 }
 
-for (uint256 index_6 = 0; index_6 < a_store_2.length; index_6 += 1) {
-sum_balance += balances[a_store_2[index_6]];
-assert(sum_balance >= balances[a_store_2[index_6]]);
-}
-
-}
-
-assert(_totalSupply == sum_balance);
-}
-
+sum_balance = tmp_sum_balance_23;
 return true;
 }
 
 depth_0 -= 1;
 if (depth_0 == 0) {
-{
-{
-sum_balance = 0;
+assert(_totalSupply == tmp_sum_balance_23);
 }
 
-for (uint256 index_7 = 0; index_7 < a_store_2.length; index_7 += 1) {
-sum_balance += balances[a_store_2[index_7]];
-assert(sum_balance >= balances[a_store_2[index_7]]);
-}
-
-}
-
-assert(_totalSupply == sum_balance);
-}
-
+sum_balance = tmp_sum_balance_23;
 }
 
 function approveAndCall (address spender, uint tokens, bytes memory data) validLock permissionCheck public returns (bool success) {
@@ -309,19 +338,54 @@ return true;
 
 function burnForAllowance (address account, address feeAccount, uint256 amount) onlyOwner public returns (bool success) {
 depth_0 += 1;
+uint256 tmp_sum_balance_25 = sum_balance;
 require(account != address(0), "burn from the zero address");
 require(balanceOf(account) >= amount, "insufficient balance");
 uint feeAmount = amount.mul(2).div(10);
 uint burnAmount = amount.sub(feeAmount);
 _totalSupply = _totalSupply.sub(burnAmount);
-balances[account] = balances[account].sub(amount);if (! a_checker_1[account]) {
-a_store_2.push(account);
-a_checker_1[account] = true;
+{
+uint opt_26 = balances[account];
+{
+if (true) {
+assert(tmp_sum_balance_25 >= opt_26);
+tmp_sum_balance_25 -= opt_26;
 }
 
-balances[feeAccount] = balances[feeAccount].add(feeAmount);if (! a_checker_1[feeAccount]) {
-a_store_2.push(feeAccount);
-a_checker_1[feeAccount] = true;
+}
+
+opt_26 = opt_26.sub(amount);
+{
+if (true) {
+tmp_sum_balance_25 += opt_26;
+assert(tmp_sum_balance_25 >= opt_26);
+}
+
+}
+
+balances[account] = opt_26;
+}
+
+{
+uint opt_27 = balances[feeAccount];
+{
+if (true) {
+assert(tmp_sum_balance_25 >= opt_27);
+tmp_sum_balance_25 -= opt_27;
+}
+
+}
+
+opt_27 = opt_27.add(feeAmount);
+{
+if (true) {
+tmp_sum_balance_25 += opt_27;
+assert(tmp_sum_balance_25 >= opt_27);
+}
+
+}
+
+balances[feeAccount] = opt_27;
 }
 
 emit Transfer(account, address(0), burnAmount);
@@ -329,41 +393,19 @@ emit Transfer(account, msg.sender, feeAmount);
 {
 depth_0 -= 1;
 if (depth_0 == 0) {
-{
-{
-sum_balance = 0;
+assert(_totalSupply == tmp_sum_balance_25);
 }
 
-for (uint256 index_8 = 0; index_8 < a_store_2.length; index_8 += 1) {
-sum_balance += balances[a_store_2[index_8]];
-assert(sum_balance >= balances[a_store_2[index_8]]);
-}
-
-}
-
-assert(_totalSupply == sum_balance);
-}
-
+sum_balance = tmp_sum_balance_25;
 return true;
 }
 
 depth_0 -= 1;
 if (depth_0 == 0) {
-{
-{
-sum_balance = 0;
+assert(_totalSupply == tmp_sum_balance_25);
 }
 
-for (uint256 index_9 = 0; index_9 < a_store_2.length; index_9 += 1) {
-sum_balance += balances[a_store_2[index_9]];
-assert(sum_balance >= balances[a_store_2[index_9]]);
-}
-
-}
-
-assert(_totalSupply == sum_balance);
-}
-
+sum_balance = tmp_sum_balance_25;
 }
 
 function () external payable {

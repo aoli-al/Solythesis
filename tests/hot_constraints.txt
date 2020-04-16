@@ -1,0 +1,4 @@
+standard HoloToken {
+  sum_balance = map () sum balances[a] over (a) where true;
+  constraint totalSupply == sum_balance;
+}

@@ -1,0 +1,4 @@
+standard DSTokenBase {
+  sum_balance = map () sum _balances[a] over (a) where true;
+  constraint _supply == sum_balance;
+}

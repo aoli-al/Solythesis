@@ -93,9 +93,7 @@ emit UnlockUser(who);
 
 }
 contract SwipeToken is ERC20Interface, Tokenlock, UserLock {
-uint256 depth_0;
-mapping (address=>bool) a_checker_1;
-address[] a_store_2;
+uint256 memoryStart_0;
 uint256 sum_balance;
 using SafeMath for uint;
 string public symbol;
@@ -109,9 +107,26 @@ symbol = "SXP";
 name = "Swipe";
 decimals = 18;
 _totalSupply = 300000000 * 10 ** uint(decimals);
-balances[owner] = _totalSupply;if (! a_checker_1[owner]) {
-a_store_2.push(owner);
-a_checker_1[owner] = true;
+{
+uint opt_27 = balances[owner];
+{
+if (true) {
+assert(sum_balance >= opt_27);
+sum_balance -= opt_27;
+}
+
+}
+
+opt_27 = _totalSupply;
+{
+if (true) {
+sum_balance += opt_27;
+assert(sum_balance >= opt_27);
+}
+
+}
+
+balances[owner] = opt_27;
 }
 
 emit Transfer(address(0), owner, _totalSupply);
@@ -132,47 +147,77 @@ return balances[tokenOwner];
 }
 
 function transfer (address to, uint tokens) validLock permissionCheck public returns (bool success) {
-balances[msg.sender] = balances[msg.sender].sub(tokens);if (! a_checker_1[msg.sender]) {
-a_store_2.push(msg.sender);
-a_checker_1[msg.sender] = true;
+uint256 entry_1 = 0;
+uint256 tmp_30;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_30 := mload(0x40)
+mstore(0x40, add(tmp_30, 0))
+sstore(memoryStart_0_slot, tmp_30)
 }
 
-balances[to] = balances[to].add(tokens);if (! a_checker_1[to]) {
-a_store_2.push(to);
-a_checker_1[to] = true;
+}
+
+{
+uint opt_28 = balances[msg.sender];
+{
+if (true) {
+assert(sum_balance >= opt_28);
+sum_balance -= opt_28;
+}
+
+}
+
+opt_28 = opt_28.sub(tokens);
+{
+if (true) {
+sum_balance += opt_28;
+assert(sum_balance >= opt_28);
+}
+
+}
+
+balances[msg.sender] = opt_28;
+}
+
+{
+uint opt_29 = balances[to];
+{
+if (true) {
+assert(sum_balance >= opt_29);
+sum_balance -= opt_29;
+}
+
+}
+
+opt_29 = opt_29.add(tokens);
+{
+if (true) {
+sum_balance += opt_29;
+assert(sum_balance >= opt_29);
+}
+
+}
+
+balances[to] = opt_29;
 }
 
 emit Transfer(msg.sender, to, tokens);
 {
-{
-{
-sum_balance = 0;
-}
-
-for (uint256 index_2 = 0; index_2 < a_store_2.length; index_2 += 1) {
-sum_balance += balances[a_store_2[index_2]];
-assert(sum_balance >= balances[a_store_2[index_2]]);
-}
-
-}
-
+if (entry_1 == 1) {
 assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
+}
+
 return true;
 }
 
-{
-{
-sum_balance = 0;
-}
-
-for (uint256 index_3 = 0; index_3 < a_store_2.length; index_3 += 1) {
-sum_balance += balances[a_store_2[index_3]];
-assert(sum_balance >= balances[a_store_2[index_3]]);
-}
-
-}
-
+if (entry_1 == 1) {
 assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
+}
+
 }
 
 function approve (address spender, uint tokens) validLock permissionCheck public returns (bool success) {
@@ -185,48 +230,78 @@ return true;
 }
 
 function transferFrom (address from, address to, uint tokens) validLock permissionCheck public returns (bool success) {
-balances[from] = balances[from].sub(tokens);if (! a_checker_1[from]) {
-a_store_2.push(from);
-a_checker_1[from] = true;
+uint256 entry_1 = 0;
+uint256 tmp_33;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_33 := mload(0x40)
+mstore(0x40, add(tmp_33, 0))
+sstore(memoryStart_0_slot, tmp_33)
+}
+
+}
+
+{
+uint opt_31 = balances[from];
+{
+if (true) {
+assert(sum_balance >= opt_31);
+sum_balance -= opt_31;
+}
+
+}
+
+opt_31 = opt_31.sub(tokens);
+{
+if (true) {
+sum_balance += opt_31;
+assert(sum_balance >= opt_31);
+}
+
+}
+
+balances[from] = opt_31;
 }
 
 allowed[from][msg.sender] = allowed[from][msg.sender].sub(tokens);
-balances[to] = balances[to].add(tokens);if (! a_checker_1[to]) {
-a_store_2.push(to);
-a_checker_1[to] = true;
+{
+uint opt_32 = balances[to];
+{
+if (true) {
+assert(sum_balance >= opt_32);
+sum_balance -= opt_32;
+}
+
+}
+
+opt_32 = opt_32.add(tokens);
+{
+if (true) {
+sum_balance += opt_32;
+assert(sum_balance >= opt_32);
+}
+
+}
+
+balances[to] = opt_32;
 }
 
 emit Transfer(from, to, tokens);
 {
-{
-{
-sum_balance = 0;
-}
-
-for (uint256 index_4 = 0; index_4 < a_store_2.length; index_4 += 1) {
-sum_balance += balances[a_store_2[index_4]];
-assert(sum_balance >= balances[a_store_2[index_4]]);
-}
-
-}
-
+if (entry_1 == 1) {
 assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
+}
+
 return true;
 }
 
-{
-{
-sum_balance = 0;
-}
-
-for (uint256 index_5 = 0; index_5 < a_store_2.length; index_5 += 1) {
-sum_balance += balances[a_store_2[index_5]];
-assert(sum_balance >= balances[a_store_2[index_5]]);
-}
-
-}
-
+if (entry_1 == 1) {
 assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
+}
+
 }
 
 function allowance (address tokenOwner, address spender) public view returns (uint remaining) {
@@ -237,51 +312,55 @@ return allowed[tokenOwner][spender];
 }
 
 function burn (uint256 value) validLock permissionCheck public returns (bool success) {
-depth_0 += 1;
+uint256 entry_1 = 0;
+uint256 tmp_35;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_35 := mload(0x40)
+mstore(0x40, add(tmp_35, 0))
+sstore(memoryStart_0_slot, tmp_35)
+}
+
+}
+
 require(msg.sender != address(0), "ERC20: burn from the zero address");
 _totalSupply = _totalSupply.sub(value);
-balances[msg.sender] = balances[msg.sender].sub(value);if (! a_checker_1[msg.sender]) {
-a_store_2.push(msg.sender);
-a_checker_1[msg.sender] = true;
+{
+uint opt_34 = balances[msg.sender];
+{
+if (true) {
+assert(sum_balance >= opt_34);
+sum_balance -= opt_34;
+}
+
+}
+
+opt_34 = opt_34.sub(value);
+{
+if (true) {
+sum_balance += opt_34;
+assert(sum_balance >= opt_34);
+}
+
+}
+
+balances[msg.sender] = opt_34;
 }
 
 emit Transfer(msg.sender, address(0), value);
 {
-depth_0 -= 1;
-if (depth_0 == 0) {
-{
-{
-sum_balance = 0;
-}
-
-for (uint256 index_6 = 0; index_6 < a_store_2.length; index_6 += 1) {
-sum_balance += balances[a_store_2[index_6]];
-assert(sum_balance >= balances[a_store_2[index_6]]);
-}
-
-}
-
+if (entry_1 == 1) {
 assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
 }
 
 return true;
 }
 
-depth_0 -= 1;
-if (depth_0 == 0) {
-{
-{
-sum_balance = 0;
-}
-
-for (uint256 index_7 = 0; index_7 < a_store_2.length; index_7 += 1) {
-sum_balance += balances[a_store_2[index_7]];
-assert(sum_balance >= balances[a_store_2[index_7]]);
-}
-
-}
-
+if (entry_1 == 1) {
 assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
 }
 
 }
@@ -297,60 +376,81 @@ return true;
 }
 
 function burnForAllowance (address account, address feeAccount, uint256 amount) onlyOwner public returns (bool success) {
-depth_0 += 1;
+uint256 entry_1 = 0;
+uint256 tmp_38;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_38 := mload(0x40)
+mstore(0x40, add(tmp_38, 0))
+sstore(memoryStart_0_slot, tmp_38)
+}
+
+}
+
 require(account != address(0), "burn from the zero address");
 require(balanceOf(account) >= amount, "insufficient balance");
 uint feeAmount = amount.mul(2).div(10);
 uint burnAmount = amount.sub(feeAmount);
 _totalSupply = _totalSupply.sub(burnAmount);
-balances[account] = balances[account].sub(amount);if (! a_checker_1[account]) {
-a_store_2.push(account);
-a_checker_1[account] = true;
+{
+uint opt_36 = balances[account];
+{
+if (true) {
+assert(sum_balance >= opt_36);
+sum_balance -= opt_36;
 }
 
-balances[feeAccount] = balances[feeAccount].add(feeAmount);if (! a_checker_1[feeAccount]) {
-a_store_2.push(feeAccount);
-a_checker_1[feeAccount] = true;
+}
+
+opt_36 = opt_36.sub(amount);
+{
+if (true) {
+sum_balance += opt_36;
+assert(sum_balance >= opt_36);
+}
+
+}
+
+balances[account] = opt_36;
+}
+
+{
+uint opt_37 = balances[feeAccount];
+{
+if (true) {
+assert(sum_balance >= opt_37);
+sum_balance -= opt_37;
+}
+
+}
+
+opt_37 = opt_37.add(feeAmount);
+{
+if (true) {
+sum_balance += opt_37;
+assert(sum_balance >= opt_37);
+}
+
+}
+
+balances[feeAccount] = opt_37;
 }
 
 emit Transfer(account, address(0), burnAmount);
 emit Transfer(account, msg.sender, feeAmount);
 {
-depth_0 -= 1;
-if (depth_0 == 0) {
-{
-{
-sum_balance = 0;
-}
-
-for (uint256 index_8 = 0; index_8 < a_store_2.length; index_8 += 1) {
-sum_balance += balances[a_store_2[index_8]];
-assert(sum_balance >= balances[a_store_2[index_8]]);
-}
-
-}
-
+if (entry_1 == 1) {
 assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
 }
 
 return true;
 }
 
-depth_0 -= 1;
-if (depth_0 == 0) {
-{
-{
-sum_balance = 0;
-}
-
-for (uint256 index_9 = 0; index_9 < a_store_2.length; index_9 += 1) {
-sum_balance += balances[a_store_2[index_9]];
-assert(sum_balance >= balances[a_store_2[index_9]]);
-}
-
-}
-
+if (entry_1 == 1) {
 assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
 }
 
 }

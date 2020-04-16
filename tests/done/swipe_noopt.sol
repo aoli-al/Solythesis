@@ -103,42 +103,36 @@ uint _totalSupply;
 mapping (address=>uint) balances;
 mapping (address=>mapping (address=>uint)) allowed;
 constructor () public {
-uint256 tmp_sum_balance_23 = sum_balance;
+uint256 tmp_sum_balance_33 = sum_balance;
 symbol = "SXP";
 name = "Swipe";
 decimals = 18;
 _totalSupply = 300000000 * 10 ** uint(decimals);
 {
-uint opt_24 = balances[owner];
-{
 if (true) {
-assert(tmp_sum_balance_23 >= opt_24);
-tmp_sum_balance_23 -= opt_24;
+assert(tmp_sum_balance_33 >= balances[owner]);
+tmp_sum_balance_33 -= balances[owner];
 }
 
 }
-
-opt_24 = _totalSupply;
-{
+balances[owner] = _totalSupply;{
 if (true) {
-tmp_sum_balance_23 += opt_24;
-assert(tmp_sum_balance_23 >= opt_24);
+tmp_sum_balance_33 += balances[owner];
+assert(tmp_sum_balance_33 >= balances[owner]);
 }
 
-}
-
-balances[owner] = opt_24;
 }
 
 emit Transfer(address(0), owner, _totalSupply);
-sum_balance = tmp_sum_balance_23;
+sum_balance = tmp_sum_balance_33;
 }
 
 function totalSupply () public view returns (uint) {
-{
-return _totalSupply.sub(balances[address(0)]);
-}
+    if (depth_0 == 0) {
+        assert(_totalSupply == sum_balance);
+    }
 
+    return _totalSupply.sub(balances[address(0)]);
 }
 
 function balanceOf (address tokenOwner) public view returns (uint balance) {
@@ -149,60 +143,46 @@ return balances[tokenOwner];
 }
 
 function transfer (address to, uint tokens) validLock permissionCheck public returns (bool success) {
-uint256 tmp_sum_balance_25 = sum_balance;
-{
-uint opt_26 = balances[msg.sender];
+uint256 tmp_sum_balance_34 = sum_balance;
 {
 if (true) {
-assert(tmp_sum_balance_25 >= opt_26);
-tmp_sum_balance_25 -= opt_26;
+assert(tmp_sum_balance_34 >= balances[msg.sender]);
+tmp_sum_balance_34 -= balances[msg.sender];
+}
+
+}
+balances[msg.sender] = balances[msg.sender].sub(tokens);{
+if (true) {
+tmp_sum_balance_34 += balances[msg.sender];
+assert(tmp_sum_balance_34 >= balances[msg.sender]);
 }
 
 }
 
-opt_26 = opt_26.sub(tokens);
 {
 if (true) {
-tmp_sum_balance_25 += opt_26;
-assert(tmp_sum_balance_25 >= opt_26);
+assert(tmp_sum_balance_34 >= balances[to]);
+tmp_sum_balance_34 -= balances[to];
 }
 
 }
-
-balances[msg.sender] = opt_26;
-}
-
-{
-uint opt_27 = balances[to];
-{
+balances[to] = balances[to].add(tokens);{
 if (true) {
-assert(tmp_sum_balance_25 >= opt_27);
-tmp_sum_balance_25 -= opt_27;
+tmp_sum_balance_34 += balances[to];
+assert(tmp_sum_balance_34 >= balances[to]);
 }
 
-}
-
-opt_27 = opt_27.add(tokens);
-{
-if (true) {
-tmp_sum_balance_25 += opt_27;
-assert(tmp_sum_balance_25 >= opt_27);
-}
-
-}
-
-balances[to] = opt_27;
 }
 
 emit Transfer(msg.sender, to, tokens);
 {
-assert(_totalSupply == tmp_sum_balance_25);
-sum_balance = tmp_sum_balance_25;
+assert(_totalSupply == tmp_sum_balance_34);
+sum_balance = tmp_sum_balance_34;
 return true;
 }
 
-assert(_totalSupply == tmp_sum_balance_25);
-sum_balance = tmp_sum_balance_25;
+assert(_totalSupply == tmp_sum_balance_34);
+sum_balance = tmp_sum_balance_34;
 }
 
 function approve (address spender, uint tokens) validLock permissionCheck public returns (bool success) {
@@ -215,61 +195,47 @@ return true;
 }
 
 function transferFrom (address from, address to, uint tokens) validLock permissionCheck public returns (bool success) {
-uint256 tmp_sum_balance_28 = sum_balance;
-{
-uint opt_29 = balances[from];
+uint256 tmp_sum_balance_35 = sum_balance;
 {
 if (true) {
-assert(tmp_sum_balance_28 >= opt_29);
-tmp_sum_balance_28 -= opt_29;
+assert(tmp_sum_balance_35 >= balances[from]);
+tmp_sum_balance_35 -= balances[from];
 }
 
 }
-
-opt_29 = opt_29.sub(tokens);
-{
+balances[from] = balances[from].sub(tokens);{
 if (true) {
-tmp_sum_balance_28 += opt_29;
-assert(tmp_sum_balance_28 >= opt_29);
+tmp_sum_balance_35 += balances[from];
+assert(tmp_sum_balance_35 >= balances[from]);
 }
 
-}
-
-balances[from] = opt_29;
 }
 
 allowed[from][msg.sender] = allowed[from][msg.sender].sub(tokens);
 {
-uint opt_30 = balances[to];
-{
 if (true) {
-assert(tmp_sum_balance_28 >= opt_30);
-tmp_sum_balance_28 -= opt_30;
+assert(tmp_sum_balance_35 >= balances[to]);
+tmp_sum_balance_35 -= balances[to];
 }
 
 }
-
-opt_30 = opt_30.add(tokens);
-{
+balances[to] = balances[to].add(tokens);{
 if (true) {
-tmp_sum_balance_28 += opt_30;
-assert(tmp_sum_balance_28 >= opt_30);
+tmp_sum_balance_35 += balances[to];
+assert(tmp_sum_balance_35 >= balances[to]);
 }
 
-}
-
-balances[to] = opt_30;
 }
 
 emit Transfer(from, to, tokens);
 {
-assert(_totalSupply == tmp_sum_balance_28);
-sum_balance = tmp_sum_balance_28;
+assert(_totalSupply == tmp_sum_balance_35);
+sum_balance = tmp_sum_balance_35;
 return true;
 }
 
-assert(_totalSupply == tmp_sum_balance_28);
-sum_balance = tmp_sum_balance_28;
+assert(_totalSupply == tmp_sum_balance_35);
+sum_balance = tmp_sum_balance_35;
 }
 
 function allowance (address tokenOwner, address spender) public view returns (uint remaining) {
@@ -281,48 +247,41 @@ return allowed[tokenOwner][spender];
 
 function burn (uint256 value) validLock permissionCheck public returns (bool success) {
 depth_0 += 1;
-uint256 tmp_sum_balance_31 = sum_balance;
+uint256 tmp_sum_balance_36 = sum_balance;
 require(msg.sender != address(0), "ERC20: burn from the zero address");
 _totalSupply = _totalSupply.sub(value);
 {
-uint opt_32 = balances[msg.sender];
-{
 if (true) {
-assert(tmp_sum_balance_31 >= opt_32);
-tmp_sum_balance_31 -= opt_32;
+assert(tmp_sum_balance_36 >= balances[msg.sender]);
+tmp_sum_balance_36 -= balances[msg.sender];
 }
 
 }
-
-opt_32 = opt_32.sub(value);
-{
+balances[msg.sender] = balances[msg.sender].sub(value);{
 if (true) {
-tmp_sum_balance_31 += opt_32;
-assert(tmp_sum_balance_31 >= opt_32);
+tmp_sum_balance_36 += balances[msg.sender];
+assert(tmp_sum_balance_36 >= balances[msg.sender]);
 }
 
-}
-
-balances[msg.sender] = opt_32;
 }
 
 emit Transfer(msg.sender, address(0), value);
 {
 depth_0 -= 1;
 if (depth_0 == 0) {
-assert(_totalSupply == tmp_sum_balance_31);
+assert(_totalSupply == tmp_sum_balance_36);
 }
 
-sum_balance = tmp_sum_balance_31;
+sum_balance = tmp_sum_balance_36;
 return true;
 }
 
 depth_0 -= 1;
 if (depth_0 == 0) {
-assert(_totalSupply == tmp_sum_balance_31);
+assert(_totalSupply == tmp_sum_balance_36);
 }
 
-sum_balance = tmp_sum_balance_31;
+sum_balance = tmp_sum_balance_36;
 }
 
 function approveAndCall (address spender, uint tokens, bytes memory data) validLock permissionCheck public returns (bool success) {
@@ -337,54 +296,40 @@ return true;
 
 function burnForAllowance (address account, address feeAccount, uint256 amount) onlyOwner public returns (bool success) {
 depth_0 += 1;
-uint256 tmp_sum_balance_33 = sum_balance;
+uint256 tmp_sum_balance_37 = sum_balance;
 require(account != address(0), "burn from the zero address");
 require(balanceOf(account) >= amount, "insufficient balance");
 uint feeAmount = amount.mul(2).div(10);
 uint burnAmount = amount.sub(feeAmount);
 _totalSupply = _totalSupply.sub(burnAmount);
 {
-uint opt_34 = balances[account];
+if (true) {
+assert(tmp_sum_balance_37 >= balances[account]);
+tmp_sum_balance_37 -= balances[account];
+}
+
+}
+balances[account] = balances[account].sub(amount);{
+if (true) {
+tmp_sum_balance_37 += balances[account];
+assert(tmp_sum_balance_37 >= balances[account]);
+}
+
+}
+
 {
 if (true) {
-assert(tmp_sum_balance_33 >= opt_34);
-tmp_sum_balance_33 -= opt_34;
+assert(tmp_sum_balance_37 >= balances[feeAccount]);
+tmp_sum_balance_37 -= balances[feeAccount];
 }
 
 }
-
-opt_34 = opt_34.sub(amount);
-{
+balances[feeAccount] = balances[feeAccount].add(feeAmount);{
 if (true) {
-tmp_sum_balance_33 += opt_34;
-assert(tmp_sum_balance_33 >= opt_34);
+tmp_sum_balance_37 += balances[feeAccount];
+assert(tmp_sum_balance_37 >= balances[feeAccount]);
 }
 
-}
-
-balances[account] = opt_34;
-}
-
-{
-uint opt_35 = balances[feeAccount];
-{
-if (true) {
-assert(tmp_sum_balance_33 >= opt_35);
-tmp_sum_balance_33 -= opt_35;
-}
-
-}
-
-opt_35 = opt_35.add(feeAmount);
-{
-if (true) {
-tmp_sum_balance_33 += opt_35;
-assert(tmp_sum_balance_33 >= opt_35);
-}
-
-}
-
-balances[feeAccount] = opt_35;
 }
 
 emit Transfer(account, address(0), burnAmount);
@@ -392,19 +337,19 @@ emit Transfer(account, msg.sender, feeAmount);
 {
 depth_0 -= 1;
 if (depth_0 == 0) {
-assert(_totalSupply == tmp_sum_balance_33);
+assert(_totalSupply == tmp_sum_balance_37);
 }
 
-sum_balance = tmp_sum_balance_33;
+sum_balance = tmp_sum_balance_37;
 return true;
 }
 
 depth_0 -= 1;
 if (depth_0 == 0) {
-assert(_totalSupply == tmp_sum_balance_33);
+assert(_totalSupply == tmp_sum_balance_37);
 }
 
-sum_balance = tmp_sum_balance_33;
+sum_balance = tmp_sum_balance_37;
 }
 
 function () external payable {

@@ -93,7 +93,7 @@ emit UnlockUser(who);
 
 }
 contract SwipeToken is ERC20Interface, Tokenlock, UserLock {
-uint256 depth_0;
+uint256 memoryStart_0;
 uint256 sum_balance;
 using SafeMath for uint;
 string public symbol;
@@ -103,51 +103,31 @@ uint _totalSupply;
 mapping (address=>uint) balances;
 mapping (address=>mapping (address=>uint)) allowed;
 constructor () public {
-uint256 tmp_sum_balance_23 = sum_balance;
 symbol = "SXP";
 name = "Swipe";
 decimals = 18;
 _totalSupply = 300000000 * 10 ** uint(decimals);
 {
-uint opt_24 = balances[owner];
-{
 if (true) {
-assert(tmp_sum_balance_23 >= opt_24);
-tmp_sum_balance_23 -= opt_24;
+assert(sum_balance >= balances[owner]);
+sum_balance -= balances[owner];
 }
 
 }
-
-opt_24 = _totalSupply;
-{
+balances[owner] = _totalSupply;{
 if (true) {
-tmp_sum_balance_23 += opt_24;
-assert(tmp_sum_balance_23 >= opt_24);
+sum_balance += balances[owner];
+assert(sum_balance >= balances[owner]);
 }
 
-}
-
-balances[owner] = opt_24;
 }
 
 emit Transfer(address(0), owner, _totalSupply);
-sum_balance = tmp_sum_balance_23;
 }
 
 function totalSupply () public view returns (uint) {
-depth_0 += 1;
 {
-depth_0 -= 1;
-if (depth_0 == 0) {
-assert(_totalSupply == sum_balance);
-}
-
 return _totalSupply.sub(balances[address(0)]);
-}
-
-depth_0 -= 1;
-if (depth_0 == 0) {
-assert(_totalSupply == sum_balance);
 }
 
 }
@@ -160,60 +140,63 @@ return balances[tokenOwner];
 }
 
 function transfer (address to, uint tokens) validLock permissionCheck public returns (bool success) {
-uint256 tmp_sum_balance_25 = sum_balance;
-{
-uint opt_26 = balances[msg.sender];
-{
-if (true) {
-assert(tmp_sum_balance_25 >= opt_26);
-tmp_sum_balance_25 -= opt_26;
+uint256 entry_1 = 0;
+uint256 tmp_43;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_43 := mload(0x40)
+mstore(0x40, add(tmp_43, 0))
+sstore(memoryStart_0_slot, tmp_43)
 }
 
 }
 
-opt_26 = opt_26.sub(tokens);
-{
-if (true) {
-tmp_sum_balance_25 += opt_26;
-assert(tmp_sum_balance_25 >= opt_26);
-}
-
-}
-
-balances[msg.sender] = opt_26;
-}
-
-{
-uint opt_27 = balances[to];
 {
 if (true) {
-assert(tmp_sum_balance_25 >= opt_27);
-tmp_sum_balance_25 -= opt_27;
+assert(sum_balance >= balances[msg.sender]);
+sum_balance -= balances[msg.sender];
+}
+
+}
+balances[msg.sender] = balances[msg.sender].sub(tokens);{
+if (true) {
+sum_balance += balances[msg.sender];
+assert(sum_balance >= balances[msg.sender]);
 }
 
 }
 
-opt_27 = opt_27.add(tokens);
 {
 if (true) {
-tmp_sum_balance_25 += opt_27;
-assert(tmp_sum_balance_25 >= opt_27);
+assert(sum_balance >= balances[to]);
+sum_balance -= balances[to];
 }
 
 }
+balances[to] = balances[to].add(tokens);{
+if (true) {
+sum_balance += balances[to];
+assert(sum_balance >= balances[to]);
+}
 
-balances[to] = opt_27;
 }
 
 emit Transfer(msg.sender, to, tokens);
 {
-assert(_totalSupply == tmp_sum_balance_25);
-sum_balance = tmp_sum_balance_25;
+if (entry_1 == 1) {
+assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
+}
+
 return true;
 }
 
-assert(_totalSupply == tmp_sum_balance_25);
-sum_balance = tmp_sum_balance_25;
+if (entry_1 == 1) {
+assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
+}
+
 }
 
 function approve (address spender, uint tokens) validLock permissionCheck public returns (bool success) {
@@ -226,61 +209,64 @@ return true;
 }
 
 function transferFrom (address from, address to, uint tokens) validLock permissionCheck public returns (bool success) {
-uint256 tmp_sum_balance_28 = sum_balance;
-{
-uint opt_29 = balances[from];
+uint256 entry_1 = 0;
+uint256 tmp_44;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_44 := mload(0x40)
+mstore(0x40, add(tmp_44, 0))
+sstore(memoryStart_0_slot, tmp_44)
+}
+
+}
+
 {
 if (true) {
-assert(tmp_sum_balance_28 >= opt_29);
-tmp_sum_balance_28 -= opt_29;
+assert(sum_balance >= balances[from]);
+sum_balance -= balances[from];
 }
 
 }
-
-opt_29 = opt_29.sub(tokens);
-{
+balances[from] = balances[from].sub(tokens);{
 if (true) {
-tmp_sum_balance_28 += opt_29;
-assert(tmp_sum_balance_28 >= opt_29);
+sum_balance += balances[from];
+assert(sum_balance >= balances[from]);
 }
 
-}
-
-balances[from] = opt_29;
 }
 
 allowed[from][msg.sender] = allowed[from][msg.sender].sub(tokens);
 {
-uint opt_30 = balances[to];
-{
 if (true) {
-assert(tmp_sum_balance_28 >= opt_30);
-tmp_sum_balance_28 -= opt_30;
+assert(sum_balance >= balances[to]);
+sum_balance -= balances[to];
 }
 
 }
-
-opt_30 = opt_30.add(tokens);
-{
+balances[to] = balances[to].add(tokens);{
 if (true) {
-tmp_sum_balance_28 += opt_30;
-assert(tmp_sum_balance_28 >= opt_30);
+sum_balance += balances[to];
+assert(sum_balance >= balances[to]);
 }
 
-}
-
-balances[to] = opt_30;
 }
 
 emit Transfer(from, to, tokens);
 {
-assert(_totalSupply == tmp_sum_balance_28);
-sum_balance = tmp_sum_balance_28;
+if (entry_1 == 1) {
+assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
+}
+
 return true;
 }
 
-assert(_totalSupply == tmp_sum_balance_28);
-sum_balance = tmp_sum_balance_28;
+if (entry_1 == 1) {
+assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
+}
+
 }
 
 function allowance (address tokenOwner, address spender) public view returns (uint remaining) {
@@ -291,49 +277,50 @@ return allowed[tokenOwner][spender];
 }
 
 function burn (uint256 value) validLock permissionCheck public returns (bool success) {
-depth_0 += 1;
-uint256 tmp_sum_balance_31 = sum_balance;
+uint256 entry_1 = 0;
+uint256 tmp_45;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_45 := mload(0x40)
+mstore(0x40, add(tmp_45, 0))
+sstore(memoryStart_0_slot, tmp_45)
+}
+
+}
+
 require(msg.sender != address(0), "ERC20: burn from the zero address");
 _totalSupply = _totalSupply.sub(value);
 {
-uint opt_32 = balances[msg.sender];
-{
 if (true) {
-assert(tmp_sum_balance_31 >= opt_32);
-tmp_sum_balance_31 -= opt_32;
+assert(sum_balance >= balances[msg.sender]);
+sum_balance -= balances[msg.sender];
 }
 
 }
-
-opt_32 = opt_32.sub(value);
-{
+balances[msg.sender] = balances[msg.sender].sub(value);{
 if (true) {
-tmp_sum_balance_31 += opt_32;
-assert(tmp_sum_balance_31 >= opt_32);
+sum_balance += balances[msg.sender];
+assert(sum_balance >= balances[msg.sender]);
 }
 
-}
-
-balances[msg.sender] = opt_32;
 }
 
 emit Transfer(msg.sender, address(0), value);
 {
-depth_0 -= 1;
-if (depth_0 == 0) {
-assert(_totalSupply == tmp_sum_balance_31);
+if (entry_1 == 1) {
+assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
 }
 
-sum_balance = tmp_sum_balance_31;
 return true;
 }
 
-depth_0 -= 1;
-if (depth_0 == 0) {
-assert(_totalSupply == tmp_sum_balance_31);
+if (entry_1 == 1) {
+assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
 }
 
-sum_balance = tmp_sum_balance_31;
 }
 
 function approveAndCall (address spender, uint tokens, bytes memory data) validLock permissionCheck public returns (bool success) {
@@ -347,75 +334,69 @@ return true;
 }
 
 function burnForAllowance (address account, address feeAccount, uint256 amount) onlyOwner public returns (bool success) {
-depth_0 += 1;
-uint256 tmp_sum_balance_33 = sum_balance;
+uint256 entry_1 = 0;
+uint256 tmp_46;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_46 := mload(0x40)
+mstore(0x40, add(tmp_46, 0))
+sstore(memoryStart_0_slot, tmp_46)
+}
+
+}
+
 require(account != address(0), "burn from the zero address");
 require(balanceOf(account) >= amount, "insufficient balance");
 uint feeAmount = amount.mul(2).div(10);
 uint burnAmount = amount.sub(feeAmount);
 _totalSupply = _totalSupply.sub(burnAmount);
 {
-uint opt_34 = balances[account];
+if (true) {
+assert(sum_balance >= balances[account]);
+sum_balance -= balances[account];
+}
+
+}
+balances[account] = balances[account].sub(amount);{
+if (true) {
+sum_balance += balances[account];
+assert(sum_balance >= balances[account]);
+}
+
+}
+
 {
 if (true) {
-assert(tmp_sum_balance_33 >= opt_34);
-tmp_sum_balance_33 -= opt_34;
+assert(sum_balance >= balances[feeAccount]);
+sum_balance -= balances[feeAccount];
 }
 
 }
-
-opt_34 = opt_34.sub(amount);
-{
+balances[feeAccount] = balances[feeAccount].add(feeAmount);{
 if (true) {
-tmp_sum_balance_33 += opt_34;
-assert(tmp_sum_balance_33 >= opt_34);
+sum_balance += balances[feeAccount];
+assert(sum_balance >= balances[feeAccount]);
 }
 
-}
-
-balances[account] = opt_34;
-}
-
-{
-uint opt_35 = balances[feeAccount];
-{
-if (true) {
-assert(tmp_sum_balance_33 >= opt_35);
-tmp_sum_balance_33 -= opt_35;
-}
-
-}
-
-opt_35 = opt_35.add(feeAmount);
-{
-if (true) {
-tmp_sum_balance_33 += opt_35;
-assert(tmp_sum_balance_33 >= opt_35);
-}
-
-}
-
-balances[feeAccount] = opt_35;
 }
 
 emit Transfer(account, address(0), burnAmount);
 emit Transfer(account, msg.sender, feeAmount);
 {
-depth_0 -= 1;
-if (depth_0 == 0) {
-assert(_totalSupply == tmp_sum_balance_33);
+if (entry_1 == 1) {
+assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
 }
 
-sum_balance = tmp_sum_balance_33;
 return true;
 }
 
-depth_0 -= 1;
-if (depth_0 == 0) {
-assert(_totalSupply == tmp_sum_balance_33);
+if (entry_1 == 1) {
+assert(_totalSupply == sum_balance);
+memoryStart_0 = 0;
 }
 
-sum_balance = tmp_sum_balance_33;
 }
 
 function () external payable {
