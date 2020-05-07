@@ -11,7 +11,7 @@
       "request": "launch",
       "name": "Launch Program",
       // "args": ["/Users/leo/repos/sl2/tests/tether.sol", "/Users/leo/repos/sl2/tests/tether_constraints.txt"],
-      "args": ["./tests/kc.sol", "./tests/constraints3.txt"],
+      "args": ["./tests/vote.sol", "./tests/constraints2.txt"],
       "program": "${workspaceFolder}/src/main.ts",
       "preLaunchTask": "tsc: build - tsconfig.json",
       "outFiles": [

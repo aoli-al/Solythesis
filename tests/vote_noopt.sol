@@ -1,10 +1,9 @@
 pragma solidity ^0.5.0;
 contract AdvancedTokenVote1202 {
-uint256 depth_0;
+uint256 memoryStart_0;
 mapping (uint=>mapping (uint=>uint256)) sum_votes;
 uint[] x;
 uint[] y;
-uint256 index_25;
 mapping (uint=>string) public issueDescriptions;
 mapping (uint=>uint[]) internal options;
 mapping (uint=>mapping (uint=>string)) internal optionDescMap;
@@ -21,6 +20,20 @@ optionDescMap[1][2] = "Yes";
 }
 
 function createIssue (uint issueId, address _tokenAddr, uint[] memory options_, address[] memory qualifiedVoters_, string memory issueDesc_) public {
+uint256 entry_1 = 0;
+uint256 tmp_112;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_112 := mload(0x40)
+mstore(0x40, add(tmp_112, 1280))
+sstore(memoryStart_0_slot, tmp_112)
+mstore(add(tmp_112, 0), 0)
+mstore(add(tmp_112, 640), 0)
+}
+
+}
+
 require(options_.length >= 2);
 require(options[issueId].length == 0);
 options[issueId] = options_;
@@ -53,18 +66,36 @@ assert(sum_votes[issueId][ballots[issueId][voter]] >= weights[issueId][voter]);
 }
 
 issueDescriptions[issueId] = issueDesc_;
+if (entry_1 == 1) {
 {
-for (uint256 index_75 = 0; index_75 < x.length; index_75 += 1) {
-assert(y[index_75] == 0 || sum_votes[x[index_75]][y[index_75]] == weightedVoteCounts[x[index_75]][y[index_75]]);
+for (uint256 index_111 = 0; index_111 < x.length; index_111 += 1) {
+assert(y[index_111] == 0 || sum_votes[x[index_111]][y[index_111]] == weightedVoteCounts[x[index_111]][y[index_111]]);
 }
 
 x.length = 0;
 y.length = 0;
 }
 
+memoryStart_0 = 0;
+}
+
 }
 
 function vote (uint issueId, uint option) public returns (bool success) {
+uint256 entry_1 = 0;
+uint256 tmp_118;
+if (memoryStart_0 == 0) {
+entry_1 = 1;
+assembly {
+tmp_118 := mload(0x40)
+mstore(0x40, add(tmp_118, 1280))
+sstore(memoryStart_0_slot, tmp_118)
+mstore(add(tmp_118, 0), 0)
+mstore(add(tmp_118, 640), 0)
+}
+
+}
+
 require(isOpen[issueId]);
 uint256 weight = weights[issueId][msg.sender];
 {
@@ -97,25 +128,34 @@ assert(sum_votes[issueId][ballots[issueId][msg.sender]] >= weights[issueId][msg.
 
 emit OnVote(issueId, msg.sender, option);
 {
+bool tmp_115 = true;
+if (entry_1 == 1) {
 {
-for (uint256 index_79 = 0; index_79 < x.length; index_79 += 1) {
-assert(y[index_79] == 0 || sum_votes[x[index_79]][y[index_79]] == weightedVoteCounts[x[index_79]][y[index_79]]);
+for (uint256 index_116 = 0; index_116 < x.length; index_116 += 1) {
+assert(y[index_116] == 0 || sum_votes[x[index_116]][y[index_116]] == weightedVoteCounts[x[index_116]][y[index_116]]);
 }
 
 x.length = 0;
 y.length = 0;
 }
 
-return true;
+memoryStart_0 = 0;
 }
 
+return (tmp_115);
+}
+
+if (entry_1 == 1) {
 {
-for (uint256 index_80 = 0; index_80 < x.length; index_80 += 1) {
-assert(y[index_80] == 0 || sum_votes[x[index_80]][y[index_80]] == weightedVoteCounts[x[index_80]][y[index_80]]);
+for (uint256 index_117 = 0; index_117 < x.length; index_117 += 1) {
+assert(y[index_117] == 0 || sum_votes[x[index_117]][y[index_117]] == weightedVoteCounts[x[index_117]][y[index_117]]);
 }
 
 x.length = 0;
 y.length = 0;
+}
+
+memoryStart_0 = 0;
 }
 
 }
