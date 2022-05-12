@@ -1,6 +1,0 @@
-[submodule "solidity-parser-antlr"]
-	path = solidity-parser-antlr
-	url = git@github.com:Leeleo3x/solidity-parser-antlr.git
-[submodule "surya"]
-	path = surya
-	url = https://github.com/ConsenSys/surya

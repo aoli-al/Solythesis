@@ -1,7 +1,7 @@
 # Solythesis: Securing Smart Contract with Runtime Validation
 
 
-# Build Solythesis
+## Build Solythesis
 
 - First you need to build `solidity-parser-antlr` and `surya`
 
@@ -22,7 +22,7 @@ npm install
 - Build the project `tsc --build`
 
 
-# Use Solythesis
+## Use Solythesis
 
 
 Solythesis is a novel runtime validation framework for Ethereum smart contracts that works as a source to source Solidity compiler and detects errors at runtime. Solythesis generates an instrumented smart contract from a set of invariants and rejects transactions that violate the invariants.
