@@ -27,7 +27,7 @@
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
     "husky": "^2.2.0",
-    "mocha": "^5.2.0",
+    "mocha": "^10.2.0",
     "sinon": "^5.1.1"
   },
   "dependencies": {
